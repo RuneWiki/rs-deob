@@ -14,6 +14,16 @@ function deob(rev, client) {
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
 
+    // copy template project to work folder
+    fs.cpSync('template', 'work', { recursive: true });
+
+    // disassemble (can be useful)
+    fs.mkdirSync('work/ref/dis', { recursive: true });
+    child_process.execSync('krak2 dis --out ref/dis ref/runescape.jar', {
+        stdio: 'inherit',
+        cwd: path.join(__dirname, 'work')
+    });
+
     // deob!
     child_process.execSync('java -jar ../deobfuscator.jar', {
         stdio: 'inherit',
@@ -26,6 +36,10 @@ function deob(rev, client) {
         cwd: path.join(__dirname, 'work')
     });
     child_process.execSync('git checkout -b ' + rev, {
+        stdio: 'inherit',
+        cwd: path.join(__dirname, 'work')
+    });
+    child_process.execSync('git add --chmod=+x gradlew', {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
