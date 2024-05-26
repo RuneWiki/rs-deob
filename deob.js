@@ -41,7 +41,7 @@ function deob(rev, client) {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
-    child_process.execSync('git push -u origin ' + rev, {
+    child_process.execSync('git push -f -u origin ' + rev, {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
@@ -49,8 +49,6 @@ function deob(rev, client) {
 
 const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').map(l => l.split(',')).slice(1);
 
-// for (let i = 0; i < csv.length; i++) {
-//     deob(...csv[i]);
-// }
-
-deob(...csv[0]);
+for (let i = 0; i < csv.length; i++) {
+    deob(...csv[i]);
+}
