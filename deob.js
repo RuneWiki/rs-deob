@@ -2,6 +2,9 @@ const fs = require('fs');
 const child_process = require('child_process');
 const path = require('path');
 
+const DISASSEMBLE = true;
+const UPLOAD = true;
+
 function deob(rev, client) {
     fs.rmSync('remap.txt', { force: true });
     fs.rmSync('deob.toml', { force: true });
@@ -17,12 +20,14 @@ function deob(rev, client) {
     // copy template project to work folder
     fs.cpSync('template', 'work', { recursive: true });
 
-    // disassemble (can be useful)
-    fs.mkdirSync('work/ref/dis', { recursive: true });
-    child_process.execSync('krak2 dis --out ref/dis ref/runescape.jar', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
+    if (DISASSEMBLE) {
+        // disassemble (can be useful)
+        fs.mkdirSync('work/ref/dis', { recursive: true });
+        child_process.execSync('krak2 dis --out ref/dis ref/runescape.jar', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+    }
 
     // deob!
     child_process.execSync('java -jar ../deobfuscator.jar', {
@@ -30,35 +35,37 @@ function deob(rev, client) {
         cwd: path.join(__dirname, 'work')
     });
 
-    // upload to git
-    child_process.execSync('git init', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git checkout -b ' + rev, {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git add --chmod=+x gradlew', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git add .', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git commit -m "feat: Initial commit"', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git remote add origin https://github.com/RuneWiki/rs-deob', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git push -f -u origin ' + rev, {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
+    if (UPLOAD) {
+        // upload to git
+        child_process.execSync('git init', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git checkout -b ' + rev, {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git add --chmod=+x gradlew', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git add .', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git commit -m "feat: Initial commit"', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git remote add origin https://github.com/RuneWiki/rs-deob', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git push -f -u origin ' + rev, {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+    }
 }
 
 const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').map(l => l.split(',')).slice(1);
@@ -66,3 +73,6 @@ const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').
 for (let i = 0; i < csv.length; i++) {
     deob(...csv[i]);
 }
+
+// 225
+// deob(...csv[6]);
