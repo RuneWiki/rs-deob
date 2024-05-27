@@ -5,7 +5,7 @@ const path = require('path');
 const DISASSEMBLE = true;
 const UPLOAD = true;
 
-function deob(rev, client, template) {
+function deob(branch, client, template, remap) {
     fs.rmSync('remap.txt', { force: true });
     fs.rmSync('deob.toml', { force: true });
     fs.rmSync('work', { recursive: true, force: true });
@@ -13,12 +13,17 @@ function deob(rev, client, template) {
     fs.mkdirSync('work/ref', { recursive: true });
     fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
 
+    // copy template deob profile to work folder
     let toml = fs.readFileSync(template, 'ascii');
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
 
-    // copy template project to work folder
+    // copy template gradle project to work folder
     fs.cpSync('template', 'work', { recursive: true });
+
+    if (remap) {
+        fs.cpSync(remap, 'work/remap.txt');
+    }
 
     if (DISASSEMBLE) {
         // disassemble (can be useful)
@@ -41,7 +46,7 @@ function deob(rev, client, template) {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
         });
-        child_process.execSync('git checkout -b ' + rev, {
+        child_process.execSync('git checkout -b ' + branch, {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
         });
@@ -61,7 +66,7 @@ function deob(rev, client, template) {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
         });
-        child_process.execSync('git push -f -u origin ' + rev, {
+        child_process.execSync('git push -f -u origin ' + branch, {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
         });
@@ -71,8 +76,8 @@ function deob(rev, client, template) {
 const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').map(l => l.split(',')).slice(1);
 
 for (let i = 0; i < csv.length; i++) {
+    const [ branch ] = csv[i];
+
+    console.log('------ ' + branch + ' -----');
     deob(...csv[i]);
 }
-
-// 225
-// deob(...csv[6]);
