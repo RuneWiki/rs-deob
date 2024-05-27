@@ -5,7 +5,7 @@ const path = require('path');
 const DISASSEMBLE = true;
 const UPLOAD = true;
 
-function deob(rev, client) {
+function deob(rev, client, template) {
     fs.rmSync('remap.txt', { force: true });
     fs.rmSync('deob.toml', { force: true });
     fs.rmSync('work', { recursive: true, force: true });
@@ -13,7 +13,7 @@ function deob(rev, client) {
     fs.mkdirSync('work/ref', { recursive: true });
     fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
 
-    let toml = fs.readFileSync('deob.toml.template', 'ascii');
+    let toml = fs.readFileSync(template, 'ascii');
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
 
