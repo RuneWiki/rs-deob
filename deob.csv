@@ -34,7 +34,7 @@ branch,client,template,remap
 313,313.2005-05-25.jar,rs2-2005.toml
 315,315.2005-06-05.jar,rs2-2005.toml
 316,316.2005-06-11.jar,rs2-2005.toml
-317,317.2005-06-13.jar,rs2-2005.toml
+317,317.2005-06-13.jar,rs2-2005.toml,rs2-317-remap.txt
 318,318.2005-06-22.jar,rs2-2005.toml
 321,321.2005-07-07.jar,rs2-2005.toml
 327,327.2005-08-01.jar,rs2-2005.toml

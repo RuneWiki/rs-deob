@@ -131,6 +131,6 @@ QUWTPUDC=OnDemandProvider
 HRIUIFAV=ObjStackEntity
 VEDUNTJR=Occluder
 NLLHDXXJ=LocSpawned
-BGGPIAHI=DeadType
+BGGPIAHI=UnkType
 AYYYSATX=TileUnderlay
 RKBCLNKC=WorldRegion
