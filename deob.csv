@@ -1,4 +1,6 @@
 branch,client,template,remap
+passapplet,passapplet.jar,passapplet-2007.toml
+loginapplet,loginapplet--2b8c6207-1020332136.jar,loginapplet-2007.toml
 186,186.2003-12-02.jar,rs2-2004.toml,rs2-186-remap.txt
 194,194.2004-01-07.jar,rs2-2004.toml,rs2-194-remap.txt
 204,204.2004-03-17.jar,rs2-2004.toml,rs2-204-remap.txt

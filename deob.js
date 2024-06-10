@@ -75,8 +75,14 @@ function deob(branch, client, template, remap) {
 
 const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').map(l => l.split(',')).slice(1);
 
+const args = process.argv.slice(2);
+let target = args[0] || -1;
+
 for (let i = 0; i < csv.length; i++) {
     const [ branch ] = csv[i];
+    if (branch != target) {
+        continue;
+    }
 
     console.log('------ ' + branch + ' -----');
     deob(...csv[i]);
