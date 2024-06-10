@@ -1,0 +1,10 @@
+packet.g1()I=method6
+packet.g2()I=method7
+packet.g3()I=method8
+packet.g4()I=method9
+packet.g8()J=method10
+packet.p1(I)V=method1
+packet.p2(I)V=method2
+packet.p3(I)V=method3
+packet.p4(I)V=method4
+packet.p8(J)V=method5
