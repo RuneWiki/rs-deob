@@ -1,0 +1,17 @@
+a=GameShell
+b=ViewBox
+c=EventTracking
+d=Linkable
+e=DoublyLinkable
+f=Draw2D
+g=WorldMapFont
+h=Pix24
+i=Pix8
+j=PixFont
+k=Packet
+l=HashTable
+m=PixMap
+n=BZip2
+o=BZip2State
+p=Jagfile
+q=Version
