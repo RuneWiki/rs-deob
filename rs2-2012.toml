@@ -16,9 +16,6 @@ pre_transformers = [
 
 # post-remap transformers
 transformers = [
-    "OpaquePredicate",
-    "ExceptionTracing",
-    "Monitor",
     "RedundantGoto",
     "Visibility",
     "Zwyz"

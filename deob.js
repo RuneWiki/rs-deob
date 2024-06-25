@@ -2,8 +2,8 @@ const fs = require('fs');
 const child_process = require('child_process');
 const path = require('path');
 
-const DISASSEMBLE = true;
-const UPLOAD = true;
+const DISASSEMBLE = false;
+const UPLOAD = false;
 
 function deob(branch, client, template, remap) {
     fs.rmSync('remap.txt', { force: true });
@@ -17,6 +17,8 @@ function deob(branch, client, template, remap) {
     let toml = fs.readFileSync(template, 'ascii');
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
+
+    fs.writeFileSync('work/obforder.txt', '');
 
     // copy template gradle project to work folder
     fs.cpSync('template', 'work', { recursive: true });
@@ -35,7 +37,7 @@ function deob(branch, client, template, remap) {
     }
 
     // deob!
-    child_process.execSync('java -jar ../deobfuscator.jar', {
+    child_process.execSync('java --enable-preview -jar ../deobfuscator.jar', {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
