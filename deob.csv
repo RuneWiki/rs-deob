@@ -149,7 +149,7 @@ mapview.2005-02-04,mapview-2005-02-04-12-00-56-openrs2#31844.jar,mapview-2005.to
 mapview.2005-07-08,mapview-2005-07-08-17-13-04-openrs2#31838.jar,mapview-2005.toml,mapview-2004-09-22-remap.txt
 mapview.2006-01-05,mapview-2006-01-05-13-33-38-openrs2#31795.jar,mapview-2006.toml,mapview-2004-09-22-remap.txt
 mapview.2006-03-21,mapview-2006-03-21-17-43-08-openrs2#31794.jar,mapview-2006.toml,mapview-2004-09-22-remap.txt
-mapview.2006-07-04,mapview-2006-07-04-15-25-18-openrs2#31780.jar,mapview-2006.toml
+mapview.2006-07-04,mapview-2006-07-04-15-25-18-openrs2#31780.jar,mapview-2006.toml,mapview-2006-07-04-remap.txt
 mapview.2006-07-04.2,mapview-2006-07-04-16-02-40-openrs2#31778.jar,mapview-2006.toml
 mapview.2006-07-27,mapview-2006-07-27-14-11-24-openrs2#31777.jar,mapview-2006.toml
 mapview.2006-07-28,mapview-2006-07-28-14-20-02-openrs2#31798.jar,mapview-2006.toml
@@ -171,6 +171,6 @@ mapview.2007-12-17,mapview-2007-12-17-09-35-42-openrs2#31892.jar,mapview-2007.to
 mapview.2008-01-02,mapview-2008-01-02-09-14-02-openrs2#31895.jar,mapview-2008.toml
 mapview.2008-01-28,mapview-2008-01-28-15-26-06-openrs2#31897.jar,mapview-2008.toml
 mapview.2008-02-11,mapview-2008-02-11-10-37-06-openrs2#31898.jar,mapview-2008.toml
-mapview.2008-05-02,mapview-2008-05-02-15-55-24-openrs2#31891.jar,mapview-2008.toml
+mapview.2008-05-02,mapview-2008-05-02-15-55-24-openrs2#31891.jar,mapview-2008.toml,mapview-2008-05-02-remap.txt
 passapplet,passapplet.jar,passapplet-2007.toml
 loginapplet,loginapplet--2b8c6207-1020332136.jar,loginapplet-2007.toml
