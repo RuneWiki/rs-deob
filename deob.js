@@ -37,7 +37,7 @@ function deob(branch, client, template, remap) {
     }
 
     // deob!
-    child_process.execSync('java --enable-preview -jar ../deobfuscator.jar', {
+    child_process.execSync('java -jar ../deobfuscator.jar', {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
