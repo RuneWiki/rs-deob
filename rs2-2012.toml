@@ -10,20 +10,43 @@ java_cleanup = true
 
 # pre-remap transformers
 pre_transformers = [
-    "OriginalName",
-    "RedundantGoto"
+    "OriginalName"
 ]
 
 # post-remap transformers
 transformers = [
-    "RedundantGoto",
     "Visibility",
-    "Zwyz"
+    "OpaquePredicate",
+    "ExceptionTracing",
+    "Monitor",
+    "BitShift",
+    "Zwyz",
+    "VariableSplitter",
+    "ExpressionSorter",
+    "SortFieldsName",
+    "SortMethodsLineOrder"
 ]
 
 # post-decompilation source transformers
 ast_transformers = [
-    "Increment"
+    "Unenclose",
+    "NegativeLiteral",
+    "Complement",
+    "Not",
+    "CharLiteral",
+    # "IfElse",
+    "Ternary",
+    "BinaryExprOrder",
+    "AddSub",
+    "Identity",
+    "BitMask",
+    "HexLiteral",
+    "ValueOf",
+    "NewInstance",
+    "Increment",
+    "ForLoopCondition",
+    "RedundantCast",
+    "Enclose"
 ]
 
 [profile.original_name]
