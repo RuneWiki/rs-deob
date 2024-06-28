@@ -5,7 +5,7 @@ const path = require('path');
 const DISASSEMBLE = false;
 const UPLOAD = false;
 
-function deob(branch, client, template, remap) {
+function deob(branch, client, profile, remap) {
     fs.rmSync('remap.txt', { force: true });
     fs.rmSync('deob.toml', { force: true });
     fs.rmSync('work', { recursive: true, force: true });
@@ -13,8 +13,8 @@ function deob(branch, client, template, remap) {
     fs.mkdirSync('work/ref', { recursive: true });
     fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
 
-    // copy template deob profile to work folder
-    let toml = fs.readFileSync(template, 'ascii');
+    // copy deob profile to work folder
+    let toml = fs.readFileSync('profiles/' + profile, 'ascii');
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
 
@@ -24,7 +24,7 @@ function deob(branch, client, template, remap) {
     fs.cpSync('template', 'work', { recursive: true });
 
     if (remap) {
-        fs.cpSync(remap, 'work/remap.txt');
+        fs.cpSync('remap/' + remap, 'work/remap.txt');
     }
 
     if (DISASSEMBLE) {
