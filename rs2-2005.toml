@@ -19,12 +19,14 @@ transformers = [
     "OpaquePredicate",
     "ExceptionTracing",
     "Monitor",
+    "BitShift",
     "RedundantGoto",
     "Visibility"
 ]
 
 # post-decompilation source transformers
 ast_transformers = [
+    "BinaryExprOrder",
     "Increment"
 ]
 
