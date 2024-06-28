@@ -20,6 +20,7 @@ transformers = [
     "ExceptionTracing",
     "Monitor",
     "BitShift",
+    "FernflowerException",
     "Zwyz",
     "VariableSplitter",
     "ExpressionSorter",

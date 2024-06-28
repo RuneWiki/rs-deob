@@ -3,7 +3,7 @@ const child_process = require('child_process');
 const path = require('path');
 
 const DISASSEMBLE = false;
-const UPLOAD = false;
+const UPLOAD = true;
 
 function deob(branch, client, profile, remap) {
     fs.rmSync('remap.txt', { force: true });
@@ -82,7 +82,7 @@ let target = args[0] || -1;
 
 for (let i = 0; i < csv.length; i++) {
     const [ branch ] = csv[i];
-    if (branch != target) {
+    if (target !== 'all' && branch != target) {
         continue;
     }
 
