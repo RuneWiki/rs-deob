@@ -1,0 +1,51 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!h")
+public class class665 extends class60 implements class533 {
+
+    @OriginalMember(owner = "client!h", name = "nativeid", descriptor = "J")
+    public long nativeid;
+
+    @OriginalMember(owner = "client!h", name = "<init>", descriptor = "(Loa;Lya;Lrc;[Ljn;[Lhu;)V", line = 6)
+    public class665(class695 arg0, class52 arg1, class539 arg2, class720[] arg3, class133[] arg4) {
+        super(arg0, arg2);
+        byte[][] var6 = new byte[arg3.length][];
+        int[] var7 = new int[arg3.length];
+        int[] var8 = new int[arg3.length];
+        int[] var9 = new int[arg3.length];
+        int[] var10 = new int[arg3.length];
+        for (int var11 = 0; var11 < arg3.length; var11++) {
+            var6[var11] = arg3[var11].field10023;
+            var7[var11] = arg3[var11].field10028;
+            var8[var11] = arg3[var11].field10029;
+            var9[var11] = arg3[var11].field10024;
+            var10[var11] = arg3[var11].field10031;
+        }
+        this.method3671(arg0, arg1, var6, var7, var8, var9, var10);
+    }
+
+    @OriginalMember(owner = "client!h", name = "finalize", descriptor = "()V", line = 34)
+    protected final void finalize() {
+        if (this.nativeid != 0L) {
+            class521.method2896(this, (byte) 121);
+        }
+    }
+
+    @OriginalMember(owner = "client!h", name = "a", descriptor = "(CIIIZLaa;II)V", line = 39)
+    public final void method115(char arg0, int arg1, int arg2, int arg3, boolean arg4, class490 arg5, int arg6, int arg7) {
+        this.method3670(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    }
+
+    @OriginalMember(owner = "client!h", name = "NA", descriptor = "(CIIIZLaa;II)V")
+    private final native void method3670(char arg0, int arg1, int arg2, int arg3, boolean arg4, class490 arg5, int arg6, int arg7);
+
+    @OriginalMember(owner = "client!h", name = "w", descriptor = "(Z)V")
+    public final native void method116(boolean arg0);
+
+    @OriginalMember(owner = "client!h", name = "JA", descriptor = "(Loa;Lya;[[B[I[I[I[I)V")
+    private final native void method3671(class695 arg0, class52 arg1, byte[][] arg2, int[] arg3, int[] arg4, int[] arg5, int[] arg6);
+
+    @OriginalMember(owner = "client!h", name = "fa", descriptor = "(CIIIZ)V")
+    public final native void method118(char arg0, int arg1, int arg2, int arg3, boolean arg4);
+}
