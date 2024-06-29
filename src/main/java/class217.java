@@ -1,0 +1,103 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!vv")
+public class class217 {
+
+    @OriginalMember(owner = "client!vv", name = "e", descriptor = "I")
+    private int field3054 = class494.method2948(16);
+
+    @OriginalMember(owner = "client!vv", name = "d", descriptor = "I")
+    private int field3053 = class494.method2948(24);
+
+    @OriginalMember(owner = "client!vv", name = "c", descriptor = "I")
+    private int field3052 = class494.method2948(24);
+
+    @OriginalMember(owner = "client!vv", name = "g", descriptor = "I")
+    private int field3056 = class494.method2948(24) + 1;
+
+    @OriginalMember(owner = "client!vv", name = "f", descriptor = "I")
+    private int field3055 = class494.method2948(6) + 1;
+
+    @OriginalMember(owner = "client!vv", name = "a", descriptor = "I")
+    private int field3050 = class494.method2948(8);
+
+    @OriginalMember(owner = "client!vv", name = "b", descriptor = "[I")
+    private int[] field3051;
+
+    @OriginalMember(owner = "client!vv", name = "a", descriptor = "([FIZ)V")
+    public final void method1480(float[] arg0, int arg1, boolean arg2) {
+        for (int var4 = 0; var4 < arg1; var4++) {
+            arg0[var4] = 0.0F;
+        }
+        if (arg2) {
+            return;
+        }
+        int var5 = class494.field7299[this.field3050].field6630;
+        int var6 = this.field3052 - this.field3053;
+        int var7 = var6 / this.field3056;
+        int[] var8 = new int[var7];
+        for (int var9 = 0; var9 < 8; var9++) {
+            int var10 = 0;
+            while (var10 < var7) {
+                if (var9 == 0) {
+                    int var11 = class494.field7299[this.field3050].method2663();
+                    for (int var12 = var5 - 1; var12 >= 0; var12--) {
+                        if (var10 + var12 < var7) {
+                            var8[var10 + var12] = var11 % this.field3055;
+                        }
+                        var11 /= this.field3055;
+                    }
+                }
+                for (int var13 = 0; var13 < var5; var13++) {
+                    int var14 = var8[var10];
+                    int var15 = this.field3051[var14 * 8 + var9];
+                    if (var15 >= 0) {
+                        int var16 = this.field3056 * var10 + this.field3053;
+                        class440 var17 = class494.field7299[var15];
+                        if (this.field3054 == 0) {
+                            int var18 = this.field3056 / var17.field6630;
+                            for (int var19 = 0; var19 < var18; var19++) {
+                                float[] var20 = var17.method2664();
+                                for (int var21 = 0; var21 < var17.field6630; var21++) {
+                                    arg0[var18 * var21 + var16 + var19] += var20[var21];
+                                }
+                            }
+                        } else {
+                            int var22 = 0;
+                            while (var22 < this.field3056) {
+                                float[] var23 = var17.method2664();
+                                for (int var24 = 0; var24 < var17.field6630; var24++) {
+                                    arg0[var16 + var22] += var23[var24];
+                                    var22++;
+                                }
+                            }
+                        }
+                    }
+                    var10++;
+                    if (var10 >= var7) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!vv", name = "<init>", descriptor = "()V")
+    public class217() {
+        int[] var1 = new int[this.field3055];
+        for (int var2 = 0; var2 < this.field3055; var2++) {
+            int var4 = 0;
+            int var5 = class494.method2948(3);
+            boolean var6 = class494.method2950() != 0;
+            if (var6) {
+                var4 = class494.method2948(5);
+            }
+            var1[var2] = var4 << 3 | var5;
+        }
+        this.field3051 = new int[this.field3055 * 8];
+        for (int var3 = 0; var3 < this.field3055 * 8; var3++) {
+            this.field3051[var3] = (var1[var3 >> 3] & 0x1 << (var3 & 0x7)) == 0 ? -1 : class494.method2948(8);
+        }
+    }
+}
