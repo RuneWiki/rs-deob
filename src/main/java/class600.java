@@ -1,0 +1,505 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!cr")
+public class class600 {
+
+    @OriginalMember(owner = "client!cr", name = "a", descriptor = "I")
+    public int field8116;
+
+    @OriginalMember(owner = "client!cr", name = "b", descriptor = "I")
+    public int field8117;
+
+    @OriginalMember(owner = "client!cr", name = "c", descriptor = "I")
+    public int field8118;
+
+    @OriginalMember(owner = "client!cr", name = "f", descriptor = "I")
+    public int field8121;
+
+    @OriginalMember(owner = "client!cr", name = "h", descriptor = "I")
+    public int field8123;
+
+    @OriginalMember(owner = "client!cr", name = "i", descriptor = "I")
+    public int field8124;
+
+    @OriginalMember(owner = "client!cr", name = "d", descriptor = "[B")
+    public byte[] field8119;
+
+    @OriginalMember(owner = "client!cr", name = "g", descriptor = "[B")
+    public byte[] field8122;
+
+    @OriginalMember(owner = "client!cr", name = "e", descriptor = "[I")
+    public int[] field8120;
+
+    @OriginalMember(owner = "client!cr", name = "a", descriptor = "(Lbt;II)[Lcr;")
+    public static final class600[] method3418(class48 arg0, int arg1, int arg2) {
+        byte[] var3 = arg0.method437(arg1, (byte) -82, arg2);
+        return var3 == null ? null : method3424(var3);
+    }
+
+    @OriginalMember(owner = "client!cr", name = "a", descriptor = "(Lbt;I)[Lcr;")
+    public static final class600[] method3419(class48 arg0, int arg1) {
+        byte[] var2 = arg0.method453(arg1, 11040);
+        return var2 == null ? null : method3424(var2);
+    }
+
+    @OriginalMember(owner = "client!cr", name = "a", descriptor = "()I")
+    public final int method3420() {
+        return this.field8123 + this.field8118 + this.field8121;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "b", descriptor = "()V")
+    public final void method3421() {
+        int var1 = this.method3420();
+        int var2 = this.method3430();
+        if (this.field8123 == var1 && this.field8116 == var2) {
+            return;
+        }
+        byte[] var3 = new byte[var1 * var2];
+        if (this.field8119 == null) {
+            for (int var9 = 0; var9 < this.field8116; var9++) {
+                int var10 = this.field8123 * var9;
+                int var11 = (this.field8124 + var9) * var1 + this.field8118;
+                for (int var12 = 0; var12 < this.field8123; var12++) {
+                    var3[var11++] = this.field8122[var10++];
+                }
+            }
+        } else {
+            byte[] var4 = new byte[var1 * var2];
+            for (int var5 = 0; var5 < this.field8116; var5++) {
+                int var6 = this.field8123 * var5;
+                int var7 = (this.field8124 + var5) * var1 + this.field8118;
+                for (int var8 = 0; var8 < this.field8123; var8++) {
+                    var3[var7] = this.field8122[var6];
+                    var4[var7++] = this.field8119[var6++];
+                }
+            }
+            this.field8119 = var4;
+        }
+        this.field8118 = this.field8121 = this.field8124 = this.field8117 = 0;
+        this.field8123 = var1;
+        this.field8116 = var2;
+        this.field8122 = var3;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "a", descriptor = "(I)V")
+    public final void method3422(int arg0) {
+        int var2 = -1;
+        if (this.field8120.length < 255) {
+            for (int var3 = 0; var3 < this.field8120.length; var3++) {
+                if (this.field8120[var3] == arg0) {
+                    var2 = var3;
+                    break;
+                }
+            }
+            if (var2 == -1) {
+                var2 = this.field8120.length;
+                int[] var4 = new int[this.field8120.length + 1];
+                class211.method1332(this.field8120, 0, var4, 0, this.field8120.length);
+                this.field8120 = var4;
+                var4[var2] = arg0;
+            }
+        } else {
+            int var5 = Integer.MAX_VALUE;
+            int var6 = arg0 >> 16 & 0xFF;
+            int var7 = arg0 >> 8 & 0xFF;
+            int var8 = arg0 & 0xFF;
+            for (int var9 = 0; var9 < this.field8120.length; var9++) {
+                int var13 = this.field8120[var9];
+                int var14 = var13 >> 16 & 0xFF;
+                int var15 = var13 >> 8 & 0xFF;
+                int var16 = var13 & 0xFF;
+                int var17 = var6 - var14;
+                if (var17 < 0) {
+                    var17 = -var17;
+                }
+                int var18 = var7 - var15;
+                if (var18 < 0) {
+                    var18 = -var18;
+                }
+                int var19 = var8 - var16;
+                if (var19 < 0) {
+                    var19 = -var19;
+                }
+                int var20 = var17 + var18 + var19;
+                if (var20 < var5) {
+                    var5 = var20;
+                    var2 = var9;
+                }
+            }
+        }
+        for (int var10 = this.field8116 - 1; var10 > 0; var10--) {
+            int var11 = this.field8123 * var10;
+            for (int var12 = this.field8123 - 1; var12 > 0; var12--) {
+                if (this.field8120[this.field8122[var11 + var12] & 0xFF] == 0 && this.field8120[this.field8122[var11 + var12 - this.field8123 - 1] & 0xFF] != 0) {
+                    this.field8122[var11 + var12] = (byte) var2;
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!cr", name = "c", descriptor = "()V")
+    public final void method3423() {
+        byte[] var1 = this.field8122;
+        if (this.field8119 == null) {
+            for (int var2 = this.field8116 - 1; var2 >= 0; var2--) {
+                int var3 = this.field8123 * var2;
+                int var4 = (var2 + 1) * this.field8123;
+                while (var3 < var4) {
+                    var4--;
+                    byte var5 = var1[var3];
+                    var1[var3] = var1[var4];
+                    var1[var4] = var5;
+                    var3++;
+                }
+            }
+        } else {
+            byte[] var6 = this.field8119;
+            for (int var7 = this.field8116 - 1; var7 >= 0; var7--) {
+                int var9 = this.field8123 * var7;
+                int var10 = (var7 + 1) * this.field8123;
+                while (var9 < var10) {
+                    var10--;
+                    byte var11 = var1[var9];
+                    var1[var9] = var1[var10];
+                    var1[var10] = var11;
+                    byte var12 = var6[var9];
+                    var6[var9] = var6[var10];
+                    var6[var10] = var12;
+                    var9++;
+                }
+            }
+        }
+        int var8 = this.field8118;
+        this.field8118 = this.field8121;
+        this.field8121 = var8;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "a", descriptor = "([B)[Lcr;")
+    private static final class600[] method3424(byte[] arg0) {
+        class403 var1 = new class403(arg0);
+        var1.field5262 = arg0.length - 2;
+        int var2 = var1.method2390((byte) 44);
+        class600[] var3 = new class600[var2];
+        for (int var4 = 0; var4 < var2; var4++) {
+            var3[var4] = new class600();
+        }
+        var1.field5262 = arg0.length - var2 * 8 - 7;
+        int var5 = var1.method2390((byte) 83);
+        int var6 = var1.method2390((byte) 30);
+        int var7 = (var1.method2396((byte) -118) & 0xFF) + 1;
+        for (int var8 = 0; var8 < var2; var8++) {
+            var3[var8].field8118 = var1.method2390((byte) -128);
+        }
+        for (int var9 = 0; var9 < var2; var9++) {
+            var3[var9].field8124 = var1.method2390((byte) 105);
+        }
+        for (int var10 = 0; var10 < var2; var10++) {
+            var3[var10].field8123 = var1.method2390((byte) 104);
+        }
+        for (int var11 = 0; var11 < var2; var11++) {
+            var3[var11].field8116 = var1.method2390((byte) 125);
+        }
+        for (int var12 = 0; var12 < var2; var12++) {
+            class600 var32 = var3[var12];
+            var32.field8121 = var5 - var32.field8123 - var32.field8118;
+            var32.field8117 = var6 - var32.field8116 - var32.field8124;
+        }
+        var1.field5262 = arg0.length - var2 * 8 - (var7 - 1) * 3 - 7;
+        int[] var13 = new int[var7];
+        for (int var14 = 1; var14 < var7; var14++) {
+            var13[var14] = var1.method2358(117);
+            if (var13[var14] == 0) {
+                var13[var14] = 1;
+            }
+        }
+        for (int var15 = 0; var15 < var2; var15++) {
+            var3[var15].field8120 = var13;
+        }
+        var1.field5262 = 0;
+        for (int var16 = 0; var16 < var2; var16++) {
+            class600 var17 = var3[var16];
+            int var18 = var17.field8123 * var17.field8116;
+            var17.field8122 = new byte[var18];
+            int var19 = var1.method2396((byte) 32);
+            if ((var19 & 0x2) != 0) {
+                boolean var23 = false;
+                var17.field8119 = new byte[var18];
+                if ((var19 & 0x1) == 0) {
+                    for (int var24 = 0; var24 < var18; var24++) {
+                        var17.field8122[var24] = var1.method2392(124);
+                    }
+                    for (int var25 = 0; var25 < var18; var25++) {
+                        byte var26 = var17.field8119[var25] = var1.method2392(-73);
+                        var23 |= var26 != -1;
+                    }
+                } else {
+                    for (int var27 = 0; var27 < var17.field8123; var27++) {
+                        for (int var31 = 0; var31 < var17.field8116; var31++) {
+                            var17.field8122[var17.field8123 * var31 + var27] = var1.method2392(-56);
+                        }
+                    }
+                    for (int var28 = 0; var28 < var17.field8123; var28++) {
+                        for (int var29 = 0; var29 < var17.field8116; var29++) {
+                            byte var30 = var17.field8119[var17.field8123 * var29 + var28] = var1.method2392(-99);
+                            var23 |= var30 != -1;
+                        }
+                    }
+                }
+                if (!var23) {
+                    var17.field8119 = null;
+                }
+            } else if ((var19 & 0x1) == 0) {
+                for (int var20 = 0; var20 < var18; var20++) {
+                    var17.field8122[var20] = var1.method2392(-56);
+                }
+            } else {
+                for (int var21 = 0; var21 < var17.field8123; var21++) {
+                    for (int var22 = 0; var22 < var17.field8116; var22++) {
+                        var17.field8122[var17.field8123 * var22 + var21] = var1.method2392(13);
+                    }
+                }
+            }
+        }
+        return var3;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "d", descriptor = "()[I")
+    public final int[] method3425() {
+        int var1 = this.method3420();
+        int[] var2 = new int[var1 * this.method3430()];
+        if (this.field8119 == null) {
+            for (int var7 = 0; var7 < this.field8116; var7++) {
+                int var8 = this.field8123 * var7;
+                int var9 = (this.field8124 + var7) * var1 + this.field8118;
+                for (int var10 = 0; var10 < this.field8123; var10++) {
+                    int var11 = this.field8120[this.field8122[var8++] & 0xFF];
+                    if (var11 == 0) {
+                        var2[var9++] = 0;
+                    } else {
+                        var2[var9++] = var11 | 0xFF000000;
+                    }
+                }
+            }
+        } else {
+            for (int var3 = 0; var3 < this.field8116; var3++) {
+                int var4 = this.field8123 * var3;
+                int var5 = (this.field8124 + var3) * var1 + this.field8118;
+                for (int var6 = 0; var6 < this.field8123; var6++) {
+                    var2[var5++] = this.field8119[var4] << 24 | this.field8120[this.field8122[var4] & 0xFF];
+                    var4++;
+                }
+            }
+        }
+        return var2;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "b", descriptor = "(I)V")
+    public final void method3426(int arg0) {
+        int var2 = -1;
+        if (this.field8120.length < 255) {
+            for (int var3 = 0; var3 < this.field8120.length; var3++) {
+                if (this.field8120[var3] == arg0) {
+                    var2 = var3;
+                    break;
+                }
+            }
+            if (var2 == -1) {
+                var2 = this.field8120.length;
+                int[] var4 = new int[this.field8120.length + 1];
+                class211.method1332(this.field8120, 0, var4, 0, this.field8120.length);
+                this.field8120 = var4;
+                var4[var2] = arg0;
+            }
+        } else {
+            int var5 = Integer.MAX_VALUE;
+            int var6 = arg0 >> 16 & 0xFF;
+            int var7 = arg0 >> 8 & 0xFF;
+            int var8 = arg0 & 0xFF;
+            for (int var9 = 0; var9 < this.field8120.length; var9++) {
+                int var15 = this.field8120[var9];
+                int var16 = var15 >> 16 & 0xFF;
+                int var17 = var15 >> 8 & 0xFF;
+                int var18 = var15 & 0xFF;
+                int var19 = var6 - var16;
+                if (var19 < 0) {
+                    var19 = -var19;
+                }
+                int var20 = var7 - var17;
+                if (var20 < 0) {
+                    var20 = -var20;
+                }
+                int var21 = var8 - var18;
+                if (var21 < 0) {
+                    var21 = -var21;
+                }
+                int var22 = var19 + var20 + var21;
+                if (var22 < var5) {
+                    var5 = var22;
+                    var2 = var9;
+                }
+            }
+        }
+        int var10 = 0;
+        byte[] var11 = new byte[this.field8123 * this.field8116];
+        for (int var12 = 0; var12 < this.field8116; var12++) {
+            for (int var13 = 0; var13 < this.field8123; var13++) {
+                int var14 = this.field8122[var10] & 0xFF;
+                if (this.field8120[var14] == 0) {
+                    if (var13 > 0 && this.field8120[this.field8122[var10 - 1] & 0xFF] != 0) {
+                        var14 = var2;
+                    } else if (var12 > 0 && this.field8120[this.field8122[var10 - this.field8123] & 0xFF] != 0) {
+                        var14 = var2;
+                    } else if (var13 < this.field8123 - 1 && this.field8120[this.field8122[var10 + 1] & 0xFF] != 0) {
+                        var14 = var2;
+                    } else if (var12 < this.field8116 - 1 && this.field8120[this.field8122[this.field8123 + var10] & 0xFF] != 0) {
+                        var14 = var2;
+                    }
+                }
+                var11[var10++] = (byte) var14;
+            }
+        }
+        this.field8122 = var11;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "c", descriptor = "(I)V")
+    public final void method3427(int arg0) {
+        int var2 = this.method3420();
+        int var3 = this.method3430();
+        if (this.field8123 == var2 && this.field8116 == var3) {
+            return;
+        }
+        int var4 = arg0;
+        if (arg0 > this.field8118) {
+            var4 = this.field8118;
+        }
+        int var5 = arg0;
+        if (this.field8118 + arg0 + this.field8123 > var2) {
+            var5 = var2 - this.field8118 - this.field8123;
+        }
+        int var6 = arg0;
+        if (arg0 > this.field8124) {
+            var6 = this.field8124;
+        }
+        int var7 = arg0;
+        if (this.field8124 + arg0 + this.field8116 > var3) {
+            var7 = var3 - this.field8124 - this.field8116;
+        }
+        int var8 = this.field8123 + var4 + var5;
+        int var9 = this.field8116 + var6 + var7;
+        byte[] var10 = new byte[var8 * var9];
+        if (this.field8119 == null) {
+            for (int var11 = 0; var11 < this.field8116; var11++) {
+                int var12 = this.field8123 * var11;
+                int var13 = (var6 + var11) * var8 + var4;
+                for (int var14 = 0; var14 < this.field8123; var14++) {
+                    var10[var13++] = this.field8122[var12++];
+                }
+            }
+        } else {
+            byte[] var15 = new byte[var8 * var9];
+            for (int var16 = 0; var16 < this.field8116; var16++) {
+                int var17 = this.field8123 * var16;
+                int var18 = (var6 + var16) * var8 + var4;
+                for (int var19 = 0; var19 < this.field8123; var19++) {
+                    var15[var18] = this.field8119[var17];
+                    var10[var18++] = this.field8122[var17++];
+                }
+            }
+            this.field8119 = var15;
+        }
+        this.field8118 -= var4;
+        this.field8124 -= var6;
+        this.field8121 -= var5;
+        this.field8117 -= var7;
+        this.field8123 = var8;
+        this.field8116 = var9;
+        this.field8122 = var10;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "e", descriptor = "()V")
+    public final void method3428() {
+        byte[] var1 = new byte[this.field8123 * this.field8116];
+        int var2 = 0;
+        if (this.field8119 == null) {
+            for (int var3 = 0; var3 < this.field8123; var3++) {
+                for (int var4 = this.field8116 - 1; var4 >= 0; var4--) {
+                    var1[var2++] = this.field8122[this.field8123 * var4 + var3];
+                }
+            }
+            this.field8122 = var1;
+        } else {
+            byte[] var5 = new byte[this.field8123 * this.field8116];
+            for (int var6 = 0; var6 < this.field8123; var6++) {
+                for (int var9 = this.field8116 - 1; var9 >= 0; var9--) {
+                    var1[var2] = this.field8122[this.field8123 * var9 + var6];
+                    var5[var2++] = this.field8119[this.field8123 * var9 + var6];
+                }
+            }
+            this.field8122 = var1;
+            this.field8119 = var5;
+        }
+        int var7 = this.field8124;
+        this.field8124 = this.field8118;
+        this.field8118 = this.field8117;
+        this.field8117 = this.field8121;
+        this.field8121 = this.field8124;
+        int var8 = this.field8116;
+        this.field8116 = this.field8123;
+        this.field8123 = var8;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "b", descriptor = "(Lbt;II)Lcr;")
+    public static final class600 method3429(class48 arg0, int arg1, int arg2) {
+        byte[] var3 = arg0.method437(arg1, (byte) -22, arg2);
+        return var3 == null ? null : method3424(var3)[0];
+    }
+
+    @OriginalMember(owner = "client!cr", name = "f", descriptor = "()I")
+    public final int method3430() {
+        return this.field8124 + this.field8116 + this.field8117;
+    }
+
+    @OriginalMember(owner = "client!cr", name = "b", descriptor = "(Lbt;I)Lcr;")
+    public static final class600 method3431(class48 arg0, int arg1) {
+        byte[] var2 = arg0.method453(arg1, 11040);
+        return var2 == null ? null : method3424(var2)[0];
+    }
+
+    @OriginalMember(owner = "client!cr", name = "g", descriptor = "()V")
+    public final void method3432() {
+        byte[] var1 = this.field8122;
+        if (this.field8119 == null) {
+            for (int var2 = (this.field8116 >> 1) - 1; var2 >= 0; var2--) {
+                int var3 = this.field8123 * var2;
+                int var4 = (this.field8116 - var2 - 1) * this.field8123;
+                for (int var5 = -this.field8123; var5 < 0; var5++) {
+                    byte var6 = var1[var3];
+                    var1[var3] = var1[var4];
+                    var1[var4] = var6;
+                    var3++;
+                    var4++;
+                }
+            }
+        } else {
+            byte[] var7 = this.field8119;
+            for (int var8 = (this.field8116 >> 1) - 1; var8 >= 0; var8--) {
+                int var10 = this.field8123 * var8;
+                int var11 = (this.field8116 - var8 - 1) * this.field8123;
+                for (int var12 = -this.field8123; var12 < 0; var12++) {
+                    byte var13 = var1[var10];
+                    var1[var10] = var1[var11];
+                    var1[var11] = var13;
+                    byte var14 = var7[var10];
+                    var7[var10] = var7[var11];
+                    var7[var11] = var14;
+                    var10++;
+                    var11++;
+                }
+            }
+        }
+        int var9 = this.field8124;
+        this.field8124 = this.field8117;
+        this.field8117 = var9;
+    }
+}
