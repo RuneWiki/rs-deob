@@ -1,0 +1,66 @@
+package jaclib.memory.heap;
+
+import jaclib.memory.Buffer;
+import jaclib.memory.Source;
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!jaclib/memory/heap/NativeHeapBuffer")
+public class NativeHeapBuffer implements Buffer, Source {
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "d", descriptor = "Z")
+    private boolean field9875 = true;
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "b", descriptor = "I")
+    private int field9873;
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "a", descriptor = "Ljaclib/memory/heap/NativeHeap;")
+    private NativeHeap field9872;
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "c", descriptor = "I")
+    public int field9874;
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "a", descriptor = "()V", line = 4)
+    private final synchronized void method3943() {
+        if (this.method3944()) {
+            this.field9872.deallocateBuffer(this.field9873);
+        }
+        this.field9875 = false;
+    }
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "b", descriptor = "()Z", line = 15)
+    private final synchronized boolean method3944() {
+        return this.field9872.method3945() && this.field9875;
+    }
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "finalize", descriptor = "()V", line = 22)
+    protected final synchronized void finalize() throws Throwable {
+        super.finalize();
+        this.method3943();
+    }
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "getAddress", descriptor = "()J", line = 30)
+    public final long getAddress() {
+        return this.field9872.getBufferAddress(this.field9873);
+    }
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "getSize", descriptor = "()I", line = 43)
+    public final int getSize() {
+        return this.field9874;
+    }
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "a", descriptor = "([BIII)V", line = 50)
+    public final synchronized void method2972(byte[] arg0, int arg1, int arg2, int arg3) {
+        if (arg2 < 0 | arg1 < 0 | arg0 == null | !this.method3944() | arg0.length < arg1 + arg3 | (arg2 + arg3) > this.field9874) {
+            throw new RuntimeException();
+        }
+        this.field9872.put(this.field9873, arg0, arg1, arg2, arg3);
+    }
+
+    @OriginalMember(owner = "client!jaclib/memory/heap/NativeHeapBuffer", name = "<init>", descriptor = "(Ljaclib/memory/heap/NativeHeap;II)V", line = 62)
+    public NativeHeapBuffer(NativeHeap arg0, int arg1, int arg2) {
+        this.field9873 = arg1;
+        this.field9872 = arg0;
+        this.field9874 = arg2;
+    }
+}
