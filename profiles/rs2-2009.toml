@@ -17,9 +17,11 @@ pre_transformers = [
 transformers = [
     "Visibility",
     "OpaquePredicate",
+    "ExceptionObfuscation",
     "ExceptionTracing",
     "Monitor",
     "BitShift",
+    "FernflowerException",
     "Zwyz",
     "VariableSplitter",
     "ExpressionSorter",
@@ -29,12 +31,12 @@ transformers = [
 
 # post-decompilation source transformers
 ast_transformers = [
-    "Unenclose",
+    # "Unenclose",
     "NegativeLiteral",
     "Complement",
     "Not",
     "CharLiteral",
-    # "IfElse",
+    "IfElse",
     "Ternary",
     "BinaryExprOrder",
     "AddSub",
@@ -45,8 +47,8 @@ ast_transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    "RedundantCast",
-    "Enclose"
+    # "RedundantCast",
+    # "Enclose"
 ]
 
 [profile.original_name]

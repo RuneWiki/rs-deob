@@ -35,7 +35,7 @@ ast_transformers = [
     "Complement",
     "Not",
     "CharLiteral",
-    # "IfElse",
+    "IfElse",
     "Ternary",
     "BinaryExprOrder",
     "AddSub",
