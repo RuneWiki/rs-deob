@@ -1,0 +1,460 @@
+import jagtheora.ogg.OggPacket;
+import jagtheora.ogg.OggStreamState;
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!dg")
+public class class563 extends class120 {
+   @OriginalMember(
+      owner = "client!dg",
+      name = "W",
+      descriptor = "[Ljava/lang/String;"
+   )
+   private static final String[] field8376 = new String[]{method4253(method4252("AAZ:\u001d")), method4253(method4252("AAZ;\u001d")), method4253(method4252("AAZ0\u001d")), method4253(method4252("AAZ9\u001d")), method4253(method4252("^\bZ]H")), method4253(method4252("KS\u0018\u001f")), method4253(method4252("AAZ6\u001d")), method4253(method4252("AAZ1\u001d")), method4253(method4252("AAZ2\u001d")), method4253(method4252("vs6")), method4253(method4252("AAZ4\u001d")), method4253(method4252("AAZ7\u001d")), method4253(method4252("AAZ5\u001d"))};
+   @OriginalMember(
+      owner = "client!dg",
+      name = "L",
+      descriptor = "Let;"
+   )
+   public static class389 field8365 = new class389(8);
+   @OriginalMember(
+      owner = "client!dg",
+      name = "S",
+      descriptor = "Luk;"
+   )
+   public static class498 field8368 = new class498(123, 2);
+   @OriginalMember(
+      owner = "client!dg",
+      name = "V",
+      descriptor = "Z"
+   )
+   public static boolean field8371 = false;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "R",
+      descriptor = "[[S"
+   )
+   private static short[][] field8370 = new short[][]{new short[0], new short[0], new short[0], new short[0], new short[0]};
+   @OriginalMember(
+      owner = "client!dg",
+      name = "E",
+      descriptor = "[[S"
+   )
+   private static short[][] field8375 = new short[][]{{6798, 107, 10283, 16, 4797, 7744, 5799, 4634, -31839, 22433, 2983, -11343, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {8741, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 25239, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010, 7085, 4001, 317, 918, 9517, 9125, 3608, 16450, -32593, 22026, 2700, -22256, 10289, 3877, -27999, 10770, 8982, 3753, 10275, 924, 8637, -26428, 26785, -15202, 8736, 2994, -25710, 928, 6859, -25016, -5449, -14823, -23401, 12, -22456, -27471, -11229, 21673, 57, -24046, -27190, -22877, -30041, 20013, 21596, -31414, 29000, -11209, 6361, -25552, -25450, -14174, -10998, -27357, 3249, 7465, 8913, 13774, 4584, 11728, 10454, 8123, 2619, 13756, -28220, -26323, -23901, -31385, -32342, -29806, -29902, -24128, 933, 1189, 3873, 6057, 8590, 1812, 4895, -5366, 15019, 20793, 7599, 9536, 21778, 14102, 6938, 14648, 5919, 6472, 10128, 17940, 3226, 267, 5421, -27570, -25177, -26319, -28217, -28132, -23792, -23249, -23001, -19033, 5427, 6340, 5673, 2458, 3625, 8646, 5186, 10382, 6826, 7442, 158, 2454, 9655, -27496, -27578, -31687, 11146, 18712, 10785, 21902, 10566, 9500, 11819, 11144, -15965, -24170, -32488, -29277, 29097, -9567, -18794, -27116, 921, 6028, 2974, -5230, 6550, 15244, 14, 49, 3994, 2332, 6038, -31701, 520, 41, 9402, -4825, 28978, -25278, 30876, 13475, -28395, -24010, -14027, -22454, -18158, 20503, -27618, -22258, -1776, -31468, 9616, 7333, 650, 784, 796, 813, -616, -3194, -8152, 1686, 29074, 22422, -32245, 29084, 22411, -22000, 3982, 7062, 10382, 3230, 8076, 20, 1936, 10, -22473, 4892, 5805, 5904, 10, 48, 1936, 5640, 8472, -25529}, {25238, 8742, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010, 7085, 4001, 317, 918, 9517, 9125, 3608, 16450, -32593, 22026, 2700, -22256, 10289, 3877, -27999, 10770, 8982, 3753, 10275, 924, 8637, -26428, 26785, -15202, 8736, 2994, -25710, 928, 6859, -25016, -5449, -14823, -23401, 12, -22456, -27471, -11229, 21673, 57, -24046, -27190, -22877, -30041, 20013, 21596, -31414, 29000, -11209, 6361, -25552, -25450, -14174, -10998, -27357, 3249, 7465, 8913, 13774, 4584, 11728, 10454, 8123, 2619, 13756, -28220, -26323, -23901, -31385, -32342, -29806, -29902, -24128, 933, 1189, 3873, 6057, 8590, 1812, 4895, -5366, 15019, 20793, 7599, 9536, 21778, 14102, 6938, 14648, 5919, 6472, 10128, 17940, 3226, 267, 5421, -27570, -25177, -26319, -28217, -28132, -23792, -23249, -23001, -19033, 5427, 6340, 5673, 2458, 3625, 8646, 5186, 10382, 6826, 7442, 158, 2454, 9655, -27496, -27578, -31687, 11146, 18712, 10785, 21902, 10566, 9500, 11819, 11144, -15965, -24170, -32488, -29277, 29097, -9567, -18794, -27116, 921, 6028, 2974, -5230, 6550, 15244, 14, 49, 3994, 2332, 6038, -31701, 520, 41, 9402, -4825, 28978, -25278, 30876, 13475, -28395, -24010, -14027, -22454, -18158, 20503, -27618, -22258, -1776, -31468, 9616, 7333, 650, 784, 796, 813, -616, -3194, -8152, 1686, 29074, 22422, -32245, 29084, 22411, -22000, 3982, 7062, 10382, 3230, 8076, 20, 1936, 10, -22473, 4892, 5805, 5904, 10, 48, 1936, 5640, 8472, -25529}, {4626, 11146, 6439, 12, 4758, 10270, 7085, 4001, 317, 918, 9517, 9125, 3608, 16450, -32593, 22026, 2700, -22256, 10289, 3877, -27999, 10770, 8982, 3753, 10275, 924, 8637, -26428, 26785, -15202, 8736, 2994, -25710, 928, 6859, -25016, -5449, -14823, -23401, 12, -22456, -27471, -11229, 21673, 57, -24046, -27190, -22877, -30041, 20013, 21596, -31414, 29000, -11209, 6361, -25552, -25450, -14174, -10998, -27357, 3249, 7465, 8913, 13774, 4584, 11728, 10454, 8123, 2619, 13756, -28220, -26323, -23901, -31385, -32342, -29806, -29902, -24128, 933, 1189, 3873, 6057, 8590, 1812, 4895, -5366, 15019, 20793, 7599, 9536, 21778, 14102, 6938, 14648, 5919, 6472, 10128, 17940, 3226, 267, 5421, -27570, -25177, -26319, -28217, -28132, -23792, -23249, -23001, -19033, 5427, 6340, 5673, 2458, 3625, 8646, 5186, 10382, 6826, 7442, 158, 2454, 9655, -27496, -27578, -31687, 11146, 18712, 10785, 21902, 10566, 9500, 11819, 11144, -15965, -24170, -32488, -29277, 29097, -9567, -18794, -27116, 921, 6028, 2974, -5230, 6550, 15244, 14, 49, 3994, 2332, 6038, -31701, 520, 41, 9402, -4825, 28978, -25278, 30876, 13475, -28395, -24010, -14027, -22454, -18158, 20503, -27618, -22258, -1776, -31468, 9616, 7333, 650, 784, 796, 813, -616, -3194, -8152, 1686, 29074, 22422, -32245, 29084, 22411, -22000, 3982, 7062, 10382, 3230, 8076, 20, 1936, 10, -22473, 4892, 5805, 5904, 10, 48, 1936, 5640, 8472, -25529}, {4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574, 4444, 4328, 7052, 4490}};
+   @OriginalMember(
+      owner = "client!dg",
+      name = "x",
+      descriptor = "[[S"
+   )
+   private static short[][] field8372 = new short[][]{{6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002}, {9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019, 7072, 3990, 309, 910, 9509, 9117, 3600, 16442, -32601, 22020, 2694, -22264, 10281, 3869, -28007, 10764, 8974, 3745, 10269, 914, 8629, -26438, 26779, -15208, 8728, 2982, -25718, 918, 6842, -25030, -5462, -14833, -22386, 8, -22468, -27479, -11237, 21664, 45, -24054, -27207, -22887, -30051, 20003, 21584, -31426, 28990, -11219, 6353, -25560, -25458, -14182, -11006, -27365, 3241, 7457, 8899, 13760, 4565, 11711, 10436, 8103, 2604, 13740, -28232, -26333, -23910, -31403, -32352, -29812, -29909, -24137, 925, 1181, 3865, 6049, 8582, 1804, 4887, -5372, 15011, 20785, 7591, 9528, 21770, 14094, 6930, 14635, 5911, 6463, 10124, 17935, 3218, 262, 5413, -27579, -25189, -26331, -28236, -28144, -23804, -23261, -23013, -19045, 5419, 6332, 5665, 2450, 3617, 8638, 5178, 10374, 6819, 7434, 150, 2446, 9647, -27504, -27586, -31695, 11142, 18704, 10775, 21898, 10554, 9492, 11811, 11140, -15978, -24180, -32498, -29288, 29084, -9579, -18799, -27122, 913, 6024, 2966, -5238, 6542, 15240, 10, 39, 3986, 2324, 6030, -31709, 512, 33, 9394, -4833, 28967, -25290, 30866, 13466, -28403, -24022, -14042, -22472, -18166, 20493, -27626, -22266, -1784, -31473, 9612, 7324, 646, 778, 786, 800, -624, -3198, -8164, 1678, 29068, 22412, -32253, 29075, 22404, -22006, 3974, 7054, 10376, 3222, 8070, 12, 1930, 2, -22481, 4884, 5797, 5900, 6, 40, 1932, 5638, 8466, -25537}, {25485, 9105, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019, 7072, 3990, 309, 910, 9509, 9117, 3600, 16442, -32601, 22020, 2694, -22264, 10281, 3869, -28007, 10764, 8974, 3745, 10269, 914, 8629, -26438, 26779, -15208, 8728, 2982, -25718, 918, 6842, -25030, -5462, -14833, -22386, 8, -22468, -27479, -11237, 21664, 45, -24054, -27207, -22887, -30051, 20003, 21584, -31426, 28990, -11219, 6353, -25560, -25458, -14182, -11006, -27365, 3241, 7457, 8899, 13760, 4565, 11711, 10436, 8103, 2604, 13740, -28232, -26333, -23910, -31403, -32352, -29812, -29909, -24137, 925, 1181, 3865, 6049, 8582, 1804, 4887, -5372, 15011, 20785, 7591, 9528, 21770, 14094, 6930, 14635, 5911, 6463, 10124, 17935, 3218, 262, 5413, -27579, -25189, -26331, -28236, -28144, -23804, -23261, -23013, -19045, 5419, 6332, 5665, 2450, 3617, 8638, 5178, 10374, 6819, 7434, 150, 2446, 9647, -27504, -27586, -31695, 11142, 18704, 10775, 21898, 10554, 9492, 11811, 11140, -15978, -24180, -32498, -29288, 29084, -9579, -18799, -27122, 913, 6024, 2966, -5238, 6542, 15240, 10, 39, 3986, 2324, 6030, -31709, 512, 33, 9394, -4833, 28967, -25290, 30866, 13466, -28403, -24022, -14042, -22472, -18166, 20493, -27626, -22266, -1784, -31473, 9612, 7324, 646, 778, 786, 800, -624, -3198, -8164, 1678, 29068, 22412, -32253, 29075, 22404, -22006, 3974, 7054, 10376, 3222, 8070, 12, 1930, 2, -22481, 4884, 5797, 5900, 6, 40, 1932, 5638, 8466, -25537}, {4620, 11140, 6433, 6, 4752, 10264, 7072, 3990, 309, 910, 9509, 9117, 3600, 16442, -32601, 22020, 2694, -22264, 10281, 3869, -28007, 10764, 8974, 3745, 10269, 914, 8629, -26438, 26779, -15208, 8728, 2982, -25718, 918, 6842, -25030, -5462, -14833, -22386, 8, -22468, -27479, -11237, 21664, 45, -24054, -27207, -22887, -30051, 20003, 21584, -31426, 28990, -11219, 6353, -25560, -25458, -14182, -11006, -27365, 3241, 7457, 8899, 13760, 4565, 11711, 10436, 8103, 2604, 13740, -28232, -26333, -23910, -31403, -32352, -29812, -29909, -24137, 925, 1181, 3865, 6049, 8582, 1804, 4887, -5372, 15011, 20785, 7591, 9528, 21770, 14094, 6930, 14635, 5911, 6463, 10124, 17935, 3218, 262, 5413, -27579, -25189, -26331, -28236, -28144, -23804, -23261, -23013, -19045, 5419, 6332, 5665, 2450, 3617, 8638, 5178, 10374, 6819, 7434, 150, 2446, 9647, -27504, -27586, -31695, 11142, 18704, 10775, 21898, 10554, 9492, 11811, 11140, -15978, -24180, -32498, -29288, 29084, -9579, -18799, -27122, 913, 6024, 2966, -5238, 6542, 15240, 10, 39, 3986, 2324, 6030, -31709, 512, 33, 9394, -4833, 28967, -25290, 30866, 13466, -28403, -24022, -14042, -22472, -18166, 20493, -27626, -22266, -1784, -31473, 9612, 7324, 646, 778, 786, 800, -624, -3198, -8164, 1678, 29068, 22412, -32253, 29075, 22404, -22006, 3974, 7054, 10376, 3222, 8070, 12, 1930, 2, -22481, 4884, 5797, 5900, 6, 40, 1932, 5638, 8466, -25537}, {4540, 4529, 5674, 5667, 5785, 6802, 8072, 4562, 4437, 4317, 5896, 4488}};
+   @OriginalMember(
+      owner = "client!dg",
+      name = "T",
+      descriptor = "[[[S"
+   )
+   public static short[][][] field8369 = new short[][][]{field8375, field8372, field8370};
+   @OriginalMember(
+      owner = "client!dg",
+      name = "A",
+      descriptor = "F"
+   )
+   private float field8351;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "B",
+      descriptor = "F"
+   )
+   private float field8366;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "G",
+      descriptor = "F"
+   )
+   public static float field8374;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "w",
+      descriptor = "I"
+   )
+   public static int field8350;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "y",
+      descriptor = "I"
+   )
+   public static int field8352;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "H",
+      descriptor = "I"
+   )
+   public static int field8354;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "F",
+      descriptor = "I"
+   )
+   public static int field8355;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "M",
+      descriptor = "I"
+   )
+   public static int field8356;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "I",
+      descriptor = "I"
+   )
+   public static int field8357;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "K",
+      descriptor = "I"
+   )
+   private int field8359;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "z",
+      descriptor = "I"
+   )
+   public static int field8360;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "N",
+      descriptor = "I"
+   )
+   public static int field8361;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "P",
+      descriptor = "I"
+   )
+   public static int field8362;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "Q",
+      descriptor = "I"
+   )
+   private int field8363;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "O",
+      descriptor = "Ljava/lang/String;"
+   )
+   private String field8353;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "J",
+      descriptor = "Ljava/lang/String;"
+   )
+   private String field8358;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "C",
+      descriptor = "Ljava/lang/String;"
+   )
+   private String field8364;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "U",
+      descriptor = "[Ljq;"
+   )
+   public static class672[] field8367;
+   @OriginalMember(
+      owner = "client!dg",
+      name = "D",
+      descriptor = "[Lkp;"
+   )
+   public static class776[] field8373;
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "<init>",
+      descriptor = "(Ljagtheora/ogg/OggStreamState;)V"
+   )
+   public class563(OggStreamState arg0) {
+      super(arg0);
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "b",
+      descriptor = "(I)V"
+   )
+   public final void method1109(int arg0) {
+      try {
+         if (arg0 >= 83) {
+            ++field8357;
+         }
+      } catch (RuntimeException var3) {
+         throw class482.method3757(var3, field8376[2] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "c",
+      descriptor = "(Z)Ljava/lang/String;"
+   )
+   public final String method4244(boolean arg0) {
+      try {
+         if (!arg0) {
+            return null;
+         } else {
+            ++field8355;
+            return this.field8358;
+         }
+      } catch (RuntimeException var3) {
+         throw class482.method3757(var3, field8376[8] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "b",
+      descriptor = "(Z)F"
+   )
+   public final float method4245(boolean arg0) {
+      try {
+         if (arg0) {
+            return -0.85589767F;
+         } else {
+            ++field8356;
+            return this.field8366;
+         }
+      } catch (RuntimeException var3) {
+         throw class482.method3757(var3, field8376[7] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "a",
+      descriptor = "(ILria;)V"
+   )
+   public static final void method4246(int param0, class185 param1) {
+      // $FF: Couldn't be decompiled
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "g",
+      descriptor = "(I)F"
+   )
+   public final float method4247(int arg0) {
+      try {
+         if (arg0 != -14475) {
+            return -0.6023787F;
+         } else {
+            ++field8361;
+            return this.field8351;
+         }
+      } catch (RuntimeException var3) {
+         throw class482.method3757(var3, field8376[0] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "a",
+      descriptor = "(Z)V"
+   )
+   public static void method4248(boolean arg0) {
+      try {
+         field8375 = null;
+         field8370 = null;
+         field8373 = null;
+         field8368 = null;
+         field8372 = null;
+         field8369 = null;
+         field8367 = null;
+         if (arg0) {
+            field8365 = null;
+         }
+      } catch (RuntimeException var2) {
+         throw class482.method3757(var2, field8376[3] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "c",
+      descriptor = "(I)V"
+   )
+   public static final void method4249(int arg0) {
+      try {
+         ++field8354;
+         if (arg0 != -3) {
+            field8367 = null;
+         }
+
+         if (class97.field1369 != null) {
+            if (class97.field1369.field4398 == 1) {
+               class97.field1369 = null;
+               return;
+            }
+
+            if (~class97.field1369.field4398 == -3) {
+               class639.method4663(class671.field10001, 2, class753.field11162, 0);
+               class97.field1369 = null;
+               return;
+            }
+         }
+
+      } catch (RuntimeException var2) {
+         throw class482.method3757(var2, field8376[1] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "a",
+      descriptor = "([I[JI)V"
+   )
+   public static final void method4250(int[] arg0, long[] arg1, int arg2) {
+      try {
+         class84.method813(0, (byte)-23, arg1, arg1.length + -1, arg0);
+         if (arg2 == 40) {
+            ++field8350;
+         }
+      } catch (RuntimeException var4) {
+         throw class482.method3757(var4, field8376[6] + (arg0 != null ? field8376[4] : field8376[5]) + ',' + (arg1 != null ? field8376[4] : field8376[5]) + ',' + arg2 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "a",
+      descriptor = "(Ljagtheora/ogg/OggPacket;I)V"
+   )
+   public final void method1113(OggPacket arg0, int arg1) {
+      try {
+         ++field8360;
+         if (super.field1699 <= 0 || field8376[9].equals(this.field8353)) {
+            if (arg1 < 53) {
+               this.field8351 = 1.6619427F;
+            }
+
+            class354 var3 = new class354(arg0.getData());
+            int var4 = var3.method2855(-31007);
+            if (super.field1699 <= 8) {
+               if (~(128 | var4) == -1) {
+                  throw new IllegalStateException();
+               }
+
+               if (super.field1699 != 0) {
+                  return;
+               }
+
+               var3.field5436 += 23;
+               this.field8363 = var3.method2839((byte)-20);
+               this.field8359 = var3.method2839((byte)-20);
+               if (~this.field8363 == -1 || this.field8359 == 0) {
+                  throw new IllegalStateException();
+               }
+
+               class354 var12 = new class354(16);
+               var3.method2859(var12.field5428, 0, false, 16);
+               this.field8364 = var12.method2843(-1);
+               var12.field5436 = 0;
+               var3.method2859(var12.field5428, 0, false, 16);
+               this.field8353 = var12.method2843(-1);
+            } else {
+               if (~var4 == -1) {
+                  long var5 = var3.method2836(125);
+                  long var7 = var3.method2836(112);
+                  long var9 = var3.method2836(-97);
+                  if (var5 < 0L || var7 < 0L || var9 < 0L || var9 > var5) {
+                     throw new IllegalStateException();
+                  }
+
+                  this.field8366 = (float)((var5 + var7) * (long)this.field8359) / (float)this.field8363;
+                  this.field8351 = (float)((long)this.field8359 * var5) / (float)this.field8363;
+                  int var11 = var3.method2839((byte)-20);
+                  if (var11 < 0 || var3.field5428.length + -var3.field5436 < var11) {
+                     throw new IllegalStateException();
+                  }
+
+                  this.field8358 = class75.method711(var11, var3.field5428, var3.field5436, (byte)62);
+               }
+
+               if (~(128 | var4) != -1) {
+                  return;
+               }
+            }
+
+         }
+      } catch (RuntimeException var14) {
+         throw class482.method3757(var14, field8376[10] + (arg0 != null ? field8376[4] : field8376[5]) + ',' + arg1 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "h",
+      descriptor = "(I)Ljava/lang/String;"
+   )
+   public final String method4251(int arg0) {
+      try {
+         ++field8352;
+         if (arg0 != 29084) {
+            field8365 = null;
+         }
+
+         return this.field8364;
+      } catch (RuntimeException var3) {
+         throw class482.method3757(var3, field8376[11] + arg0 + ')');
+      }
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "z",
+      descriptor = "(Ljava/lang/String;)[C"
+   )
+   private static char[] method4252(String arg0) {
+      char[] var10000 = arg0.toCharArray();
+      if (var10000.length < 2) {
+         var10000[0] = (char)(var10000[0] ^ 53);
+      }
+
+      return var10000;
+   }
+
+   @OriginalMember(
+      owner = "client!dg",
+      name = "z",
+      descriptor = "([C)Ljava/lang/String;"
+   )
+   private static String method4253(char[] arg0) {
+      int var10002 = arg0.length;
+      char[] var10001 = arg0;
+      int var10000 = var10002;
+
+      for(int var1 = 0; var10000 > var1; ++var1) {
+         char var10004 = var10001[var1];
+         byte var10005;
+         switch(var1 % 5) {
+         case 0:
+            var10005 = 37;
+            break;
+         case 1:
+            var10005 = 38;
+            break;
+         case 2:
+            var10005 = 116;
+            break;
+         case 3:
+            var10005 = 115;
+            break;
+         default:
+            var10005 = 53;
+         }
+
+         var10001[var1] = (char)(var10004 ^ var10005);
+      }
+
+      return (new String(var10001)).intern();
+   }
+}
