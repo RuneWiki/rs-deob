@@ -1,0 +1,38 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!gb")
+public class class239 extends class102 {
+
+    @OriginalMember(owner = "client!gb", name = "g", descriptor = "B")
+    public byte field3205;
+
+    @OriginalMember(owner = "client!gb", name = "i", descriptor = "B")
+    public byte field3207;
+
+    @OriginalMember(owner = "client!gb", name = "k", descriptor = "I")
+    public int field3209;
+
+    @OriginalMember(owner = "client!gb", name = "j", descriptor = "B")
+    public byte field3208;
+
+    @OriginalMember(owner = "client!gb", name = "m", descriptor = "B")
+    public byte field3211;
+
+    @OriginalMember(owner = "client!gb", name = "l", descriptor = "[S")
+    public short[] field3210;
+
+    @OriginalMember(owner = "client!gb", name = "h", descriptor = "[B")
+    public byte[] field3206;
+
+    @OriginalMember(owner = "client!gb", name = "<init>", descriptor = "(IIIII[S[B)V")
+    public class239(int arg0, int arg1, int arg2, int arg3, int arg4, short[] arg5, byte[] arg6) {
+        this.field3205 = (byte) arg0;
+        this.field3207 = (byte) arg1;
+        this.field3209 = arg2;
+        this.field3208 = (byte) arg3;
+        this.field3211 = (byte) arg4;
+        this.field3210 = arg5;
+        this.field3206 = arg6;
+    }
+}
