@@ -1,0 +1,50 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!fc")
+public class MouseTracking implements Runnable {
+
+    @OriginalMember(owner = "client!fc", name = "b", descriptor = "Z")
+    public boolean field997 = true;
+
+    @OriginalMember(owner = "client!fc", name = "c", descriptor = "Ljava/lang/Object;")
+    public Object field998 = new Object();
+
+    @OriginalMember(owner = "client!fc", name = "e", descriptor = "[I")
+    public int[] field1000 = new int[500];
+
+    @OriginalMember(owner = "client!fc", name = "f", descriptor = "[I")
+    public int[] field1001 = new int[500];
+
+    @OriginalMember(owner = "client!fc", name = "a", descriptor = "Lclient;")
+    public client field996;
+
+    @OriginalMember(owner = "client!fc", name = "d", descriptor = "I")
+    public int field999;
+
+    @OriginalMember(owner = "client!fc", name = "<init>", descriptor = "(ILclient;)V")
+    public MouseTracking(int arg0, client arg1) {
+        if (arg0 < 7 || arg0 > 7) {
+            throw new NullPointerException();
+        }
+        this.field996 = arg1;
+    }
+
+    @OriginalMember(owner = "client!fc", name = "run", descriptor = "()V")
+    public void run() {
+        while (this.field997) {
+            Object var1 = this.field998;
+            synchronized (this.field998) {
+                if (this.field999 < 500) {
+                    this.field1000[this.field999] = this.field996.field20;
+                    this.field1001[this.field999] = this.field996.field21;
+                    this.field999++;
+                }
+            }
+            try {
+                Thread.sleep(50L);
+            } catch (Exception var2) {
+            }
+        }
+    }
+}
