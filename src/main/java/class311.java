@@ -1,0 +1,145 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!rh")
+public class class311 {
+
+    @OriginalMember(owner = "client!rh", name = "f", descriptor = "Z")
+    public boolean field4828 = false;
+
+    @OriginalMember(owner = "client!rh", name = "c", descriptor = "Z")
+    public boolean field4825 = false;
+
+    @OriginalMember(owner = "client!rh", name = "e", descriptor = "I")
+    public int field4827 = -1;
+
+    @OriginalMember(owner = "client!rh", name = "m", descriptor = "Lbi;")
+    public class71 field4835 = null;
+
+    @OriginalMember(owner = "client!rh", name = "p", descriptor = "[S")
+    public short[] field4838;
+
+    @OriginalMember(owner = "client!rh", name = "h", descriptor = "[S")
+    public short[] field4830;
+
+    @OriginalMember(owner = "client!rh", name = "d", descriptor = "[S")
+    public short[] field4826;
+
+    @OriginalMember(owner = "client!rh", name = "o", descriptor = "[S")
+    public short[] field4837;
+
+    @OriginalMember(owner = "client!rh", name = "n", descriptor = "[S")
+    public short[] field4836;
+
+    @OriginalMember(owner = "client!rh", name = "a", descriptor = "[B")
+    public byte[] field4823;
+
+    @OriginalMember(owner = "client!rh", name = "i", descriptor = "[S")
+    private static short[] field4831 = new short[500];
+
+    @OriginalMember(owner = "client!rh", name = "g", descriptor = "[S")
+    private static short[] field4829 = new short[500];
+
+    @OriginalMember(owner = "client!rh", name = "j", descriptor = "[S")
+    private static short[] field4832 = new short[500];
+
+    @OriginalMember(owner = "client!rh", name = "l", descriptor = "[B")
+    private static byte[] field4834 = new byte[500];
+
+    @OriginalMember(owner = "client!rh", name = "b", descriptor = "[S")
+    private static short[] field4824 = new short[500];
+
+    @OriginalMember(owner = "client!rh", name = "k", descriptor = "[S")
+    private static short[] field4833 = new short[500];
+
+    @OriginalMember(owner = "client!rh", name = "a", descriptor = "()V", line = 6)
+    public static void method2116() {
+        field4833 = null;
+        field4829 = null;
+        field4831 = null;
+        field4824 = null;
+        field4832 = null;
+        field4834 = null;
+    }
+
+    @OriginalMember(owner = "client!rh", name = "<init>", descriptor = "([BLbi;)V", line = 57)
+    public class311(byte[] arg0, class71 arg1) {
+        this.field4835 = arg1;
+        class166 var3 = new class166(arg0);
+        class166 var4 = new class166(arg0);
+        var3.field2532 = 2;
+        int var5 = var3.method1178(0);
+        int var6 = 0;
+        int var7 = -1;
+        int var8 = -1;
+        var4.field2532 = var3.field2532 + var5;
+        for (int var9 = 0; var9 < var5; var9++) {
+            int var10 = this.field4835.field1157[var9];
+            if (var10 == 0) {
+                var7 = var9;
+            }
+            int var11 = var3.method1178(0);
+            if (var11 > 0) {
+                if (var10 == 0) {
+                    var8 = var9;
+                }
+                field4833[var6] = (short) var9;
+                short var12 = 0;
+                if (var10 == 3) {
+                    var12 = 128;
+                }
+                if ((var11 & 0x1) == 0) {
+                    field4829[var6] = var12;
+                } else {
+                    field4829[var6] = (short) var4.method1173(-3979);
+                }
+                if ((var11 & 0x2) == 0) {
+                    field4831[var6] = var12;
+                } else {
+                    field4831[var6] = (short) var4.method1173(-3979);
+                }
+                if ((var11 & 0x4) == 0) {
+                    field4824[var6] = var12;
+                } else {
+                    field4824[var6] = (short) var4.method1173(-3979);
+                }
+                field4834[var6] = (byte) (var11 >>> 3 & 0x3);
+                if (var10 == 2) {
+                    field4829[var6] = (short) (((field4829[var6] & 0xFF) << 3) + (field4829[var6] >> 8 & 0x7));
+                    field4831[var6] = (short) (((field4831[var6] & 0xFF) << 3) + (field4831[var6] >> 8 & 0x7));
+                    field4824[var6] = (short) (((field4824[var6] & 0xFF) << 3) + (field4824[var6] >> 8 & 0x7));
+                }
+                field4832[var6] = -1;
+                if (var10 == 1 || var10 == 2 || var10 == 3) {
+                    if (var7 > var8) {
+                        field4832[var6] = (short) var7;
+                        var8 = var7;
+                    }
+                } else if (var10 == 5) {
+                    this.field4828 = true;
+                } else if (var10 == 7) {
+                    this.field4825 = true;
+                }
+                var6++;
+            }
+        }
+        if (arg0.length != var4.field2532) {
+            throw new RuntimeException();
+        }
+        this.field4827 = var6;
+        this.field4838 = new short[var6];
+        this.field4830 = new short[var6];
+        this.field4826 = new short[var6];
+        this.field4837 = new short[var6];
+        this.field4836 = new short[var6];
+        this.field4823 = new byte[var6];
+        for (int var13 = 0; var13 < var6; var13++) {
+            this.field4838[var13] = field4833[var13];
+            this.field4830[var13] = field4829[var13];
+            this.field4826[var13] = field4831[var13];
+            this.field4837[var13] = field4824[var13];
+            this.field4836[var13] = field4832[var13];
+            this.field4823[var13] = field4834[var13];
+        }
+    }
+}
