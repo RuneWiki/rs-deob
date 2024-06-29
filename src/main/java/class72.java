@@ -1,0 +1,621 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!ZGDLGUZR")
+public class class72 {
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "Z")
+    private boolean field1734 = false;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "b", descriptor = "Z")
+    private boolean field1735 = true;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "c", descriptor = "I")
+    private int field1736 = -903;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "d", descriptor = "Z")
+    private boolean field1737 = false;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "e", descriptor = "I")
+    public int field1738 = 0;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "f", descriptor = "I")
+    public int field1739 = 0;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "g", descriptor = "I")
+    public int field1740;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "h", descriptor = "I")
+    public int field1741;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "i", descriptor = "[[I")
+    public int[][] field1742;
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "<init>", descriptor = "(III)V")
+    public class72(int arg0, int arg1, int arg2) {
+        this.field1740 = arg2;
+        if (arg1 < 8 || arg1 > 8) {
+            for (int var4 = 1; var4 > 0; var4++) {
+            }
+        }
+        this.field1741 = arg0;
+        this.field1742 = new int[this.field1740][this.field1741];
+        this.method593();
+        if (class13.field714) {
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "()V")
+    public void method593() {
+        for (int var1 = 0; var1 < this.field1740; var1++) {
+            for (int var2 = 0; var2 < this.field1741; var2++) {
+                if (var1 == 0 || var2 == 0 || this.field1740 - 1 == var1 || this.field1741 - 1 == var2) {
+                    this.field1742[var1][var2] = 16777215;
+                } else {
+                    this.field1742[var1][var2] = 16777216;
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(IZIIBI)V")
+    public void method594(int arg0, boolean arg1, int arg2, int arg3, byte arg4, int arg5) {
+        if (arg4 != 2) {
+            this.field1734 = !this.field1734;
+        }
+        int var7 = arg0 - this.field1738;
+        int var8 = arg5 - this.field1739;
+        if (arg3 == 0) {
+            if (arg2 == 0) {
+                this.method597(var7, var8, 128);
+                this.method597(var7 - 1, var8, 8);
+            }
+            if (arg2 == 1) {
+                this.method597(var7, var8, 2);
+                this.method597(var7, var8 + 1, 32);
+            }
+            if (arg2 == 2) {
+                this.method597(var7, var8, 8);
+                this.method597(var7 + 1, var8, 128);
+            }
+            if (arg2 == 3) {
+                this.method597(var7, var8, 32);
+                this.method597(var7, var8 - 1, 2);
+            }
+        }
+        if (arg3 == 1 || arg3 == 3) {
+            if (arg2 == 0) {
+                this.method597(var7, var8, 1);
+                this.method597(var7 - 1, var8 + 1, 16);
+            }
+            if (arg2 == 1) {
+                this.method597(var7, var8, 4);
+                this.method597(var7 + 1, var8 + 1, 64);
+            }
+            if (arg2 == 2) {
+                this.method597(var7, var8, 16);
+                this.method597(var7 + 1, var8 - 1, 1);
+            }
+            if (arg2 == 3) {
+                this.method597(var7, var8, 64);
+                this.method597(var7 - 1, var8 - 1, 4);
+            }
+        }
+        if (arg3 == 2) {
+            if (arg2 == 0) {
+                this.method597(var7, var8, 130);
+                this.method597(var7 - 1, var8, 8);
+                this.method597(var7, var8 + 1, 32);
+            }
+            if (arg2 == 1) {
+                this.method597(var7, var8, 10);
+                this.method597(var7, var8 + 1, 32);
+                this.method597(var7 + 1, var8, 128);
+            }
+            if (arg2 == 2) {
+                this.method597(var7, var8, 40);
+                this.method597(var7 + 1, var8, 128);
+                this.method597(var7, var8 - 1, 2);
+            }
+            if (arg2 == 3) {
+                this.method597(var7, var8, 160);
+                this.method597(var7, var8 - 1, 2);
+                this.method597(var7 - 1, var8, 8);
+            }
+        }
+        if (!arg1) {
+            return;
+        }
+        if (arg3 == 0) {
+            if (arg2 == 0) {
+                this.method597(var7, var8, 65536);
+                this.method597(var7 - 1, var8, 4096);
+            }
+            if (arg2 == 1) {
+                this.method597(var7, var8, 1024);
+                this.method597(var7, var8 + 1, 16384);
+            }
+            if (arg2 == 2) {
+                this.method597(var7, var8, 4096);
+                this.method597(var7 + 1, var8, 65536);
+            }
+            if (arg2 == 3) {
+                this.method597(var7, var8, 16384);
+                this.method597(var7, var8 - 1, 1024);
+            }
+        }
+        if (arg3 == 1 || arg3 == 3) {
+            if (arg2 == 0) {
+                this.method597(var7, var8, 512);
+                this.method597(var7 - 1, var8 + 1, 8192);
+            }
+            if (arg2 == 1) {
+                this.method597(var7, var8, 2048);
+                this.method597(var7 + 1, var8 + 1, 32768);
+            }
+            if (arg2 == 2) {
+                this.method597(var7, var8, 8192);
+                this.method597(var7 + 1, var8 - 1, 512);
+            }
+            if (arg2 == 3) {
+                this.method597(var7, var8, 32768);
+                this.method597(var7 - 1, var8 - 1, 2048);
+            }
+        }
+        if (arg3 != 2) {
+            return;
+        }
+        if (arg2 == 0) {
+            this.method597(var7, var8, 66560);
+            this.method597(var7 - 1, var8, 4096);
+            this.method597(var7, var8 + 1, 16384);
+        }
+        if (arg2 == 1) {
+            this.method597(var7, var8, 5120);
+            this.method597(var7, var8 + 1, 16384);
+            this.method597(var7 + 1, var8, 65536);
+        }
+        if (arg2 == 2) {
+            this.method597(var7, var8, 20480);
+            this.method597(var7 + 1, var8, 65536);
+            this.method597(var7, var8 - 1, 1024);
+        }
+        if (arg2 == 3) {
+            this.method597(var7, var8, 81920);
+            this.method597(var7, var8 - 1, 1024);
+            this.method597(var7 - 1, var8, 4096);
+            return;
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(ZIBIIII)V")
+    public void method595(boolean arg0, int arg1, byte arg2, int arg3, int arg4, int arg5, int arg6) {
+        if (arg2 == 1) {
+            boolean var8 = false;
+        } else {
+            this.field1737 = !this.field1737;
+        }
+        int var9 = 256;
+        if (arg0) {
+            var9 += 131072;
+        }
+        int var10 = arg6 - this.field1738;
+        int var11 = arg5 - this.field1739;
+        if (arg3 == 1 || arg3 == 3) {
+            int var12 = arg1;
+            arg1 = arg4;
+            arg4 = var12;
+        }
+        for (int var13 = var10; var13 < arg1 + var10; var13++) {
+            if (var13 >= 0 && var13 < this.field1740) {
+                for (int var14 = var11; var14 < arg4 + var11; var14++) {
+                    if (var14 >= 0 && var14 < this.field1741) {
+                        this.method597(var13, var14, var9);
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(III)V")
+    public void method596(int arg0, int arg1, int arg2) {
+        if (arg0 < 0) {
+            int var4 = arg1 - this.field1738;
+            int var5 = arg2 - this.field1739;
+            this.field1742[var4][var5] |= 0x200000;
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "b", descriptor = "(III)V")
+    private void method597(int arg0, int arg1, int arg2) {
+        this.field1742[arg0][arg1] |= arg2;
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(IIZBII)V")
+    public void method598(int arg0, int arg1, boolean arg2, byte arg3, int arg4, int arg5) {
+        if (arg3 == 8) {
+            boolean var7 = false;
+        } else {
+            this.field1734 = !this.field1734;
+        }
+        int var8 = arg4 - this.field1738;
+        int var9 = arg0 - this.field1739;
+        if (arg1 == 0) {
+            if (arg5 == 0) {
+                this.method600(var8, true, var9, 128);
+                this.method600(var8 - 1, true, var9, 8);
+            }
+            if (arg5 == 1) {
+                this.method600(var8, true, var9, 2);
+                this.method600(var8, true, var9 + 1, 32);
+            }
+            if (arg5 == 2) {
+                this.method600(var8, true, var9, 8);
+                this.method600(var8 + 1, true, var9, 128);
+            }
+            if (arg5 == 3) {
+                this.method600(var8, true, var9, 32);
+                this.method600(var8, true, var9 - 1, 2);
+            }
+        }
+        if (arg1 == 1 || arg1 == 3) {
+            if (arg5 == 0) {
+                this.method600(var8, true, var9, 1);
+                this.method600(var8 - 1, true, var9 + 1, 16);
+            }
+            if (arg5 == 1) {
+                this.method600(var8, true, var9, 4);
+                this.method600(var8 + 1, true, var9 + 1, 64);
+            }
+            if (arg5 == 2) {
+                this.method600(var8, true, var9, 16);
+                this.method600(var8 + 1, true, var9 - 1, 1);
+            }
+            if (arg5 == 3) {
+                this.method600(var8, true, var9, 64);
+                this.method600(var8 - 1, true, var9 - 1, 4);
+            }
+        }
+        if (arg1 == 2) {
+            if (arg5 == 0) {
+                this.method600(var8, true, var9, 130);
+                this.method600(var8 - 1, true, var9, 8);
+                this.method600(var8, true, var9 + 1, 32);
+            }
+            if (arg5 == 1) {
+                this.method600(var8, true, var9, 10);
+                this.method600(var8, true, var9 + 1, 32);
+                this.method600(var8 + 1, true, var9, 128);
+            }
+            if (arg5 == 2) {
+                this.method600(var8, true, var9, 40);
+                this.method600(var8 + 1, true, var9, 128);
+                this.method600(var8, true, var9 - 1, 2);
+            }
+            if (arg5 == 3) {
+                this.method600(var8, true, var9, 160);
+                this.method600(var8, true, var9 - 1, 2);
+                this.method600(var8 - 1, true, var9, 8);
+            }
+        }
+        if (!arg2) {
+            return;
+        }
+        if (arg1 == 0) {
+            if (arg5 == 0) {
+                this.method600(var8, true, var9, 65536);
+                this.method600(var8 - 1, true, var9, 4096);
+            }
+            if (arg5 == 1) {
+                this.method600(var8, true, var9, 1024);
+                this.method600(var8, true, var9 + 1, 16384);
+            }
+            if (arg5 == 2) {
+                this.method600(var8, true, var9, 4096);
+                this.method600(var8 + 1, true, var9, 65536);
+            }
+            if (arg5 == 3) {
+                this.method600(var8, true, var9, 16384);
+                this.method600(var8, true, var9 - 1, 1024);
+            }
+        }
+        if (arg1 == 1 || arg1 == 3) {
+            if (arg5 == 0) {
+                this.method600(var8, true, var9, 512);
+                this.method600(var8 - 1, true, var9 + 1, 8192);
+            }
+            if (arg5 == 1) {
+                this.method600(var8, true, var9, 2048);
+                this.method600(var8 + 1, true, var9 + 1, 32768);
+            }
+            if (arg5 == 2) {
+                this.method600(var8, true, var9, 8192);
+                this.method600(var8 + 1, true, var9 - 1, 512);
+            }
+            if (arg5 == 3) {
+                this.method600(var8, true, var9, 32768);
+                this.method600(var8 - 1, true, var9 - 1, 2048);
+            }
+        }
+        if (arg1 != 2) {
+            return;
+        }
+        if (arg5 == 0) {
+            this.method600(var8, true, var9, 66560);
+            this.method600(var8 - 1, true, var9, 4096);
+            this.method600(var8, true, var9 + 1, 16384);
+        }
+        if (arg5 == 1) {
+            this.method600(var8, true, var9, 5120);
+            this.method600(var8, true, var9 + 1, 16384);
+            this.method600(var8 + 1, true, var9, 65536);
+        }
+        if (arg5 == 2) {
+            this.method600(var8, true, var9, 20480);
+            this.method600(var8 + 1, true, var9, 65536);
+            this.method600(var8, true, var9 - 1, 1024);
+        }
+        if (arg5 == 3) {
+            this.method600(var8, true, var9, 81920);
+            this.method600(var8, true, var9 - 1, 1024);
+            this.method600(var8 - 1, true, var9, 4096);
+            return;
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(ZIIIIII)V")
+    public void method599(boolean arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6) {
+        int var8 = 256;
+        if (arg0) {
+            var8 += 131072;
+        }
+        int var9 = arg3 - this.field1738;
+        int var10 = arg5 - this.field1739;
+        if (arg6 <= 0) {
+            this.field1735 = !this.field1735;
+        }
+        if (arg2 == 1 || arg2 == 3) {
+            int var11 = arg4;
+            arg4 = arg1;
+            arg1 = var11;
+        }
+        for (int var12 = var9; var12 < arg4 + var9; var12++) {
+            if (var12 >= 0 && var12 < this.field1740) {
+                for (int var13 = var10; var13 < arg1 + var10; var13++) {
+                    if (var13 >= 0 && var13 < this.field1741) {
+                        this.method600(var12, true, var13, var8);
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(IZII)V")
+    private void method600(int arg0, boolean arg1, int arg2, int arg3) {
+        this.field1742[arg0][arg2] &= 16777215 - arg3;
+        if (arg1) {
+            ;
+        }
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "c", descriptor = "(III)V")
+    public void method601(int arg0, int arg1, int arg2) {
+        if (arg0 != 0) {
+            this.field1734 = !this.field1734;
+        }
+        int var4 = arg2 - this.field1738;
+        int var5 = arg1 - this.field1739;
+        this.field1742[var4][var5] &= 0xDFFFFF;
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(IIIIIII)Z")
+    public boolean method602(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6) {
+        if (arg1 != -25144) {
+            for (int var8 = 1; var8 > 0; var8++) {
+            }
+        }
+        if (arg3 == arg5 && arg4 == arg6) {
+            return true;
+        }
+        int var9 = arg5 - this.field1738;
+        int var10 = arg6 - this.field1739;
+        int var11 = arg3 - this.field1738;
+        int var12 = arg4 - this.field1739;
+        if (arg0 == 0) {
+            if (arg2 == 0) {
+                if (var11 - 1 == var9 && var10 == var12) {
+                    return true;
+                }
+                if (var9 == var11 && var12 + 1 == var10 && (this.field1742[var9][var10] & 0x1280120) == 0) {
+                    return true;
+                }
+                if (var9 == var11 && var12 - 1 == var10 && (this.field1742[var9][var10] & 0x1280102) == 0) {
+                    return true;
+                }
+            } else if (arg2 == 1) {
+                if (var9 == var11 && var12 + 1 == var10) {
+                    return true;
+                }
+                if (var11 - 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280108) == 0) {
+                    return true;
+                }
+                if (var11 + 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280180) == 0) {
+                    return true;
+                }
+            } else if (arg2 == 2) {
+                if (var11 + 1 == var9 && var10 == var12) {
+                    return true;
+                }
+                if (var9 == var11 && var12 + 1 == var10 && (this.field1742[var9][var10] & 0x1280120) == 0) {
+                    return true;
+                }
+                if (var9 == var11 && var12 - 1 == var10 && (this.field1742[var9][var10] & 0x1280102) == 0) {
+                    return true;
+                }
+            } else if (arg2 == 3) {
+                if (var9 == var11 && var12 - 1 == var10) {
+                    return true;
+                }
+                if (var11 - 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280108) == 0) {
+                    return true;
+                }
+                if (var11 + 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280180) == 0) {
+                    return true;
+                }
+            }
+        }
+        if (arg0 == 2) {
+            if (arg2 == 0) {
+                if (var11 - 1 == var9 && var10 == var12) {
+                    return true;
+                }
+                if (var9 == var11 && var12 + 1 == var10) {
+                    return true;
+                }
+                if (var11 + 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280180) == 0) {
+                    return true;
+                }
+                if (var9 == var11 && var12 - 1 == var10 && (this.field1742[var9][var10] & 0x1280102) == 0) {
+                    return true;
+                }
+            } else if (arg2 == 1) {
+                if (var11 - 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280108) == 0) {
+                    return true;
+                }
+                if (var9 == var11 && var12 + 1 == var10) {
+                    return true;
+                }
+                if (var11 + 1 == var9 && var10 == var12) {
+                    return true;
+                }
+                if (var9 == var11 && var12 - 1 == var10 && (this.field1742[var9][var10] & 0x1280102) == 0) {
+                    return true;
+                }
+            } else if (arg2 == 2) {
+                if (var11 - 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280108) == 0) {
+                    return true;
+                }
+                if (var9 == var11 && var12 + 1 == var10 && (this.field1742[var9][var10] & 0x1280120) == 0) {
+                    return true;
+                }
+                if (var11 + 1 == var9 && var10 == var12) {
+                    return true;
+                }
+                if (var9 == var11 && var12 - 1 == var10) {
+                    return true;
+                }
+            } else if (arg2 == 3) {
+                if (var11 - 1 == var9 && var10 == var12) {
+                    return true;
+                }
+                if (var9 == var11 && var12 + 1 == var10 && (this.field1742[var9][var10] & 0x1280120) == 0) {
+                    return true;
+                }
+                if (var11 + 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x1280180) == 0) {
+                    return true;
+                }
+                if (var9 == var11 && var12 - 1 == var10) {
+                    return true;
+                }
+            }
+        }
+        if (arg0 == 9) {
+            if (var9 == var11 && var12 + 1 == var10 && (this.field1742[var9][var10] & 0x20) == 0) {
+                return true;
+            }
+            if (var9 == var11 && var12 - 1 == var10 && (this.field1742[var9][var10] & 0x2) == 0) {
+                return true;
+            }
+            if (var11 - 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x8) == 0) {
+                return true;
+            }
+            if (var11 + 1 == var9 && var10 == var12 && (this.field1742[var9][var10] & 0x80) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "b", descriptor = "(ZIIIIII)Z")
+    public boolean method603(boolean arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6) {
+        if (arg1 == arg4 && arg2 == arg5) {
+            return true;
+        }
+        int var8 = arg4 - this.field1738;
+        int var9 = arg5 - this.field1739;
+        if (!arg0) {
+            this.field1734 = !this.field1734;
+        }
+        int var10 = arg1 - this.field1738;
+        int var11 = arg2 - this.field1739;
+        if (arg3 == 6 || arg3 == 7) {
+            if (arg3 == 7) {
+                arg6 = arg6 + 2 & 0x3;
+            }
+            if (arg6 == 0) {
+                if (var10 + 1 == var8 && var9 == var11 && (this.field1742[var8][var9] & 0x80) == 0) {
+                    return true;
+                }
+                if (var8 == var10 && var11 - 1 == var9 && (this.field1742[var8][var9] & 0x2) == 0) {
+                    return true;
+                }
+            } else if (arg6 == 1) {
+                if (var10 - 1 == var8 && var9 == var11 && (this.field1742[var8][var9] & 0x8) == 0) {
+                    return true;
+                }
+                if (var8 == var10 && var11 - 1 == var9 && (this.field1742[var8][var9] & 0x2) == 0) {
+                    return true;
+                }
+            } else if (arg6 == 2) {
+                if (var10 - 1 == var8 && var9 == var11 && (this.field1742[var8][var9] & 0x8) == 0) {
+                    return true;
+                }
+                if (var8 == var10 && var11 + 1 == var9 && (this.field1742[var8][var9] & 0x20) == 0) {
+                    return true;
+                }
+            } else if (arg6 == 3) {
+                if (var10 + 1 == var8 && var9 == var11 && (this.field1742[var8][var9] & 0x80) == 0) {
+                    return true;
+                }
+                if (var8 == var10 && var11 + 1 == var9 && (this.field1742[var8][var9] & 0x20) == 0) {
+                    return true;
+                }
+            }
+        }
+        if (arg3 == 8) {
+            if (var8 == var10 && var11 + 1 == var9 && (this.field1742[var8][var9] & 0x20) == 0) {
+                return true;
+            }
+            if (var8 == var10 && var11 - 1 == var9 && (this.field1742[var8][var9] & 0x2) == 0) {
+                return true;
+            }
+            if (var10 - 1 == var8 && var9 == var11 && (this.field1742[var8][var9] & 0x8) == 0) {
+                return true;
+            }
+            if (var10 + 1 == var8 && var9 == var11 && (this.field1742[var8][var9] & 0x80) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @OriginalMember(owner = "client!ZGDLGUZR", name = "a", descriptor = "(IZIIIIII)Z")
+    public boolean method604(int arg0, boolean arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7) {
+        if (!arg1) {
+            this.field1736 = -442;
+        }
+        int var9 = arg0 + arg6 - 1;
+        int var10 = arg3 + arg7 - 1;
+        if (arg4 >= arg6 && arg4 <= var9 && arg2 >= arg7 && arg2 <= var10) {
+            return true;
+        } else if (arg6 - 1 == arg4 && arg2 >= arg7 && arg2 <= var10 && (this.field1742[arg4 - this.field1738][arg2 - this.field1739] & 0x8) == 0 && (arg5 & 0x8) == 0) {
+            return true;
+        } else if (var9 + 1 == arg4 && arg2 >= arg7 && arg2 <= var10 && (this.field1742[arg4 - this.field1738][arg2 - this.field1739] & 0x80) == 0 && (arg5 & 0x2) == 0) {
+            return true;
+        } else if (arg7 - 1 == arg2 && arg4 >= arg6 && arg4 <= var9 && (this.field1742[arg4 - this.field1738][arg2 - this.field1739] & 0x2) == 0 && (arg5 & 0x4) == 0) {
+            return true;
+        } else {
+            return var10 + 1 == arg2 && arg4 >= arg6 && arg4 <= var9 && (this.field1742[arg4 - this.field1738][arg2 - this.field1739] & 0x20) == 0 && (arg5 & 0x1) == 0;
+        }
+    }
+}
