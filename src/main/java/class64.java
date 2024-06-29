@@ -1,0 +1,10 @@
+import org.openrs2.deob.annotation.OriginalClass;
+import org.openrs2.deob.annotation.OriginalMember;
+
+@OriginalClass("client!gm")
+public class class64 {
+
+    @OriginalMember(owner = "client!gm", name = "<init>", descriptor = "(Lpo;)V", line = 17)
+    public class64(class332 arg0) {
+    }
+}
