@@ -3,9 +3,9 @@ const child_process = require('child_process');
 const path = require('path');
 
 const DISASSEMBLE = false;
-const UPLOAD = true;
+const UPLOAD = false;
 
-function deob(branch, client, profile, remap) {
+function deob(branch, client, profile, template, remap) {
     fs.rmSync('remap.txt', { force: true });
     fs.rmSync('deob.toml', { force: true });
     fs.rmSync('work', { recursive: true, force: true });
@@ -19,9 +19,6 @@ function deob(branch, client, profile, remap) {
     fs.writeFileSync('work/deob.toml', toml);
 
     fs.writeFileSync('work/obforder.txt', '');
-
-    // copy template gradle project to work folder
-    fs.cpSync('template', 'work', { recursive: true });
 
     if (remap) {
         fs.cpSync('remap/' + remap, 'work/remap.txt');
@@ -41,6 +38,9 @@ function deob(branch, client, profile, remap) {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
+
+    // copy template gradle project to work folder
+    fs.cpSync('template/' + template, 'work', { recursive: true });
 
     if (UPLOAD) {
         // upload to git
@@ -82,7 +82,7 @@ let target = args[0] || -1;
 
 for (let i = 0; i < csv.length; i++) {
     const [ branch ] = csv[i];
-    if (target !== 'all' && branch != target) {
+    if (target !== 'all' && (branch != target || !branch.startsWith(target))) {
         continue;
     }
 

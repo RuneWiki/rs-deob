@@ -47,8 +47,12 @@ ast_transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    # "RedundantCast",
+    "RedundantCast",
     # "Enclose"
+]
+
+classpath = [
+    "lib/stub.jar"
 ]
 
 [profile.original_name]
