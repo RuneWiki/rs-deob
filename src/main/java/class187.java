@@ -335,7 +335,7 @@ public abstract class class187 extends class95 {
         } else {
             if (~arg1.length < -137 && !class181.field3407) {
                 try {
-                    class146 var3 = (class146) Class.forName("ve").newInstance();
+                    class146 var3 = (class146) Class.forName("class198").newInstance();
                     var3.method1022((byte) -35, arg1);
                     return var3;
                 } catch (Throwable var4) {

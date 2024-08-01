@@ -235,7 +235,7 @@ public class class109 implements class208 {
     public final class109 method775(int arg0) {
         long var2 = this.method805(109);
         field2147++;
-        synchronized (field2186 == null ? (field2186 = method811("lf")) : field2186) {
+        synchronized (field2186 == null ? (field2186 = method811("class109")) : field2186) {
             if (class1.field9 == null) {
                 class1.field9 = new class49(4096);
             } else {

@@ -89,7 +89,11 @@ public class class89 extends class9 {
         try {
             return Class.forName(arg0);
         } catch (ClassNotFoundException var2) {
-            throw (new NoClassDefFoundError()).initCause(var2);
+            try {
+                throw (new NoClassDefFoundError()).initCause(var2);
+            } catch (Throwable ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }

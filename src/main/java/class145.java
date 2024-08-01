@@ -221,7 +221,7 @@ public class class145 extends class85 {
         } else {
             ++field2811;
             try {
-                return (class190) Class.forName("ud").newInstance();
+                return (class190) Class.forName("class188").newInstance();
             } catch (Throwable var1) {
                 return new class121();
             }

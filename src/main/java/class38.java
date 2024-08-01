@@ -89,7 +89,7 @@ public class class38 {
     public static final class96 method288(int arg0) {
         field809++;
         try {
-            return arg0 == 5 ? (class96) Class.forName("qg").getDeclaredConstructor().newInstance() : null;
+            return arg0 == 5 ? (class96) Class.forName("class155").getDeclaredConstructor().newInstance() : null;
         } catch (Throwable var1) {
             return null;
         }

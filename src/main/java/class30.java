@@ -124,7 +124,7 @@ public class class30 extends class95 {
                 arg4 = 256;
             }
             try {
-                class9 var5 = (class9) Class.forName("jd").getDeclaredConstructor().newInstance();
+                class9 var5 = (class9) Class.forName("class89").getDeclaredConstructor().newInstance();
                 var5.field136 = new int[(class169.field3133 ? 2 : 1) * 256];
                 var5.field151 = arg4;
                 var5.method54(arg0);
