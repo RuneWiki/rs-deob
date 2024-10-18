@@ -8,8 +8,6 @@ class_deob = false
 
 # pre-remap transformers
 pre_transformers = [
-    "OriginalName",
-    "SortClassesLegacy"
 ]
 
 class_remap = false
@@ -27,11 +25,11 @@ ast_transformers = [
     "NegativeLiteral",
     "Complement",
     "Not",
-    # "CharLiteral",
+    # "CharLiteral", # sensitive to package visibility issues
     "IfElse",
     "Ternary",
-    # "BinaryExprOrder",
-    # "AddSub",
+    # "BinaryExprOrder", # sensitive to package visibility issues
+    # "AddSub", # sensitive to package visibility issues
     "Identity",
     "BitMask",
     "HexLiteral",
@@ -39,7 +37,7 @@ ast_transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    # "RedundantCast",
+    # "RedundantCast", # sensitive to package visibility issues
     # "Enclose"
 ]
 

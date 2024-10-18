@@ -1,6 +1,10 @@
 lib/
 work/
 
+.DS_Store
+thumbs.db
+desktop.ini
+
 deob.toml
 remap.txt
 deobfuscator.jar
