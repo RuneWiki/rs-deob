@@ -14,11 +14,12 @@ function deob(branch, client, profile, template, remap) {
     fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
 
     // copy deob profile to work folder
-    let toml = fs.readFileSync('profiles/' + profile, 'ascii');
+    let toml = fs.readFileSync('profiles/' + profile + '.toml', 'ascii');
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
 
     fs.writeFileSync('work/obforder.txt', '');
+    fs.writeFileSync('work/mapping.txt', '');
 
     if (remap) {
         fs.cpSync('remap/' + remap, 'work/remap.txt');

@@ -1,44 +1,37 @@
 [profile]
 input_jar = "ref/runescape.jar"
-output_jar = "ref/runescape-deob.jar"
+output_jar = "ref/runescape"
 output_dir = "src/main/java"
+# default_package = "com.jagex.oldschool"
 
-class_deob = true
-class_remap = true
-class_decompile = true
-java_cleanup = true
+class_deob = false
 
 # pre-remap transformers
 pre_transformers = [
-    "OriginalName"
+    "OriginalName",
+    "SortClassesLegacy"
 ]
+
+class_remap = false
 
 # post-remap transformers
 transformers = [
-    "Visibility",
-    "OpaquePredicate",
-    "ExceptionObfuscation",
-    "ExceptionTracing",
-    "BitShift",
-    "FernflowerException",
-    "Zwyz",
-    "VariableSplitter",
-    "ExpressionSorter",
-    "SortFieldsName",
-    "SortMethodsLineOrder"
 ]
 
+class_decompile = true
+
 # post-decompilation source transformers
+java_cleanup = true
 ast_transformers = [
     # "Unenclose",
     "NegativeLiteral",
     "Complement",
     "Not",
-    "CharLiteral",
+    # "CharLiteral",
     "IfElse",
     "Ternary",
-    "BinaryExprOrder",
-    "AddSub",
+    # "BinaryExprOrder",
+    # "AddSub",
     "Identity",
     "BitMask",
     "HexLiteral",
@@ -46,19 +39,10 @@ ast_transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    "RedundantCast",
+    # "RedundantCast",
     # "Enclose"
 ]
 
-classpath = [
-    "lib/stub.jar"
-]
-
-[profile.original_name]
-# we produce openrs2-compatible deob annotations but since we don't have a library system
-# we require the profile here to include the openrs2 library annotation. this gets prefixed
-# to the class name i.e. "client!" and "loader!"
-library_annotation = "client"
-
 [profile.zwyz]
-removeUnreachable = true
+full = true
+math = true
