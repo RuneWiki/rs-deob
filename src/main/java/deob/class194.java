@@ -1,0 +1,72 @@
+package deob;
+
+import java.util.Iterator;
+
+@ObfuscatedName("ga")
+public class class194 implements Iterator {
+
+    @ObfuscatedName("ga.f")
+    public class198 field3075;
+
+    @ObfuscatedName("ga.s")
+    public class208 field3074;
+
+    @ObfuscatedName("ga.q")
+    public int field3076;
+
+    @ObfuscatedName("ga.g")
+    public class208 field3077 = null;
+
+    public class194(class198 arg0) {
+        this.field3075 = arg0;
+        this.method3512();
+    }
+
+    @ObfuscatedName("ga.f()V")
+    public void method3512() {
+        this.field3074 = this.field3075.field3086[0].field3106;
+        this.field3076 = 1;
+        this.field3077 = null;
+    }
+
+    public Object next() {
+        if (this.field3075.field3086[this.field3076 - 1] != this.field3074) {
+            class208 var1 = this.field3074;
+            this.field3074 = var1.field3106;
+            this.field3077 = var1;
+            return var1;
+        }
+        class208 var2;
+        do {
+            if (this.field3076 >= this.field3075.field3087) {
+                return null;
+            }
+            var2 = this.field3075.field3086[this.field3076++].field3106;
+        } while (this.field3075.field3086[this.field3076 - 1] == var2);
+        this.field3074 = var2.field3106;
+        this.field3077 = var2;
+        return var2;
+    }
+
+    public boolean hasNext() {
+        if (this.field3075.field3086[this.field3076 - 1] != this.field3074) {
+            return true;
+        }
+        while (this.field3076 < this.field3075.field3087) {
+            if (this.field3075.field3086[this.field3076++].field3106 != this.field3075.field3086[this.field3076 - 1]) {
+                this.field3074 = this.field3075.field3086[this.field3076 - 1].field3106;
+                return true;
+            }
+            this.field3074 = this.field3075.field3086[this.field3076 - 1];
+        }
+        return false;
+    }
+
+    public void remove() {
+        if (this.field3077 == null) {
+            throw new IllegalStateException();
+        }
+        this.field3077.method3665();
+        this.field3077 = null;
+    }
+}
