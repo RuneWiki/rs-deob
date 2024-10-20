@@ -1,0 +1,501 @@
+package deob;
+
+@ObfuscatedName("jl")
+public class class235 {
+
+    @ObfuscatedName("jl.az")
+    public class233[] field2492;
+
+    @ObfuscatedName("jl.az(I)V")
+    public void method4079() {
+        this.field2492 = new class233[1];
+        class231 var1 = class231.field2461;
+        this.field2492[0] = new class233(var1.field2467, var1.field2468);
+    }
+
+    @ObfuscatedName("jl.ah(IIILiw;Lix;Z[I[II)I")
+    public int method4084(int arg0, int arg1, int arg2, class232 arg3, class230 arg4, boolean arg5, int[] arg6, int[] arg7) {
+        return this.method4083(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, this.field2492[0]);
+    }
+
+    @ObfuscatedName("jl.af(IIILiw;Lix;Z[I[ILiz;B)I")
+    public int method4083(int arg0, int arg1, int arg2, class232 arg3, class230 arg4, boolean arg5, int[] arg6, int[] arg7, class233 arg8) {
+        arg8.method4042();
+        int var10 = arg8.method4046();
+        int var11 = arg8.method4041();
+        int[][] var12 = arg8.method4068();
+        int[][] var13 = arg8.method4047();
+        int[] var14 = arg8.method4050();
+        int[] var15 = arg8.method4069();
+        boolean var16;
+        if (arg2 == 1) {
+            var16 = this.method4082(arg0, arg1, arg3, arg4, arg8);
+        } else if (arg2 == 2) {
+            var16 = this.method4095(arg0, arg1, arg3, arg4, arg8);
+        } else {
+            var16 = this.method4088(arg0, arg1, arg2, arg3, arg4, arg8);
+        }
+        int var17 = arg0 - (var10 >> 1);
+        int var18 = arg1 - (var11 >> 1);
+        int var19 = arg8.method4044();
+        int var20 = arg8.method4045();
+        if (!var16) {
+            if (!arg5) {
+                return -1;
+            }
+            int var21 = Integer.MAX_VALUE;
+            int var22 = Integer.MAX_VALUE;
+            byte var23 = 10;
+            int var24 = arg3.field2474;
+            int var25 = arg3.field2472;
+            int var26 = arg3.field2471;
+            int var27 = arg3.field2473;
+            for (int var28 = var24 - var23; var28 <= var23 + var24; var28++) {
+                for (int var29 = var25 - var23; var29 <= var23 + var25; var29++) {
+                    int var30 = var28 - var17;
+                    int var31 = var29 - var18;
+                    if (var30 >= 0 && var31 >= 0 && var30 < var10 && var31 < var11 && var12[var30][var31] < 100) {
+                        int var32 = 0;
+                        if (var28 < var24) {
+                            var32 = var24 - var28;
+                        } else if (var28 > var24 + var26 - 1) {
+                            var32 = var28 - (var24 + var26 - 1);
+                        }
+                        int var33 = 0;
+                        if (var29 < var25) {
+                            var33 = var25 - var29;
+                        } else if (var29 > var25 + var27 - 1) {
+                            var33 = var29 - (var25 + var27 - 1);
+                        }
+                        int var34 = var32 * var32 + var33 * var33;
+                        if (var34 < var21 || var21 == var34 && var12[var30][var31] < var22) {
+                            var21 = var34;
+                            var22 = var12[var30][var31];
+                            var19 = var28;
+                            var20 = var29;
+                        }
+                    }
+                }
+            }
+            if (var21 == Integer.MAX_VALUE) {
+                return -1;
+            }
+        }
+        if (arg0 == var19 && arg1 == var20) {
+            arg6[0] = var19;
+            arg7[0] = var20;
+            return 0;
+        }
+        byte var35 = 0;
+        var14[var35] = var19;
+        int var40 = var35 + 1;
+        var15[var35] = var20;
+        int var36;
+        int var37 = var36 = var13[var19 - var17][var20 - var18];
+        while (arg0 != var19 || arg1 != var20) {
+            if (var36 != var37) {
+                var36 = var37;
+                var14[var40] = var19;
+                var15[var40++] = var20;
+            }
+            if ((var37 & 0x2) != 0) {
+                var19++;
+            } else if ((var37 & 0x8) != 0) {
+                var19--;
+            }
+            if ((var37 & 0x1) != 0) {
+                var20++;
+            } else if ((var37 & 0x4) != 0) {
+                var20--;
+            }
+            var37 = var13[var19 - var17][var20 - var18];
+        }
+        int var38 = 0;
+        while (var40-- > 0) {
+            arg6[var38] = var14[var40];
+            arg7[var38++] = var15[var40];
+            if (var38 >= arg6.length) {
+                break;
+            }
+        }
+        return var38;
+    }
+
+    @ObfuscatedName("jl.at(IILiw;Lix;Liz;B)Z")
+    public final boolean method4082(int arg0, int arg1, class232 arg2, class230 arg3, class233 arg4) {
+        int var6 = arg4.method4046();
+        int var7 = arg4.method4041();
+        int[][] var8 = arg4.method4068();
+        int[][] var9 = arg4.method4047();
+        int[] var10 = arg4.method4050();
+        int[] var11 = arg4.method4069();
+        int var12 = arg4.method4071();
+        int var13 = arg0;
+        int var14 = arg1;
+        int var15 = var6 >> 1;
+        int var16 = var7 >> 1;
+        int var17 = arg0 - var15;
+        int var18 = arg1 - var16;
+        var9[var15][var16] = 99;
+        var8[var15][var16] = 0;
+        byte var19 = 0;
+        int var20 = 0;
+        var10[var19] = arg0;
+        byte var10001 = var19;
+        int var27 = var19 + 1;
+        var11[var10001] = arg1;
+        int[][] var21 = arg3.field2454;
+        while (var27 != var20) {
+            var13 = var10[var20];
+            var14 = var11[var20];
+            var20 = var20 + 1 & var12;
+            int var22 = var13 - var17;
+            int var23 = var14 - var18;
+            int var24 = var13 - arg3.field2455;
+            int var25 = var14 - arg3.field2452;
+            if (arg2.method1119(1, var13, var14, arg3)) {
+                arg4.method4043(var13, var14);
+                return true;
+            }
+            int var26 = var8[var22][var23] + 1;
+            if (var22 > 0 && var9[var22 - 1][var23] == 0 && (var21[var24 - 1][var25] & 0x1240108) == 0) {
+                var10[var27] = var13 - 1;
+                var11[var27] = var14;
+                var27 = var27 + 1 & var12;
+                var9[var22 - 1][var23] = 2;
+                var8[var22 - 1][var23] = var26;
+            }
+            if (var22 < var6 - 1 && var9[var22 + 1][var23] == 0 && (var21[var24 + 1][var25] & 0x1240180) == 0) {
+                var10[var27] = var13 + 1;
+                var11[var27] = var14;
+                var27 = var27 + 1 & var12;
+                var9[var22 + 1][var23] = 8;
+                var8[var22 + 1][var23] = var26;
+            }
+            if (var23 > 0 && var9[var22][var23 - 1] == 0 && (var21[var24][var25 - 1] & 0x1240102) == 0) {
+                var10[var27] = var13;
+                var11[var27] = var14 - 1;
+                var27 = var27 + 1 & var12;
+                var9[var22][var23 - 1] = 1;
+                var8[var22][var23 - 1] = var26;
+            }
+            if (var23 < var7 - 1 && var9[var22][var23 + 1] == 0 && (var21[var24][var25 + 1] & 0x1240120) == 0) {
+                var10[var27] = var13;
+                var11[var27] = var14 + 1;
+                var27 = var27 + 1 & var12;
+                var9[var22][var23 + 1] = 4;
+                var8[var22][var23 + 1] = var26;
+            }
+            if (var22 > 0 && var23 > 0 && var9[var22 - 1][var23 - 1] == 0 && (var21[var24 - 1][var25 - 1] & 0x124010E) == 0 && (var21[var24 - 1][var25] & 0x1240108) == 0 && (var21[var24][var25 - 1] & 0x1240102) == 0) {
+                var10[var27] = var13 - 1;
+                var11[var27] = var14 - 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 - 1][var23 - 1] = 3;
+                var8[var22 - 1][var23 - 1] = var26;
+            }
+            if (var22 < var6 - 1 && var23 > 0 && var9[var22 + 1][var23 - 1] == 0 && (var21[var24 + 1][var25 - 1] & 0x1240183) == 0 && (var21[var24 + 1][var25] & 0x1240180) == 0 && (var21[var24][var25 - 1] & 0x1240102) == 0) {
+                var10[var27] = var13 + 1;
+                var11[var27] = var14 - 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 + 1][var23 - 1] = 9;
+                var8[var22 + 1][var23 - 1] = var26;
+            }
+            if (var22 > 0 && var23 < var7 - 1 && var9[var22 - 1][var23 + 1] == 0 && (var21[var24 - 1][var25 + 1] & 0x1240138) == 0 && (var21[var24 - 1][var25] & 0x1240108) == 0 && (var21[var24][var25 + 1] & 0x1240120) == 0) {
+                var10[var27] = var13 - 1;
+                var11[var27] = var14 + 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 - 1][var23 + 1] = 6;
+                var8[var22 - 1][var23 + 1] = var26;
+            }
+            if (var22 < var6 - 1 && var23 < var7 - 1 && var9[var22 + 1][var23 + 1] == 0 && (var21[var24 + 1][var25 + 1] & 0x12401E0) == 0 && (var21[var24 + 1][var25] & 0x1240180) == 0 && (var21[var24][var25 + 1] & 0x1240120) == 0) {
+                var10[var27] = var13 + 1;
+                var11[var27] = var14 + 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 + 1][var23 + 1] = 12;
+                var8[var22 + 1][var23 + 1] = var26;
+            }
+        }
+        arg4.method4043(var13, var14);
+        return false;
+    }
+
+    @ObfuscatedName("jl.an(IILiw;Lix;Liz;B)Z")
+    public final boolean method4095(int arg0, int arg1, class232 arg2, class230 arg3, class233 arg4) {
+        int var6 = arg4.method4046();
+        int var7 = arg4.method4041();
+        int[][] var8 = arg4.method4068();
+        int[][] var9 = arg4.method4047();
+        int[] var10 = arg4.method4050();
+        int[] var11 = arg4.method4069();
+        int var12 = arg4.method4071();
+        int var13 = arg0;
+        int var14 = arg1;
+        int var15 = var6 >> 1;
+        int var16 = var7 >> 1;
+        int var17 = arg0 - var15;
+        int var18 = arg1 - var16;
+        var9[var15][var16] = 99;
+        var8[var15][var16] = 0;
+        byte var19 = 0;
+        int var20 = 0;
+        var10[var19] = arg0;
+        byte var10001 = var19;
+        int var27 = var19 + 1;
+        var11[var10001] = arg1;
+        int[][] var21 = arg3.field2454;
+        while (var27 != var20) {
+            var13 = var10[var20];
+            var14 = var11[var20];
+            var20 = var20 + 1 & var12;
+            int var22 = var13 - var17;
+            int var23 = var14 - var18;
+            int var24 = var13 - arg3.field2455;
+            int var25 = var14 - arg3.field2452;
+            if (arg2.method1119(2, var13, var14, arg3)) {
+                arg4.method4043(var13, var14);
+                return true;
+            }
+            int var26 = var8[var22][var23] + 1;
+            if (var22 > 0 && var9[var22 - 1][var23] == 0 && (var21[var24 - 1][var25] & 0x124010E) == 0 && (var21[var24 - 1][var25 + 1] & 0x1240138) == 0) {
+                var10[var27] = var13 - 1;
+                var11[var27] = var14;
+                var27 = var27 + 1 & var12;
+                var9[var22 - 1][var23] = 2;
+                var8[var22 - 1][var23] = var26;
+            }
+            if (var22 < var6 - 2 && var9[var22 + 1][var23] == 0 && (var21[var24 + 2][var25] & 0x1240183) == 0 && (var21[var24 + 2][var25 + 1] & 0x12401E0) == 0) {
+                var10[var27] = var13 + 1;
+                var11[var27] = var14;
+                var27 = var27 + 1 & var12;
+                var9[var22 + 1][var23] = 8;
+                var8[var22 + 1][var23] = var26;
+            }
+            if (var23 > 0 && var9[var22][var23 - 1] == 0 && (var21[var24][var25 - 1] & 0x124010E) == 0 && (var21[var24 + 1][var25 - 1] & 0x1240183) == 0) {
+                var10[var27] = var13;
+                var11[var27] = var14 - 1;
+                var27 = var27 + 1 & var12;
+                var9[var22][var23 - 1] = 1;
+                var8[var22][var23 - 1] = var26;
+            }
+            if (var23 < var7 - 2 && var9[var22][var23 + 1] == 0 && (var21[var24][var25 + 2] & 0x1240138) == 0 && (var21[var24 + 1][var25 + 2] & 0x12401E0) == 0) {
+                var10[var27] = var13;
+                var11[var27] = var14 + 1;
+                var27 = var27 + 1 & var12;
+                var9[var22][var23 + 1] = 4;
+                var8[var22][var23 + 1] = var26;
+            }
+            if (var22 > 0 && var23 > 0 && var9[var22 - 1][var23 - 1] == 0 && (var21[var24 - 1][var25] & 0x124013E) == 0 && (var21[var24 - 1][var25 - 1] & 0x124010E) == 0 && (var21[var24][var25 - 1] & 0x124018F) == 0) {
+                var10[var27] = var13 - 1;
+                var11[var27] = var14 - 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 - 1][var23 - 1] = 3;
+                var8[var22 - 1][var23 - 1] = var26;
+            }
+            if (var22 < var6 - 2 && var23 > 0 && var9[var22 + 1][var23 - 1] == 0 && (var21[var24 + 1][var25 - 1] & 0x124018F) == 0 && (var21[var24 + 2][var25 - 1] & 0x1240183) == 0 && (var21[var24 + 2][var25] & 0x12401E3) == 0) {
+                var10[var27] = var13 + 1;
+                var11[var27] = var14 - 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 + 1][var23 - 1] = 9;
+                var8[var22 + 1][var23 - 1] = var26;
+            }
+            if (var22 > 0 && var23 < var7 - 2 && var9[var22 - 1][var23 + 1] == 0 && (var21[var24 - 1][var25 + 1] & 0x124013E) == 0 && (var21[var24 - 1][var25 + 2] & 0x1240138) == 0 && (var21[var24][var25 + 2] & 0x12401F8) == 0) {
+                var10[var27] = var13 - 1;
+                var11[var27] = var14 + 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 - 1][var23 + 1] = 6;
+                var8[var22 - 1][var23 + 1] = var26;
+            }
+            if (var22 < var6 - 2 && var23 < var7 - 2 && var9[var22 + 1][var23 + 1] == 0 && (var21[var24 + 1][var25 + 2] & 0x12401F8) == 0 && (var21[var24 + 2][var25 + 2] & 0x12401E0) == 0 && (var21[var24 + 2][var25 + 1] & 0x12401E3) == 0) {
+                var10[var27] = var13 + 1;
+                var11[var27] = var14 + 1;
+                var27 = var27 + 1 & var12;
+                var9[var22 + 1][var23 + 1] = 12;
+                var8[var22 + 1][var23 + 1] = var26;
+            }
+        }
+        arg4.method4043(var13, var14);
+        return false;
+    }
+
+    @ObfuscatedName("jl.ao(IIILiw;Lix;Liz;I)Z")
+    public final boolean method4088(int arg0, int arg1, int arg2, class232 arg3, class230 arg4, class233 arg5) {
+        int var7 = arg5.method4046();
+        int var8 = arg5.method4041();
+        int[][] var9 = arg5.method4068();
+        int[][] var10 = arg5.method4047();
+        int[] var11 = arg5.method4050();
+        int[] var12 = arg5.method4069();
+        int var13 = arg5.method4071();
+        int var14 = arg0;
+        int var15 = arg1;
+        int var16 = var7 >> 1;
+        int var17 = var8 >> 1;
+        int var18 = arg0 - var16;
+        int var19 = arg1 - var17;
+        var10[var16][var17] = 99;
+        var9[var16][var17] = 0;
+        byte var20 = 0;
+        int var21 = 0;
+        var11[var20] = arg0;
+        int var36 = var20 + 1;
+        var12[var20] = arg1;
+        int[][] var22 = arg4.field2454;
+        while (true) {
+            label265: while (true) {
+                int var23;
+                int var24;
+                int var25;
+                int var26;
+                int var27;
+                do {
+                    do {
+                        do {
+                            label242: do {
+                                if (var36 == var21) {
+                                    arg5.method4043(var14, var15);
+                                    return false;
+                                }
+                                var14 = var11[var21];
+                                var15 = var12[var21];
+                                var21 = var21 + 1 & var13;
+                                var23 = var14 - var18;
+                                var24 = var15 - var19;
+                                var25 = var14 - arg4.field2455;
+                                var26 = var15 - arg4.field2452;
+                                if (arg3.method1119(arg2, var14, var15, arg4)) {
+                                    arg5.method4043(var14, var15);
+                                    return true;
+                                }
+                                var27 = var9[var23][var24] + 1;
+                                if (var23 > 0 && var10[var23 - 1][var24] == 0 && (var22[var25 - 1][var26] & 0x124010E) == 0 && (var22[var25 - 1][arg2 + var26 - 1] & 0x1240138) == 0) {
+                                    int var28 = 1;
+                                    while (true) {
+                                        if (var28 >= arg2 - 1) {
+                                            var11[var36] = var14 - 1;
+                                            var12[var36] = var15;
+                                            var36 = var36 + 1 & var13;
+                                            var10[var23 - 1][var24] = 2;
+                                            var9[var23 - 1][var24] = var27;
+                                            break;
+                                        }
+                                        if ((var22[var25 - 1][var26 + var28] & 0x124013E) != 0) {
+                                            break;
+                                        }
+                                        var28++;
+                                    }
+                                }
+                                if (var23 < var7 - arg2 && var10[var23 + 1][var24] == 0 && (var22[arg2 + var25][var26] & 0x1240183) == 0 && (var22[arg2 + var25][arg2 + var26 - 1] & 0x12401E0) == 0) {
+                                    int var29 = 1;
+                                    while (true) {
+                                        if (var29 >= arg2 - 1) {
+                                            var11[var36] = var14 + 1;
+                                            var12[var36] = var15;
+                                            var36 = var36 + 1 & var13;
+                                            var10[var23 + 1][var24] = 8;
+                                            var9[var23 + 1][var24] = var27;
+                                            break;
+                                        }
+                                        if ((var22[arg2 + var25][var26 + var29] & 0x12401E3) != 0) {
+                                            break;
+                                        }
+                                        var29++;
+                                    }
+                                }
+                                if (var24 > 0 && var10[var23][var24 - 1] == 0 && (var22[var25][var26 - 1] & 0x124010E) == 0 && (var22[arg2 + var25 - 1][var26 - 1] & 0x1240183) == 0) {
+                                    int var30 = 1;
+                                    while (true) {
+                                        if (var30 >= arg2 - 1) {
+                                            var11[var36] = var14;
+                                            var12[var36] = var15 - 1;
+                                            var36 = var36 + 1 & var13;
+                                            var10[var23][var24 - 1] = 1;
+                                            var9[var23][var24 - 1] = var27;
+                                            break;
+                                        }
+                                        if ((var22[var25 + var30][var26 - 1] & 0x124018F) != 0) {
+                                            break;
+                                        }
+                                        var30++;
+                                    }
+                                }
+                                if (var24 < var8 - arg2 && var10[var23][var24 + 1] == 0 && (var22[var25][arg2 + var26] & 0x1240138) == 0 && (var22[arg2 + var25 - 1][arg2 + var26] & 0x12401E0) == 0) {
+                                    int var31 = 1;
+                                    while (true) {
+                                        if (var31 >= arg2 - 1) {
+                                            var11[var36] = var14;
+                                            var12[var36] = var15 + 1;
+                                            var36 = var36 + 1 & var13;
+                                            var10[var23][var24 + 1] = 4;
+                                            var9[var23][var24 + 1] = var27;
+                                            break;
+                                        }
+                                        if ((var22[var25 + var31][arg2 + var26] & 0x12401F8) != 0) {
+                                            break;
+                                        }
+                                        var31++;
+                                    }
+                                }
+                                if (var23 > 0 && var24 > 0 && var10[var23 - 1][var24 - 1] == 0 && (var22[var25 - 1][var26 - 1] & 0x124010E) == 0) {
+                                    int var32 = 1;
+                                    while (true) {
+                                        if (var32 >= arg2) {
+                                            var11[var36] = var14 - 1;
+                                            var12[var36] = var15 - 1;
+                                            var36 = var36 + 1 & var13;
+                                            var10[var23 - 1][var24 - 1] = 3;
+                                            var9[var23 - 1][var24 - 1] = var27;
+                                            break;
+                                        }
+                                        if ((var22[var25 - 1][var26 - 1 + var32] & 0x124013E) != 0 || (var22[var25 - 1 + var32][var26 - 1] & 0x124018F) != 0) {
+                                            break;
+                                        }
+                                        var32++;
+                                    }
+                                }
+                                if (var23 < var7 - arg2 && var24 > 0 && var10[var23 + 1][var24 - 1] == 0 && (var22[arg2 + var25][var26 - 1] & 0x1240183) == 0) {
+                                    int var33 = 1;
+                                    while (true) {
+                                        if (var33 >= arg2) {
+                                            var11[var36] = var14 + 1;
+                                            var12[var36] = var15 - 1;
+                                            var36 = var36 + 1 & var13;
+                                            var10[var23 + 1][var24 - 1] = 9;
+                                            var9[var23 + 1][var24 - 1] = var27;
+                                            break;
+                                        }
+                                        if ((var22[arg2 + var25][var26 - 1 + var33] & 0x12401E3) != 0 || (var22[var25 + var33][var26 - 1] & 0x124018F) != 0) {
+                                            break;
+                                        }
+                                        var33++;
+                                    }
+                                }
+                                if (var23 > 0 && var24 < var8 - arg2 && var10[var23 - 1][var24 + 1] == 0 && (var22[var25 - 1][arg2 + var26] & 0x1240138) == 0) {
+                                    for (int var34 = 1; var34 < arg2; var34++) {
+                                        if ((var22[var25 - 1][var26 + var34] & 0x124013E) != 0 || (var22[var25 - 1 + var34][arg2 + var26] & 0x12401F8) != 0) {
+                                            continue label242;
+                                        }
+                                    }
+                                    var11[var36] = var14 - 1;
+                                    var12[var36] = var15 + 1;
+                                    var36 = var36 + 1 & var13;
+                                    var10[var23 - 1][var24 + 1] = 6;
+                                    var9[var23 - 1][var24 + 1] = var27;
+                                }
+                            } while (var23 >= var7 - arg2);
+                        } while (var24 >= var8 - arg2);
+                    } while (var10[var23 + 1][var24 + 1] != 0);
+                } while ((var22[arg2 + var25][arg2 + var26] & 0x12401E0) != 0);
+                for (int var35 = 1; var35 < arg2; var35++) {
+                    if ((var22[var25 + var35][arg2 + var26] & 0x12401F8) != 0 || (var22[arg2 + var25][var26 + var35] & 0x12401E3) != 0) {
+                        continue label265;
+                    }
+                }
+                var11[var36] = var14 + 1;
+                var12[var36] = var15 + 1;
+                var36 = var36 + 1 & var13;
+                var10[var23 + 1][var24 + 1] = 12;
+                var9[var23 + 1][var24 + 1] = var27;
+            }
+        }
+    }
+}
