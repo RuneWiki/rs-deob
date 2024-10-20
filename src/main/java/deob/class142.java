@@ -1,0 +1,22 @@
+package deob;
+
+@ObfuscatedName("el")
+public abstract class class142 extends class195 {
+
+    @ObfuscatedName("el.ce")
+    public int field2129 = 1000;
+
+    @ObfuscatedName("el.bj(IIIIIIIII)V")
+    public void method2239(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8) {
+        class134 var10 = this.method1001();
+        if (var10 != null) {
+            this.field2129 = var10.field2129;
+            var10.method2239(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+        }
+    }
+
+    @ObfuscatedName("el.e(I)Les;")
+    public class134 method1001() {
+        return null;
+    }
+}
