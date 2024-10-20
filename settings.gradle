@@ -1,0 +1,10 @@
+rootProject.name = 'oldschool'
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'lib'
+        }
+    }
+}
