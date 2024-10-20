@@ -1,0 +1,20 @@
+package deob;
+
+import java.util.Comparator;
+
+@ObfuscatedName("s")
+public final class class18 implements Comparator {
+
+    @ObfuscatedName("s.f(Ly;Ly;I)I")
+    public int method143(class17 arg0, class17 arg1) {
+        return arg0.field80.field87 < arg1.field80.field87 ? -1 : (arg0.field80.field87 == arg1.field80.field87 ? 0 : 1);
+    }
+
+    public int compare(Object arg0, Object arg1) {
+        return this.method143((class17) arg0, (class17) arg1);
+    }
+
+    public boolean equals(Object arg0) {
+        return super.equals(arg0);
+    }
+}
