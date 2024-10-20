@@ -1,0 +1,177 @@
+package deob;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Random;
+
+@ObfuscatedName("cr")
+public class class86 {
+
+    @ObfuscatedName("cr.l")
+    public static final BigInteger field1290 = new BigInteger("80782894952180643741752986186714059433953886149239752893425047584684715842049");
+
+    @ObfuscatedName("cr.b")
+    public static final BigInteger field1291 = new BigInteger("7237300117305667488707183861728052766358166655052137727439795191253340127955075499635575104901523446809299097934591732635674173519120047404024393881551683");
+
+    public class86() throws Throwable {
+        throw new Error();
+    }
+
+    @ObfuscatedName("o.t(I)J")
+    public static long method46() {
+        try {
+            URL var0 = new URL(client.method4836("services", false) + "m=accountappeal/login.ws");
+            URLConnection var1 = var0.openConnection();
+            var1.setRequestProperty("connection", "close");
+            var1.setDoInput(true);
+            var1.setDoOutput(true);
+            var1.setConnectTimeout(5000);
+            OutputStreamWriter var2 = new OutputStreamWriter(var1.getOutputStream());
+            var2.write("data1=req");
+            var2.flush();
+            InputStream var3 = var1.getInputStream();
+            class195 var4 = new class195(new byte[1000]);
+            do {
+                int var5 = var3.read(var4.field2544, var4.field2545, 1000 - var4.field2545);
+                if (var5 == -1) {
+                    var4.field2545 = 0;
+                    return var4.method3315();
+                }
+                var4.field2545 += var5;
+            } while (var4.field2545 < 1000);
+            return 0L;
+        } catch (Exception var9) {
+            return 0L;
+        }
+    }
+
+    @ObfuscatedName("bw.q(JLjava/lang/String;I)I")
+    public static final int method1512(long arg0, String arg1) {
+        Random var3 = new Random();
+        class195 var4 = new class195(128);
+        class195 var5 = new class195(128);
+        int[] var6 = new int[] { var3.nextInt(), var3.nextInt(), (int) (arg0 >> 32), (int) arg0 };
+        var4.method3220(10);
+        for (int var7 = 0; var7 < 4; var7++) {
+            var4.method3223(var3.nextInt());
+        }
+        var4.method3223(var6[0]);
+        var4.method3223(var6[1]);
+        var4.method3225(arg0);
+        var4.method3225(0L);
+        for (int var8 = 0; var8 < 4; var8++) {
+            var4.method3223(var3.nextInt());
+        }
+        var4.method3258(field1290, field1291);
+        var5.method3220(10);
+        for (int var9 = 0; var9 < 3; var9++) {
+            var5.method3223(var3.nextInt());
+        }
+        var5.method3225(var3.nextLong());
+        var5.method3421(var3.nextLong());
+        if (client.field889 == null) {
+            byte[] var10 = new byte[24];
+            try {
+                class168.field2175.method2290(0L);
+                class168.field2175.method2292(var10);
+                int var11;
+                for (var11 = 0; var11 < 24 && var10[var11] == 0; var11++) {
+                }
+                if (var11 >= 24) {
+                    throw new IOException();
+                }
+            } catch (Exception var33) {
+                for (int var13 = 0; var13 < 24; var13++) {
+                    var10[var13] = -1;
+                }
+            }
+            var5.method3230(var10, 0, var10.length);
+        } else {
+            var5.method3230(client.field889, 0, client.field889.length);
+        }
+        var5.method3225(var3.nextLong());
+        var5.method3258(field1290, field1291);
+        int var16 = class195.method126(arg1);
+        if (var16 % 8 != 0) {
+            var16 += 8 - var16 % 8;
+        }
+        class195 var17 = new class195(var16);
+        var17.method3232(arg1);
+        var17.field2545 = var16;
+        var17.method3451(var6);
+        class195 var18 = new class195(var17.field2545 + var5.field2545 + var4.field2545 + 5);
+        var18.method3220(2);
+        var18.method3220(var4.field2545);
+        var18.method3230(var4.field2544, 0, var4.field2545);
+        var18.method3220(var5.field2545);
+        var18.method3230(var5.field2544, 0, var5.field2545);
+        var18.method3323(var17.field2545);
+        var18.method3230(var17.field2544, 0, var17.field2545);
+        String var19 = class318.method1176(var18.field2544);
+        try {
+            URL var20 = new URL(client.method4836("services", false) + "m=accountappeal/login.ws");
+            URLConnection var21 = var20.openConnection();
+            var21.setDoInput(true);
+            var21.setDoOutput(true);
+            var21.setConnectTimeout(5000);
+            OutputStreamWriter var22 = new OutputStreamWriter(var21.getOutputStream());
+            var22.write("data2=" + class340.method5210(var19) + "&dest=" + class340.method5210("passwordchoice.ws"));
+            var22.flush();
+            InputStream var23 = var21.getInputStream();
+            class195 var24 = new class195(new byte[1000]);
+            do {
+                int var25 = var23.read(var24.field2544, var24.field2545, 1000 - var24.field2545);
+                if (var25 == -1) {
+                    var22.close();
+                    var23.close();
+                    String var26 = new String(var24.field2544);
+                    if (var26.startsWith("OFFLINE")) {
+                        return 4;
+                    } else if (var26.startsWith("WRONG")) {
+                        return 7;
+                    } else if (var26.startsWith("RELOAD")) {
+                        return 3;
+                    } else if (var26.startsWith("Not permitted for social network accounts.")) {
+                        return 6;
+                    } else {
+                        var24.method3255(var6);
+                        while (var24.field2545 > 0 && var24.field2544[var24.field2545 - 1] == 0) {
+                            var24.field2545--;
+                        }
+                        String var27 = new String(var24.field2544, 0, var24.field2545);
+                        boolean var28;
+                        if (var27 == null) {
+                            var28 = false;
+                        } else {
+                            label90: {
+                                try {
+                                    new URL(var27);
+                                } catch (MalformedURLException var31) {
+                                    var28 = false;
+                                    break label90;
+                                }
+                                var28 = true;
+                            }
+                        }
+                        if (var28) {
+                            class58.method979(var27, true, false);
+                            return 2;
+                        } else {
+                            return 5;
+                        }
+                    }
+                }
+                var24.field2545 += var25;
+            } while (var24.field2545 < 1000);
+            return 5;
+        } catch (Throwable var32) {
+            var32.printStackTrace();
+            return 5;
+        }
+    }
+}
