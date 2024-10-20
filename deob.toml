@@ -1,0 +1,47 @@
+[profile]
+input_jar = "ref/runescape.jar"
+output_jar = "ref/runescape"
+output_dir = "src/main/java"
+# default_package = "com.jagex.oldschool"
+
+class_deob = false
+
+# pre-remap transformers
+pre_transformers = [
+]
+
+class_remap = false
+
+# post-remap transformers
+transformers = [
+]
+
+class_decompile = true
+
+# post-decompilation source transformers
+java_cleanup = true
+ast_transformers = [
+    # "Unenclose",
+    "NegativeLiteral",
+    "Complement",
+    "Not",
+    # "CharLiteral", # sensitive to package visibility issues
+    "IfElse",
+    "Ternary",
+    # "BinaryExprOrder", # sensitive to package visibility issues
+    # "AddSub", # sensitive to package visibility issues
+    "Identity",
+    "BitMask",
+    "HexLiteral",
+    "ValueOf",
+    "NewInstance",
+    "Increment",
+    "ForLoopCondition",
+    # "RedundantCast", # sensitive to package visibility issues
+    # "Enclose"
+]
+
+[profile.zwyz]
+full = true
+math = true
+complex_parameter_checks = true

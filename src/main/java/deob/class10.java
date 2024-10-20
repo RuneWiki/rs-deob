@@ -1,0 +1,23 @@
+package deob;
+
+@ObfuscatedName("q")
+public class class10 {
+
+    @ObfuscatedName("q.r")
+    public String field173;
+
+    @ObfuscatedName("q.d")
+    public String field177;
+
+    @ObfuscatedName("q.l")
+    public int field174;
+
+    @ObfuscatedName("q.m")
+    public int field175;
+
+    @ObfuscatedName("q.c")
+    public boolean field172;
+
+    @ObfuscatedName("q.n")
+    public boolean field176;
+}

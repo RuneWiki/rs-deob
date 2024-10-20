@@ -1,0 +1,35 @@
+package deob;
+
+import java.util.zip.Inflater;
+
+@ObfuscatedName("bf")
+public class class64 {
+
+    @ObfuscatedName("bf.r")
+    public Inflater field814;
+
+    public class64() {
+        this(-1, 1000000, 1000000);
+    }
+
+    public class64(int arg0, int arg1, int arg2) {
+    }
+
+    @ObfuscatedName("bf.r(Lev;[BB)V")
+    public void method834(class135 arg0, byte[] arg1) {
+        if (arg0.field1732[arg0.field1729] != 31 || arg0.field1732[arg0.field1729 + 1] != -117) {
+            throw new RuntimeException("");
+        }
+        if (this.field814 == null) {
+            this.field814 = new Inflater(true);
+        }
+        try {
+            this.field814.setInput(arg0.field1732, arg0.field1729 + 10, arg0.field1732.length - (arg0.field1729 + 10 + 8));
+            this.field814.inflate(arg1);
+        } catch (Exception var4) {
+            this.field814.reset();
+            throw new RuntimeException("");
+        }
+        this.field814.reset();
+    }
+}
