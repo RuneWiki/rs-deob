@@ -1,0 +1,29 @@
+package deob;
+
+@ObfuscatedName("ej")
+public class class141 extends class117 {
+
+    // $FF: synthetic field
+    public final class120 this$0;
+
+    @ObfuscatedName("ej.l")
+    public int field1543;
+
+    @ObfuscatedName("ej.q")
+    public long field1540;
+
+    public class141(class120 arg0) {
+        this.this$0 = arg0;
+    }
+
+    @ObfuscatedName("ej.l(Lot;I)V")
+    public void method2365(class401 arg0) {
+        this.field1543 = arg0.method6277();
+        this.field1540 = arg0.method6275();
+    }
+
+    @ObfuscatedName("ej.q(Ldk;I)V")
+    public void method2366(class128 arg0) {
+        arg0.method2428(this.field1543, this.field1540);
+    }
+}
