@@ -1,0 +1,42 @@
+package deob;
+
+@ObfuscatedName("cu")
+public class class93 extends class130 {
+
+    @ObfuscatedName("cu.q")
+    public class81[] field1580;
+
+    public class93(class183 arg0, class183 arg1, int arg2, boolean arg3) {
+        class129 var5 = new class129();
+        int var6 = arg0.method3126(arg2);
+        this.field1580 = new class81[var6];
+        int[] var7 = arg0.method3125(arg2);
+        for (int var8 = 0; var8 < var7.length; var8++) {
+            byte[] var9 = arg0.method3133(arg2, var7[var8]);
+            class87 var10 = null;
+            int var11 = (var9[0] & 0xFF) << 8 | var9[1] & 0xFF;
+            for (class87 var12 = (class87) var5.method2319(); var12 != null; var12 = (class87) var5.method2333()) {
+                if (var12.field1484 == var11) {
+                    var10 = var12;
+                    break;
+                }
+            }
+            if (var10 == null) {
+                byte[] var13;
+                if (arg3) {
+                    var13 = arg1.method3178(0, var11);
+                } else {
+                    var13 = arg1.method3178(var11, 0);
+                }
+                var10 = new class87(var11, var13);
+                var5.method2314(var10);
+            }
+            this.field1580[var7[var8]] = new class81(var9, var10);
+        }
+    }
+
+    @ObfuscatedName("cu.d(II)Z")
+    public boolean method1892(int arg0) {
+        return this.field1580[arg0].field1347;
+    }
+}
