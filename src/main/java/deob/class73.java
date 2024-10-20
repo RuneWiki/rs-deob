@@ -1,0 +1,37 @@
+package deob;
+
+@ObfuscatedName("bi")
+public class class73 implements Runnable {
+
+    @ObfuscatedName("bi.o")
+    public class136 field1342;
+
+    @ObfuscatedName("bi.e")
+    public volatile class57[] field1349 = new class57[2];
+
+    @ObfuscatedName("bi.u")
+    public volatile boolean field1344 = false;
+
+    @ObfuscatedName("bi.b")
+    public volatile boolean field1345 = false;
+
+    public void run() {
+        this.field1345 = true;
+        try {
+            while (!this.field1344) {
+                for (int var1 = 0; var1 < 2; var1++) {
+                    class57 var2 = this.field1349[var1];
+                    if (var2 != null) {
+                        var2.method1131();
+                    }
+                }
+                class127.method2614(10L);
+                class142.method2037(this.field1342, (Object) null);
+            }
+        } catch (Exception var7) {
+            class148.method2262((String) null, var7);
+        } finally {
+            this.field1345 = false;
+        }
+    }
+}
