@@ -3,6 +3,7 @@ const child_process = require('child_process');
 const path = require('path');
 
 const DISASSEMBLE = false;
+const TEMPLATE = false;
 const UPLOAD = false;
 
 function deob(branch, client, profile, template, remap) {
@@ -40,33 +41,35 @@ function deob(branch, client, profile, template, remap) {
         cwd: path.join(__dirname, 'work')
     });
 
-    // copy template gradle project to work folder
-    fs.cpSync('template/' + template, 'work', { recursive: true });
+    if (TEMPLATE) {
+        // copy template gradle project to work folder
+        fs.cpSync('template/' + template, 'work', { recursive: true });
+    }
 
-    // initialize git repo with a new commit
-    child_process.execSync('git init', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git checkout -b ' + branch, {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git add --chmod=+x gradlew', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git add .', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-    child_process.execSync('git commit -m "feat: Initial commit"', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, 'work')
-    });
-
-    // upload to git
     if (UPLOAD) {
+        // initialize git repo with a new commit
+        child_process.execSync('git init', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git checkout -b ' + branch, {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git add --chmod=+x gradlew', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git add .', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+        child_process.execSync('git commit -m "feat: Initial commit"', {
+            stdio: 'inherit',
+            cwd: path.join(__dirname, 'work')
+        });
+
+        // upload to git
         child_process.execSync('git remote add origin https://github.com/RuneWiki/rs-deob', {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
