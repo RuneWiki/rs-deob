@@ -2,29 +2,66 @@ const fs = require('fs');
 const child_process = require('child_process');
 const path = require('path');
 
+const yauzl = require('yauzl');
+const { decryptClient, unpack200 } = require('./gamepack.js');
+
 const DISASSEMBLE = false;
 const TEMPLATE = true;
 const UPLOAD = false;
 
-function deob(branch, client, profile, template, remap) {
+function extractFile(zip, name, dest) {
+    return new Promise((resolve, reject) => {
+        yauzl.open(zip, { lazyEntries: true }, (err, zipfile) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+
+            zipfile.readEntry();
+            zipfile.on('entry', entry => {
+                if (entry.fileName === name) {
+                    zipfile.openReadStream(entry, (err, readStream) => {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+
+                        const writeStream = fs.createWriteStream(dest);
+                        readStream.pipe(writeStream);
+                        writeStream.on('close', () => {
+                            resolve();
+                        });
+                    });
+                } else {
+                    zipfile.readEntry();
+                }
+            });
+        });
+    });
+}
+
+async function deob(branch, client, profile, template, remap, secret, vector) {
     fs.rmSync('remap.txt', { force: true });
     fs.rmSync('deob.toml', { force: true });
     fs.rmSync('work', { recursive: true, force: true });
 
     fs.mkdirSync('work/ref', { recursive: true });
-    fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
+
+    if (secret && vector) {
+        await extractFile('lib/' + client, 'inner.pack.gz', 'work/ref/innerpack.jar');
+        const innerPack = decryptClient(fs.readFileSync('work/ref/innerpack.jar'), secret, vector);
+        unpack200(innerPack, 'work/ref/runescape.jar');
+    } else {
+        fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
+    }
 
     // copy deob profile to work folder
     let toml = fs.readFileSync('profiles/' + profile + '.toml', 'ascii');
     // todo: apply any replacements
     fs.writeFileSync('work/deob.toml', toml);
 
-    fs.writeFileSync('work/obforder.txt', '');
-    fs.writeFileSync('work/mapping.txt', '');
-
     if (remap) {
         fs.cpSync('remap/' + remap + '.txt', 'work/remap.txt');
-        fs.cpSync('remap/' + remap + '.txt', 'work/mapping.txt');
     }
 
     if (DISASSEMBLE) {
@@ -82,17 +119,21 @@ function deob(branch, client, profile, template, remap) {
     }
 }
 
-const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').map(l => l.split(',')).slice(1);
+async function run() {
+    const csv = fs.readFileSync('deob.csv', 'ascii').replace(/\r/g, '').split('\n').map(l => l.split(',')).slice(1);
 
-const args = process.argv.slice(2);
-let target = args[0] || -1;
+    const args = process.argv.slice(2);
+    let target = args[0] || -1;
 
-for (let i = 0; i < csv.length; i++) {
-    const [ branch ] = csv[i];
-    if (target !== 'all' && (branch != target || !branch.startsWith(target))) {
-        continue;
+    for (let i = 0; i < csv.length; i++) {
+        const [ branch ] = csv[i];
+        if (target !== 'all' && (branch != target || !branch.startsWith(target))) {
+            continue;
+        }
+
+        console.log('------ ' + branch + ' -----');
+        await deob(...csv[i]);
     }
-
-    console.log('------ ' + branch + ' -----');
-    deob(...csv[i]);
 }
+
+run();

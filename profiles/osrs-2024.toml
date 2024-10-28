@@ -2,24 +2,39 @@
 input_jar = "ref/runescape.jar"
 output_jar = "ref/runescape"
 output_dir = "src/main/java"
-# default_package = "com.jagex.oldschool"
 
-class_deob = false
+class_deob = true
 
 # pre-remap transformers
 pre_transformers = [
+    "OriginalName"
 ]
 
-class_remap = false
+class_remap = true
+class_remap_file = "remap.txt"
 
 # post-remap transformers
 transformers = [
+    "CalledMethods",
+    "ErrorHandlers",
+    "ParameterChecks",
+    "UnreachableCode",
+    "Goto",
+    "StaticMethods",
+    "SortMethods",
+    "StaticFields",
+    "SortFieldsName",
+    "VariableSplitter",
+    "ExpressionSorter",
+    "RlMath",
+    "Visibility",
 ]
 
 class_decompile = true
 
 # post-decompilation source transformers
 java_cleanup = true
+
 ast_transformers = [
     # "Unenclose",
     "NegativeLiteral",
@@ -40,7 +55,3 @@ ast_transformers = [
     # "RedundantCast", # sensitive to package visibility issues
     # "Enclose"
 ]
-
-[profile.zwyz]
-full = true
-math = true
