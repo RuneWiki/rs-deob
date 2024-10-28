@@ -48,9 +48,10 @@ async function deob(branch, client, profile, template, remap, secret, vector) {
     fs.mkdirSync('work/ref', { recursive: true });
 
     if (secret && vector) {
+        fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
         await extractFile('lib/' + client, 'inner.pack.gz', 'work/ref/innerpack.jar');
         const innerPack = decryptClient(fs.readFileSync('work/ref/innerpack.jar'), secret, vector);
-        unpack200(innerPack, 'work/ref/runescape.jar');
+        unpack200(innerPack, 'work/ref/innerpack.jar');
     } else {
         fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
     }
@@ -74,7 +75,7 @@ async function deob(branch, client, profile, template, remap, secret, vector) {
     }
 
     // deob!
-    child_process.execSync('java -jar ../deobfuscator.jar', {
+    child_process.execSync('java -Xmx4G -jar ../deobfuscator.jar', {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });

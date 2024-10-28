@@ -1,19 +1,10 @@
 [profile]
-input_jar = "ref/runescape.jar"
-output_jar = "ref/runescape"
-output_dir = "src/main/java"
+input = "ref/innerpack.jar"
 
-class_deob = true
+[profile.deob]
+enable = true
 
-# pre-remap transformers
-pre_transformers = [
-    "OriginalName"
-]
-
-class_remap = true
-class_remap_file = "remap.txt"
-
-# post-remap transformers
+# (post-remap) bytecode-level transformations to apply
 transformers = [
     "CalledMethods",
     "ErrorHandlers",
@@ -27,15 +18,26 @@ transformers = [
     "VariableSplitter",
     "ExpressionSorter",
     "RlMath",
-    "Visibility",
+    "Visibility"
 ]
 
-class_decompile = true
+[profile.deob.parameter_checks]
+complex = true
 
-# post-decompilation source transformers
-java_cleanup = true
+[profile.remap]
+enable = true
 
-ast_transformers = [
+# (pre-remap) bytecode-level transformations to apply
+transformers = [
+    "OriginalName"
+]
+
+[profile.source]
+decompile = true
+cleanup = true
+
+# source-level transformations to apply
+transformers = [
     # "Unenclose",
     "NegativeLiteral",
     "Complement",
