@@ -3,7 +3,7 @@ const child_process = require('child_process');
 const path = require('path');
 
 const DISASSEMBLE = false;
-const TEMPLATE = false;
+const TEMPLATE = true;
 const UPLOAD = false;
 
 function deob(branch, client, profile, template, remap) {
@@ -23,7 +23,8 @@ function deob(branch, client, profile, template, remap) {
     fs.writeFileSync('work/mapping.txt', '');
 
     if (remap) {
-        fs.cpSync('remap/' + remap, 'work/remap.txt');
+        fs.cpSync('remap/' + remap + '.txt', 'work/remap.txt');
+        fs.cpSync('remap/' + remap + '.txt', 'work/mapping.txt');
     }
 
     if (DISASSEMBLE) {
