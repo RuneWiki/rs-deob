@@ -40,33 +40,35 @@ function extractFile(zip, name, dest) {
     });
 }
 
-async function deob(branch, client, profile, template, remap, secret, vector) {
-    fs.rmSync('remap.txt', { force: true });
-    fs.rmSync('deob.toml', { force: true });
+async function deob(branch, profile, secret, vector) {
     fs.rmSync('work', { recursive: true, force: true });
 
     fs.mkdirSync('work/ref', { recursive: true });
 
     if (secret && vector) {
-        fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
-        await extractFile('lib/' + client, 'inner.pack.gz', 'work/ref/innerpack.jar');
+        fs.cpSync('lib/' + branch + '.jar', 'work/ref/runescape.jar');
+        await extractFile('lib/' + branch + '.jar', 'inner.pack.gz', 'work/ref/innerpack.jar');
         const innerPack = decryptClient(fs.readFileSync('work/ref/innerpack.jar'), secret, vector);
         unpack200(innerPack, 'work/ref/innerpack.jar');
     } else {
-        fs.cpSync('lib/' + client, 'work/ref/runescape.jar');
+        fs.cpSync('lib/' + branch + '.jar', 'work/ref/runescape.jar');
     }
 
     // copy deob profile to work folder
-    let toml = fs.readFileSync('profiles/' + profile + '.toml', 'ascii');
-    // todo: apply any replacements
-    fs.writeFileSync('work/deob.toml', toml);
+    fs.cpSync('profiles/' + profile + '.toml', 'work/deob.toml');
 
-    if (remap) {
-        fs.cpSync('remap/' + remap + '.txt', 'work/remap.txt');
+    // copy remap to work folder
+    if (fs.existsSync('remap/' + branch + '.txt')) {
+        fs.cpSync('remap/' + branch + '.txt', 'work/remap.txt');
+    }
+
+    // copy obforder to work folder
+    if (fs.existsSync('obforder/' + branch + '.txt')) {
+        fs.cpSync('obforder/' + branch + '.txt', 'work/obforder.txt');
     }
 
     if (DISASSEMBLE) {
-        // disassemble (can be useful)
+        // disassemble (can be useful when writing deobfuscator code)
         fs.mkdirSync('work/ref/dis', { recursive: true });
         child_process.execSync('krak2 dis --out ref/dis ref/runescape.jar', {
             stdio: 'inherit',
@@ -82,7 +84,7 @@ async function deob(branch, client, profile, template, remap, secret, vector) {
 
     if (TEMPLATE) {
         // copy template gradle project to work folder
-        fs.cpSync('template/' + template, 'work', { recursive: true });
+        fs.cpSync('template/' + profile, 'work', { recursive: true });
     }
 
     if (UPLOAD) {

@@ -1,6 +1,0 @@
-mapview.bbI=overviewX
-mapview.vI=overviewY
-mapview.pLu;=imageOverview
-mapview.lbI=imageOverviewHeight
-mapview.pbI=imageOverviewWidth
-mapview.a(IIIIIIIII)V=drawMap

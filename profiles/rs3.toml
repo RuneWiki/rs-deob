@@ -4,8 +4,9 @@ input = "ref/innerpack.jar"
 [profile.deob]
 enable = true
 
-# (post-remap) bytecode-level transformations to apply
 transformers = [
+    "AnnotateObfuscatedNames",
+    "UniqueRenamer",
     "CalledMethods",
     "ErrorHandlers",
     "ParameterChecks",
@@ -24,29 +25,24 @@ transformers = [
 [profile.deob.parameter_checks]
 complex = true
 
+[profile.deob.sort_fields]
+unreliable = true
+
 [profile.remap]
 enable = true
-
-# (pre-remap) bytecode-level transformations to apply
-transformers = [
-    "OriginalName"
-]
 
 [profile.source]
 decompile = true
 cleanup = true
 
-# source-level transformations to apply
 transformers = [
-    # "Unenclose",
+    "Unenclose",
     "NegativeLiteral",
     "Complement",
     "Not",
-    # "CharLiteral", # sensitive to package visibility issues
     "IfElse",
     "Ternary",
-    # "BinaryExprOrder", # sensitive to package visibility issues
-    # "AddSub", # sensitive to package visibility issues
+    "BinaryExprOrder",
     "Identity",
     "BitMask",
     "HexLiteral",
@@ -54,6 +50,6 @@ transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    # "RedundantCast", # sensitive to package visibility issues
-    # "Enclose"
+    # "RedundantCast",
+    "Enclose"
 ]
