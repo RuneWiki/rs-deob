@@ -46,12 +46,12 @@ async function deob(branch, profile, secret, vector) {
     fs.mkdirSync('work/ref', { recursive: true });
 
     if (secret && vector) {
-        fs.cpSync('lib/' + branch + '.jar', 'work/ref/runescape.jar');
+        fs.cpSync('lib/' + branch + '.jar', 'work/ref/gamepack.jar');
         await extractFile('lib/' + branch + '.jar', 'inner.pack.gz', 'work/ref/innerpack.jar');
         const innerPack = decryptClient(fs.readFileSync('work/ref/innerpack.jar'), secret, vector);
         unpack200(innerPack, 'work/ref/innerpack.jar');
     } else {
-        fs.cpSync('lib/' + branch + '.jar', 'work/ref/runescape.jar');
+        fs.cpSync('lib/' + branch + '.jar', 'work/ref/gamepack.jar');
     }
 
     // copy deob profile to work folder
@@ -74,6 +74,16 @@ async function deob(branch, profile, secret, vector) {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
         });
+    }
+
+    if (TEMPLATE) {
+        // copy template gradle project to work folder
+        fs.cpSync('template/' + profile, 'work', { recursive: true });
+
+        if (fs.existsSync('work/src/')) {
+            // don't want to process any template src files by accident!
+            fs.rmSync('work/src/', { recursive: true, force: true });
+        }
     }
 
     // deob!

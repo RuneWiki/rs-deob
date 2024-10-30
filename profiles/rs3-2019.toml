@@ -35,6 +35,10 @@ enable = true
 decompile = true
 cleanup = true
 
+classpath = [
+    "lib/stub.jar"
+]
+
 transformers = [
     "Unenclose",
     "NegativeLiteral",
@@ -50,6 +54,6 @@ transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    # "RedundantCast",
+    "RedundantCast",
     "Enclose"
 ]

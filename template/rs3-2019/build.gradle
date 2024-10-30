@@ -3,19 +3,23 @@ plugins {
     id 'application'
 }
 
+dependencies {
+    compileOnly 'lib:stub'
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 application {
-    mainClass = "com.jagex.client"
+    mainClass = "AppletViewer"
 }
 
 jar {
     manifest {
         attributes(
-            'Main-Class': 'com.jagex.client'
+            'Main-Class': 'AppletViewer'
         )
     }
 
@@ -26,11 +30,12 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-tasks.withType(JavaExec) {
-    workingDir = project.rootDir
-}
-
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     // options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
+
+tasks.withType(JavaExec) {
+    workingDir = project.rootDir
+    jvmArgs = ['-Xms1G', '-Xmx1G', '-Xss2m', '-Dsun.java2d.noddraw=true', '-XX:CompileThreshold=1500']
 }
