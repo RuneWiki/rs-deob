@@ -1,0 +1,10 @@
+rootProject.name = 'oldscape'
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'lib'
+        }
+    }
+}

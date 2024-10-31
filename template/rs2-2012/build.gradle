@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+dependencies {
+    compileOnly 'lib:stub'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+application {
+    mainClass = "AppletViewer"
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'AppletViewer'
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    // options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
+
+tasks.withType(JavaExec) {
+    workingDir = project.rootDir
+    jvmArgs = ['-Xms1G', '-Xmx1G', '-Xss2m', '-Dsun.java2d.noddraw=true', '-XX:CompileThreshold=1500']
+}
