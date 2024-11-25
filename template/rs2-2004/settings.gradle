@@ -1,10 +1,1 @@
 rootProject.name = 'rs2client'
-
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-        flatDir {
-            dirs 'lib'
-        }
-    }
-}
