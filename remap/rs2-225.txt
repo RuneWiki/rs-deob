@@ -1998,3 +1998,4 @@ bb.n=seqCycle
 bb.o=seqComplete
 bb.a(II)V=update
 bb.a(Z)Leb;=draw
+ic.b=instances
