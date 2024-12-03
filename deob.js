@@ -87,7 +87,7 @@ async function deob(branch, profile, secret, vector) {
     }
 
     // deob!
-    child_process.execSync('java -Xmx4G -jar ../deobfuscator.jar', {
+    child_process.execSync('java -Xmx4G -jar ../Deobfuscator.jar', {
         stdio: 'inherit',
         cwd: path.join(__dirname, 'work')
     });
