@@ -133,3 +133,5 @@ fa=jagex2.client.ClanMember
 nd=jagex2.datastruct.IntHashTable
 sa=jagex2.client.GoSubFrame
 b=jagex2.sound.SoundBank
+tc=Stats
+fc=JagStringRelated

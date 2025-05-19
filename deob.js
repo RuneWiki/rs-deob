@@ -70,7 +70,7 @@ async function deob(branch, profile, secret, vector) {
     if (DISASSEMBLE) {
         // disassemble (can be useful when writing deobfuscator code)
         fs.mkdirSync('work/ref/dis', { recursive: true });
-        child_process.execSync('krak2 dis --out ref/dis ref/runescape.jar', {
+        child_process.execSync('krak2 dis --out ref/dis ref/gamepack.jar', {
             stdio: 'inherit',
             cwd: path.join(__dirname, 'work')
         });

@@ -6,37 +6,16 @@ enable = true
 
 transformers = [
     "AnnotateObfuscatedNames",
-    "SortClassesLegacy",
     "UniqueRenamer",
-
-    "ClassLiteral",
-    "InvokeSpecial",
-    "MultipleAssignment",
-    "RedundantGoto",
-
     "OpaquePredicate",
-    "ExceptionObfuscation",
     "ExceptionTracing",
     "Monitor",
     "BitShift",
-    "Canvas",
-    "FieldOrder",
     "BitwiseOp",
-    "ConstantArg",
-    "CopyPropagation",
-    "UnusedLocal",
-    "UnusedArg",
-    "Counter",
-    "Reset",
-    "EmptyClass",
-    "MethodOrder",
-    "Visibility",
-    "FinalClass",
-    "FinalMethod",
-    "FinalField",
-    "Override",
-    "RedundantGoto",
-    "FernflowerException"
+    "Goto",
+    "VariableSplitter",
+    "ExpressionSorter",
+    "Visibility"
 ]
 
 [profile.remap]

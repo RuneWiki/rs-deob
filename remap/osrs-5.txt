@@ -1,0 +1,12 @@
+client=Client
+j=HookReq
+fa=Linkable
+ee=IfType
+fk=LruCache
+ej=Locale
+fg=Cp1252
+fy=ReflectionCheck
+fe=LinkList
+bc=GameShell
+aw=NpcType
+fr=DoublyLinkable

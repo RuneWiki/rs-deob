@@ -1,7 +1,9 @@
 branch,profile,secret,vector
 rs2-225,rs2-2004
+rs2-244,rs2-2004
 rs2-317,rs2-2005
 rs2-377,rs2-2005
+rs2-468,rs2-2007
 rs2-530,rs2-2009
 rs2-530_gl,rs2-2009
 rs2-742,rs2-2012
@@ -9,4 +11,8 @@ rs2-742,rs2-2012
 rs3-910,rs3-2019,2saKHgFXDY-JkDpbki-Zpw,XbyqhhtP1cr0KxpCQ-O8Wg
 # ----------------------------
 osrs-1,osrs-2013
+osrs-5,osrs-2024
+osrs-10,osrs-2024
+osrs-30,osrs-2024
+osrs-32,osrs-2024
 osrs-226,osrs-2024
