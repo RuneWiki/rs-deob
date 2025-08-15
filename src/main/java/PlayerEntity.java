@@ -153,8 +153,8 @@ public class PlayerEntity extends PathingEntity {
     private final Model method573(byte arg0) {
         if (this.field1679 != null) {
             int var2 = -1;
-            if (super.field1171 >= 0 && super.field1174 == 0) {
-                var2 = SeqType.field775[super.field1171].field777[super.field1172];
+            if (super.primarySeqId >= 0 && super.field1174 == 0) {
+                var2 = SeqType.field775[super.primarySeqId].field777[super.field1172];
             } else if (super.field1135 >= 0) {
                 var2 = SeqType.field775[super.field1135].field777[super.field1136];
             }
@@ -168,8 +168,8 @@ public class PlayerEntity extends PathingEntity {
             if (arg0 != 122) {
                 this.field1689 = !this.field1689;
             }
-            if (super.field1171 >= 0 && super.field1174 == 0) {
-                SeqType var10 = SeqType.field775[super.field1171];
+            if (super.primarySeqId >= 0 && super.field1174 == 0) {
+                SeqType var10 = SeqType.field775[super.primarySeqId];
                 var6 = var10.field777[super.field1172];
                 if (super.field1135 >= 0 && super.field1181 != super.field1135) {
                     var7 = SeqType.field775[super.field1135].field777[super.field1136];
@@ -256,7 +256,7 @@ public class PlayerEntity extends PathingEntity {
                 Model var22 = Model.field1190;
                 var22.method361(AnimFrame.method265(this.field1684, var6) & AnimFrame.method265(this.field1684, var7), var11, 1244);
                 if (var6 != -1 && var7 != -1) {
-                    var22.method368(var7, 0, var6, SeqType.field775[super.field1171].field781);
+                    var22.method368(var7, 0, var6, SeqType.field775[super.primarySeqId].field781);
                 } else if (var6 != -1) {
                     var22.method367(var6, (byte) 6);
                 }
@@ -315,7 +315,7 @@ public class PlayerEntity extends PathingEntity {
                         }
                         if (client.field621 >= this.field1686 && client.field621 < this.field1687) {
                             Model var7 = this.field1668;
-                            var7.method372(this.field1665 - super.field1157, this.field1667 - super.field1158, false, this.field1666 - this.field1672);
+                            var7.method372(this.field1665 - super.x, this.field1667 - super.z, false, this.field1666 - this.field1672);
                             if (super.field1131 == 512) {
                                 var7.method370(true);
                                 var7.method370(true);
@@ -338,7 +338,7 @@ public class PlayerEntity extends PathingEntity {
                                 var7.method370(true);
                                 var7.method370(true);
                             }
-                            var7.method372(super.field1157 - this.field1665, super.field1158 - this.field1667, false, this.field1672 - this.field1666);
+                            var7.method372(super.x - this.field1665, super.z - this.field1667, false, this.field1672 - this.field1666);
                         }
                     }
                     var2.field1227 = true;

@@ -11,7 +11,7 @@ public class Component {
     private boolean field753 = true;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "K", descriptor = "I")
-    public static int field728 = -1;
+    public static int reportAbuseInterfaceId = -1;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "T", descriptor = "I")
     public static int field737 = -1;
@@ -38,19 +38,19 @@ public class Component {
     private static int field692;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "f", descriptor = "I")
-    public int field697;
+    public int id;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "i", descriptor = "I")
     public int field700;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "m", descriptor = "I")
-    public int field704;
+    public int targetMask;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "p", descriptor = "I")
     public int field707;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "q", descriptor = "I")
-    public int field708;
+    public int activeOverColour;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "r", descriptor = "I")
     public int field709;
@@ -65,79 +65,79 @@ public class Component {
     public int field717;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "A", descriptor = "I")
-    public int field718;
+    public int type;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "C", descriptor = "I")
-    public int field720;
+    public int height;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "E", descriptor = "I")
-    public int field722;
+    public int colour;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "F", descriptor = "I")
-    public int field723;
+    public int width;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "G", descriptor = "I")
-    public int field724;
+    public int clientCode;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "H", descriptor = "I")
     private static int field725;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "I", descriptor = "I")
-    public int field726;
+    public int marginY;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "M", descriptor = "I")
-    public int field730;
+    public int layer;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "P", descriptor = "I")
-    public int field733;
+    public int zoom;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "Q", descriptor = "I")
-    public int field734;
+    public int xan;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "R", descriptor = "I")
-    public int field735;
+    public int yan;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "S", descriptor = "I")
-    public int field736;
+    public int overlayer;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "X", descriptor = "I")
     public int field741;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "Y", descriptor = "I")
-    public int field742;
+    public int activeColour;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "Z", descriptor = "I")
-    public int field743;
+    public int overColour;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "bb", descriptor = "I")
-    public int field745;
+    public int marginX;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "eb", descriptor = "I")
-    public int field748;
+    public int activeModelType;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "fb", descriptor = "I")
-    public int field749;
+    public int activeModel;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "sb", descriptor = "I")
     private static int field762;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "vb", descriptor = "I")
-    public int field765;
+    public int modelType;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "wb", descriptor = "I")
-    public int field766;
+    public int model;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "xb", descriptor = "I")
-    public int field767;
+    public int scroll;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "yb", descriptor = "I")
-    public int field768;
+    public int anim;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "zb", descriptor = "I")
-    public int field769;
+    public int activeAnim;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "Bb", descriptor = "I")
-    public int field771;
+    public int buttonType;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "e", descriptor = "LATJMVOZR;")
     private static Jagfile field696;
@@ -146,103 +146,103 @@ public class Component {
     private static LruCache field732;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "c", descriptor = "LEPQDEJTO;")
-    public Pix24 field694;
+    public Pix24 graphic;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "J", descriptor = "LEPQDEJTO;")
-    public Pix24 field727;
+    public Pix24 activeGraphic;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "B", descriptor = "LJDPYRDAS;")
-    public PixFont field719;
+    public PixFont font;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "b", descriptor = "Ljava/lang/String;")
-    public String field693;
+    public String targetText;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "u", descriptor = "Ljava/lang/String;")
-    public String field712;
+    public String text;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "N", descriptor = "Ljava/lang/String;")
-    public String field731;
+    public String activeText;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "gb", descriptor = "Ljava/lang/String;")
-    public String field750;
+    public String option;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "tb", descriptor = "Ljava/lang/String;")
-    public String field763;
+    public String targetVerb;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "h", descriptor = "Z")
-    public boolean field699;
+    public boolean swappable;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "j", descriptor = "Z")
-    public boolean field701;
+    public boolean hide;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "t", descriptor = "Z")
-    public boolean field711;
+    public boolean interactable;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "x", descriptor = "Z")
     public boolean field715;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "D", descriptor = "Z")
-    public boolean field721;
+    public boolean fill;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "L", descriptor = "Z")
-    public boolean field729;
+    public boolean shadowed;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "V", descriptor = "Z")
     private static boolean field739;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "kb", descriptor = "Z")
-    public boolean field754;
+    public boolean center;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "mb", descriptor = "Z")
-    public boolean field756;
+    public boolean draggable;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "Ab", descriptor = "Z")
-    public boolean field770;
+    public boolean usable;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "d", descriptor = "[I")
-    public int[] field695;
+    public int[] invSlotOffsetY;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "l", descriptor = "[I")
-    public int[] field703;
+    public int[] invSlotOffsetX;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "o", descriptor = "[I")
-    public int[] field706;
+    public int[] invSlotObjCount;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "w", descriptor = "[I")
-    public int[] field714;
+    public int[] childX;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "U", descriptor = "[I")
-    public int[] field738;
+    public int[] scriptOperand;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "W", descriptor = "[I")
-    public int[] field740;
+    public int[] children;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "hb", descriptor = "[I")
-    public int[] field751;
+    public int[] invSlotObjId;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "lb", descriptor = "[I")
-    public int[] field755;
+    public int[] scriptComparator;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "ob", descriptor = "[I")
-    public int[] field758;
+    public int[] childY;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "g", descriptor = "[LEWIXBTLV;")
     private static Component[] field698;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "db", descriptor = "[LEPQDEJTO;")
-    public Pix24[] field747;
+    public Pix24[] invSlotGraphic;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "n", descriptor = "[LJDPYRDAS;")
     private static PixFont[] field705;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "ab", descriptor = "[Ljava/lang/String;")
-    public String[] field744;
+    public String[] iop;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "ub", descriptor = "[[B")
     private static byte[][] field764;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "y", descriptor = "[[I")
-    public int[][] field716;
+    public int[][] scripts;
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "a", descriptor = "(ILjava/lang/String;I)LEPQDEJTO;")
     private static Pix24 method203(int arg0, String arg1, int arg2) {
@@ -267,7 +267,7 @@ public class Component {
     }
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "a", descriptor = "(I)LEWIXBTLV;")
-    public static Component method204(int arg0) {
+    public static Component get(int arg0) {
         if (field698[arg0] == null) {
             Packet var1 = new Packet(true, field764[arg0]);
             int var2 = var1.g2();
@@ -278,13 +278,13 @@ public class Component {
 
     @OriginalMember(owner = "client!EWIXBTLV", name = "a", descriptor = "(III)V")
     public void method205(int arg0, int arg1, int arg2) {
-        int var4 = this.field751[arg2];
-        this.field751[arg2] = this.field751[arg0];
-        this.field751[arg0] = var4;
-        int var5 = this.field706[arg2];
-        this.field706[arg2] = this.field706[arg0];
+        int var4 = this.invSlotObjId[arg2];
+        this.invSlotObjId[arg2] = this.invSlotObjId[arg0];
+        this.invSlotObjId[arg0] = var4;
+        int var5 = this.invSlotObjCount[arg2];
+        this.invSlotObjCount[arg2] = this.invSlotObjCount[arg0];
         if (arg1 < 0) {
-            this.field706[arg0] = var5;
+            this.invSlotObjCount[arg0] = var5;
         }
     }
 
@@ -324,206 +324,203 @@ public class Component {
     @OriginalMember(owner = "client!EWIXBTLV", name = "a", descriptor = "(ILMFMVIYHT;II)LEWIXBTLV;")
     public static Component method207(int arg0, Packet arg1, int arg2, int arg3) {
         Component var4 = new Component();
-        var4.field697 = arg3;
-        var4.field730 = arg0;
-        var4.field718 = arg1.g1();
-        var4.field771 = arg1.g1();
-        var4.field724 = arg1.g2();
-        var4.field723 = arg1.g2();
-        var4.field720 = arg1.g2();
-        if (arg2 != 10896) {
-            field760 = !field760;
-        }
+        var4.id = arg3;
+        var4.layer = arg0;
+        var4.type = arg1.g1();
+        var4.buttonType = arg1.g1();
+        var4.clientCode = arg1.g2();
+        var4.width = arg1.g2();
+        var4.height = arg1.g2();
         var4.field702 = (byte) arg1.g1();
-        var4.field736 = arg1.g1();
-        if (var4.field736 == 0) {
-            var4.field736 = -1;
+        var4.overlayer = arg1.g1();
+        if (var4.overlayer == 0) {
+            var4.overlayer = -1;
         } else {
-            var4.field736 = (var4.field736 - 1 << 8) + arg1.g1();
+            var4.overlayer = (var4.overlayer - 1 << 8) + arg1.g1();
         }
-        if (var4.field724 == 600) {
-            field728 = arg0;
+        if (var4.clientCode == 600) {
+            reportAbuseInterfaceId = arg0;
         }
-        if (var4.field724 == 650) {
+        if (var4.clientCode == 650) {
             field737 = arg0;
         }
-        if (var4.field724 == 655) {
+        if (var4.clientCode == 655) {
             field759 = arg0;
         }
         int var5 = arg1.g1();
         if (var5 > 0) {
-            var4.field755 = new int[var5];
-            var4.field738 = new int[var5];
+            var4.scriptComparator = new int[var5];
+            var4.scriptOperand = new int[var5];
             for (int var6 = 0; var6 < var5; var6++) {
-                var4.field755[var6] = arg1.g1();
-                var4.field738[var6] = arg1.g2();
+                var4.scriptComparator[var6] = arg1.g1();
+                var4.scriptOperand[var6] = arg1.g2();
             }
         }
         int var7 = arg1.g1();
         if (var7 > 0) {
-            var4.field716 = new int[var7][];
+            var4.scripts = new int[var7][];
             for (int var8 = 0; var8 < var7; var8++) {
                 int var9 = arg1.g2();
-                var4.field716[var8] = new int[var9];
+                var4.scripts[var8] = new int[var9];
                 for (int var10 = 0; var10 < var9; var10++) {
-                    var4.field716[var8][var10] = arg1.g2();
+                    var4.scripts[var8][var10] = arg1.g2();
                 }
             }
         }
-        if (var4.field718 == 0) {
-            var4.field767 = arg1.g2();
-            var4.field701 = arg1.g1() == 1;
+        if (var4.type == 0) {
+            var4.scroll = arg1.g2();
+            var4.hide = arg1.g1() == 1;
             int var11 = arg1.g2();
-            var4.field740 = new int[var11];
-            var4.field714 = new int[var11];
-            var4.field758 = new int[var11];
+            var4.children = new int[var11];
+            var4.childX = new int[var11];
+            var4.childY = new int[var11];
             for (int var12 = 0; var12 < var11; var12++) {
-                var4.field740[var12] = arg1.g2();
-                var4.field714[var12] = arg1.g2b();
-                var4.field758[var12] = arg1.g2b();
+                var4.children[var12] = arg1.g2();
+                var4.childX[var12] = arg1.g2b();
+                var4.childY[var12] = arg1.g2b();
             }
         }
-        if (var4.field718 == 1) {
+        if (var4.type == 1) {
             var4.field707 = arg1.g2();
             var4.field715 = arg1.g1() == 1;
         }
-        if (var4.field718 == 2) {
-            var4.field751 = new int[var4.field723 * var4.field720];
-            var4.field706 = new int[var4.field723 * var4.field720];
-            var4.field756 = arg1.g1() == 1;
-            var4.field711 = arg1.g1() == 1;
-            var4.field770 = arg1.g1() == 1;
-            var4.field699 = arg1.g1() == 1;
-            var4.field745 = arg1.g1();
-            var4.field726 = arg1.g1();
-            var4.field703 = new int[20];
-            var4.field695 = new int[20];
-            var4.field747 = new Pix24[20];
+        if (var4.type == 2) {
+            var4.invSlotObjId = new int[var4.width * var4.height];
+            var4.invSlotObjCount = new int[var4.width * var4.height];
+            var4.draggable = arg1.g1() == 1;
+            var4.interactable = arg1.g1() == 1;
+            var4.usable = arg1.g1() == 1;
+            var4.swappable = arg1.g1() == 1;
+            var4.marginX = arg1.g1();
+            var4.marginY = arg1.g1();
+            var4.invSlotOffsetX = new int[20];
+            var4.invSlotOffsetY = new int[20];
+            var4.invSlotGraphic = new Pix24[20];
             for (int var13 = 0; var13 < 20; var13++) {
                 int var15 = arg1.g1();
                 if (var15 == 1) {
-                    var4.field703[var13] = arg1.g2b();
-                    var4.field695[var13] = arg1.g2b();
+                    var4.invSlotOffsetX[var13] = arg1.g2b();
+                    var4.invSlotOffsetY[var13] = arg1.g2b();
                     String var16 = arg1.gjstr();
                     if (var16.length() > 0) {
                         int var17 = var16.lastIndexOf(",");
-                        var4.field747[var13] = method203(Integer.parseInt(var16.substring(var17 + 1)), var16.substring(0, var17), 373);
+                        var4.invSlotGraphic[var13] = method203(Integer.parseInt(var16.substring(var17 + 1)), var16.substring(0, var17), 373);
                     }
                 }
             }
-            var4.field744 = new String[5];
+            var4.iop = new String[5];
             for (int var14 = 0; var14 < 5; var14++) {
-                var4.field744[var14] = arg1.gjstr();
-                if (var4.field744[var14].length() == 0) {
-                    var4.field744[var14] = null;
+                var4.iop[var14] = arg1.gjstr();
+                if (var4.iop[var14].length() == 0) {
+                    var4.iop[var14] = null;
                 }
             }
         }
-        if (var4.field718 == 3) {
-            var4.field721 = arg1.g1() == 1;
+        if (var4.type == 3) {
+            var4.fill = arg1.g1() == 1;
         }
-        if (var4.field718 == 4 || var4.field718 == 1) {
-            var4.field754 = arg1.g1() == 1;
+        if (var4.type == 4 || var4.type == 1) {
+            var4.center = arg1.g1() == 1;
             int var18 = arg1.g1();
             if (field705 != null) {
-                var4.field719 = field705[var18];
+                var4.font = field705[var18];
             }
-            var4.field729 = arg1.g1() == 1;
+            var4.shadowed = arg1.g1() == 1;
         }
-        if (var4.field718 == 4) {
-            var4.field712 = arg1.gjstr();
-            var4.field731 = arg1.gjstr();
+        if (var4.type == 4) {
+            var4.text = arg1.gjstr();
+            var4.activeText = arg1.gjstr();
         }
-        if (var4.field718 == 1 || var4.field718 == 3 || var4.field718 == 4) {
-            var4.field722 = arg1.g4();
+        if (var4.type == 1 || var4.type == 3 || var4.type == 4) {
+            var4.colour = arg1.g4();
         }
-        if (var4.field718 == 3 || var4.field718 == 4) {
-            var4.field742 = arg1.g4();
-            var4.field743 = arg1.g4();
-            var4.field708 = arg1.g4();
+        if (var4.type == 3 || var4.type == 4) {
+            var4.activeColour = arg1.g4();
+            var4.overColour = arg1.g4();
+            var4.activeOverColour = arg1.g4();
         }
-        if (var4.field718 == 5) {
+        if (var4.type == 5) {
             String var19 = arg1.gjstr();
             if (var19.length() > 0) {
                 int var20 = var19.lastIndexOf(",");
-                var4.field694 = method203(Integer.parseInt(var19.substring(var20 + 1)), var19.substring(0, var20), 373);
+                var4.graphic = method203(Integer.parseInt(var19.substring(var20 + 1)), var19.substring(0, var20), 373);
             }
             String var21 = arg1.gjstr();
             if (var21.length() > 0) {
                 int var22 = var21.lastIndexOf(",");
-                var4.field727 = method203(Integer.parseInt(var21.substring(var22 + 1)), var21.substring(0, var22), 373);
+                var4.activeGraphic = method203(Integer.parseInt(var21.substring(var22 + 1)), var21.substring(0, var22), 373);
             }
         }
-        if (var4.field718 == 6) {
+        if (var4.type == 6) {
             int var23 = arg1.g1();
             if (var23 != 0) {
-                var4.field765 = 1;
-                var4.field766 = (var23 - 1 << 8) + arg1.g1();
+                var4.modelType = 1;
+                var4.model = (var23 - 1 << 8) + arg1.g1();
             }
             int var24 = arg1.g1();
             if (var24 != 0) {
-                var4.field748 = 1;
-                var4.field749 = (var24 - 1 << 8) + arg1.g1();
+                var4.activeModelType = 1;
+                var4.activeModel = (var24 - 1 << 8) + arg1.g1();
             }
             int var25 = arg1.g1();
             if (var25 == 0) {
-                var4.field768 = -1;
+                var4.anim = -1;
             } else {
-                var4.field768 = (var25 - 1 << 8) + arg1.g1();
+                var4.anim = (var25 - 1 << 8) + arg1.g1();
             }
             int var26 = arg1.g1();
             if (var26 == 0) {
-                var4.field769 = -1;
+                var4.activeAnim = -1;
             } else {
-                var4.field769 = (var26 - 1 << 8) + arg1.g1();
+                var4.activeAnim = (var26 - 1 << 8) + arg1.g1();
             }
-            var4.field733 = arg1.g2();
-            var4.field734 = arg1.g2();
-            var4.field735 = arg1.g2();
+            var4.zoom = arg1.g2();
+            var4.xan = arg1.g2();
+            var4.yan = arg1.g2();
         }
-        if (var4.field718 == 7) {
-            var4.field751 = new int[var4.field723 * var4.field720];
-            var4.field706 = new int[var4.field723 * var4.field720];
-            var4.field754 = arg1.g1() == 1;
+        if (var4.type == 7) {
+            var4.invSlotObjId = new int[var4.width * var4.height];
+            var4.invSlotObjCount = new int[var4.width * var4.height];
+            var4.center = arg1.g1() == 1;
             int var27 = arg1.g1();
             if (field705 != null) {
-                var4.field719 = field705[var27];
+                var4.font = field705[var27];
             }
-            var4.field729 = arg1.g1() == 1;
-            var4.field722 = arg1.g4();
-            var4.field745 = arg1.g2b();
-            var4.field726 = arg1.g2b();
-            var4.field711 = arg1.g1() == 1;
-            var4.field744 = new String[5];
+            var4.shadowed = arg1.g1() == 1;
+            var4.colour = arg1.g4();
+            var4.marginX = arg1.g2b();
+            var4.marginY = arg1.g2b();
+            var4.interactable = arg1.g1() == 1;
+            var4.iop = new String[5];
             for (int var28 = 0; var28 < 5; var28++) {
-                var4.field744[var28] = arg1.gjstr();
-                if (var4.field744[var28].length() == 0) {
-                    var4.field744[var28] = null;
+                var4.iop[var28] = arg1.gjstr();
+                if (var4.iop[var28].length() == 0) {
+                    var4.iop[var28] = null;
                 }
             }
         }
-        if (var4.field718 == 8) {
-            var4.field712 = arg1.gjstr();
+        if (var4.type == 8) {
+            var4.text = arg1.gjstr();
         }
-        if (var4.field771 == 2 || var4.field718 == 2) {
-            var4.field763 = arg1.gjstr();
-            var4.field693 = arg1.gjstr();
-            var4.field704 = arg1.g2();
+        if (var4.buttonType == 2 || var4.type == 2) {
+            var4.targetVerb = arg1.gjstr();
+            var4.targetText = arg1.gjstr();
+            var4.targetMask = arg1.g2();
         }
-        if (var4.field771 == 1 || var4.field771 == 4 || var4.field771 == 5 || var4.field771 == 6) {
-            var4.field750 = arg1.gjstr();
-            if (var4.field750.length() == 0) {
-                if (var4.field771 == 1) {
-                    var4.field750 = "Ok";
+        if (var4.buttonType == 1 || var4.buttonType == 4 || var4.buttonType == 5 || var4.buttonType == 6) {
+            var4.option = arg1.gjstr();
+            if (var4.option.length() == 0) {
+                if (var4.buttonType == 1) {
+                    var4.option = "Ok";
                 }
-                if (var4.field771 == 4) {
-                    var4.field750 = "Select";
+                if (var4.buttonType == 4) {
+                    var4.option = "Select";
                 }
-                if (var4.field771 == 5) {
-                    var4.field750 = "Select";
+                if (var4.buttonType == 5) {
+                    var4.option = "Select";
                 }
-                if (var4.field771 == 6) {
-                    var4.field750 = "Continue";
+                if (var4.buttonType == 6) {
+                    var4.option = "Continue";
                 }
             }
         }
@@ -548,7 +545,7 @@ public class Component {
             }
             int var8 = var5.pos;
             Component var9 = method207(var4, var5, 10896, var7);
-            byte[] var10 = field764[var9.field697] = new byte[var5.pos + 2 - var8];
+            byte[] var10 = field764[var9.id] = new byte[var5.pos + 2 - var8];
             for (int var11 = var8; var11 < var5.pos; var11++) {
                 var10[var11 + 2 - var8] = var5.data[var11];
             }
@@ -570,7 +567,7 @@ public class Component {
             return;
         }
         for (int var2 = 0; var2 < field698.length; var2++) {
-            if (field698[var2] != null && field698[var2].field730 == arg1 && field698[var2].field718 != 2) {
+            if (field698[var2] != null && field698[var2].layer == arg1 && field698[var2].type != 2) {
                 field698[var2] = null;
             }
         }
@@ -606,9 +603,9 @@ public class Component {
         field725 = 768;
         Model var5;
         if (arg3) {
-            var5 = this.method206(this.field748, this.field749);
+            var5 = this.method206(this.activeModelType, this.activeModel);
         } else {
-            var5 = this.method206(this.field765, this.field766);
+            var5 = this.method206(this.modelType, this.model);
         }
         if (var5 == null) {
             return null;

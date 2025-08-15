@@ -163,7 +163,7 @@ public class client extends GameShell {
     private String field245 = "";
 
     @OriginalMember(owner = "client!client", name = "Tc", descriptor = "Z")
-    private boolean field246 = false;
+    private boolean redrawSideicons = false;
 
     @OriginalMember(owner = "client!client", name = "Wc", descriptor = "Z")
     private boolean field249 = false;
@@ -226,7 +226,7 @@ public class client extends GameShell {
     private int[] field278 = new int[500];
 
     @OriginalMember(owner = "client!client", name = "Fd", descriptor = "I")
-    private int field284 = -1;
+    private int chatInterfaceId = -1;
 
     @OriginalMember(owner = "client!client", name = "Id", descriptor = "[I")
     private int[] field287 = new int[5];
@@ -331,7 +331,7 @@ public class client extends GameShell {
     private CRC32 field384 = new CRC32();
 
     @OriginalMember(owner = "client!client", name = "Df", descriptor = "I")
-    private int field385 = -1;
+    private int sidebarInterfaceId = -1;
 
     @OriginalMember(owner = "client!client", name = "Ef", descriptor = "[I")
     private int[] field386 = new int[50];
@@ -427,7 +427,7 @@ public class client extends GameShell {
     private int[] field462 = new int[256];
 
     @OriginalMember(owner = "client!client", name = "fh", descriptor = "I")
-    private int field465 = -1;
+    private int viewportInterfaceId = -1;
 
     @OriginalMember(owner = "client!client", name = "lh", descriptor = "I")
     private int field471 = -89;
@@ -439,7 +439,7 @@ public class client extends GameShell {
     private int[] field476 = new int[33];
 
     @OriginalMember(owner = "client!client", name = "rh", descriptor = "Z")
-    private boolean field477 = false;
+    private boolean redrawSidebar = false;
 
     @OriginalMember(owner = "client!client", name = "sh", descriptor = "[LEPQDEJTO;")
     private Pix24[] field478 = new Pix24[20];
@@ -484,10 +484,10 @@ public class client extends GameShell {
     private int field532 = 326;
 
     @OriginalMember(owner = "client!client", name = "xi", descriptor = "Z")
-    private boolean field535 = false;
+    private boolean pressedContinueOption = false;
 
     @OriginalMember(owner = "client!client", name = "yi", descriptor = "Z")
-    private boolean field536 = false;
+    private boolean redrawChatback = false;
 
     @OriginalMember(owner = "client!client", name = "Bi", descriptor = "Z")
     private volatile boolean field539 = false;
@@ -550,7 +550,7 @@ public class client extends GameShell {
     private Pix24[] field574 = new Pix24[1000];
 
     @OriginalMember(owner = "client!client", name = "lj", descriptor = "I")
-    private int field575 = -1;
+    private int viewportOverlayInterfaceId = -1;
 
     @OriginalMember(owner = "client!client", name = "nj", descriptor = "I")
     private int field577 = -939;
@@ -736,10 +736,10 @@ public class client extends GameShell {
     private int field183;
 
     @OriginalMember(owner = "client!client", name = "Kb", descriptor = "I")
-    private int field185;
+    private int sceneCenterZoneX;
 
     @OriginalMember(owner = "client!client", name = "Lb", descriptor = "I")
-    private int field186;
+    private int sceneCenterZoneZ;
 
     @OriginalMember(owner = "client!client", name = "Ob", descriptor = "I")
     private int field189;
@@ -859,10 +859,10 @@ public class client extends GameShell {
     private int field331;
 
     @OriginalMember(owner = "client!client", name = "Fe", descriptor = "I")
-    private int field336;
+    private int sceneBaseTileX;
 
     @OriginalMember(owner = "client!client", name = "Ge", descriptor = "I")
-    private int field337;
+    private int sceneBaseTileZ;
 
     @OriginalMember(owner = "client!client", name = "He", descriptor = "I")
     private int field338;
@@ -1561,22 +1561,23 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "b", descriptor = "(Z)V")
     public final void method34(boolean arg0) {
+        // CLOSE_MODAL
         this.field260.p1isaac((byte) 4, 110);
         if (arg0) {
             this.field619 = null;
         }
-        if (this.field385 != -1) {
-            this.method64(field486, this.field385);
-            this.field385 = -1;
-            this.field477 = true;
-            this.field535 = false;
-            this.field246 = true;
+        if (this.sidebarInterfaceId != -1) {
+            this.method64(field486, this.sidebarInterfaceId);
+            this.sidebarInterfaceId = -1;
+            this.redrawSidebar = true;
+            this.pressedContinueOption = false;
+            this.redrawSideicons = true;
         }
-        if (this.field284 != -1) {
-            this.method64(field486, this.field284);
-            this.field284 = -1;
-            this.field536 = true;
-            this.field535 = false;
+        if (this.chatInterfaceId != -1) {
+            this.method64(field486, this.chatInterfaceId);
+            this.chatInterfaceId = -1;
+            this.redrawChatback = true;
+            this.pressedContinueOption = false;
         }
         if (this.field349 != -1) {
             this.method64(field486, this.field349);
@@ -1587,9 +1588,9 @@ public class client extends GameShell {
             this.method64(field486, this.field256);
             this.field256 = -1;
         }
-        if (this.field465 != -1) {
-            this.method64(field486, this.field465);
-            this.field465 = -1;
+        if (this.viewportInterfaceId != -1) {
+            this.method64(field486, this.viewportInterfaceId);
+            this.viewportInterfaceId = -1;
         }
     }
 
@@ -1621,7 +1622,7 @@ public class client extends GameShell {
                     if (var9 > 15) {
                         var9 -= 32;
                     }
-                    var5.method354(field463.field1134[0] + var9, (byte) 5, var8 == 1, field463.field1133[0] + var6);
+                    var5.method354(field463.routeTileZ[0] + var9, (byte) 5, var8 == 1, field463.routeTileX[0] + var6);
                     continue;
                 }
             }
@@ -1896,74 +1897,74 @@ public class client extends GameShell {
         if (!arg0) {
             if (super.field965 == 1) {
                 if (super.field966 >= 539 && super.field966 <= 573 && super.field967 >= 169 && super.field967 < 205 && this.field377[0] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 0;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 569 && super.field966 <= 599 && super.field967 >= 168 && super.field967 < 205 && this.field377[1] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 1;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 597 && super.field966 <= 627 && super.field967 >= 168 && super.field967 < 205 && this.field377[2] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 2;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 625 && super.field966 <= 669 && super.field967 >= 168 && super.field967 < 203 && this.field377[3] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 3;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 666 && super.field966 <= 696 && super.field967 >= 168 && super.field967 < 205 && this.field377[4] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 4;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 694 && super.field966 <= 724 && super.field967 >= 168 && super.field967 < 205 && this.field377[5] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 5;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 722 && super.field966 <= 756 && super.field967 >= 169 && super.field967 < 205 && this.field377[6] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 6;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 540 && super.field966 <= 574 && super.field967 >= 466 && super.field967 < 502 && this.field377[7] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 7;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 572 && super.field966 <= 602 && super.field967 >= 466 && super.field967 < 503 && this.field377[8] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 8;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 599 && super.field966 <= 629 && super.field967 >= 466 && super.field967 < 503 && this.field377[9] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 9;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 627 && super.field966 <= 671 && super.field967 >= 467 && super.field967 < 502 && this.field377[10] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 10;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 669 && super.field966 <= 699 && super.field967 >= 466 && super.field967 < 503 && this.field377[11] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 11;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 696 && super.field966 <= 726 && super.field967 >= 466 && super.field967 < 503 && this.field377[12] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 12;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
                 if (super.field966 >= 724 && super.field966 <= 758 && super.field967 >= 466 && super.field967 < 502 && this.field377[13] != -1) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 13;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                     return;
                 }
             }
@@ -1974,8 +1975,8 @@ public class client extends GameShell {
     public final void method42(int arg0) {
         int var2 = 61 / arg0;
         try {
-            int var3 = field463.field1157 + this.field149;
-            int var4 = field463.field1158 + this.field305;
+            int var3 = field463.x + this.field149;
+            int var4 = field463.z + this.field305;
             if (this.field558 - var3 < -500 || this.field558 - var3 > 500 || this.field559 - var4 < -500 || this.field559 - var4 > 500) {
                 this.field558 = var3;
                 this.field559 = var4;
@@ -2039,7 +2040,7 @@ public class client extends GameShell {
                 this.field585 += (var13 - this.field585) / 80;
             }
         } catch (Exception var14) {
-            signlink.reporterror("glfc_ex " + field463.field1157 + "," + field463.field1158 + "," + this.field558 + "," + this.field559 + "," + this.field185 + "," + this.field186 + "," + this.field336 + "," + this.field337);
+            signlink.reporterror("glfc_ex " + field463.x + "," + field463.z + "," + this.field558 + "," + this.field559 + "," + this.sceneCenterZoneX + "," + this.sceneCenterZoneZ + "," + this.sceneBaseTileX + "," + this.sceneBaseTileZ);
             throw new RuntimeException("eek");
         }
     }
@@ -2047,10 +2048,10 @@ public class client extends GameShell {
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(LEWIXBTLV;I)Z")
     public final boolean method43(Component arg0, int arg1) {
         int var3 = 98 / arg1;
-        int var4 = arg0.field724;
+        int var4 = arg0.clientCode;
         if ((var4 < 1 || var4 > 200) && (var4 < 701 || var4 > 900)) {
             if (var4 >= 401 && var4 <= 500) {
-                this.field480[this.field479] = "Remove @whi@" + arg0.field712;
+                this.field480[this.field479] = "Remove @whi@" + arg0.text;
                 this.field277[this.field479] = 859;
                 ++this.field479;
                 return true;
@@ -2166,6 +2167,7 @@ public class client extends GameShell {
                 if (!field258) {
                     this.field544.field99 = 0;
                 } else if (super.field965 != 0 || this.field544.field99 >= 40) {
+                    // EVENT_MOUSE_MOVE
                     this.field260.p1isaac((byte) 4, 171);
                     this.field260.p1(0);
                     int var4 = this.field260.pos;
@@ -2249,6 +2251,7 @@ public class client extends GameShell {
                     var18 = 1;
                 }
                 int var19 = (int) var13;
+                // EVENT_MOUSE_CLICK
                 this.field260.p1isaac((byte) 4, 19);
                 this.field260.p4((var18 << 19) + (var19 << 20) + var17);
             }
@@ -2296,10 +2299,10 @@ public class client extends GameShell {
                 ++this.field625;
                 if (this.field625 >= 15) {
                     if (this.field628 == 2) {
-                        this.field477 = true;
+                        this.redrawSidebar = true;
                     }
                     if (this.field628 == 3) {
-                        this.field536 = true;
+                        this.redrawChatback = true;
                     }
                     this.field628 = 0;
                 }
@@ -2311,31 +2314,31 @@ public class client extends GameShell {
                 }
                 if (super.field958 == 0) {
                     if (this.field409 == 2) {
-                        this.field477 = true;
+                        this.redrawSidebar = true;
                     }
                     if (this.field409 == 3) {
-                        this.field536 = true;
+                        this.redrawChatback = true;
                     }
                     this.field409 = 0;
                     if (this.field451 && this.field565 >= 5) {
                         this.field360 = -1;
                         this.method114(-521);
                         if (this.field407 == this.field360 && this.field408 != this.field359) {
-                            Component var20 = Component.method204(this.field407);
+                            Component var20 = Component.get(this.field407);
                             byte var21 = 0;
-                            if (this.field251 == 1 && var20.field724 == 206) {
+                            if (this.field251 == 1 && var20.clientCode == 206) {
                                 var21 = 1;
                             }
-                            if (var20.field751[this.field359] <= 0) {
+                            if (var20.invSlotObjId[this.field359] <= 0) {
                                 var21 = 0;
                             }
-                            if (var20.field699) {
+                            if (var20.swappable) {
                                 int var22 = this.field408;
                                 int var23 = this.field359;
-                                var20.field751[var23] = var20.field751[var22];
-                                var20.field706[var23] = var20.field706[var22];
-                                var20.field751[var22] = -1;
-                                var20.field706[var22] = 0;
+                                var20.invSlotObjId[var23] = var20.invSlotObjId[var22];
+                                var20.invSlotObjCount[var23] = var20.invSlotObjCount[var22];
+                                var20.invSlotObjId[var22] = -1;
+                                var20.invSlotObjCount[var22] = 0;
                             } else if (var21 == 1) {
                                 int var24 = this.field408;
                                 int var25 = this.field359;
@@ -2351,6 +2354,7 @@ public class client extends GameShell {
                             } else {
                                 var20.method205(this.field359, -291, this.field408);
                             }
+                            // INV_BUTTOND
                             this.field260.p1isaac((byte) 4, 123);
                             this.field260.p2_alt3(3, this.field359);
                             this.field260.p1_alt1(false, var21);
@@ -2369,7 +2373,7 @@ public class client extends GameShell {
             if (World3D.field1047 != -1) {
                 int var26 = World3D.field1047;
                 int var27 = World3D.field1048;
-                boolean var28 = this.method55(true, false, var27, field463.field1134[0], 0, 0, 0, 0, var26, 0, 0, field463.field1133[0]);
+                boolean var28 = this.method55(true, false, var27, field463.routeTileZ[0], 0, 0, 0, 0, var26, 0, 0, field463.routeTileX[0]);
                 World3D.field1047 = -1;
                 if (var28) {
                     this.field316 = super.field966;
@@ -2380,7 +2384,7 @@ public class client extends GameShell {
             }
             if (super.field965 == 1 && this.field354 != null) {
                 this.field354 = null;
-                this.field536 = true;
+                this.redrawChatback = true;
                 super.field965 = 0;
             }
             this.method74(0);
@@ -2400,10 +2404,10 @@ public class client extends GameShell {
                 ++this.field189;
                 if (this.field189 == 100) {
                     if (this.field580 != 0) {
-                        this.field536 = true;
+                        this.redrawChatback = true;
                     }
                     if (this.field340 != 0) {
-                        this.field477 = true;
+                        this.redrawSidebar = true;
                     }
                 }
             }
@@ -2421,6 +2425,7 @@ public class client extends GameShell {
             if (super.field957 > 4500) {
                 this.field169 = 250;
                 super.field957 -= 500;
+                // IDLE_TIMER
                 this.field260.p1isaac((byte) 4, 202);
             }
             ++this.field414;
@@ -2483,6 +2488,7 @@ public class client extends GameShell {
                 this.field166 = this.field484.g1();
             }
             if (this.field168 > 50) {
+                // NO_TIMEOUT
                 this.field260.p1isaac((byte) 4, 40);
             }
             try {
@@ -2610,7 +2616,7 @@ public class client extends GameShell {
                         if (var3 == -1) {
                             return;
                         }
-                        if (this.field465 != -1 && this.field527 == this.field465) {
+                        if (this.viewportInterfaceId != -1 && this.field527 == this.viewportInterfaceId) {
                             if (var3 == 8 && this.field135.length() > 0) {
                                 this.field135 = this.field135.substring(0, this.field135.length() - 1);
                             }
@@ -2619,15 +2625,15 @@ public class client extends GameShell {
                         if (this.field162) {
                             if (var3 >= 32 && var3 <= 122 && this.field322.length() < 80) {
                                 this.field322 = this.field322 + (char) var3;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 8 && this.field322.length() > 0) {
                                 this.field322 = this.field322.substring(0, this.field322.length() - 1);
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 13 || var3 == 10) {
                                 this.field162 = false;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                                 if (this.field517 == 1) {
                                     long var4 = JString.method344(this.field322);
                                     this.method125(var4, -45229);
@@ -2637,6 +2643,7 @@ public class client extends GameShell {
                                     this.method73(var6, 0);
                                 }
                                 if (this.field517 == 3 && this.field322.length() > 0) {
+                                    // MESSAGE_PRIVATE
                                     this.field260.p1isaac((byte) 4, 227);
                                     this.field260.p1(0);
                                     int var8 = this.field260.pos;
@@ -2649,6 +2656,7 @@ public class client extends GameShell {
                                     if (this.field183 == 2) {
                                         this.field183 = 1;
                                         this.field508 = true;
+                                        // CHAT_SETMODE
                                         this.field260.p1isaac((byte) 4, 176);
                                         this.field260.p1(this.field302);
                                         this.field260.p1(this.field183);
@@ -2667,11 +2675,11 @@ public class client extends GameShell {
                         } else if (this.field540 == 1) {
                             if (var3 >= 48 && var3 <= 57 && this.field245.length() < 10) {
                                 this.field245 = this.field245 + (char) var3;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 8 && this.field245.length() > 0) {
                                 this.field245 = this.field245.substring(0, this.field245.length() - 1);
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 13 || var3 == 10) {
                                 if (this.field245.length() > 0) {
@@ -2680,46 +2688,48 @@ public class client extends GameShell {
                                         var13 = Integer.parseInt(this.field245);
                                     } catch (Exception var23) {
                                     }
+                                    // RESUME_P_COUNTDIALOG
                                     this.field260.p1isaac((byte) 4, 75);
                                     this.field260.p4(var13);
                                 }
                                 this.field540 = 0;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                         } else if (this.field540 == 2) {
                             if (var3 >= 32 && var3 <= 122 && this.field245.length() < 12) {
                                 this.field245 = this.field245 + (char) var3;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 8 && this.field245.length() > 0) {
                                 this.field245 = this.field245.substring(0, this.field245.length() - 1);
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 13 || var3 == 10) {
                                 if (this.field245.length() > 0) {
+                                    // RESUME_P_NAMEDIALOG
                                     this.field260.p1isaac((byte) 4, 206);
                                     this.field260.p8(JString.method344(this.field245), true);
                                 }
                                 this.field540 = 0;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                         } else if (this.field540 == 3) {
                             if (var3 >= 32 && var3 <= 122 && this.field245.length() < 40) {
                                 this.field245 = this.field245 + (char) var3;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 8 && this.field245.length() > 0) {
                                 this.field245 = this.field245.substring(0, this.field245.length() - 1);
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
-                        } else if (this.field284 == -1 && this.field349 == -1) {
+                        } else if (this.chatInterfaceId == -1 && this.field349 == -1) {
                             if (var3 >= 32 && var3 <= 122 && this.field400.length() < 80) {
                                 this.field400 = this.field400 + (char) var3;
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if (var3 == 8 && this.field400.length() > 0) {
                                 this.field400 = this.field400.substring(0, this.field400.length() - 1);
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                             if ((var3 == 13 || var3 == 10) && this.field400.length() > 0) {
                                 if (this.field163 == 2) {
@@ -2751,6 +2761,7 @@ public class client extends GameShell {
                                     }
                                 }
                                 if (this.field400.startsWith("::")) {
+                                    // CLIENT_CHEAT
                                     this.field260.p1isaac((byte) 4, 56);
                                     this.field260.p1(this.field400.length() - 1);
                                     this.field260.pjstr(this.field400.substring(2));
@@ -2812,6 +2823,7 @@ public class client extends GameShell {
                                         var21 = 5;
                                         this.field400 = this.field400.substring(6);
                                     }
+                                    // MESSAGE_PUBLIC
                                     this.field260.p1isaac((byte) 4, 49);
                                     this.field260.p1(0);
                                     int var22 = this.field260.pos;
@@ -2837,6 +2849,7 @@ public class client extends GameShell {
                                     if (this.field302 == 2) {
                                         this.field302 = 3;
                                         this.field508 = true;
+                                        // CHAT_SETMODE
                                         this.field260.p1isaac((byte) 4, 176);
                                         this.field260.p1(this.field302);
                                         this.field260.p1(this.field183);
@@ -2844,7 +2857,7 @@ public class client extends GameShell {
                                     }
                                 }
                                 this.field400 = "";
-                                this.field536 = true;
+                                this.redrawChatback = true;
                             }
                         }
                     }
@@ -2884,1244 +2897,1310 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "h", descriptor = "(I)Z")
     public final boolean method53(int arg0) {
-        if (arg0 != 21389) {
-            for (int var2 = 1; var2 > 0; ++var2) {
-            }
-        }
         if (this.field320 == null) {
             return false;
-        } else {
-            try {
-                int var3 = this.field320.method235();
-                if (var3 == 0) {
+        }
+
+        try {
+            int var3 = this.field320.method235();
+            if (var3 == 0) {
+                return false;
+            }
+
+            if (this.field166 == -1) {
+                this.field320.method236(this.field484.data, 0, 1);
+                this.field166 = this.field484.data[0] & 255;
+                if (this.field195 != null) {
+                    this.field166 = this.field166 - this.field195.method329() & 255;
+                }
+                this.field165 = Protocol.field672[this.field166];
+                --var3;
+            }
+
+            if (this.field165 == -1) {
+                if (var3 <= 0) {
                     return false;
                 }
-                if (this.field166 == -1) {
-                    this.field320.method236(this.field484.data, 0, 1);
-                    this.field166 = this.field484.data[0] & 255;
-                    if (this.field195 != null) {
-                        this.field166 = this.field166 - this.field195.method329() & 255;
-                    }
-                    this.field165 = Protocol.field672[this.field166];
-                    --var3;
-                }
-                if (this.field165 == -1) {
-                    if (var3 <= 0) {
-                        return false;
-                    }
-                    this.field320.method236(this.field484.data, 0, 1);
-                    this.field165 = this.field484.data[0] & 255;
-                    --var3;
-                }
-                if (this.field165 == -2) {
-                    if (var3 <= 1) {
-                        return false;
-                    }
-                    this.field320.method236(this.field484.data, 0, 2);
-                    this.field484.pos = 0;
-                    this.field165 = this.field484.g2();
-                    var3 -= 2;
-                }
-                if (var3 < this.field165) {
+                this.field320.method236(this.field484.data, 0, 1);
+                this.field165 = this.field484.data[0] & 255;
+                --var3;
+            }
+
+            if (this.field165 == -2) {
+                if (var3 <= 1) {
                     return false;
                 }
+                this.field320.method236(this.field484.data, 0, 2);
                 this.field484.pos = 0;
-                this.field320.method236(this.field484.data, 0, this.field165);
-                this.field167 = 0;
-                this.field201 = this.field200;
-                this.field200 = this.field199;
-                this.field199 = this.field166;
-                if (this.field166 == 166) {
-                    int var4 = this.field484.g2b_alt1(-63);
-                    int var5 = this.field484.g2b_alt1(-63);
-                    int var6 = this.field484.g2();
-                    Component var7 = Component.method204(var6);
-                    var7.field710 = var5;
-                    var7.field741 = var4;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 186) {
-                    int var8 = this.field484.g2_alt2((byte) 9);
-                    int var9 = this.field484.g2_alt3(-600);
-                    int var10 = this.field484.g2_alt2((byte) 9);
-                    int var11 = this.field484.g2_alt1(-125);
-                    Component.method204(var9).field734 = var8;
-                    Component.method204(var9).field735 = var11;
-                    Component.method204(var9).field733 = var10;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 216) {
-                    int var12 = this.field484.g2_alt3(-600);
-                    int var13 = this.field484.g2_alt3(-600);
-                    Component.method204(var13).field765 = 1;
-                    Component.method204(var13).field766 = var12;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 26) {
-                    int var14 = this.field484.g2();
-                    int var15 = this.field484.g1();
-                    int var16 = this.field484.g2();
-                    if (var16 == 65535) {
-                        if (this.field331 < 50) {
-                            this.field386[this.field331] = (short) var14;
-                            this.field617[this.field331] = var15;
-                            this.field555[this.field331] = 0;
-                            ++this.field331;
-                        }
-                    } else if (this.field597 && !field222 && this.field331 < 50) {
-                        this.field386[this.field331] = var14;
+                this.field165 = this.field484.g2();
+                var3 -= 2;
+            }
+
+            if (var3 < this.field165) {
+                return false;
+            }
+
+            this.field484.pos = 0;
+            this.field320.method236(this.field484.data, 0, this.field165);
+
+            this.field167 = 0;
+            this.field201 = this.field200;
+            this.field200 = this.field199;
+            this.field199 = this.field166;
+
+            if (this.field166 == 166) {
+                // IF_SETPOSITION
+                int var4 = this.field484.g2b_alt1(-63);
+                int var5 = this.field484.g2b_alt1(-63);
+                int var6 = this.field484.g2();
+                Component var7 = Component.get(var6);
+                var7.field710 = var5;
+                var7.field741 = var4;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 186) {
+                int var8 = this.field484.g2_alt2((byte) 9);
+                int var9 = this.field484.g2_alt3(-600);
+                int var10 = this.field484.g2_alt2((byte) 9);
+                int var11 = this.field484.g2_alt1(-125);
+                Component.get(var9).xan = var8;
+                Component.get(var9).yan = var11;
+                Component.get(var9).zoom = var10;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 216) {
+                // IF_SETMODEL
+                int var12 = this.field484.g2_alt3(-600);
+                int var13 = this.field484.g2_alt3(-600);
+                Component.get(var13).modelType = 1;
+                Component.get(var13).model = var12;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 26) {
+                // SYNTH_SOUND
+                int var14 = this.field484.g2();
+                int var15 = this.field484.g1();
+                int var16 = this.field484.g2();
+                if (var16 == 65535) {
+                    if (this.field331 < 50) {
+                        this.field386[this.field331] = (short) var14;
                         this.field617[this.field331] = var15;
-                        this.field555[this.field331] = Wave.field1472[var14] + var16;
+                        this.field555[this.field331] = 0;
                         ++this.field331;
                     }
-                    this.field166 = -1;
-                    return true;
+                } else if (this.field597 && !field222 && this.field331 < 50) {
+                    this.field386[this.field331] = var14;
+                    this.field617[this.field331] = var15;
+                    this.field555[this.field331] = Wave.field1472[var14] + var16;
+                    ++this.field331;
                 }
-                if (this.field166 == 182) {
-                    int var17 = this.field484.g2_alt2((byte) 9);
-                    byte var18 = this.field484.g1b_alt3(43428);
-                    this.field301[var17] = var18;
-                    if (this.field335[var17] != var18) {
-                        this.field335[var17] = var18;
-                        this.method128(0, var17);
-                        this.field477 = true;
-                        if (this.field487 != -1) {
-                            this.field536 = true;
-                        }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 182) {
+                // VARP_SMALL
+                int var17 = this.field484.g2_alt2((byte) 9);
+                byte var18 = this.field484.g1b_alt3(43428);
+                this.field301[var17] = var18;
+                if (this.field335[var17] != var18) {
+                    this.field335[var17] = var18;
+                    this.method128(0, var17);
+                    this.redrawSidebar = true;
+                    if (this.field487 != -1) {
+                        this.redrawChatback = true;
                     }
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 13) {
-                    for (int var19 = 0; var19 < this.field266.length; ++var19) {
-                        if (this.field266[var19] != null) {
-                            this.field266[var19].field1171 = -1;
-                        }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 13) {
+                // RESET_ANIMS
+                for (int var19 = 0; var19 < this.field266.length; ++var19) {
+                    if (this.field266[var19] != null) {
+                        this.field266[var19].primarySeqId = -1;
                     }
-                    for (int var20 = 0; var20 < this.field428.length; ++var20) {
-                        if (this.field428[var20] != null) {
-                            this.field428[var20].field1171 = -1;
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 156) {
-                    this.field346 = this.field484.g1();
-                    this.field166 = -1;
-                    return true;
+                for (int var20 = 0; var20 < this.field428.length; ++var20) {
+                    if (this.field428[var20] != null) {
+                        this.field428[var20].primarySeqId = -1;
+                    }
                 }
-                if (this.field166 == 162) {
-                    int var21 = this.field484.g2_alt2((byte) 9);
-                    int var22 = this.field484.g2_alt1(-125);
-                    Component.method204(var22).field765 = 2;
-                    Component.method204(var22).field766 = var21;
-                    this.field166 = -1;
-                    return true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 156) {
+                // MINIMAP_TOGGLE (?)
+                this.field346 = this.field484.g1();
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 162) {
+                // IF_SETNPCHEAD
+                int var21 = this.field484.g2_alt2((byte) 9);
+                int var22 = this.field484.g2_alt1(-125);
+                Component.get(var22).modelType = 2;
+                Component.get(var22).model = var21;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 109) {
+                // IF_OPENCHAT
+                int var23 = this.field484.g2();
+                this.method135((byte) 36, var23);
+                if (this.sidebarInterfaceId != -1) {
+                    this.method64(field486, this.sidebarInterfaceId);
+                    this.sidebarInterfaceId = -1;
+                    this.redrawSidebar = true;
+                    this.redrawSideicons = true;
                 }
-                if (this.field166 == 109) {
-                    int var23 = this.field484.g2();
-                    this.method135((byte) 36, var23);
-                    if (this.field385 != -1) {
-                        this.method64(field486, this.field385);
-                        this.field385 = -1;
-                        this.field477 = true;
-                        this.field246 = true;
-                    }
-                    if (this.field349 != -1) {
-                        this.method64(field486, this.field349);
-                        this.field349 = -1;
-                        this.field342 = true;
-                    }
-                    if (this.field256 != -1) {
-                        this.method64(field486, this.field256);
-                        this.field256 = -1;
-                    }
-                    if (this.field465 != -1) {
-                        this.method64(field486, this.field465);
-                        this.field465 = -1;
-                    }
-                    if (this.field284 != var23) {
-                        this.method64(field486, this.field284);
-                        this.field284 = var23;
-                    }
-                    this.field535 = false;
-                    this.field536 = true;
-                    this.field166 = -1;
-                    return true;
+                if (this.field349 != -1) {
+                    this.method64(field486, this.field349);
+                    this.field349 = -1;
+                    this.field342 = true;
                 }
-                if (this.field166 == 220) {
-                    int var24 = this.field484.g2_alt3(-600);
-                    if (var24 == 65535) {
-                        var24 = -1;
-                    }
-                    if (this.field623 != var24 && this.field562 && !field222 && this.field424 == 0) {
-                        this.field566 = var24;
-                        this.field567 = true;
-                        this.field587.method586(2, this.field566);
-                    }
-                    this.field623 = var24;
-                    this.field166 = -1;
-                    return true;
+                if (this.field256 != -1) {
+                    this.method64(field486, this.field256);
+                    this.field256 = -1;
                 }
-                if (this.field166 == 249) {
-                    int var25 = this.field484.g2_alt1(-125);
-                    int var26 = this.field484.g3_alt2(-737);
-                    if (this.field562 && !field222) {
-                        this.field566 = var25;
-                        this.field567 = false;
-                        this.field587.method586(2, this.field566);
-                        this.field424 = var26;
-                    }
-                    this.field166 = -1;
-                    return true;
+                if (this.viewportInterfaceId != -1) {
+                    this.method64(field486, this.viewportInterfaceId);
+                    this.viewportInterfaceId = -1;
                 }
-                if (this.field166 == 158) {
-                    int var27 = this.field484.g2b_alt1(-63);
-                    if (this.field487 != var27) {
-                        this.method64(field486, this.field487);
-                        this.field487 = var27;
-                    }
-                    this.field536 = true;
-                    this.field166 = -1;
-                    return true;
+                if (this.chatInterfaceId != var23) {
+                    this.method64(field486, this.chatInterfaceId);
+                    this.chatInterfaceId = var23;
                 }
-                if (this.field166 == 218) {
-                    int var28 = this.field484.g2();
-                    int var29 = this.field484.g2_alt2((byte) 9);
-                    int var30 = var29 >> 10 & 31;
-                    int var31 = var29 >> 5 & 31;
-                    int var32 = var29 & 31;
-                    Component.method204(var28).field722 = (var32 << 3) + (var30 << 19) + (var31 << 11);
-                    this.field166 = -1;
-                    return true;
+                this.pressedContinueOption = false;
+                this.redrawChatback = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 220) {
+                // MIDI_SONG
+                int var24 = this.field484.g2_alt3(-600);
+                if (var24 == 65535) {
+                    var24 = -1;
                 }
-                if (this.field166 == 157) {
-                    int var33 = this.field484.g1_alt2(-34545);
-                    String var34 = this.field484.gjstr();
-                    int var35 = this.field484.g1();
-                    if (var33 >= 1 && var33 <= 5) {
-                        if (var34.equalsIgnoreCase("null")) {
-                            var34 = null;
-                        }
-                        this.field365[var33 - 1] = var34;
-                        this.field366[var33 - 1] = var35 == 0;
-                    }
-                    this.field166 = -1;
-                    return true;
+                if (this.field623 != var24 && this.field562 && !field222 && this.field424 == 0) {
+                    this.field566 = var24;
+                    this.field567 = true;
+                    this.field587.method586(2, this.field566);
                 }
-                if (this.field166 == 6) {
-                    this.field162 = false;
-                    this.field540 = 2;
-                    this.field245 = "";
-                    this.field536 = true;
-                    this.field166 = -1;
-                    return true;
+                this.field623 = var24;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 249) {
+                // MIDI_JINGLE
+                int var25 = this.field484.g2_alt1(-125);
+                int var26 = this.field484.g3_alt2(-737);
+                if (this.field562 && !field222) {
+                    this.field566 = var25;
+                    this.field567 = false;
+                    this.field587.method586(2, this.field566);
+                    this.field424 = var26;
                 }
-                if (this.field166 == 201) {
-                    this.field302 = this.field484.g1();
-                    this.field183 = this.field484.g1();
-                    this.field523 = this.field484.g1();
-                    this.field508 = true;
-                    this.field536 = true;
-                    this.field166 = -1;
-                    return true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 158) {
+                // TUT_OPEN
+                int var27 = this.field484.g2b_alt1(-63);
+                if (this.field487 != var27) {
+                    this.method64(field486, this.field487);
+                    this.field487 = var27;
                 }
-                if (this.field166 == 199) {
-                    this.field493 = this.field484.g1();
-                    if (this.field493 == 1) {
-                        this.field522 = this.field484.g2();
+                this.redrawChatback = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 218) {
+                // IF_SETCOLOUR
+                int var28 = this.field484.g2();
+                int var29 = this.field484.g2_alt2((byte) 9);
+                int var30 = var29 >> 10 & 31;
+                int var31 = var29 >> 5 & 31;
+                int var32 = var29 & 31;
+                Component.get(var28).colour = (var32 << 3) + (var30 << 19) + (var31 << 11);
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 157) {
+                // SET_PLAYER_OP
+                int var33 = this.field484.g1_alt2(-34545);
+                String var34 = this.field484.gjstr();
+                int var35 = this.field484.g1();
+                if (var33 >= 1 && var33 <= 5) {
+                    if (var34.equalsIgnoreCase("null")) {
+                        var34 = null;
                     }
-                    if (this.field493 >= 2 && this.field493 <= 6) {
-                        if (this.field493 == 2) {
-                            this.field143 = 64;
-                            this.field144 = 64;
-                        }
-                        if (this.field493 == 3) {
-                            this.field143 = 0;
-                            this.field144 = 64;
-                        }
-                        if (this.field493 == 4) {
-                            this.field143 = 128;
-                            this.field144 = 64;
-                        }
-                        if (this.field493 == 5) {
-                            this.field143 = 64;
-                            this.field144 = 0;
-                        }
-                        if (this.field493 == 6) {
-                            this.field143 = 64;
-                            this.field144 = 128;
-                        }
-                        this.field493 = 2;
-                        this.field140 = this.field484.g2();
-                        this.field141 = this.field484.g2();
-                        this.field142 = this.field484.g1();
-                    }
-                    if (this.field493 == 10) {
-                        this.field447 = this.field484.g2();
-                    }
-                    this.field166 = -1;
-                    return true;
+                    this.field365[var33 - 1] = var34;
+                    this.field366[var33 - 1] = var35 == 0;
                 }
-                if (this.field166 == 167) {
-                    this.field507 = true;
-                    this.field289 = this.field484.g1();
-                    this.field290 = this.field484.g1();
-                    this.field291 = this.field484.g2();
-                    this.field292 = this.field484.g1();
-                    this.field293 = this.field484.g1();
-                    if (this.field293 >= 100) {
-                        int var36 = this.field289 * 128 + 64;
-                        int var37 = this.field290 * 128 + 64;
-                        int var38 = this.method133(var37, var36, (byte) 9, this.field387) - this.field291;
-                        int var39 = var36 - this.field512;
-                        int var40 = var38 - this.field513;
-                        int var41 = var37 - this.field514;
-                        int var42 = (int) Math.sqrt((double) (var39 * var39 + var41 * var41));
-                        this.field515 = (int) (Math.atan2((double) var40, (double) var42) * 325.949D) & 2047;
-                        this.field516 = (int) (Math.atan2((double) var39, (double) var41) * -325.949D) & 2047;
-                        if (this.field515 < 128) {
-                            this.field515 = 128;
-                        }
-                        if (this.field515 > 383) {
-                            this.field515 = 383;
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 6) {
+                // P_NAMEDIALOG
+                this.field162 = false;
+                this.field540 = 2;
+                this.field245 = "";
+                this.redrawChatback = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 201) {
+                // CHAT_FILTER_SETTINGS
+                this.field302 = this.field484.g1();
+                this.field183 = this.field484.g1();
+                this.field523 = this.field484.g1();
+                this.field508 = true;
+                this.redrawChatback = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 199) {
+                // HINT_ARROW
+                this.field493 = this.field484.g1();
+                if (this.field493 == 1) {
+                    this.field522 = this.field484.g2();
                 }
-                if (this.field166 == 5) {
-                    this.method148(true);
-                    this.field166 = -1;
-                    return false;
+                if (this.field493 >= 2 && this.field493 <= 6) {
+                    if (this.field493 == 2) {
+                        this.field143 = 64;
+                        this.field144 = 64;
+                    }
+                    if (this.field493 == 3) {
+                        this.field143 = 0;
+                        this.field144 = 64;
+                    }
+                    if (this.field493 == 4) {
+                        this.field143 = 128;
+                        this.field144 = 64;
+                    }
+                    if (this.field493 == 5) {
+                        this.field143 = 64;
+                        this.field144 = 0;
+                    }
+                    if (this.field493 == 6) {
+                        this.field143 = 64;
+                        this.field144 = 128;
+                    }
+                    this.field493 = 2;
+                    this.field140 = this.field484.g2();
+                    this.field141 = this.field484.g2();
+                    this.field142 = this.field484.g1();
                 }
-                if (this.field166 == 115) {
-                    int var43 = this.field484.g4_alt3(true);
-                    int var44 = this.field484.g2_alt1(-125);
-                    this.field301[var44] = var43;
-                    if (this.field335[var44] != var43) {
-                        this.field335[var44] = var43;
-                        this.method128(0, var44);
-                        this.field477 = true;
-                        if (this.field487 != -1) {
-                            this.field536 = true;
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
+                if (this.field493 == 10) {
+                    this.field447 = this.field484.g2();
                 }
-                if (this.field166 == 29) {
-                    if (this.field385 != -1) {
-                        this.method64(field486, this.field385);
-                        this.field385 = -1;
-                        this.field477 = true;
-                        this.field246 = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 167) {
+                // CAM_LOOKAT
+                this.field507 = true;
+                this.field289 = this.field484.g1();
+                this.field290 = this.field484.g1();
+                this.field291 = this.field484.g2();
+                this.field292 = this.field484.g1();
+                this.field293 = this.field484.g1();
+                if (this.field293 >= 100) {
+                    int var36 = this.field289 * 128 + 64;
+                    int var37 = this.field290 * 128 + 64;
+                    int var38 = this.method133(var37, var36, (byte) 9, this.field387) - this.field291;
+                    int var39 = var36 - this.field512;
+                    int var40 = var38 - this.field513;
+                    int var41 = var37 - this.field514;
+                    int var42 = (int) Math.sqrt((double) (var39 * var39 + var41 * var41));
+                    this.field515 = (int) (Math.atan2((double) var40, (double) var42) * 325.949D) & 2047;
+                    this.field516 = (int) (Math.atan2((double) var39, (double) var41) * -325.949D) & 2047;
+                    if (this.field515 < 128) {
+                        this.field515 = 128;
                     }
-                    if (this.field284 != -1) {
-                        this.method64(field486, this.field284);
-                        this.field284 = -1;
-                        this.field536 = true;
+                    if (this.field515 > 383) {
+                        this.field515 = 383;
                     }
-                    if (this.field349 != -1) {
-                        this.method64(field486, this.field349);
-                        this.field349 = -1;
-                        this.field342 = true;
-                    }
-                    if (this.field256 != -1) {
-                        this.method64(field486, this.field256);
-                        this.field256 = -1;
-                    }
-                    if (this.field465 != -1) {
-                        this.method64(field486, this.field465);
-                        this.field465 = -1;
-                    }
-                    if (this.field540 != 0) {
-                        this.field540 = 0;
-                        this.field536 = true;
-                    }
-                    this.field535 = false;
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 76) {
-                    this.field379 = this.field484.g2_alt1(-125);
-                    this.field371 = this.field484.g2_alt3(-600);
-                    this.field484.g2();
-                    this.field504 = this.field484.g2();
-                    this.field466 = this.field484.g2_alt1(-125);
-                    this.field569 = this.field484.g2_alt2((byte) 9);
-                    this.field511 = this.field484.g2_alt2((byte) 9);
-                    this.field288 = this.field484.g2();
-                    this.field537 = this.field484.g4_alt1(935);
-                    this.field330 = this.field484.g2_alt3(-600);
-                    this.field484.g1_alt1(0);
-                    signlink.dnslookup(JString.method347(this.field537, -826));
-                    this.field166 = -1;
-                    return true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 5) {
+                // LOGOUT
+                this.method148(true);
+                this.field166 = -1;
+                return false;
+            }
+            if (this.field166 == 115) {
+                // VARP_LARGE
+                int var43 = this.field484.g4_alt3(true);
+                int var44 = this.field484.g2_alt1(-125);
+                this.field301[var44] = var43;
+                if (this.field335[var44] != var43) {
+                    this.field335[var44] = var43;
+                    this.method128(0, var44);
+                    this.redrawSidebar = true;
+                    if (this.field487 != -1) {
+                        this.redrawChatback = true;
+                    }
                 }
-                if (this.field166 == 63) {
-                    String var45 = this.field484.gjstr();
-                    if (var45.endsWith(":tradereq:")) {
-                        String var46 = var45.substring(0, var45.indexOf(":"));
-                        long var47 = JString.method344(var46);
-                        boolean var49 = false;
-                        for (int var50 = 0; var50 < this.field151; ++var50) {
-                            if (this.field369[var50] == var47) {
-                                var49 = true;
-                                break;
-                            }
-                        }
-                        if (!var49 && this.field542 == 0) {
-                            this.method67(var46, (byte) -123, "wishes to trade with you.", 4);
-                        }
-                    } else if (var45.endsWith(":duelreq:")) {
-                        String var51 = var45.substring(0, var45.indexOf(":"));
-                        long var52 = JString.method344(var51);
-                        boolean var54 = false;
-                        for (int var55 = 0; var55 < this.field151; ++var55) {
-                            if (this.field369[var55] == var52) {
-                                var54 = true;
-                                break;
-                            }
-                        }
-                        if (!var54 && this.field542 == 0) {
-                            this.method67(var51, (byte) -123, "wishes to duel with you.", 8);
-                        }
-                    } else if (!var45.endsWith(":chalreq:")) {
-                        this.method67("", (byte) -123, var45, 0);
-                    } else {
-                        String var56 = var45.substring(0, var45.indexOf(":"));
-                        long var57 = JString.method344(var56);
-                        boolean var59 = false;
-                        for (int var60 = 0; var60 < this.field151; ++var60) {
-                            if (this.field369[var60] == var57) {
-                                var59 = true;
-                                break;
-                            }
-                        }
-                        if (!var59 && this.field542 == 0) {
-                            String var61 = var45.substring(var45.indexOf(":") + 1, var45.length() - 9);
-                            this.method67(var56, (byte) -123, var61, 8);
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 29) {
+                // IF_CLOSE
+                if (this.sidebarInterfaceId != -1) {
+                    this.method64(field486, this.sidebarInterfaceId);
+                    this.sidebarInterfaceId = -1;
+                    this.redrawSidebar = true;
+                    this.redrawSideicons = true;
                 }
-                if (this.field166 == 50) {
-                    int var62 = this.field484.g2b();
-                    if (var62 >= 0) {
-                        this.method135((byte) 36, var62);
-                    }
-                    if (this.field575 != var62) {
-                        this.method64(field486, this.field575);
-                        this.field575 = var62;
-                    }
-                    this.field166 = -1;
-                    return true;
+                if (this.chatInterfaceId != -1) {
+                    this.method64(field486, this.chatInterfaceId);
+                    this.chatInterfaceId = -1;
+                    this.redrawChatback = true;
                 }
-                if (this.field166 == 82) {
-                    boolean var63 = this.field484.g1() == 1;
-                    int var64 = this.field484.g2();
-                    Component.method204(var64).field701 = var63;
-                    this.field166 = -1;
-                    return true;
+                if (this.field349 != -1) {
+                    this.method64(field486, this.field349);
+                    this.field349 = -1;
+                    this.field342 = true;
                 }
-                if (this.field166 == 174) {
-                    if (this.field581 == 12) {
-                        this.field477 = true;
-                    }
-                    this.field326 = this.field484.g2b();
-                    this.field166 = -1;
-                    return true;
+                if (this.field256 != -1) {
+                    this.method64(field486, this.field256);
+                    this.field256 = -1;
                 }
-                if (this.field166 == 233) {
-                    this.field615 = this.field484.g1();
-                    this.field166 = -1;
-                    return true;
+                if (this.viewportInterfaceId != -1) {
+                    this.method64(field486, this.viewportInterfaceId);
+                    this.viewportInterfaceId = -1;
                 }
-                if (this.field166 == 61) {
-                    this.field416 = 0;
-                    this.field166 = -1;
-                    return true;
+                if (this.field540 != 0) {
+                    this.field540 = 0;
+                    this.redrawChatback = true;
                 }
-                if (this.field166 == 128) {
-                    int var65 = this.field484.g2_alt2((byte) 9);
-                    int var66 = this.field484.g2_alt3(-600);
-                    if (this.field284 != -1) {
-                        this.method64(field486, this.field284);
-                        this.field284 = -1;
-                        this.field536 = true;
-                    }
-                    if (this.field349 != -1) {
-                        this.method64(field486, this.field349);
-                        this.field349 = -1;
-                        this.field342 = true;
-                    }
-                    if (this.field256 != -1) {
-                        this.method64(field486, this.field256);
-                        this.field256 = -1;
-                    }
-                    if (this.field465 != var65) {
-                        this.method64(field486, this.field465);
-                        this.field465 = var65;
-                    }
-                    if (this.field385 != var66) {
-                        this.method64(field486, this.field385);
-                        this.field385 = var66;
-                    }
-                    if (this.field540 != 0) {
-                        this.field540 = 0;
-                        this.field536 = true;
-                    }
-                    this.field477 = true;
-                    this.field246 = true;
-                    this.field535 = false;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 67) {
-                    int var67 = this.field484.g1();
-                    int var68 = this.field484.g1();
-                    int var69 = this.field484.g1();
-                    int var70 = this.field484.g1();
-                    this.field223[var67] = true;
-                    this.field401[var67] = var68;
-                    this.field148[var67] = var69;
-                    this.field287[var67] = var70;
-                    this.field441[var67] = 0;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 134) {
-                    this.field477 = true;
-                    int var71 = this.field484.g2();
-                    Component var72 = Component.method204(var71);
-                    while (this.field484.pos < this.field165) {
-                        int var73 = this.field484.gsmarts();
-                        int var74 = this.field484.g2();
-                        int var75 = this.field484.g1();
-                        if (var75 == 255) {
-                            var75 = this.field484.g4();
-                        }
-                        if (var73 >= 0 && var73 < var72.field751.length) {
-                            var72.field751[var73] = var74;
-                            var72.field706[var73] = var75;
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 78) {
-                    long var76 = this.field484.g8(-149);
-                    int var78 = this.field484.g1();
-                    String var79 = JString.method348(JString.method345(var76, 0), (byte) 7);
-                    for (int var80 = 0; var80 < this.field155; ++var80) {
-                        if (this.field426[var80] == var76) {
-                            if (this.field563[var80] != var78) {
-                                this.field563[var80] = var78;
-                                this.field477 = true;
-                                if (var78 > 0) {
-                                    this.method67("", (byte) -123, var79 + " has logged in.", 5);
-                                }
-                                if (var78 == 0) {
-                                    this.method67("", (byte) -123, var79 + " has logged out.", 5);
-                                }
-                            }
-                            var79 = null;
+                this.pressedContinueOption = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 76) {
+                // LAST_LOGIN_INFO
+                this.field379 = this.field484.g2_alt1(-125);
+                this.field371 = this.field484.g2_alt3(-600);
+                this.field484.g2();
+                this.field504 = this.field484.g2();
+                this.field466 = this.field484.g2_alt1(-125);
+                this.field569 = this.field484.g2_alt2((byte) 9);
+                this.field511 = this.field484.g2_alt2((byte) 9);
+                this.field288 = this.field484.g2();
+                this.field537 = this.field484.g4_alt1(935);
+                this.field330 = this.field484.g2_alt3(-600);
+                this.field484.g1_alt1(0);
+                signlink.dnslookup(JString.method347(this.field537, -826));
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 63) {
+                // MESSAGE_GAME
+                String var45 = this.field484.gjstr();
+                if (var45.endsWith(":tradereq:")) {
+                    String var46 = var45.substring(0, var45.indexOf(":"));
+                    long var47 = JString.method344(var46);
+                    boolean var49 = false;
+                    for (int var50 = 0; var50 < this.field151; ++var50) {
+                        if (this.field369[var50] == var47) {
+                            var49 = true;
                             break;
                         }
                     }
-                    if (var79 != null && this.field155 < 200) {
-                        this.field426[this.field155] = var76;
-                        this.field145[this.field155] = var79;
-                        this.field563[this.field155] = var78;
-                        ++this.field155;
-                        this.field477 = true;
+                    if (!var49 && this.field542 == 0) {
+                        this.method67(var46, (byte) -123, "wishes to trade with you.", 4);
                     }
-                    boolean var81 = false;
-                    while (!var81) {
-                        var81 = true;
-                        for (int var82 = 0; var82 < this.field155 - 1; ++var82) {
-                            if (this.field563[var82] != field219 && this.field563[var82 + 1] == field219 || this.field563[var82] == 0 && this.field563[var82 + 1] != 0) {
-                                int var83 = this.field563[var82];
-                                this.field563[var82] = this.field563[var82 + 1];
-                                this.field563[var82 + 1] = var83;
-                                String var84 = this.field145[var82];
-                                this.field145[var82] = this.field145[var82 + 1];
-                                this.field145[var82 + 1] = var84;
-                                long var85 = this.field426[var82];
-                                this.field426[var82] = this.field426[var82 + 1];
-                                this.field426[var82 + 1] = var85;
-                                this.field477 = true;
-                                var81 = false;
+                } else if (var45.endsWith(":duelreq:")) {
+                    String var51 = var45.substring(0, var45.indexOf(":"));
+                    long var52 = JString.method344(var51);
+                    boolean var54 = false;
+                    for (int var55 = 0; var55 < this.field151; ++var55) {
+                        if (this.field369[var55] == var52) {
+                            var54 = true;
+                            break;
+                        }
+                    }
+                    if (!var54 && this.field542 == 0) {
+                        this.method67(var51, (byte) -123, "wishes to duel with you.", 8);
+                    }
+                } else if (!var45.endsWith(":chalreq:")) {
+                    this.method67("", (byte) -123, var45, 0);
+                } else {
+                    String var56 = var45.substring(0, var45.indexOf(":"));
+                    long var57 = JString.method344(var56);
+                    boolean var59 = false;
+                    for (int var60 = 0; var60 < this.field151; ++var60) {
+                        if (this.field369[var60] == var57) {
+                            var59 = true;
+                            break;
+                        }
+                    }
+                    if (!var59 && this.field542 == 0) {
+                        String var61 = var45.substring(var45.indexOf(":") + 1, var45.length() - 9);
+                        this.method67(var56, (byte) -123, var61, 8);
+                    }
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 50) {
+                // IF_OPENOVERLAY
+                int var62 = this.field484.g2b();
+                if (var62 >= 0) {
+                    this.method135((byte) 36, var62);
+                }
+                if (this.viewportOverlayInterfaceId != var62) {
+                    this.method64(field486, this.viewportOverlayInterfaceId);
+                    this.viewportOverlayInterfaceId = var62;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 82) {
+                // IF_SETHIDE
+                boolean var63 = this.field484.g1() == 1;
+                int var64 = this.field484.g2();
+                Component.get(var64).hide = var63;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 174) {
+                // UPDATE_RUNWEIGHT
+                if (this.field581 == 12) {
+                    this.redrawSidebar = true;
+                }
+                this.field326 = this.field484.g2b();
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 233) {
+                // SET_MULTIWAY
+                this.field615 = this.field484.g1();
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 61) {
+                // UNSET_MAP_FLAG
+                this.field416 = 0;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 128) {
+                // IF_OPENMAIN_SIDE
+                int var65 = this.field484.g2_alt2((byte) 9);
+                int var66 = this.field484.g2_alt3(-600);
+                if (this.chatInterfaceId != -1) {
+                    this.method64(field486, this.chatInterfaceId);
+                    this.chatInterfaceId = -1;
+                    this.redrawChatback = true;
+                }
+                if (this.field349 != -1) {
+                    this.method64(field486, this.field349);
+                    this.field349 = -1;
+                    this.field342 = true;
+                }
+                if (this.field256 != -1) {
+                    this.method64(field486, this.field256);
+                    this.field256 = -1;
+                }
+                if (this.viewportInterfaceId != var65) {
+                    this.method64(field486, this.viewportInterfaceId);
+                    this.viewportInterfaceId = var65;
+                }
+                if (this.sidebarInterfaceId != var66) {
+                    this.method64(field486, this.sidebarInterfaceId);
+                    this.sidebarInterfaceId = var66;
+                }
+                if (this.field540 != 0) {
+                    this.field540 = 0;
+                    this.redrawChatback = true;
+                }
+                this.redrawSidebar = true;
+                this.redrawSideicons = true;
+                this.pressedContinueOption = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 67) {
+                // CAM_SHAKE
+                int var67 = this.field484.g1();
+                int var68 = this.field484.g1();
+                int var69 = this.field484.g1();
+                int var70 = this.field484.g1();
+                this.field223[var67] = true;
+                this.field401[var67] = var68;
+                this.field148[var67] = var69;
+                this.field287[var67] = var70;
+                this.field441[var67] = 0;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 134) {
+                // UPDATE_INV_PARTIAL
+                this.redrawSidebar = true;
+                int var71 = this.field484.g2();
+                Component var72 = Component.get(var71);
+                while (this.field484.pos < this.field165) {
+                    int var73 = this.field484.gsmarts();
+                    int var74 = this.field484.g2();
+                    int var75 = this.field484.g1();
+                    if (var75 == 255) {
+                        var75 = this.field484.g4();
+                    }
+                    if (var73 >= 0 && var73 < var72.invSlotObjId.length) {
+                        var72.invSlotObjId[var73] = var74;
+                        var72.invSlotObjCount[var73] = var75;
+                    }
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 78) {
+                // UPDATE_FRIENDLIST
+                long var76 = this.field484.g8(-149);
+                int var78 = this.field484.g1();
+                String var79 = JString.method348(JString.method345(var76, 0), (byte) 7);
+                for (int var80 = 0; var80 < this.field155; ++var80) {
+                    if (this.field426[var80] == var76) {
+                        if (this.field563[var80] != var78) {
+                            this.field563[var80] = var78;
+                            this.redrawSidebar = true;
+                            if (var78 > 0) {
+                                this.method67("", (byte) -123, var79 + " has logged in.", 5);
+                            }
+                            if (var78 == 0) {
+                                this.method67("", (byte) -123, var79 + " has logged out.", 5);
                             }
                         }
+                        var79 = null;
+                        break;
                     }
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 58) {
-                    this.field162 = false;
-                    this.field540 = 1;
-                    this.field245 = "";
-                    this.field536 = true;
-                    this.field166 = -1;
-                    return true;
+                if (var79 != null && this.field155 < 200) {
+                    this.field426[this.field155] = var76;
+                    this.field145[this.field155] = var79;
+                    this.field563[this.field155] = var78;
+                    ++this.field155;
+                    this.redrawSidebar = true;
                 }
-                if (this.field166 == 252) {
-                    this.field581 = this.field484.g1_alt2(-34545);
-                    this.field477 = true;
-                    this.field246 = true;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 40) {
-                    this.field286 = this.field484.g1_alt3(this.field532);
-                    this.field285 = this.field484.g1_alt2(-34545);
-                    for (int var87 = this.field285; var87 < this.field285 + 8; ++var87) {
-                        for (int var88 = this.field286; var88 < this.field286 + 8; ++var88) {
-                            if (this.field619[this.field387][var87][var88] != null) {
-                                this.field619[this.field387][var87][var88] = null;
-                                this.method46(var87, var88);
-                            }
+                boolean var81 = false;
+                while (!var81) {
+                    var81 = true;
+                    for (int var82 = 0; var82 < this.field155 - 1; ++var82) {
+                        if (this.field563[var82] != field219 && this.field563[var82 + 1] == field219 || this.field563[var82] == 0 && this.field563[var82 + 1] != 0) {
+                            int var83 = this.field563[var82];
+                            this.field563[var82] = this.field563[var82 + 1];
+                            this.field563[var82 + 1] = var83;
+                            String var84 = this.field145[var82];
+                            this.field145[var82] = this.field145[var82 + 1];
+                            this.field145[var82 + 1] = var84;
+                            long var85 = this.field426[var82];
+                            this.field426[var82] = this.field426[var82 + 1];
+                            this.field426[var82 + 1] = var85;
+                            this.redrawSidebar = true;
+                            var81 = false;
                         }
                     }
-                    for (LocSpawned var89 = (LocSpawned) this.field557.method6(); var89 != null; var89 = (LocSpawned) this.field557.method8(1)) {
-                        if (var89.field1325 >= this.field285 && var89.field1325 < this.field285 + 8 && var89.field1326 >= this.field286 && var89.field1326 < this.field286 + 8 && this.field387 == var89.field1323) {
-                            var89.field1322 = 0;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 58) {
+                // P_COUNTDIALOG
+                this.field162 = false;
+                this.field540 = 1;
+                this.field245 = "";
+                this.redrawChatback = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 252) {
+                // IF_SETTAB_ACTIVE
+                this.field581 = this.field484.g1_alt2(-34545);
+                this.redrawSidebar = true;
+                this.redrawSideicons = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 40) {
+                // UPDATE_ZONE_FULL_FOLLOWS
+                this.field286 = this.field484.g1_alt3(this.field532);
+                this.field285 = this.field484.g1_alt2(-34545);
+                for (int var87 = this.field285; var87 < this.field285 + 8; ++var87) {
+                    for (int var88 = this.field286; var88 < this.field286 + 8; ++var88) {
+                        if (this.field619[this.field387][var87][var88] != null) {
+                            this.field619[this.field387][var87][var88] = null;
+                            this.method46(var87, var88);
                         }
                     }
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 255) {
-                    int var90 = this.field484.g2_alt3(-600);
-                    Component.method204(var90).field765 = 3;
-                    if (field463.field1679 == null) {
-                        Component.method204(var90).field766 = (field463.field1674[11] << 5) + (field463.field1674[8] << 10) + (field463.field1674[0] << 15) + (field463.field1682[0] << 25) + (field463.field1682[4] << 20) + field463.field1674[1];
-                    } else {
-                        Component.method204(var90).field766 = (int) (field463.field1679.field1431 + 305419896L);
+                for (LocSpawned var89 = (LocSpawned) this.field557.method6(); var89 != null; var89 = (LocSpawned) this.field557.method8(1)) {
+                    if (var89.field1325 >= this.field285 && var89.field1325 < this.field285 + 8 && var89.field1326 >= this.field286 && var89.field1326 < this.field286 + 8 && this.field387 == var89.field1323) {
+                        var89.field1322 = 0;
                     }
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 135) {
-                    long var91 = this.field484.g8(-149);
-                    int var93 = this.field484.g4();
-                    int var94 = this.field484.g1();
-                    boolean var95 = false;
-                    for (int var96 = 0; var96 < 100; ++var96) {
-                        if (this.field554[var96] == var93) {
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 255) {
+                // IF_SETPLAYERHEAD
+                int var90 = this.field484.g2_alt3(-600);
+                Component.get(var90).modelType = 3;
+                if (field463.field1679 == null) {
+                    Component.get(var90).model = (field463.field1674[11] << 5) + (field463.field1674[8] << 10) + (field463.field1674[0] << 15) + (field463.field1682[0] << 25) + (field463.field1682[4] << 20) + field463.field1674[1];
+                } else {
+                    Component.get(var90).model = (int) (field463.field1679.field1431 + 305419896L);
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 135) {
+                // MESSAGE_PRIVATE
+                long var91 = this.field484.g8(-149);
+                int var93 = this.field484.g4();
+                int var94 = this.field484.g1();
+                boolean var95 = false;
+                for (int var96 = 0; var96 < 100; ++var96) {
+                    if (this.field554[var96] == var93) {
+                        var95 = true;
+                        break;
+                    }
+                }
+                if (var94 <= 1) {
+                    for (int var97 = 0; var97 < this.field151; ++var97) {
+                        if (this.field369[var97] == var91) {
                             var95 = true;
                             break;
                         }
                     }
-                    if (var94 <= 1) {
-                        for (int var97 = 0; var97 < this.field151; ++var97) {
-                            if (this.field369[var97] == var91) {
-                                var95 = true;
-                                break;
-                            }
+                }
+                if (!var95 && this.field542 == 0) {
+                    try {
+                        this.field554[this.field448] = var93;
+                        this.field448 = (this.field448 + 1) % 100;
+                        String var98 = WordPack.method453(0, this.field484, this.field165 - 13);
+                        if (var94 != 3) {
+                            var98 = WordFilter.method504((byte) 0, var98);
                         }
-                    }
-                    if (!var95 && this.field542 == 0) {
-                        try {
-                            this.field554[this.field448] = var93;
-                            this.field448 = (this.field448 + 1) % 100;
-                            String var98 = WordPack.method453(0, this.field484, this.field165 - 13);
-                            if (var94 != 3) {
-                                var98 = WordFilter.method504((byte) 0, var98);
-                            }
-                            if (var94 != 2 && var94 != 3) {
-                                if (var94 == 1) {
-                                    this.method67("@cr1@" + JString.method348(JString.method345(var91, 0), (byte) 7), (byte) -123, var98, 7);
-                                } else {
-                                    this.method67(JString.method348(JString.method345(var91, 0), (byte) 7), (byte) -123, var98, 3);
-                                }
+                        if (var94 != 2 && var94 != 3) {
+                            if (var94 == 1) {
+                                this.method67("@cr1@" + JString.method348(JString.method345(var91, 0), (byte) 7), (byte) -123, var98, 7);
                             } else {
-                                this.method67("@cr2@" + JString.method348(JString.method345(var91, 0), (byte) 7), (byte) -123, var98, 7);
+                                this.method67(JString.method348(JString.method345(var91, 0), (byte) 7), (byte) -123, var98, 3);
                             }
-                        } catch (Exception var191) {
-                            signlink.reporterror("cde1");
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 183) {
-                    this.field285 = this.field484.g1();
-                    this.field286 = this.field484.g1_alt1(0);
-                    while (this.field484.pos < this.field165) {
-                        int var100 = this.field484.g1();
-                        this.method158(this.field484, 0, var100);
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 159) {
-                    int var101 = this.field484.g2_alt3(-600);
-                    this.method135((byte) 36, var101);
-                    if (this.field385 != -1) {
-                        this.method64(field486, this.field385);
-                        this.field385 = -1;
-                        this.field477 = true;
-                        this.field246 = true;
-                    }
-                    if (this.field284 != -1) {
-                        this.method64(field486, this.field284);
-                        this.field284 = -1;
-                        this.field536 = true;
-                    }
-                    if (this.field349 != -1) {
-                        this.method64(field486, this.field349);
-                        this.field349 = -1;
-                        this.field342 = true;
-                    }
-                    if (this.field256 != -1) {
-                        this.method64(field486, this.field256);
-                        this.field256 = -1;
-                    }
-                    if (this.field465 != var101) {
-                        this.method64(field486, this.field465);
-                        this.field465 = var101;
-                    }
-                    if (this.field540 != 0) {
-                        this.field540 = 0;
-                        this.field536 = true;
-                    }
-                    this.field535 = false;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 246) {
-                    int var102 = this.field484.g2_alt3(-600);
-                    this.method135((byte) 36, var102);
-                    if (this.field284 != -1) {
-                        this.method64(field486, this.field284);
-                        this.field284 = -1;
-                        this.field536 = true;
-                    }
-                    if (this.field349 != -1) {
-                        this.method64(field486, this.field349);
-                        this.field349 = -1;
-                        this.field342 = true;
-                    }
-                    if (this.field256 != -1) {
-                        this.method64(field486, this.field256);
-                        this.field256 = -1;
-                    }
-                    if (this.field465 != -1) {
-                        this.method64(field486, this.field465);
-                        this.field465 = -1;
-                    }
-                    if (this.field385 != var102) {
-                        this.method64(field486, this.field385);
-                        this.field385 = var102;
-                    }
-                    if (this.field540 != 0) {
-                        this.field540 = 0;
-                        this.field536 = true;
-                    }
-                    this.field477 = true;
-                    this.field246 = true;
-                    this.field535 = false;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 49) {
-                    this.field477 = true;
-                    int var103 = this.field484.g1_alt2(-34545);
-                    int var104 = this.field484.g1();
-                    int var105 = this.field484.g4();
-                    this.field139[var103] = var105;
-                    this.field325[var103] = var104;
-                    this.field350[var103] = 1;
-                    for (int var106 = 0; var106 < 98; ++var106) {
-                        if (var105 >= field248[var106]) {
-                            this.field350[var103] = var106 + 2;
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 206) {
-                    this.field477 = true;
-                    int var107 = this.field484.g2();
-                    Component var108 = Component.method204(var107);
-                    int var109 = this.field484.g2();
-                    for (int var110 = 0; var110 < var109; ++var110) {
-                        var108.field751[var110] = this.field484.g2_alt3(-600);
-                        int var111 = this.field484.g1_alt2(-34545);
-                        if (var111 == 255) {
-                            var111 = this.field484.g4_alt1(935);
-                        }
-                        var108.field706[var110] = var111;
-                    }
-                    for (int var112 = var109; var112 < var108.field751.length; ++var112) {
-                        var108.field751[var112] = 0;
-                        var108.field706[var112] = 0;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 222 || this.field166 == 53) {
-                    int var113 = this.field185;
-                    int var114 = this.field186;
-                    if (this.field166 == 222) {
-                        var114 = this.field484.g2();
-                        var113 = this.field484.g2_alt3(-600);
-                        this.field459 = false;
-                    }
-                    if (this.field166 == 53) {
-                        var113 = this.field484.g2_alt2((byte) 9);
-                        this.field484.accessBits((byte) 6);
-                        int var115 = 0;
-                        while (true) {
-                            if (var115 >= 4) {
-                                this.field484.accessBytes(-29290);
-                                var114 = this.field484.g2_alt2((byte) 9);
-                                this.field459 = true;
-                                break;
-                            }
-                            for (int var116 = 0; var116 < 13; ++var116) {
-                                for (int var117 = 0; var117 < 13; ++var117) {
-                                    int var118 = this.field484.gBit(402, 1);
-                                    if (var118 == 1) {
-                                        this.field175[var115][var116][var117] = this.field484.gBit(402, 26);
-                                    } else {
-                                        this.field175[var115][var116][var117] = -1;
-                                    }
-                                }
-                            }
-                            ++var115;
-                        }
-                    }
-                    if (this.field185 == var113 && this.field186 == var114 && this.field367 == 2) {
-                        this.field166 = -1;
-                        return true;
-                    }
-                    this.field185 = var113;
-                    this.field186 = var114;
-                    this.field336 = (this.field185 - 6) * 8;
-                    this.field337 = (this.field186 - 6) * 8;
-                    this.field363 = false;
-                    if ((this.field185 / 8 == 48 || this.field185 / 8 == 49) && this.field186 / 8 == 48) {
-                        this.field363 = true;
-                    }
-                    if (this.field185 / 8 == 48 && this.field186 / 8 == 148) {
-                        this.field363 = true;
-                    }
-                    this.field367 = 1;
-                    this.field525 = System.currentTimeMillis();
-                    this.method149(-332, (String) null, "Loading - please wait.");
-                    if (this.field166 == 222) {
-                        int var119 = 0;
-                        int var120 = (this.field185 - 6) / 8;
-                        label1207: while (true) {
-                            if (var120 > (this.field185 + 6) / 8) {
-                                this.field134 = new byte[var119][];
-                                this.field528 = new byte[var119][];
-                                this.field152 = new int[var119];
-                                this.field153 = new int[var119];
-                                this.field154 = new int[var119];
-                                int var122 = 0;
-                                int var123 = (this.field185 - 6) / 8;
-                                while (true) {
-                                    if (var123 > (this.field185 + 6) / 8) {
-                                        break label1207;
-                                    }
-                                    for (int var124 = (this.field186 - 6) / 8; var124 <= (this.field186 + 6) / 8; ++var124) {
-                                        this.field152[var122] = (var123 << 8) + var124;
-                                        if (this.field363 && (var124 == 49 || var124 == 149 || var124 == 147 || var123 == 50 || var123 == 49 && var124 == 47)) {
-                                            this.field153[var122] = -1;
-                                            this.field154[var122] = -1;
-                                            ++var122;
-                                        } else {
-                                            int var125 = this.field153[var122] = this.field587.method601(0, var123, var124, 0);
-                                            if (var125 != -1) {
-                                                this.field587.method586(3, var125);
-                                            }
-                                            int var126 = this.field154[var122] = this.field587.method601(0, var123, var124, 1);
-                                            if (var126 != -1) {
-                                                this.field587.method586(3, var126);
-                                            }
-                                            ++var122;
-                                        }
-                                    }
-                                    ++var123;
-                                }
-                            }
-                            for (int var121 = (this.field186 - 6) / 8; var121 <= (this.field186 + 6) / 8; ++var121) {
-                                ++var119;
-                            }
-                            ++var120;
-                        }
-                    }
-                    if (this.field166 == 53) {
-                        int var127 = 0;
-                        int[] var128 = new int[676];
-                        int var129 = 0;
-                        label1168: while (true) {
-                            if (var129 >= 4) {
-                                this.field134 = new byte[var127][];
-                                this.field528 = new byte[var127][];
-                                this.field152 = new int[var127];
-                                this.field153 = new int[var127];
-                                this.field154 = new int[var127];
-                                int var137 = 0;
-                                while (true) {
-                                    if (var137 >= var127) {
-                                        break label1168;
-                                    }
-                                    int var138 = this.field152[var137] = var128[var137];
-                                    int var139 = var138 >> 8 & 255;
-                                    int var140 = var138 & 255;
-                                    int var141 = this.field153[var137] = this.field587.method601(0, var139, var140, 0);
-                                    if (var141 != -1) {
-                                        this.field587.method586(3, var141);
-                                    }
-                                    int var142 = this.field154[var137] = this.field587.method601(0, var139, var140, 1);
-                                    if (var142 != -1) {
-                                        this.field587.method586(3, var142);
-                                    }
-                                    ++var137;
-                                }
-                            }
-                            for (int var130 = 0; var130 < 13; ++var130) {
-                                for (int var131 = 0; var131 < 13; ++var131) {
-                                    int var132 = this.field175[var129][var130][var131];
-                                    if (var132 != -1) {
-                                        int var133 = var132 >> 14 & 1023;
-                                        int var134 = var132 >> 3 & 2047;
-                                        int var135 = (var133 / 8 << 8) + var134 / 8;
-                                        for (int var136 = 0; var136 < var127; ++var136) {
-                                            if (var128[var136] == var135) {
-                                                var135 = -1;
-                                                break;
-                                            }
-                                        }
-                                        if (var135 != -1) {
-                                            var128[var127++] = var135;
-                                        }
-                                    }
-                                }
-                            }
-                            ++var129;
-                        }
-                    }
-                    int var143 = this.field336 - this.field338;
-                    int var144 = this.field337 - this.field339;
-                    this.field338 = this.field336;
-                    this.field339 = this.field337;
-                    for (int var145 = 0; var145 < 16384; ++var145) {
-                        NpcEntity var146 = this.field428[var145];
-                        if (var146 != null) {
-                            for (int var147 = 0; var147 < 10; ++var147) {
-                                var146.field1133[var147] -= var143;
-                                var146.field1134[var147] -= var144;
-                            }
-                            var146.field1157 -= var143 * 128;
-                            var146.field1158 -= var144 * 128;
-                        }
-                    }
-                    for (int var148 = 0; var148 < this.field264; ++var148) {
-                        PlayerEntity var149 = this.field266[var148];
-                        if (var149 != null) {
-                            for (int var150 = 0; var150 < 10; ++var150) {
-                                var149.field1133[var150] -= var143;
-                                var149.field1134[var150] -= var144;
-                            }
-                            var149.field1157 -= var143 * 128;
-                            var149.field1158 -= var144 * 128;
-                        }
-                    }
-                    this.field505 = true;
-                    byte var151 = 0;
-                    byte var152 = 104;
-                    byte var153 = 1;
-                    if (var143 < 0) {
-                        var151 = 103;
-                        var152 = -1;
-                        var153 = -1;
-                    }
-                    byte var154 = 0;
-                    byte var155 = 104;
-                    byte var156 = 1;
-                    if (var144 < 0) {
-                        var154 = 103;
-                        var155 = -1;
-                        var156 = -1;
-                    }
-                    for (int var157 = var151; var152 != var157; var157 += var153) {
-                        for (int var158 = var154; var155 != var158; var158 += var156) {
-                            int var159 = var143 + var157;
-                            int var160 = var144 + var158;
-                            for (int var161 = 0; var161 < 4; ++var161) {
-                                if (var159 >= 0 && var160 >= 0 && var159 < 104 && var160 < 104) {
-                                    this.field619[var161][var157][var158] = this.field619[var161][var159][var160];
-                                } else {
-                                    this.field619[var161][var157][var158] = null;
-                                }
-                            }
-                        }
-                    }
-                    for (LocSpawned var162 = (LocSpawned) this.field557.method6(); var162 != null; var162 = (LocSpawned) this.field557.method8(1)) {
-                        var162.field1325 -= var143;
-                        var162.field1326 -= var144;
-                        if (var162.field1325 < 0 || var162.field1326 < 0 || var162.field1325 >= 104 || var162.field1326 >= 104) {
-                            var162.method604();
-                        }
-                    }
-                    if (this.field416 != 0) {
-                        this.field416 -= var143;
-                        this.field417 -= var144;
-                    }
-                    this.field507 = false;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 190) {
-                    this.field353 = this.field484.g2_alt1(-125) * 30;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 41 || this.field166 == 121 || this.field166 == 203 || this.field166 == 106 || this.field166 == 59 || this.field166 == 181 || this.field166 == 208 || this.field166 == 107 || this.field166 == 142 || this.field166 == 88 || this.field166 == 152) {
-                    this.method158(this.field484, 0, this.field166);
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 125) {
-                    if (this.field581 == 12) {
-                        this.field477 = true;
-                    }
-                    this.field620 = this.field484.g1();
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 21) {
-                    int var163 = this.field484.g2();
-                    int var164 = this.field484.g2_alt1(-125);
-                    int var165 = this.field484.g2_alt3(-600);
-                    if (var164 == 65535) {
-                        Component.method204(var165).field765 = 0;
-                        this.field166 = -1;
-                        return true;
-                    }
-                    ObjType var166 = ObjType.method221(var164);
-                    Component.method204(var165).field765 = 4;
-                    Component.method204(var165).field766 = var164;
-                    Component.method204(var165).field734 = var166.field841;
-                    Component.method204(var165).field735 = var166.field838;
-                    Component.method204(var165).field733 = var166.field851 * 100 / var163;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 3) {
-                    this.field507 = true;
-                    this.field170 = this.field484.g1();
-                    this.field171 = this.field484.g1();
-                    this.field172 = this.field484.g2();
-                    this.field173 = this.field484.g1();
-                    this.field174 = this.field484.g1();
-                    if (this.field174 >= 100) {
-                        this.field512 = this.field170 * 128 + 64;
-                        this.field514 = this.field171 * 128 + 64;
-                        this.field513 = this.method133(this.field514, this.field512, (byte) 9, this.field387) - this.field172;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 2) {
-                    int var167 = this.field484.g2_alt3(-600);
-                    int var168 = this.field484.g2b_alt2((byte) 17);
-                    Component var169 = Component.method204(var167);
-                    if (var169.field768 != var168 || var168 == -1) {
-                        var169.field768 = var168;
-                        var169.field717 = 0;
-                        var169.field709 = 0;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 71) {
-                    this.method68(this.field484, this.field334, this.field165);
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 226) {
-                    this.field151 = this.field165 / 8;
-                    for (int var170 = 0; var170 < this.field151; ++var170) {
-                        this.field369[var170] = this.field484.g8(-149);
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 10) {
-                    int var171 = this.field484.g1_alt3(this.field532);
-                    int var172 = this.field484.g2_alt2((byte) 9);
-                    if (var172 == 65535) {
-                        var172 = -1;
-                    }
-                    if (this.field377[var171] != var172) {
-                        this.method64(field486, this.field377[var171]);
-                        this.field377[var171] = var172;
-                    }
-                    this.field477 = true;
-                    this.field246 = true;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 219) {
-                    int var173 = this.field484.g2_alt1(-125);
-                    Component var174 = Component.method204(var173);
-                    for (int var175 = 0; var175 < var174.field751.length; ++var175) {
-                        var174.field751[var175] = -1;
-                        var174.field751[var175] = 0;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 238) {
-                    this.field509 = this.field484.g1();
-                    if (this.field581 == this.field509) {
-                        if (this.field509 == 3) {
-                            this.field581 = 1;
                         } else {
-                            this.field581 = 3;
+                            this.method67("@cr2@" + JString.method348(JString.method345(var91, 0), (byte) 7), (byte) -123, var98, 7);
                         }
-                        this.field477 = true;
+                    } catch (Exception var191) {
+                        signlink.reporterror("cde1");
                     }
-                    this.field166 = -1;
-                    return true;
                 }
-                if (this.field166 == 148) {
-                    this.field507 = false;
-                    for (int var176 = 0; var176 < 5; ++var176) {
-                        this.field223[var176] = false;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 126) {
-                    this.field364 = this.field484.g1();
-                    this.field257 = this.field484.g2_alt1(-125);
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 75) {
-                    this.field285 = this.field484.g1_alt2(-34545);
-                    this.field286 = this.field484.g1_alt1(0);
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 253) {
-                    int var177 = this.field484.g2_alt1(-125);
-                    int var178 = this.field484.g2_alt2((byte) 9);
-                    this.method135((byte) 36, var178);
-                    if (var177 != -1) {
-                        this.method135((byte) 36, var177);
-                    }
-                    if (this.field465 != -1) {
-                        this.method64(field486, this.field465);
-                        this.field465 = -1;
-                    }
-                    if (this.field385 != -1) {
-                        this.method64(field486, this.field385);
-                        this.field385 = -1;
-                    }
-                    if (this.field284 != -1) {
-                        this.method64(field486, this.field284);
-                        this.field284 = -1;
-                    }
-                    if (this.field349 != var178) {
-                        this.method64(field486, this.field349);
-                        this.field349 = var178;
-                    }
-                    if (this.field256 != var178) {
-                        this.method64(field486, this.field256);
-                        this.field256 = var177;
-                    }
-                    this.field540 = 0;
-                    this.field535 = false;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 251) {
-                    this.field156 = this.field484.g1();
-                    this.field477 = true;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 18) {
-                    int var179 = this.field484.g2();
-                    int var180 = this.field484.g2_alt2((byte) 9);
-                    int var181 = this.field484.g2_alt1(-125);
-                    Component.method204(var180).field700 = (var179 << 16) + var181;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 90) {
-                    this.method119(this.field165, 69, this.field484);
-                    this.field505 = false;
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 113) {
-                    for (int var182 = 0; var182 < this.field335.length; ++var182) {
-                        if (this.field335[var182] != this.field301[var182]) {
-                            this.field335[var182] = this.field301[var182];
-                            this.method128(0, var182);
-                            this.field477 = true;
-                        }
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 232) {
-                    int var183 = this.field484.g2_alt3(-600);
-                    String var184 = this.field484.gjstr();
-                    Component.method204(var183).field712 = var184;
-                    int var10001 = this.field377[this.field581];
-                    if (Component.method204(var183).field730 == var10001) {
-                        this.field477 = true;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                if (this.field166 == 200) {
-                    int var185 = this.field484.g2();
-                    int var186 = this.field484.g2_alt3(-600);
-                    Component var187 = Component.method204(var185);
-                    if (var187 != null && var187.field718 == 0) {
-                        if (var186 < 0) {
-                            var186 = 0;
-                        }
-                        if (var186 > var187.field767 - var187.field720) {
-                            var186 = var187.field767 - var187.field720;
-                        }
-                        var187.field713 = var186;
-                    }
-                    this.field166 = -1;
-                    return true;
-                }
-                signlink.reporterror("T1 - " + this.field166 + "," + this.field165 + " - " + this.field200 + "," + this.field201);
-                this.method148(true);
-            } catch (IOException var192) {
-                this.method79(1);
-            } catch (Exception var193) {
-                String var189 = "T2 - " + this.field166 + "," + this.field200 + "," + this.field201 + " - " + this.field165 + "," + (field463.field1133[0] + this.field336) + "," + (field463.field1134[0] + this.field337) + " - ";
-                for (int var190 = 0; var190 < this.field165 && var190 < 50; ++var190) {
-                    var189 = var189 + this.field484.data[var190] + ",";
-                }
-                signlink.reporterror(var189);
-                this.method148(true);
+                this.field166 = -1;
+                return true;
             }
-            return true;
+            if (this.field166 == 183) {
+                // UPDATE_ZONE_PARTIAL_ENCLOSED
+                this.field285 = this.field484.g1();
+                this.field286 = this.field484.g1_alt1(0);
+                while (this.field484.pos < this.field165) {
+                    int var100 = this.field484.g1();
+                    this.method158(this.field484, 0, var100);
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 159) {
+                // IF_OPENMAIN
+                int var101 = this.field484.g2_alt3(-600);
+                this.method135((byte) 36, var101);
+                if (this.sidebarInterfaceId != -1) {
+                    this.method64(field486, this.sidebarInterfaceId);
+                    this.sidebarInterfaceId = -1;
+                    this.redrawSidebar = true;
+                    this.redrawSideicons = true;
+                }
+                if (this.chatInterfaceId != -1) {
+                    this.method64(field486, this.chatInterfaceId);
+                    this.chatInterfaceId = -1;
+                    this.redrawChatback = true;
+                }
+                if (this.field349 != -1) {
+                    this.method64(field486, this.field349);
+                    this.field349 = -1;
+                    this.field342 = true;
+                }
+                if (this.field256 != -1) {
+                    this.method64(field486, this.field256);
+                    this.field256 = -1;
+                }
+                if (this.viewportInterfaceId != var101) {
+                    this.method64(field486, this.viewportInterfaceId);
+                    this.viewportInterfaceId = var101;
+                }
+                if (this.field540 != 0) {
+                    this.field540 = 0;
+                    this.redrawChatback = true;
+                }
+                this.pressedContinueOption = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 246) {
+                // IF_OPENSIDE
+                int var102 = this.field484.g2_alt3(-600);
+                this.method135((byte) 36, var102);
+                if (this.chatInterfaceId != -1) {
+                    this.method64(field486, this.chatInterfaceId);
+                    this.chatInterfaceId = -1;
+                    this.redrawChatback = true;
+                }
+                if (this.field349 != -1) {
+                    this.method64(field486, this.field349);
+                    this.field349 = -1;
+                    this.field342 = true;
+                }
+                if (this.field256 != -1) {
+                    this.method64(field486, this.field256);
+                    this.field256 = -1;
+                }
+                if (this.viewportInterfaceId != -1) {
+                    this.method64(field486, this.viewportInterfaceId);
+                    this.viewportInterfaceId = -1;
+                }
+                if (this.sidebarInterfaceId != var102) {
+                    this.method64(field486, this.sidebarInterfaceId);
+                    this.sidebarInterfaceId = var102;
+                }
+                if (this.field540 != 0) {
+                    this.field540 = 0;
+                    this.redrawChatback = true;
+                }
+                this.redrawSidebar = true;
+                this.redrawSideicons = true;
+                this.pressedContinueOption = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 49) {
+                // UPDATE_STAT
+                this.redrawSidebar = true;
+                int var103 = this.field484.g1_alt2(-34545);
+                int var104 = this.field484.g1();
+                int var105 = this.field484.g4();
+                this.field139[var103] = var105;
+                this.field325[var103] = var104;
+                this.field350[var103] = 1;
+                for (int var106 = 0; var106 < 98; ++var106) {
+                    if (var105 >= field248[var106]) {
+                        this.field350[var103] = var106 + 2;
+                    }
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 206) {
+                // UPDATE_INV_FULL
+                this.redrawSidebar = true;
+                int var107 = this.field484.g2();
+                Component var108 = Component.get(var107);
+                int var109 = this.field484.g2();
+                for (int var110 = 0; var110 < var109; ++var110) {
+                    var108.invSlotObjId[var110] = this.field484.g2_alt3(-600);
+                    int var111 = this.field484.g1_alt2(-34545);
+                    if (var111 == 255) {
+                        var111 = this.field484.g4_alt1(935);
+                    }
+                    var108.invSlotObjCount[var110] = var111;
+                }
+                for (int var112 = var109; var112 < var108.invSlotObjId.length; ++var112) {
+                    var108.invSlotObjId[var112] = 0;
+                    var108.invSlotObjCount[var112] = 0;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 222 || this.field166 == 53) {
+                int var113 = this.sceneCenterZoneX;
+                int var114 = this.sceneCenterZoneZ;
+                if (this.field166 == 222) {
+                    // REBUILD_NORMAL
+                    var114 = this.field484.g2();
+                    var113 = this.field484.g2_alt3(-600);
+                    this.field459 = false;
+                }
+                if (this.field166 == 53) {
+                    // REBUILD_REGION
+                    var113 = this.field484.g2_alt2((byte) 9);
+                    this.field484.accessBits((byte) 6);
+                    int var115 = 0;
+                    while (true) {
+                        if (var115 >= 4) {
+                            this.field484.accessBytes(-29290);
+                            var114 = this.field484.g2_alt2((byte) 9);
+                            this.field459 = true;
+                            break;
+                        }
+                        for (int var116 = 0; var116 < 13; ++var116) {
+                            for (int var117 = 0; var117 < 13; ++var117) {
+                                int var118 = this.field484.gBit(402, 1);
+                                if (var118 == 1) {
+                                    this.field175[var115][var116][var117] = this.field484.gBit(402, 26);
+                                } else {
+                                    this.field175[var115][var116][var117] = -1;
+                                }
+                            }
+                        }
+                        ++var115;
+                    }
+                }
+                if (this.sceneCenterZoneX == var113 && this.sceneCenterZoneZ == var114 && this.field367 == 2) {
+                    this.field166 = -1;
+                    return true;
+                }
+                this.sceneCenterZoneX = var113;
+                this.sceneCenterZoneZ = var114;
+                this.sceneBaseTileX = (this.sceneCenterZoneX - 6) * 8;
+                this.sceneBaseTileZ = (this.sceneCenterZoneZ - 6) * 8;
+                this.field363 = false;
+                if ((this.sceneCenterZoneX / 8 == 48 || this.sceneCenterZoneX / 8 == 49) && this.sceneCenterZoneZ / 8 == 48) {
+                    this.field363 = true;
+                }
+                if (this.sceneCenterZoneX / 8 == 48 && this.sceneCenterZoneZ / 8 == 148) {
+                    this.field363 = true;
+                }
+                this.field367 = 1;
+                this.field525 = System.currentTimeMillis();
+                this.method149(-332, (String) null, "Loading - please wait.");
+                if (this.field166 == 222) {
+                    int var119 = 0;
+                    int var120 = (this.sceneCenterZoneX - 6) / 8;
+                    label1207: while (true) {
+                        if (var120 > (this.sceneCenterZoneX + 6) / 8) {
+                            this.field134 = new byte[var119][];
+                            this.field528 = new byte[var119][];
+                            this.field152 = new int[var119];
+                            this.field153 = new int[var119];
+                            this.field154 = new int[var119];
+                            int var122 = 0;
+                            int var123 = (this.sceneCenterZoneX - 6) / 8;
+                            while (true) {
+                                if (var123 > (this.sceneCenterZoneX + 6) / 8) {
+                                    break label1207;
+                                }
+                                for (int var124 = (this.sceneCenterZoneZ - 6) / 8; var124 <= (this.sceneCenterZoneZ + 6) / 8; ++var124) {
+                                    this.field152[var122] = (var123 << 8) + var124;
+                                    if (this.field363 && (var124 == 49 || var124 == 149 || var124 == 147 || var123 == 50 || var123 == 49 && var124 == 47)) {
+                                        this.field153[var122] = -1;
+                                        this.field154[var122] = -1;
+                                        ++var122;
+                                    } else {
+                                        int var125 = this.field153[var122] = this.field587.method601(0, var123, var124, 0);
+                                        if (var125 != -1) {
+                                            this.field587.method586(3, var125);
+                                        }
+                                        int var126 = this.field154[var122] = this.field587.method601(0, var123, var124, 1);
+                                        if (var126 != -1) {
+                                            this.field587.method586(3, var126);
+                                        }
+                                        ++var122;
+                                    }
+                                }
+                                ++var123;
+                            }
+                        }
+                        for (int var121 = (this.sceneCenterZoneZ - 6) / 8; var121 <= (this.sceneCenterZoneZ + 6) / 8; ++var121) {
+                            ++var119;
+                        }
+                        ++var120;
+                    }
+                }
+                if (this.field166 == 53) {
+                    int var127 = 0;
+                    int[] var128 = new int[676];
+                    int var129 = 0;
+                    label1168: while (true) {
+                        if (var129 >= 4) {
+                            this.field134 = new byte[var127][];
+                            this.field528 = new byte[var127][];
+                            this.field152 = new int[var127];
+                            this.field153 = new int[var127];
+                            this.field154 = new int[var127];
+                            int var137 = 0;
+                            while (true) {
+                                if (var137 >= var127) {
+                                    break label1168;
+                                }
+                                int var138 = this.field152[var137] = var128[var137];
+                                int var139 = var138 >> 8 & 255;
+                                int var140 = var138 & 255;
+                                int var141 = this.field153[var137] = this.field587.method601(0, var139, var140, 0);
+                                if (var141 != -1) {
+                                    this.field587.method586(3, var141);
+                                }
+                                int var142 = this.field154[var137] = this.field587.method601(0, var139, var140, 1);
+                                if (var142 != -1) {
+                                    this.field587.method586(3, var142);
+                                }
+                                ++var137;
+                            }
+                        }
+                        for (int var130 = 0; var130 < 13; ++var130) {
+                            for (int var131 = 0; var131 < 13; ++var131) {
+                                int var132 = this.field175[var129][var130][var131];
+                                if (var132 != -1) {
+                                    int var133 = var132 >> 14 & 1023;
+                                    int var134 = var132 >> 3 & 2047;
+                                    int var135 = (var133 / 8 << 8) + var134 / 8;
+                                    for (int var136 = 0; var136 < var127; ++var136) {
+                                        if (var128[var136] == var135) {
+                                            var135 = -1;
+                                            break;
+                                        }
+                                    }
+                                    if (var135 != -1) {
+                                        var128[var127++] = var135;
+                                    }
+                                }
+                            }
+                        }
+                        ++var129;
+                    }
+                }
+                int var143 = this.sceneBaseTileX - this.field338;
+                int var144 = this.sceneBaseTileZ - this.field339;
+                this.field338 = this.sceneBaseTileX;
+                this.field339 = this.sceneBaseTileZ;
+                for (int var145 = 0; var145 < 16384; ++var145) {
+                    NpcEntity var146 = this.field428[var145];
+                    if (var146 != null) {
+                        for (int var147 = 0; var147 < 10; ++var147) {
+                            var146.routeTileX[var147] -= var143;
+                            var146.routeTileZ[var147] -= var144;
+                        }
+                        var146.x -= var143 * 128;
+                        var146.z -= var144 * 128;
+                    }
+                }
+                for (int var148 = 0; var148 < this.field264; ++var148) {
+                    PlayerEntity var149 = this.field266[var148];
+                    if (var149 != null) {
+                        for (int var150 = 0; var150 < 10; ++var150) {
+                            var149.routeTileX[var150] -= var143;
+                            var149.routeTileZ[var150] -= var144;
+                        }
+                        var149.x -= var143 * 128;
+                        var149.z -= var144 * 128;
+                    }
+                }
+                this.field505 = true;
+                byte var151 = 0;
+                byte var152 = 104;
+                byte var153 = 1;
+                if (var143 < 0) {
+                    var151 = 103;
+                    var152 = -1;
+                    var153 = -1;
+                }
+                byte var154 = 0;
+                byte var155 = 104;
+                byte var156 = 1;
+                if (var144 < 0) {
+                    var154 = 103;
+                    var155 = -1;
+                    var156 = -1;
+                }
+                for (int var157 = var151; var152 != var157; var157 += var153) {
+                    for (int var158 = var154; var155 != var158; var158 += var156) {
+                        int var159 = var143 + var157;
+                        int var160 = var144 + var158;
+                        for (int var161 = 0; var161 < 4; ++var161) {
+                            if (var159 >= 0 && var160 >= 0 && var159 < 104 && var160 < 104) {
+                                this.field619[var161][var157][var158] = this.field619[var161][var159][var160];
+                            } else {
+                                this.field619[var161][var157][var158] = null;
+                            }
+                        }
+                    }
+                }
+                for (LocSpawned var162 = (LocSpawned) this.field557.method6(); var162 != null; var162 = (LocSpawned) this.field557.method8(1)) {
+                    var162.field1325 -= var143;
+                    var162.field1326 -= var144;
+                    if (var162.field1325 < 0 || var162.field1326 < 0 || var162.field1325 >= 104 || var162.field1326 >= 104) {
+                        var162.method604();
+                    }
+                }
+                if (this.field416 != 0) {
+                    this.field416 -= var143;
+                    this.field417 -= var144;
+                }
+                this.field507 = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 190) {
+                // UPDATE_REBOOT_TIMER
+                this.field353 = this.field484.g2_alt1(-125) * 30;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 41 || this.field166 == 121 || this.field166 == 203 || this.field166 == 106 || this.field166 == 59 || this.field166 == 181 || this.field166 == 208 || this.field166 == 107 || this.field166 == 142 || this.field166 == 88 || this.field166 == 152) {
+                this.method158(this.field484, 0, this.field166);
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 125) {
+                // UPDATE_RUNENERGY
+                if (this.field581 == 12) {
+                    this.redrawSidebar = true;
+                }
+                this.field620 = this.field484.g1();
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 21) {
+                // IF_SETOBJECT
+                int var163 = this.field484.g2();
+                int var164 = this.field484.g2_alt1(-125);
+                int var165 = this.field484.g2_alt3(-600);
+                if (var164 == 65535) {
+                    Component.get(var165).modelType = 0;
+                    this.field166 = -1;
+                    return true;
+                }
+                ObjType var166 = ObjType.method221(var164);
+                Component.get(var165).modelType = 4;
+                Component.get(var165).model = var164;
+                Component.get(var165).xan = var166.field841;
+                Component.get(var165).yan = var166.field838;
+                Component.get(var165).zoom = var166.field851 * 100 / var163;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 3) {
+                // CAM_MOVETO
+                this.field507 = true;
+                this.field170 = this.field484.g1();
+                this.field171 = this.field484.g1();
+                this.field172 = this.field484.g2();
+                this.field173 = this.field484.g1();
+                this.field174 = this.field484.g1();
+                if (this.field174 >= 100) {
+                    this.field512 = this.field170 * 128 + 64;
+                    this.field514 = this.field171 * 128 + 64;
+                    this.field513 = this.method133(this.field514, this.field512, (byte) 9, this.field387) - this.field172;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 2) {
+                // IF_SETANIM
+                int var167 = this.field484.g2_alt3(-600);
+                int var168 = this.field484.g2b_alt2((byte) 17);
+                Component var169 = Component.get(var167);
+                if (var169.anim != var168 || var168 == -1) {
+                    var169.anim = var168;
+                    var169.field717 = 0;
+                    var169.field709 = 0;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 71) {
+                // NPC_INFO
+                this.method68(this.field484, this.field334, this.field165);
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 226) {
+                // UPDATE_IGNORELIST
+                this.field151 = this.field165 / 8;
+                for (int var170 = 0; var170 < this.field151; ++var170) {
+                    this.field369[var170] = this.field484.g8(-149);
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 10) {
+                // IF_SETTAB
+                int var171 = this.field484.g1_alt3(this.field532);
+                int var172 = this.field484.g2_alt2((byte) 9);
+                if (var172 == 65535) {
+                    var172 = -1;
+                }
+                if (this.field377[var171] != var172) {
+                    this.method64(field486, this.field377[var171]);
+                    this.field377[var171] = var172;
+                }
+                this.redrawSidebar = true;
+                this.redrawSideicons = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 219) {
+                // UPDATE_INV_STOP_TRANSMIT
+                int var173 = this.field484.g2_alt1(-125);
+                Component var174 = Component.get(var173);
+                for (int var175 = 0; var175 < var174.invSlotObjId.length; ++var175) {
+                    var174.invSlotObjId[var175] = -1;
+                    var174.invSlotObjId[var175] = 0;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 238) {
+                // TUT_FLASH
+                this.field509 = this.field484.g1();
+                if (this.field581 == this.field509) {
+                    if (this.field509 == 3) {
+                        this.field581 = 1;
+                    } else {
+                        this.field581 = 3;
+                    }
+                    this.redrawSidebar = true;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 148) {
+                // CAM_RESET
+                this.field507 = false;
+                for (int var176 = 0; var176 < 5; ++var176) {
+                    this.field223[var176] = false;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 126) {
+                // UPDATE_PID
+                this.field364 = this.field484.g1();
+                this.field257 = this.field484.g2_alt1(-125);
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 75) {
+                // UPDATE_ZONE_PARTIAL_FOLLOWS
+                this.field285 = this.field484.g1_alt2(-34545);
+                this.field286 = this.field484.g1_alt1(0);
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 253) {
+                // open fullscreen interface maybe?
+                int var177 = this.field484.g2_alt1(-125);
+                int var178 = this.field484.g2_alt2((byte) 9);
+                this.method135((byte) 36, var178);
+                if (var177 != -1) {
+                    this.method135((byte) 36, var177);
+                }
+                if (this.viewportInterfaceId != -1) {
+                    this.method64(field486, this.viewportInterfaceId);
+                    this.viewportInterfaceId = -1;
+                }
+                if (this.sidebarInterfaceId != -1) {
+                    this.method64(field486, this.sidebarInterfaceId);
+                    this.sidebarInterfaceId = -1;
+                }
+                if (this.chatInterfaceId != -1) {
+                    this.method64(field486, this.chatInterfaceId);
+                    this.chatInterfaceId = -1;
+                }
+                if (this.field349 != var178) {
+                    this.method64(field486, this.field349);
+                    this.field349 = var178;
+                }
+                if (this.field256 != var178) {
+                    this.method64(field486, this.field256);
+                    this.field256 = var177;
+                }
+                this.field540 = 0;
+                this.pressedContinueOption = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 251) {
+                // FRIENDLIST_LOADED
+                this.field156 = this.field484.g1();
+                this.redrawSidebar = true;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 18) {
+                int var179 = this.field484.g2();
+                int var180 = this.field484.g2_alt2((byte) 9);
+                int var181 = this.field484.g2_alt1(-125);
+                Component.get(var180).field700 = (var179 << 16) + var181;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 90) {
+                // PLAYER_INFO
+                this.method119(this.field165, 69, this.field484);
+                this.field505 = false;
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 113) {
+                // RESET_CLIENT_VARCACHE
+                for (int var182 = 0; var182 < this.field335.length; ++var182) {
+                    if (this.field335[var182] != this.field301[var182]) {
+                        this.field335[var182] = this.field301[var182];
+                        this.method128(0, var182);
+                        this.redrawSidebar = true;
+                    }
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 232) {
+                // IF_SETTEXT
+                int var183 = this.field484.g2_alt3(-600);
+                String var184 = this.field484.gjstr();
+                Component.get(var183).text = var184;
+                int var10001 = this.field377[this.field581];
+                if (Component.get(var183).layer == var10001) {
+                    this.redrawSidebar = true;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            if (this.field166 == 200) {
+                // IF_SETSCROLLPOS
+                int var185 = this.field484.g2();
+                int var186 = this.field484.g2_alt3(-600);
+                Component var187 = Component.get(var185);
+                if (var187 != null && var187.type == 0) {
+                    if (var186 < 0) {
+                        var186 = 0;
+                    }
+                    if (var186 > var187.scroll - var187.height) {
+                        var186 = var187.scroll - var187.height;
+                    }
+                    var187.field713 = var186;
+                }
+                this.field166 = -1;
+                return true;
+            }
+            signlink.reporterror("T1 - " + this.field166 + "," + this.field165 + " - " + this.field200 + "," + this.field201);
+            this.method148(true);
+        } catch (IOException var192) {
+            this.method79(1);
+        } catch (Exception var193) {
+            var193.printStackTrace();
+            String var189 = "T2 - " + this.field166 + "," + this.field200 + "," + this.field201 + " - " + this.field165 + "," + (field463.routeTileX[0] + this.sceneBaseTileX) + "," + (field463.routeTileZ[0] + this.sceneBaseTileZ) + " - ";
+            for (int var190 = 0; var190 < this.field165 && var190 < 50; ++var190) {
+                var189 = var189 + this.field484.data[var190] + ",";
+            }
+            signlink.reporterror(var189);
+            this.method148(true);
         }
+        return true;
     }
 
     @OriginalMember(owner = "client!client", name = "g", descriptor = "(B)V")
@@ -4329,20 +4408,23 @@ public class client extends GameShell {
             int var35 = this.field419[var41];
             int var36 = this.field420[var41];
             if (arg6 == 0) {
+                // MOVE_GAMECLICK
                 this.field260.p1isaac((byte) 4, 28);
                 this.field260.p1(var34 + var34 + 3);
             }
             if (arg6 == 1) {
+                // MOVE_MINIMAPCLICK
                 this.field260.p1isaac((byte) 4, 213);
                 this.field260.p1(var34 + var34 + 3 + 14);
             }
             if (arg6 == 2) {
+                // MOVE_OPCLICK
                 this.field260.p1isaac((byte) 4, 247);
                 this.field260.p1(var34 + var34 + 3);
             }
-            this.field260.p2_alt3(3, this.field336 + var35);
+            this.field260.p2_alt3(3, this.sceneBaseTileX + var35);
             this.field260.p1(super.field969[5] == 1 ? 1 : 0);
-            this.field260.p2_alt3(3, this.field337 + var36);
+            this.field260.p2_alt3(3, this.sceneBaseTileZ + var36);
             this.field416 = this.field419[0];
             this.field417 = this.field420[0];
             for (int var37 = 1; var37 < var34; ++var37) {
@@ -4488,7 +4570,8 @@ public class client extends GameShell {
             if (super.field966 >= 6 && super.field966 <= 106 && super.field967 >= 467 && super.field967 <= 499) {
                 this.field302 = (this.field302 + 1) % 4;
                 this.field508 = true;
-                this.field536 = true;
+                this.redrawChatback = true;
+                // CHAT_SETMODE
                 this.field260.p1isaac((byte) 4, 176);
                 this.field260.p1(this.field302);
                 this.field260.p1(this.field183);
@@ -4497,7 +4580,8 @@ public class client extends GameShell {
             if (super.field966 >= 135 && super.field966 <= 235 && super.field967 >= 467 && super.field967 <= 499) {
                 this.field183 = (this.field183 + 1) % 3;
                 this.field508 = true;
-                this.field536 = true;
+                this.redrawChatback = true;
+                // CHAT_SETMODE
                 this.field260.p1isaac((byte) 4, 176);
                 this.field260.p1(this.field302);
                 this.field260.p1(this.field183);
@@ -4506,18 +4590,19 @@ public class client extends GameShell {
             if (super.field966 >= 273 && super.field966 <= 373 && super.field967 >= 467 && super.field967 <= 499) {
                 this.field523 = (this.field523 + 1) % 3;
                 this.field508 = true;
-                this.field536 = true;
+                this.redrawChatback = true;
+                // CHAT_SETMODE
                 this.field260.p1isaac((byte) 4, 176);
                 this.field260.p1(this.field302);
                 this.field260.p1(this.field183);
                 this.field260.p1(this.field523);
             }
             if (super.field966 >= 412 && super.field966 <= 512 && super.field967 >= 467 && super.field967 <= 499) {
-                if (this.field465 == -1) {
+                if (this.viewportInterfaceId == -1) {
                     this.method34(false);
                     this.field135 = "";
                     this.field394 = false;
-                    this.field527 = this.field465 = Component.field728;
+                    this.field527 = this.viewportInterfaceId = Component.reportAbuseInterfaceId;
                 } else {
                     this.method67("", (byte) -123, "Please close the interface you have open before using 'report abuse'", 0);
                 }
@@ -4525,6 +4610,7 @@ public class client extends GameShell {
             ++field456;
             if (field456 > 161) {
                 field456 = 0;
+                // ANTICHEAT_CYCLELOGIC6
                 this.field260.p1isaac((byte) 4, 22);
                 this.field260.p2(38304);
                 return;
@@ -4600,18 +4686,18 @@ public class client extends GameShell {
         if (arg6 >= arg8 && arg6 < arg8 + 16 && arg4 >= arg1 && arg4 < arg1 + 16) {
             arg2.field713 -= this.field390 * 4;
             if (arg5 == 1) {
-                this.field477 = true;
+                this.redrawSidebar = true;
             }
             if (arg5 == 2 || arg5 == 3) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
         } else if (arg6 >= arg8 && arg6 < arg8 + 16 && arg4 >= arg1 + arg7 - 16 && arg4 < arg1 + arg7) {
             arg2.field713 += this.field390 * 4;
             if (arg5 == 1) {
-                this.field477 = true;
+                this.redrawSidebar = true;
             }
             if (arg5 == 2 || arg5 == 3) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
         } else if (arg6 >= arg8 - this.field599 && arg6 < arg8 + 16 + this.field599 && arg4 >= arg1 + 16 && arg4 < arg1 + arg7 - 16 && this.field390 > 0) {
             int var11 = (arg7 - 32) * arg7 / arg0;
@@ -4622,10 +4708,10 @@ public class client extends GameShell {
             int var13 = arg7 - 32 - var11;
             arg2.field713 = (arg0 - arg7) * var12 / var13;
             if (arg5 == 1) {
-                this.field477 = true;
+                this.redrawSidebar = true;
             }
             if (arg5 == 2 || arg5 == 3) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
             this.field423 = true;
         }
@@ -4713,16 +4799,16 @@ public class client extends GameShell {
                 }
                 if (var7 == 1) {
                     NpcEntity var11 = this.field428[var8];
-                    if (var11.field1370.field1445 == 1 && (var11.field1157 & 127) == 64 && (var11.field1158 & 127) == 64) {
+                    if (var11.field1370.field1445 == 1 && (var11.x & 127) == 64 && (var11.z & 127) == 64) {
                         for (int var12 = 0; var12 < this.field429; ++var12) {
                             NpcEntity var15 = this.field428[this.field430[var12]];
-                            if (var15 != null && var11 != var15 && var15.field1370.field1445 == 1 && var11.field1157 == var15.field1157 && var11.field1158 == var15.field1158) {
+                            if (var15 != null && var11 != var15 && var15.field1370.field1445 == 1 && var11.x == var15.x && var11.z == var15.z) {
                                 this.method104(var15.field1370, var6, var5, this.field430[var12], (byte) -76);
                             }
                         }
                         for (int var13 = 0; var13 < this.field267; ++var13) {
                             PlayerEntity var14 = this.field266[this.field268[var13]];
-                            if (var14 != null && var11.field1157 == var14.field1157 && var11.field1158 == var14.field1158) {
+                            if (var14 != null && var11.x == var14.x && var11.z == var14.z) {
                                 this.method58(this.field268[var13], var6, var5, var14, 0);
                             }
                         }
@@ -4731,16 +4817,16 @@ public class client extends GameShell {
                 }
                 if (var7 == 0) {
                     PlayerEntity var16 = this.field266[var8];
-                    if ((var16.field1157 & 127) == 64 && (var16.field1158 & 127) == 64) {
+                    if ((var16.x & 127) == 64 && (var16.z & 127) == 64) {
                         for (int var17 = 0; var17 < this.field429; ++var17) {
                             NpcEntity var20 = this.field428[this.field430[var17]];
-                            if (var20 != null && var20.field1370.field1445 == 1 && var16.field1157 == var20.field1157 && var16.field1158 == var20.field1158) {
+                            if (var20 != null && var20.field1370.field1445 == 1 && var16.x == var20.x && var16.z == var20.z) {
                                 this.method104(var20.field1370, var6, var5, this.field430[var17], (byte) -76);
                             }
                         }
                         for (int var18 = 0; var18 < this.field267; ++var18) {
                             PlayerEntity var19 = this.field266[this.field268[var18]];
-                            if (var19 != null && var16 != var19 && var16.field1157 == var19.field1157 && var16.field1158 == var19.field1158) {
+                            if (var19 != null && var16 != var19 && var16.x == var19.x && var16.z == var19.z) {
                                 this.method58(this.field268[var18], var6, var5, var19, 0);
                             }
                         }
@@ -4954,8 +5040,8 @@ public class client extends GameShell {
             this.field354 = arg2;
             super.field965 = 0;
         }
-        if (this.field284 == -1) {
-            this.field536 = true;
+        if (this.chatInterfaceId == -1) {
+            this.redrawChatback = true;
         }
         for (int var5 = 99; var5 > 0; --var5) {
             this.field592[var5] = this.field592[var5 - 1];
@@ -5034,8 +5120,8 @@ public class client extends GameShell {
                 if (field621 >= var2.field986) {
                     if (var2.field981 > 0) {
                         NpcEntity var3 = this.field428[var2.field981 - 1];
-                        if (var3 != null && var3.field1157 >= 0 && var3.field1157 < 13312 && var3.field1158 >= 0 && var3.field1158 < 13312) {
-                            var2.method271(var3.field1157, var3.field1158, this.method133(var3.field1158, var3.field1157, (byte) 9, var2.field975) - var2.field1000, field621, 0);
+                        if (var3 != null && var3.x >= 0 && var3.x < 13312 && var3.z >= 0 && var3.z < 13312) {
+                            var2.method271(var3.x, var3.z, this.method133(var3.z, var3.x, (byte) 9, var2.field975) - var2.field1000, field621, 0);
                         }
                     }
                     if (var2.field981 < 0) {
@@ -5046,8 +5132,8 @@ public class client extends GameShell {
                         } else {
                             var5 = this.field266[var4];
                         }
-                        if (var5 != null && var5.field1157 >= 0 && var5.field1157 < 13312 && var5.field1158 >= 0 && var5.field1158 < 13312) {
-                            var2.method271(var5.field1157, var5.field1158, this.method133(var5.field1158, var5.field1157, (byte) 9, var2.field975) - var2.field1000, field621, 0);
+                        if (var5 != null && var5.x >= 0 && var5.x < 13312 && var5.z >= 0 && var5.z < 13312) {
+                            var2.method271(var5.x, var5.z, this.method133(var5.z, var5.x, (byte) 9, var2.field975) - var2.field1000, field621, 0);
                         }
                     }
                     var2.method272(this.field247, false);
@@ -5061,6 +5147,7 @@ public class client extends GameShell {
         ++field464;
         if (field464 > 51) {
             field464 = 0;
+            // ANTICHEAT_CYCLELOGIC5
             this.field260.p1isaac((byte) 4, 248);
         }
     }
@@ -5143,12 +5230,13 @@ public class client extends GameShell {
             for (int var4 = 0; var4 < this.field155; ++var4) {
                 if (this.field426[var4] == arg0) {
                     --this.field155;
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     for (int var5 = var4; var5 < this.field155; ++var5) {
                         this.field145[var5] = this.field145[var5 + 1];
                         this.field563[var5] = this.field563[var5 + 1];
                         this.field426[var5] = this.field426[var5 + 1];
                     }
+                    // FRIENDLIST_DEL
                     this.field260.p1isaac((byte) 4, 141);
                     this.field260.p8(arg0, true);
                     break;
@@ -5187,10 +5275,10 @@ public class client extends GameShell {
                     if (var3 < this.field601 - 10 || var3 > this.field603 + this.field601 + 10 || var4 < this.field602 - 10 || var4 > this.field604 + this.field602 + 10) {
                         this.field361 = false;
                         if (this.field600 == 1) {
-                            this.field477 = true;
+                            this.redrawSidebar = true;
                         }
                         if (this.field600 == 2) {
-                            this.field536 = true;
+                            this.redrawChatback = true;
                         }
                     }
                 }
@@ -5224,10 +5312,10 @@ public class client extends GameShell {
                     }
                     this.field361 = false;
                     if (this.field600 == 1) {
-                        this.field477 = true;
+                        this.redrawSidebar = true;
                     }
                     if (this.field600 == 2) {
-                        this.field536 = true;
+                        this.redrawChatback = true;
                         return;
                     }
                 }
@@ -5237,8 +5325,8 @@ public class client extends GameShell {
                     if (var13 == 9 || var13 == 225 || var13 == 444 || var13 == 564 || var13 == 894 || var13 == 961 || var13 == 399 || var13 == 324 || var13 == 227 || var13 == 891 || var13 == 52 || var13 == 1094) {
                         int var14 = this.field275[this.field479 - 1];
                         int var15 = this.field276[this.field479 - 1];
-                        Component var16 = Component.method204(var15);
-                        if (var16.field756 || var16.field699) {
+                        Component var16 = Component.get(var15);
+                        if (var16.draggable || var16.swappable) {
                             this.field451 = false;
                             this.field565 = 0;
                             this.field407 = var15;
@@ -5246,10 +5334,10 @@ public class client extends GameShell {
                             this.field409 = 2;
                             this.field410 = super.field966;
                             this.field411 = super.field967;
-                            if (Component.method204(var15).field730 == this.field465) {
+                            if (Component.get(var15).layer == this.viewportInterfaceId) {
                                 this.field409 = 1;
                             }
-                            if (Component.method204(var15).field730 == this.field284) {
+                            if (Component.get(var15).layer == this.chatInterfaceId) {
                                 this.field409 = 3;
                             }
                             return;
@@ -5324,10 +5412,10 @@ public class client extends GameShell {
             NpcEntity var5 = this.field428[this.field430[var4]];
             int var6 = (this.field430[var4] << 14) + 536870912;
             if (var5 != null && var5.method351(0) && var5.field1370.field1447 == arg1 && var5.field1370.method473(-993)) {
-                int var7 = var5.field1157 >> 7;
-                int var8 = var5.field1158 >> 7;
+                int var7 = var5.x >> 7;
+                int var8 = var5.z >> 7;
                 if (var7 >= 0 && var7 < 104 && var8 >= 0 && var8 < 104) {
-                    if (var5.field1148 == 1 && (var5.field1157 & 127) == 64 && (var5.field1158 & 127) == 64) {
+                    if (var5.size == 1 && (var5.x & 127) == 64 && (var5.z & 127) == 64) {
                         if (this.field182[var7][var8] == this.field434) {
                             continue;
                         }
@@ -5336,7 +5424,7 @@ public class client extends GameShell {
                     if (!var5.field1370.field1434) {
                         var6 += Integer.MIN_VALUE;
                     }
-                    this.field460.method285(var6, var5, var5.field1157, this.method133(var5.field1158, var5.field1157, (byte) 9, this.field387), var5.field1139, 0, this.field387, (var5.field1148 - 1) * 64 + 60, var5.field1158, var5.field1159);
+                    this.field460.method285(var6, var5, var5.x, this.method133(var5.z, var5.x, (byte) 9, this.field387), var5.field1139, 0, this.field387, (var5.size - 1) * 64 + 60, var5.z, var5.field1159);
                 }
             }
         }
@@ -5377,13 +5465,13 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(ILEWIXBTLV;)Z")
     public final boolean method80(int arg0, Component arg1) {
-        int var3 = arg1.field724;
+        int var3 = arg1.clientCode;
         if (arg0 <= 0) {
             this.field166 = -1;
         }
         if (this.field156 == 2) {
             if (var3 == 201) {
-                this.field536 = true;
+                this.redrawChatback = true;
                 this.field540 = 0;
                 this.field162 = true;
                 this.field322 = "";
@@ -5391,7 +5479,7 @@ public class client extends GameShell {
                 this.field233 = "Enter name of friend to add to list";
             }
             if (var3 == 202) {
-                this.field536 = true;
+                this.redrawChatback = true;
                 this.field540 = 0;
                 this.field162 = true;
                 this.field322 = "";
@@ -5404,7 +5492,7 @@ public class client extends GameShell {
             return true;
         } else {
             if (var3 == 501) {
-                this.field536 = true;
+                this.redrawChatback = true;
                 this.field540 = 0;
                 this.field162 = true;
                 this.field322 = "";
@@ -5412,7 +5500,7 @@ public class client extends GameShell {
                 this.field233 = "Enter name of player to add to list";
             }
             if (var3 == 502) {
-                this.field536 = true;
+                this.redrawChatback = true;
                 this.field540 = 0;
                 this.field162 = true;
                 this.field322 = "";
@@ -5479,6 +5567,7 @@ public class client extends GameShell {
                 if (var3 >= 601 && var3 <= 613) {
                     this.method34(false);
                     if (this.field135.length() > 0) {
+                        // REPORT_ABUSE
                         this.field260.p1isaac((byte) 4, 184);
                         this.field260.p8(JString.method344(this.field135), true);
                         this.field260.p1(var3 - 601);
@@ -5487,6 +5576,7 @@ public class client extends GameShell {
                 }
                 return false;
             } else {
+                // IF_PLAYERDESIGN
                 this.field260.p1isaac((byte) 4, 163);
                 this.field260.p1(this.field440 ? 0 : 1);
                 for (int var10 = 0; var10 < 7; ++var10) {
@@ -5641,8 +5731,9 @@ public class client extends GameShell {
             NpcEntity var7 = this.field428[var6];
             int var8 = arg0.g1();
             if ((var8 & 1) != 0) {
+                // CHANGETYPE
                 var7.field1370 = NpcType.method477(arg0.g2_alt2((byte) 9));
-                var7.field1148 = var7.field1370.field1445;
+                var7.size = var7.field1370.field1445;
                 var7.field1147 = var7.field1370.field1454;
                 var7.field1166 = var7.field1370.field1448;
                 var7.field1167 = var7.field1370.field1446;
@@ -5651,12 +5742,14 @@ public class client extends GameShell {
                 var7.field1181 = var7.field1370.field1424;
             }
             if ((var8 & 64) != 0) {
+                // FACE_ENTITY
                 var7.field1156 = arg0.g2_alt1(-125);
                 if (var7.field1156 == 65535) {
                     var7.field1156 = -1;
                 }
             }
             if ((var8 & 128) != 0) {
+                // DAMAGE
                 int var9 = arg0.g1_alt1(0);
                 int var10 = arg0.g1_alt1(0);
                 var7.method353(field621, false, var9, var10);
@@ -5665,6 +5758,7 @@ public class client extends GameShell {
                 var7.field1144 = arg0.g1_alt3(this.field532);
             }
             if ((var8 & 4) != 0) {
+                // SPOTANIM
                 var7.field1161 = arg0.g2();
                 int var11 = arg0.g4_alt2(3);
                 var7.field1165 = var11 >> 16;
@@ -5679,20 +5773,23 @@ public class client extends GameShell {
                 }
             }
             if ((var8 & 32) != 0) {
+                // SAY
                 var7.field1127 = arg0.gjstr();
                 var7.field1129 = 100;
             }
             if ((var8 & 8) != 0) {
+                // FACE_COORD
                 var7.field1145 = arg0.g2_alt3(-600);
                 var7.field1146 = arg0.g2_alt1(-125);
             }
             if ((var8 & 2) != 0) {
+                // ANIM
                 int var12 = arg0.g2();
                 if (var12 == 65535) {
                     var12 = -1;
                 }
                 int var13 = arg0.g1_alt3(this.field532);
-                if (var7.field1171 == var12 && var12 != -1) {
+                if (var7.primarySeqId == var12 && var12 != -1) {
                     int var14 = SeqType.field775[var12].field789;
                     if (var14 == 1) {
                         var7.field1172 = 0;
@@ -5703,16 +5800,17 @@ public class client extends GameShell {
                     if (var14 == 2) {
                         var7.field1175 = 0;
                     }
-                } else if (var12 == -1 || var7.field1171 == -1 || SeqType.field775[var12].field783 >= SeqType.field775[var7.field1171].field783) {
-                    var7.field1171 = var12;
+                } else if (var12 == -1 || var7.primarySeqId == -1 || SeqType.field775[var12].field783 >= SeqType.field775[var7.primarySeqId].field783) {
+                    var7.primarySeqId = var12;
                     var7.field1172 = 0;
                     var7.field1173 = 0;
                     var7.field1174 = var13;
                     var7.field1175 = 0;
-                    var7.field1160 = var7.field1180;
+                    var7.preanimRouteLength = var7.routeLength;
                 }
             }
             if ((var8 & 16) != 0) {
+                // DAMAGE2
                 int var15 = arg0.g1_alt3(this.field532);
                 int var16 = arg0.g1_alt3(this.field532);
                 var7.method353(field621, false, var15, var16);
@@ -5730,12 +5828,13 @@ public class client extends GameShell {
             }
         }
         if ((arg3 & 8) != 0) {
+            // ANIM
             int var7 = arg4.g2();
             if (var7 == 65535) {
                 var7 = -1;
             }
             int var8 = arg4.g1_alt3(this.field532);
-            if (arg2.field1171 == var7 && var7 != -1) {
+            if (arg2.primarySeqId == var7 && var7 != -1) {
                 int var9 = SeqType.field775[var7].field789;
                 if (var9 == 1) {
                     arg2.field1172 = 0;
@@ -5746,16 +5845,17 @@ public class client extends GameShell {
                 if (var9 == 2) {
                     arg2.field1175 = 0;
                 }
-            } else if (var7 == -1 || arg2.field1171 == -1 || SeqType.field775[var7].field783 >= SeqType.field775[arg2.field1171].field783) {
-                arg2.field1171 = var7;
+            } else if (var7 == -1 || arg2.primarySeqId == -1 || SeqType.field775[var7].field783 >= SeqType.field775[arg2.primarySeqId].field783) {
+                arg2.primarySeqId = var7;
                 arg2.field1172 = 0;
                 arg2.field1173 = 0;
                 arg2.field1174 = var8;
                 arg2.field1175 = 0;
-                arg2.field1160 = arg2.field1180;
+                arg2.preanimRouteLength = arg2.routeLength;
             }
         }
         if ((arg3 & 16) != 0) {
+            // SAY
             arg2.field1127 = arg4.gjstr();
             if (arg2.field1127.charAt(0) == '~') {
                 arg2.field1127 = arg2.field1127.substring(1);
@@ -5768,6 +5868,7 @@ public class client extends GameShell {
             arg2.field1129 = 150;
         }
         if ((arg3 & 256) != 0) {
+            // EXACTMOVE
             arg2.field1149 = arg4.g1_alt1(0);
             arg2.field1151 = arg4.g1_alt2(-34545);
             arg2.field1150 = arg4.g1_alt3(this.field532);
@@ -5778,16 +5879,19 @@ public class client extends GameShell {
             arg2.method350(-56);
         }
         if ((arg3 & 1) != 0) {
+            // FACE_ENTITY
             arg2.field1156 = arg4.g2_alt2((byte) 9);
             if (arg2.field1156 == 65535) {
                 arg2.field1156 = -1;
             }
         }
         if ((arg3 & 2) != 0) {
+            // FACE_COORD
             arg2.field1145 = arg4.g2();
             arg2.field1146 = arg4.g2();
         }
         if ((arg3 & 512) != 0) {
+            // SPOTANIM
             arg2.field1161 = arg4.g2_alt2((byte) 9);
             int var10 = arg4.g4_alt2(3);
             arg2.field1165 = var10 >> 16;
@@ -5802,6 +5906,7 @@ public class client extends GameShell {
             }
         }
         if ((arg3 & 4) != 0) {
+            // APPEARANCE
             int var11 = arg4.g1();
             byte[] var12 = new byte[var11];
             Packet var13 = new Packet(true, var12);
@@ -5810,6 +5915,7 @@ public class client extends GameShell {
             arg2.method574(var13, 0);
         }
         if ((arg3 & 1024) != 0) {
+            // DAMAGE
             int var14 = arg4.g1_alt1(0);
             int var15 = arg4.g1_alt3(this.field532);
             arg2.method353(field621, false, var14, var15);
@@ -5818,9 +5924,10 @@ public class client extends GameShell {
             arg2.field1144 = arg4.g1();
         }
         if ((arg3 & 64) != 0) {
-            int var16 = arg4.g2();
-            int var17 = arg4.g1_alt2(-34545);
-            int var18 = arg4.g1_alt1(0);
+            // CHAT
+            int var16 = arg4.g2(); // colour effect
+            int var17 = arg4.g1_alt2(-34545); // type
+            int var18 = arg4.g1_alt1(0); // length
             int var19 = arg4.pos;
             if (arg2.field1673 != null && arg2.field1680) {
                 long var20 = JString.method344(arg2.field1673);
@@ -5861,6 +5968,7 @@ public class client extends GameShell {
             arg4.pos = var18 + var19;
         }
         if ((arg3 & 128) != 0) {
+            // DAMAGE2
             int var27 = arg4.g1_alt3(this.field532);
             int var28 = arg4.g1_alt2(-34545);
             arg2.method353(field621, false, var27, var28);
@@ -6337,116 +6445,116 @@ public class client extends GameShell {
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(ILEWIXBTLV;IIIIII)V")
     public final void method88(int arg0, Component arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7) {
         if (arg6 == 23658) {
-            if (arg1.field718 == 0 && arg1.field740 != null && !arg1.field701) {
-                if (arg5 >= arg4 && arg7 >= arg0 && arg5 <= arg1.field723 + arg4 && arg7 <= arg1.field720 + arg0) {
-                    int var9 = arg1.field740.length;
+            if (arg1.type == 0 && arg1.children != null && !arg1.hide) {
+                if (arg5 >= arg4 && arg7 >= arg0 && arg5 <= arg1.width + arg4 && arg7 <= arg1.height + arg0) {
+                    int var9 = arg1.children.length;
                     for (int var10 = 0; var10 < var9; ++var10) {
-                        int var11 = arg1.field714[var10] + arg4;
-                        int var12 = arg1.field758[var10] + arg0 - arg3;
-                        Component var13 = Component.method204(arg1.field740[var10]);
+                        int var11 = arg1.childX[var10] + arg4;
+                        int var12 = arg1.childY[var10] + arg0 - arg3;
+                        Component var13 = Component.get(arg1.children[var10]);
                         int var14 = var13.field710 + var11;
                         int var15 = var13.field741 + var12;
-                        if ((var13.field736 >= 0 || var13.field743 != 0) && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
-                            if (var13.field736 >= 0) {
-                                this.field211 = var13.field736;
+                        if ((var13.overlayer >= 0 || var13.overColour != 0) && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
+                            if (var13.overlayer >= 0) {
+                                this.field211 = var13.overlayer;
                             } else {
-                                this.field211 = var13.field697;
+                                this.field211 = var13.id;
                             }
                         }
-                        if (var13.field718 == 8 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
-                            this.field611 = var13.field697;
+                        if (var13.type == 8 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
+                            this.field611 = var13.id;
                         }
-                        if (var13.field718 == 0) {
+                        if (var13.type == 0) {
                             this.method88(var15, var13, arg2, var13.field713, var14, arg5, 23658, arg7);
-                            if (var13.field767 > var13.field720) {
-                                this.method62(var13.field767, var15, var13, (byte) 102, arg7, arg2, arg5, var13.field720, var13.field723 + var14);
+                            if (var13.scroll > var13.height) {
+                                this.method62(var13.scroll, var15, var13, (byte) 102, arg7, arg2, arg5, var13.height, var13.width + var14);
                             }
                         } else {
-                            if (var13.field771 == 1 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
+                            if (var13.buttonType == 1 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
                                 boolean var16 = false;
-                                if (var13.field724 != 0) {
+                                if (var13.clientCode != 0) {
                                     var16 = this.method43(var13, 8);
                                 }
                                 if (!var16) {
-                                    this.field480[this.field479] = var13.field750;
+                                    this.field480[this.field479] = var13.option;
                                     this.field277[this.field479] = 352;
-                                    this.field276[this.field479] = var13.field697;
+                                    this.field276[this.field479] = var13.id;
                                     ++this.field479;
                                 }
                             }
-                            if (var13.field771 == 2 && this.field467 == 0 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
-                                String var17 = var13.field763;
+                            if (var13.buttonType == 2 && this.field467 == 0 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
+                                String var17 = var13.targetVerb;
                                 if (var17.indexOf(" ") != -1) {
                                     var17 = var17.substring(0, var17.indexOf(" "));
                                 }
-                                this.field480[this.field479] = var17 + " @gre@" + var13.field693;
+                                this.field480[this.field479] = var17 + " @gre@" + var13.targetText;
                                 this.field277[this.field479] = 70;
-                                this.field276[this.field479] = var13.field697;
+                                this.field276[this.field479] = var13.id;
                                 ++this.field479;
                             }
-                            if (var13.field771 == 3 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
+                            if (var13.buttonType == 3 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
                                 this.field480[this.field479] = "Close";
                                 if (arg2 == 3) {
                                     this.field277[this.field479] = 55;
                                 } else {
                                     this.field277[this.field479] = 639;
                                 }
-                                this.field276[this.field479] = var13.field697;
+                                this.field276[this.field479] = var13.id;
                                 ++this.field479;
                             }
-                            if (var13.field771 == 4 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
-                                this.field480[this.field479] = var13.field750;
+                            if (var13.buttonType == 4 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
+                                this.field480[this.field479] = var13.option;
                                 this.field277[this.field479] = 890;
-                                this.field276[this.field479] = var13.field697;
+                                this.field276[this.field479] = var13.id;
                                 ++this.field479;
                             }
-                            if (var13.field771 == 5 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
-                                this.field480[this.field479] = var13.field750;
+                            if (var13.buttonType == 5 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
+                                this.field480[this.field479] = var13.option;
                                 this.field277[this.field479] = 518;
-                                this.field276[this.field479] = var13.field697;
+                                this.field276[this.field479] = var13.id;
                                 ++this.field479;
                             }
-                            if (var13.field771 == 6 && !this.field535 && arg5 >= var14 && arg7 >= var15 && arg5 < var13.field723 + var14 && arg7 < var13.field720 + var15) {
-                                this.field480[this.field479] = var13.field750;
+                            if (var13.buttonType == 6 && !this.pressedContinueOption && arg5 >= var14 && arg7 >= var15 && arg5 < var13.width + var14 && arg7 < var13.height + var15) {
+                                this.field480[this.field479] = var13.option;
                                 this.field277[this.field479] = 575;
-                                this.field276[this.field479] = var13.field697;
+                                this.field276[this.field479] = var13.id;
                                 ++this.field479;
                             }
-                            if (var13.field718 == 2) {
+                            if (var13.type == 2) {
                                 int var18 = 0;
-                                for (int var19 = 0; var19 < var13.field720; ++var19) {
-                                    for (int var20 = 0; var20 < var13.field723; ++var20) {
-                                        int var21 = (var13.field745 + 32) * var20 + var14;
-                                        int var22 = (var13.field726 + 32) * var19 + var15;
+                                for (int var19 = 0; var19 < var13.height; ++var19) {
+                                    for (int var20 = 0; var20 < var13.width; ++var20) {
+                                        int var21 = (var13.marginX + 32) * var20 + var14;
+                                        int var22 = (var13.marginY + 32) * var19 + var15;
                                         if (var18 < 20) {
-                                            var21 += var13.field703[var18];
-                                            var22 += var13.field695[var18];
+                                            var21 += var13.invSlotOffsetX[var18];
+                                            var22 += var13.invSlotOffsetY[var18];
                                         }
                                         if (arg5 >= var21 && arg7 >= var22 && arg5 < var21 + 32 && arg7 < var22 + 32) {
                                             this.field359 = var18;
-                                            this.field360 = var13.field697;
-                                            if (var13.field751[var18] > 0) {
-                                                ObjType var23 = ObjType.method221(var13.field751[var18] - 1);
-                                                if (this.field442 == 1 && var13.field711) {
-                                                    if (this.field444 != var13.field697 || this.field443 != var18) {
+                                            this.field360 = var13.id;
+                                            if (var13.invSlotObjId[var18] > 0) {
+                                                ObjType var23 = ObjType.method221(var13.invSlotObjId[var18] - 1);
+                                                if (this.field442 == 1 && var13.interactable) {
+                                                    if (this.field444 != var13.id || this.field443 != var18) {
                                                         this.field480[this.field479] = "Use " + this.field446 + " with @lre@" + var23.field811;
                                                         this.field277[this.field479] = 903;
                                                         this.field278[this.field479] = var23.field845;
                                                         this.field275[this.field479] = var18;
-                                                        this.field276[this.field479] = var13.field697;
+                                                        this.field276[this.field479] = var13.id;
                                                         ++this.field479;
                                                     }
-                                                } else if (this.field467 == 1 && var13.field711) {
+                                                } else if (this.field467 == 1 && var13.interactable) {
                                                     if ((this.field469 & 16) == 16) {
                                                         this.field480[this.field479] = this.field470 + " @lre@" + var23.field811;
                                                         this.field277[this.field479] = 361;
                                                         this.field278[this.field479] = var23.field845;
                                                         this.field275[this.field479] = var18;
-                                                        this.field276[this.field479] = var13.field697;
+                                                        this.field276[this.field479] = var13.id;
                                                         ++this.field479;
                                                     }
                                                 } else {
-                                                    if (var13.field711) {
+                                                    if (var13.interactable) {
                                                         for (int var24 = 4; var24 >= 3; --var24) {
                                                             if (var23.field830 != null && var23.field830[var24] != null) {
                                                                 this.field480[this.field479] = var23.field830[var24] + " @lre@" + var23.field811;
@@ -6458,27 +6566,27 @@ public class client extends GameShell {
                                                                 }
                                                                 this.field278[this.field479] = var23.field845;
                                                                 this.field275[this.field479] = var18;
-                                                                this.field276[this.field479] = var13.field697;
+                                                                this.field276[this.field479] = var13.id;
                                                                 ++this.field479;
                                                             } else if (var24 == 4) {
                                                                 this.field480[this.field479] = "Drop @lre@" + var23.field811;
                                                                 this.field277[this.field479] = 891;
                                                                 this.field278[this.field479] = var23.field845;
                                                                 this.field275[this.field479] = var18;
-                                                                this.field276[this.field479] = var13.field697;
+                                                                this.field276[this.field479] = var13.id;
                                                                 ++this.field479;
                                                             }
                                                         }
                                                     }
-                                                    if (var13.field770) {
+                                                    if (var13.usable) {
                                                         this.field480[this.field479] = "Use @lre@" + var23.field811;
                                                         this.field277[this.field479] = 52;
                                                         this.field278[this.field479] = var23.field845;
                                                         this.field275[this.field479] = var18;
-                                                        this.field276[this.field479] = var13.field697;
+                                                        this.field276[this.field479] = var13.id;
                                                         ++this.field479;
                                                     }
-                                                    if (var13.field711 && var23.field830 != null) {
+                                                    if (var13.interactable && var23.field830 != null) {
                                                         for (int var25 = 2; var25 >= 0; --var25) {
                                                             if (var23.field830[var25] != null) {
                                                                 this.field480[this.field479] = var23.field830[var25] + " @lre@" + var23.field811;
@@ -6493,15 +6601,15 @@ public class client extends GameShell {
                                                                 }
                                                                 this.field278[this.field479] = var23.field845;
                                                                 this.field275[this.field479] = var18;
-                                                                this.field276[this.field479] = var13.field697;
+                                                                this.field276[this.field479] = var13.id;
                                                                 ++this.field479;
                                                             }
                                                         }
                                                     }
-                                                    if (var13.field744 != null) {
+                                                    if (var13.iop != null) {
                                                         for (int var26 = 4; var26 >= 0; --var26) {
-                                                            if (var13.field744[var26] != null) {
-                                                                this.field480[this.field479] = var13.field744[var26] + " @lre@" + var23.field811;
+                                                            if (var13.iop[var26] != null) {
+                                                                this.field480[this.field479] = var13.iop[var26] + " @lre@" + var23.field811;
                                                                 if (var26 == 0) {
                                                                     this.field277[this.field479] = 9;
                                                                 }
@@ -6519,7 +6627,7 @@ public class client extends GameShell {
                                                                 }
                                                                 this.field278[this.field479] = var23.field845;
                                                                 this.field275[this.field479] = var18;
-                                                                this.field276[this.field479] = var13.field697;
+                                                                this.field276[this.field479] = var13.id;
                                                                 ++this.field479;
                                                             }
                                                         }
@@ -6528,7 +6636,7 @@ public class client extends GameShell {
                                                     this.field277[this.field479] = 1094;
                                                     this.field278[this.field479] = var23.field845;
                                                     this.field275[this.field479] = var18;
-                                                    this.field276[this.field479] = var13.field697;
+                                                    this.field276[this.field479] = var13.id;
                                                     ++this.field479;
                                                 }
                                             }
@@ -6560,22 +6668,22 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(IBLLRUWCBNN;)V")
     public final void method90(int arg0, byte arg1, PathingEntity arg2) {
-        if (arg2.field1157 < 128 || arg2.field1158 < 128 || arg2.field1157 >= 13184 || arg2.field1158 >= 13184) {
-            arg2.field1171 = -1;
+        if (arg2.x < 128 || arg2.z < 128 || arg2.x >= 13184 || arg2.z >= 13184) {
+            arg2.primarySeqId = -1;
             arg2.field1161 = -1;
             arg2.field1153 = 0;
             arg2.field1154 = 0;
-            arg2.field1157 = arg2.field1133[0] * 128 + arg2.field1148 * 64;
-            arg2.field1158 = arg2.field1134[0] * 128 + arg2.field1148 * 64;
+            arg2.x = arg2.routeTileX[0] * 128 + arg2.size * 64;
+            arg2.z = arg2.routeTileZ[0] * 128 + arg2.size * 64;
             arg2.method350(-56);
         }
-        if (field463 == arg2 && (arg2.field1157 < 1536 || arg2.field1158 < 1536 || arg2.field1157 >= 11776 || arg2.field1158 >= 11776)) {
-            arg2.field1171 = -1;
+        if (field463 == arg2 && (arg2.x < 1536 || arg2.z < 1536 || arg2.x >= 11776 || arg2.z >= 11776)) {
+            arg2.primarySeqId = -1;
             arg2.field1161 = -1;
             arg2.field1153 = 0;
             arg2.field1154 = 0;
-            arg2.field1157 = arg2.field1133[0] * 128 + arg2.field1148 * 64;
-            arg2.field1158 = arg2.field1134[0] * 128 + arg2.field1148 * 64;
+            arg2.x = arg2.routeTileX[0] * 128 + arg2.size * 64;
+            arg2.z = arg2.routeTileZ[0] * 128 + arg2.size * 64;
             arg2.method350(-56);
         }
         if (arg2.field1153 > field621) {
@@ -6598,11 +6706,11 @@ public class client extends GameShell {
             field259 = !field259;
         }
         int var3 = arg0.field1153 - field621;
-        int var4 = arg0.field1149 * 128 + arg0.field1148 * 64;
-        int var5 = arg0.field1151 * 128 + arg0.field1148 * 64;
-        arg0.field1157 += (var4 - arg0.field1157) / var3;
-        arg0.field1158 += (var5 - arg0.field1158) / var3;
-        arg0.field1170 = 0;
+        int var4 = arg0.field1149 * 128 + arg0.size * 64;
+        int var5 = arg0.field1151 * 128 + arg0.size * 64;
+        arg0.x += (var4 - arg0.x) / var3;
+        arg0.z += (var5 - arg0.z) / var3;
+        arg0.seqDelayMove = 0;
         if (arg0.field1155 == 0) {
             arg0.field1131 = 1024;
         }
@@ -6619,17 +6727,17 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(LLRUWCBNN;I)V")
     public final void method92(PathingEntity arg0, int arg1) {
-        if (field621 == arg0.field1154 || arg0.field1171 == -1 || arg0.field1174 != 0 || arg0.field1173 + 1 > SeqType.field775[arg0.field1171].method214(0, arg0.field1172)) {
+        if (field621 == arg0.field1154 || arg0.primarySeqId == -1 || arg0.field1174 != 0 || arg0.field1173 + 1 > SeqType.field775[arg0.primarySeqId].method214(0, arg0.field1172)) {
             int var3 = arg0.field1154 - arg0.field1153;
             int var4 = field621 - arg0.field1153;
-            int var5 = arg0.field1149 * 128 + arg0.field1148 * 64;
-            int var6 = arg0.field1151 * 128 + arg0.field1148 * 64;
-            int var7 = arg0.field1150 * 128 + arg0.field1148 * 64;
-            int var8 = arg0.field1152 * 128 + arg0.field1148 * 64;
-            arg0.field1157 = ((var3 - var4) * var5 + var4 * var7) / var3;
-            arg0.field1158 = ((var3 - var4) * var6 + var4 * var8) / var3;
+            int var5 = arg0.field1149 * 128 + arg0.size * 64;
+            int var6 = arg0.field1151 * 128 + arg0.size * 64;
+            int var7 = arg0.field1150 * 128 + arg0.size * 64;
+            int var8 = arg0.field1152 * 128 + arg0.size * 64;
+            arg0.x = ((var3 - var4) * var5 + var4 * var7) / var3;
+            arg0.z = ((var3 - var4) * var6 + var4 * var8) / var3;
         }
-        arg0.field1170 = 0;
+        arg0.seqDelayMove = 0;
         if (arg0.field1155 == 0) {
             arg0.field1131 = 1024;
         }
@@ -6651,24 +6759,24 @@ public class client extends GameShell {
     @OriginalMember(owner = "client!client", name = "b", descriptor = "(LLRUWCBNN;I)V")
     public final void method93(PathingEntity arg0, int arg1) {
         arg0.field1135 = arg0.field1181;
-        if (arg0.field1180 == 0) {
-            arg0.field1170 = 0;
+        if (arg0.routeLength == 0) {
+            arg0.seqDelayMove = 0;
         } else {
-            if (arg0.field1171 != -1 && arg0.field1174 == 0) {
-                SeqType var3 = SeqType.field775[arg0.field1171];
-                if (arg0.field1160 > 0 && var3.field787 == 0) {
-                    ++arg0.field1170;
+            if (arg0.primarySeqId != -1 && arg0.field1174 == 0) {
+                SeqType var3 = SeqType.field775[arg0.primarySeqId];
+                if (arg0.preanimRouteLength > 0 && var3.field787 == 0) {
+                    ++arg0.seqDelayMove;
                     return;
                 }
-                if (arg0.field1160 <= 0 && var3.field788 == 0) {
-                    ++arg0.field1170;
+                if (arg0.preanimRouteLength <= 0 && var3.field788 == 0) {
+                    ++arg0.seqDelayMove;
                     return;
                 }
             }
-            int var4 = arg0.field1157;
-            int var5 = arg0.field1158;
-            int var6 = arg0.field1133[arg0.field1180 - 1] * 128 + arg0.field1148 * 64;
-            int var7 = arg0.field1134[arg0.field1180 - 1] * 128 + arg0.field1148 * 64;
+            int var4 = arg0.x;
+            int var5 = arg0.z;
+            int var6 = arg0.routeTileX[arg0.routeLength - 1] * 128 + arg0.size * 64;
+            int var7 = arg0.routeTileZ[arg0.routeLength - 1] * 128 + arg0.size * 64;
             if (var6 - var4 <= 256 && var6 - var4 >= -256 && var7 - var5 <= 256 && var7 - var5 >= -256) {
                 if (var4 < var6) {
                     if (var5 < var7) {
@@ -6714,54 +6822,54 @@ public class client extends GameShell {
                 if (arg0.field1159 != arg0.field1131 && arg0.field1156 == -1 && arg0.field1147 != 0) {
                     var10 = 2;
                 }
-                if (arg0.field1180 > 2) {
+                if (arg0.routeLength > 2) {
                     var10 = 6;
                 }
-                if (arg0.field1180 > 3) {
+                if (arg0.routeLength > 3) {
                     var10 = 8;
                 }
-                if (arg0.field1170 > 0 && arg0.field1180 > 1) {
+                if (arg0.seqDelayMove > 0 && arg0.routeLength > 1) {
                     var10 = 8;
-                    --arg0.field1170;
+                    --arg0.seqDelayMove;
                 }
-                if (arg0.field1138[arg0.field1180 - 1]) {
+                if (arg0.field1138[arg0.routeLength - 1]) {
                     var10 <<= 1;
                 }
                 if (var10 >= 8 && arg0.field1166 == arg0.field1135 && arg0.field1176 != -1) {
                     arg0.field1135 = arg0.field1176;
                 }
                 if (var4 < var6) {
-                    arg0.field1157 += var10;
-                    if (arg0.field1157 > var6) {
-                        arg0.field1157 = var6;
+                    arg0.x += var10;
+                    if (arg0.x > var6) {
+                        arg0.x = var6;
                     }
                 } else if (var4 > var6) {
-                    arg0.field1157 -= var10;
-                    if (arg0.field1157 < var6) {
-                        arg0.field1157 = var6;
+                    arg0.x -= var10;
+                    if (arg0.x < var6) {
+                        arg0.x = var6;
                     }
                 }
                 if (var5 < var7) {
-                    arg0.field1158 += var10;
-                    if (arg0.field1158 > var7) {
-                        arg0.field1158 = var7;
+                    arg0.z += var10;
+                    if (arg0.z > var7) {
+                        arg0.z = var7;
                     }
                 } else if (var5 > var7) {
-                    arg0.field1158 -= var10;
-                    if (arg0.field1158 < var7) {
-                        arg0.field1158 = var7;
+                    arg0.z -= var10;
+                    if (arg0.z < var7) {
+                        arg0.z = var7;
                     }
                 }
-                if (arg0.field1157 == var6 && arg0.field1158 == var7) {
-                    --arg0.field1180;
-                    if (arg0.field1160 > 0) {
-                        --arg0.field1160;
+                if (arg0.x == var6 && arg0.z == var7) {
+                    --arg0.routeLength;
+                    if (arg0.preanimRouteLength > 0) {
+                        --arg0.preanimRouteLength;
                         return;
                     }
                 }
             } else {
-                arg0.field1157 = var6;
-                arg0.field1158 = var7;
+                arg0.x = var6;
+                arg0.z = var7;
             }
         }
     }
@@ -6775,8 +6883,8 @@ public class client extends GameShell {
             if (arg1.field1156 != -1 && arg1.field1156 < 32768) {
                 NpcEntity var3 = this.field428[arg1.field1156];
                 if (var3 != null) {
-                    int var4 = arg1.field1157 - var3.field1157;
-                    int var5 = arg1.field1158 - var3.field1158;
+                    int var4 = arg1.x - var3.x;
+                    int var5 = arg1.z - var3.z;
                     if (var4 != 0 || var5 != 0) {
                         arg1.field1131 = (int) (Math.atan2((double) var4, (double) var5) * 325.949D) & 2047;
                     }
@@ -6789,16 +6897,16 @@ public class client extends GameShell {
                 }
                 PlayerEntity var7 = this.field266[var6];
                 if (var7 != null) {
-                    int var8 = arg1.field1157 - var7.field1157;
-                    int var9 = arg1.field1158 - var7.field1158;
+                    int var8 = arg1.x - var7.x;
+                    int var9 = arg1.z - var7.z;
                     if (var8 != 0 || var9 != 0) {
                         arg1.field1131 = (int) (Math.atan2((double) var8, (double) var9) * 325.949D) & 2047;
                     }
                 }
             }
-            if ((arg1.field1145 != 0 || arg1.field1146 != 0) && (arg1.field1180 == 0 || arg1.field1170 > 0)) {
-                int var10 = arg1.field1157 - (arg1.field1145 - this.field336 - this.field336) * 64;
-                int var11 = arg1.field1158 - (arg1.field1146 - this.field337 - this.field337) * 64;
+            if ((arg1.field1145 != 0 || arg1.field1146 != 0) && (arg1.routeLength == 0 || arg1.seqDelayMove > 0)) {
+                int var10 = arg1.x - (arg1.field1145 - this.sceneBaseTileX - this.sceneBaseTileX) * 64;
+                int var11 = arg1.z - (arg1.field1146 - this.sceneBaseTileZ - this.sceneBaseTileZ) * 64;
                 if (var10 != 0 || var11 != 0) {
                     arg1.field1131 = (int) (Math.atan2((double) var10, (double) var11) * 325.949D) & 2047;
                 }
@@ -6861,15 +6969,15 @@ public class client extends GameShell {
                 arg0.field1161 = -1;
             }
         }
-        if (arg0.field1171 != -1 && arg0.field1174 <= 1) {
-            SeqType var5 = SeqType.field775[arg0.field1171];
-            if (var5.field787 == 1 && arg0.field1160 > 0 && arg0.field1153 <= field621 && arg0.field1154 < field621) {
+        if (arg0.primarySeqId != -1 && arg0.field1174 <= 1) {
+            SeqType var5 = SeqType.field775[arg0.primarySeqId];
+            if (var5.field787 == 1 && arg0.preanimRouteLength > 0 && arg0.field1153 <= field621 && arg0.field1154 < field621) {
                 arg0.field1174 = 1;
                 return;
             }
         }
-        if (arg0.field1171 != -1 && arg0.field1174 == 0) {
-            SeqType var6 = SeqType.field775[arg0.field1171];
+        if (arg0.primarySeqId != -1 && arg0.field1174 == 0) {
+            SeqType var6 = SeqType.field775[arg0.primarySeqId];
             ++arg0.field1173;
             if (arg0.field1172 < var6.field776 && arg0.field1173 > var6.method214(0, arg0.field1172)) {
                 arg0.field1173 = 1;
@@ -6879,10 +6987,10 @@ public class client extends GameShell {
                 arg0.field1172 -= var6.field780;
                 ++arg0.field1175;
                 if (arg0.field1175 >= var6.field786) {
-                    arg0.field1171 = -1;
+                    arg0.primarySeqId = -1;
                 }
                 if (arg0.field1172 < 0 || arg0.field1172 >= var6.field776) {
-                    arg0.field1171 = -1;
+                    arg0.primarySeqId = -1;
                 }
             }
             arg0.field1139 = var6.field782;
@@ -6907,9 +7015,9 @@ public class client extends GameShell {
                 this.field208.method241(205, 516, super.field951, this.field370);
                 this.field209.method241(357, 496, super.field951, this.field370);
                 this.field210.method241(338, 0, super.field951, this.field370);
-                this.field477 = true;
-                this.field536 = true;
-                this.field246 = true;
+                this.redrawSidebar = true;
+                this.redrawChatback = true;
+                this.redrawSideicons = true;
                 this.field508 = true;
                 if (this.field367 != 2) {
                     this.field454.method241(4, 4, super.field951, this.field370);
@@ -6918,6 +7026,7 @@ public class client extends GameShell {
                 ++field533;
                 if (field533 > 85) {
                     field533 = 0;
+                    // ANTICHEAT_CYCLELOGIC2
                     this.field260.p1isaac((byte) 4, 168);
                 }
             }
@@ -6925,25 +7034,25 @@ public class client extends GameShell {
                 this.method178(2);
             }
             if (this.field361 && this.field600 == 1) {
-                this.field477 = true;
+                this.redrawSidebar = true;
             }
-            if (this.field385 != -1) {
-                boolean var4 = this.method110(this.field247, this.field385, (byte) 5);
+            if (this.sidebarInterfaceId != -1) {
+                boolean var4 = this.method110(this.field247, this.sidebarInterfaceId, (byte) 5);
                 if (var4) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                 }
             }
             if (this.field628 == 2) {
-                this.field477 = true;
+                this.redrawSidebar = true;
             }
             if (this.field409 == 2) {
-                this.field477 = true;
+                this.redrawSidebar = true;
             }
-            if (this.field477) {
+            if (this.redrawSidebar) {
                 this.method159((byte) 7);
-                this.field477 = false;
+                this.redrawSidebar = false;
             }
-            if (this.field284 == -1 && this.field540 == 0) {
+            if (this.chatInterfaceId == -1 && this.field540 == 0) {
                 this.field545.field713 = this.field403 - this.field147 - 77;
                 if (super.field959 > 448 && super.field959 < 560 && super.field960 > 332) {
                     this.method62(this.field403, 0, this.field545, (byte) 102, super.field960 - 357, -1, super.field959 - 17, 77, 463);
@@ -6957,10 +7066,10 @@ public class client extends GameShell {
                 }
                 if (this.field147 != var5) {
                     this.field147 = var5;
-                    this.field536 = true;
+                    this.redrawChatback = true;
                 }
             }
-            if (this.field284 == -1 && this.field540 == 3) {
+            if (this.chatInterfaceId == -1 && this.field540 == 3) {
                 int var6 = this.field158 * 14 + 7;
                 this.field545.field713 = this.field161;
                 if (super.field959 > 448 && super.field959 < 560 && super.field960 > 332) {
@@ -6975,48 +7084,49 @@ public class client extends GameShell {
                 }
                 if (this.field161 != var7) {
                     this.field161 = var7;
-                    this.field536 = true;
+                    this.redrawChatback = true;
                 }
             }
-            if (this.field284 != -1) {
-                boolean var8 = this.method110(this.field247, this.field284, (byte) 5);
+            if (this.chatInterfaceId != -1) {
+                boolean var8 = this.method110(this.field247, this.chatInterfaceId, (byte) 5);
                 if (var8) {
-                    this.field536 = true;
+                    this.redrawChatback = true;
                 }
             }
             if (this.field628 == 3) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
             if (this.field409 == 3) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
             if (this.field354 != null) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
             if (this.field361 && this.field600 == 2) {
-                this.field536 = true;
+                this.redrawChatback = true;
             }
-            if (this.field536) {
+            if (this.redrawChatback) {
                 this.method106(0);
-                this.field536 = false;
+                this.redrawChatback = false;
             }
             if (this.field367 == 2) {
                 this.method109(503);
                 this.field453.method241(4, 550, super.field951, this.field370);
             }
             if (this.field509 != -1) {
-                this.field246 = true;
+                this.redrawSideicons = true;
             }
-            if (this.field246) {
+            if (this.redrawSideicons) {
                 if (this.field509 != -1 && this.field581 == this.field509) {
                     this.field509 = -1;
+                    // TUTORIAL_CLICKSIDE
                     this.field260.p1isaac((byte) 4, 119);
                     this.field260.p1(this.field581);
                 }
-                this.field246 = false;
+                this.redrawSideicons = false;
                 this.field406.method240(false);
                 this.field263.method492(0, 0, -488);
-                if (this.field385 == -1) {
+                if (this.sidebarInterfaceId == -1) {
                     if (this.field377[this.field581] != -1) {
                         if (this.field581 == 0) {
                             this.field176.method492(10, 22, -488);
@@ -7065,7 +7175,7 @@ public class client extends GameShell {
                 this.field406.method241(160, 516, super.field951, this.field370);
                 this.field405.method240(false);
                 this.field262.method492(0, 0, -488);
-                if (this.field385 == -1) {
+                if (this.sidebarInterfaceId == -1) {
                     if (this.field377[this.field581] != -1) {
                         if (this.field581 == 7) {
                             this.field279.method492(0, 42, -488);
@@ -7171,17 +7281,17 @@ public class client extends GameShell {
                 Draw3D.field1600 = this.field299;
                 Draw2D.method335(4);
                 this.field342 = true;
-                Component var2 = Component.method204(this.field349);
-                if (var2.field723 == 512 && var2.field720 == 334 && var2.field718 == 0) {
-                    var2.field723 = 765;
-                    var2.field720 = 503;
+                Component var2 = Component.get(this.field349);
+                if (var2.width == 512 && var2.height == 334 && var2.type == 0) {
+                    var2.width = 765;
+                    var2.height = 503;
                 }
                 this.method169(0, 0, var2, 0, 8);
                 if (this.field256 != -1) {
-                    Component var3 = Component.method204(this.field256);
-                    if (var3.field723 == 512 && var3.field720 == 334 && var3.field718 == 0) {
-                        var3.field723 = 765;
-                        var3.field720 = 503;
+                    Component var3 = Component.get(this.field256);
+                    if (var3.width == 512 && var3.height == 334 && var3.type == 0) {
+                        var3.width = 765;
+                        var3.height = 503;
                     }
                     this.method169(0, 0, var3, 0, 8);
                 }
@@ -7315,9 +7425,9 @@ public class client extends GameShell {
             if (var2.field1363 == 0) {
                 Model.method357(var2.field1366, var2.field1364, (byte) 7);
                 if ((this.field587.method582(var2.field1364, -493) & 98) != 0) {
-                    this.field477 = true;
-                    if (this.field284 != -1 || this.field487 != -1) {
-                        this.field536 = true;
+                    this.redrawSidebar = true;
+                    if (this.chatInterfaceId != -1 || this.field487 != -1) {
+                        this.redrawChatback = true;
                     }
                 }
             }
@@ -7488,19 +7598,19 @@ public class client extends GameShell {
                 this.field155 = 0;
                 this.method64(field486, this.field487);
                 this.field487 = -1;
-                this.method64(field486, this.field284);
-                this.field284 = -1;
-                this.method64(field486, this.field465);
-                this.field465 = -1;
+                this.method64(field486, this.chatInterfaceId);
+                this.chatInterfaceId = -1;
+                this.method64(field486, this.viewportInterfaceId);
+                this.viewportInterfaceId = -1;
                 this.method64(field486, this.field349);
                 this.field349 = -1;
                 this.method64(field486, this.field256);
                 this.field256 = -1;
-                this.method64(field486, this.field385);
-                this.field385 = -1;
-                this.method64(field486, this.field575);
-                this.field575 = -1;
-                this.field535 = false;
+                this.method64(field486, this.sidebarInterfaceId);
+                this.sidebarInterfaceId = -1;
+                this.method64(field486, this.viewportOverlayInterfaceId);
+                this.viewportOverlayInterfaceId = -1;
+                this.pressedContinueOption = false;
                 this.field581 = 3;
                 this.field540 = 0;
                 this.field361 = false;
@@ -7654,7 +7764,7 @@ public class client extends GameShell {
             int var7 = var6 & 31;
             int var8 = var6 >> 6 & 3;
             if (var7 != 10 && var7 != 11 && var7 != 22) {
-                this.method55(true, false, arg0, field463.field1134[0], 0, 0, 2, var7 + 1, arg2, 0, var8, field463.field1133[0]);
+                this.method55(true, false, arg0, field463.routeTileZ[0], 0, 0, 2, var7 + 1, arg2, 0, var8, field463.routeTileX[0]);
             } else {
                 LocType var9 = LocType.method561(var5);
                 int var10;
@@ -7670,7 +7780,7 @@ public class client extends GameShell {
                 if (var8 != 0) {
                     var12 = (var12 >> 4 - var8) + (var12 << var8 & 15);
                 }
-                this.method55(true, false, arg0, field463.field1134[0], var10, var11, 2, 0, arg2, var12, 0, field463.field1133[0]);
+                this.method55(true, false, arg0, field463.routeTileZ[0], var10, var11, 2, 0, arg2, var12, 0, field463.routeTileX[0]);
             }
             this.field316 = super.field966;
             this.field317 = super.field967;
@@ -7927,10 +8037,10 @@ public class client extends GameShell {
         } else if (this.field354 != null) {
             this.field357.method244(239, 452, 40, 0, this.field354);
             this.field357.method244(239, 452, 60, 128, "Click to continue");
-        } else if (this.field284 != -1) {
-            this.method169(0, 0, Component.method204(this.field284), 0, 8);
+        } else if (this.chatInterfaceId != -1) {
+            this.method169(0, 0, Component.get(this.chatInterfaceId), 0, 8);
         } else if (this.field487 != -1) {
-            this.method169(0, 0, Component.method204(this.field487), 0, 8);
+            this.method169(0, 0, Component.get(this.field487), 0, 8);
         } else {
             PixFont var5 = this.field356;
             int var6 = 0;
@@ -8157,22 +8267,22 @@ public class client extends GameShell {
             Draw3D.field1600 = this.field298;
         } else {
             int var6 = this.field548 + this.field212 & 2047;
-            int var7 = field463.field1157 / 32 + 48;
+            int var7 = field463.x / 32 + 48;
             int var8 = 58 / arg0;
-            int var9 = 464 - field463.field1158 / 32;
+            int var9 = 464 - field463.z / 32;
             this.field418.method199(5, 567, 151, var7, 146, this.field216, 25, var6, this.field529 + 256, this.field315, var9);
             this.field412.method199(0, 567, 33, 25, 33, this.field582, 0, this.field548, 256, this.field476, 25);
             for (int var10 = 0; var10 < this.field372; ++var10) {
-                int var40 = this.field373[var10] * 4 + 2 - field463.field1157 / 32;
-                int var41 = this.field374[var10] * 4 + 2 - field463.field1158 / 32;
+                int var40 = this.field373[var10] * 4 + 2 - field463.x / 32;
+                int var41 = this.field374[var10] * 4 + 2 - field463.z / 32;
                 this.method155(var41, true, this.field574[var10], var40);
             }
             for (int var11 = 0; var11 < 104; ++var11) {
                 for (int var36 = 0; var36 < 104; ++var36) {
                     LinkList var37 = this.field619[this.field387][var11][var36];
                     if (var37 != null) {
-                        int var38 = var11 * 4 + 2 - field463.field1157 / 32;
-                        int var39 = var36 * 4 + 2 - field463.field1158 / 32;
+                        int var38 = var11 * 4 + 2 - field463.x / 32;
+                        int var39 = var36 * 4 + 2 - field463.z / 32;
                         this.method155(var39, true, this.field488, var38);
                     }
                 }
@@ -8185,8 +8295,8 @@ public class client extends GameShell {
                         var33 = var33.method476(false);
                     }
                     if (var33 != null && var33.field1439 && var33.field1434) {
-                        int var34 = var32.field1157 / 32 - field463.field1157 / 32;
-                        int var35 = var32.field1158 / 32 - field463.field1158 / 32;
+                        int var34 = var32.x / 32 - field463.x / 32;
+                        int var35 = var32.z / 32 - field463.z / 32;
                         this.method155(var35, true, this.field489, var34);
                     }
                 }
@@ -8194,8 +8304,8 @@ public class client extends GameShell {
             for (int var13 = 0; var13 < this.field267; ++var13) {
                 PlayerEntity var24 = this.field266[this.field268[var13]];
                 if (var24 != null && var24.method351(0)) {
-                    int var25 = var24.field1157 / 32 - field463.field1157 / 32;
-                    int var26 = var24.field1158 / 32 - field463.field1158 / 32;
+                    int var25 = var24.x / 32 - field463.x / 32;
+                    int var26 = var24.z / 32 - field463.z / 32;
                     boolean var27 = false;
                     long var28 = JString.method344(var24.field1673);
                     for (int var30 = 0; var30 < this.field155; ++var30) {
@@ -8221,28 +8331,28 @@ public class client extends GameShell {
                 if (this.field493 == 1 && this.field522 >= 0 && this.field522 < this.field428.length) {
                     NpcEntity var14 = this.field428[this.field522];
                     if (var14 != null) {
-                        int var15 = var14.field1157 / 32 - field463.field1157 / 32;
-                        int var16 = var14.field1158 / 32 - field463.field1158 / 32;
+                        int var15 = var14.x / 32 - field463.x / 32;
+                        int var16 = var14.z / 32 - field463.z / 32;
                         this.method75(var16, this.field333, -687, var15);
                     }
                 }
                 if (this.field493 == 2) {
-                    int var17 = (this.field140 - this.field336) * 4 + 2 - field463.field1157 / 32;
-                    int var18 = (this.field141 - this.field337) * 4 + 2 - field463.field1158 / 32;
+                    int var17 = (this.field140 - this.sceneBaseTileX) * 4 + 2 - field463.x / 32;
+                    int var18 = (this.field141 - this.sceneBaseTileZ) * 4 + 2 - field463.z / 32;
                     this.method75(var18, this.field333, -687, var17);
                 }
                 if (this.field493 == 10 && this.field447 >= 0 && this.field447 < this.field266.length) {
                     PlayerEntity var19 = this.field266[this.field447];
                     if (var19 != null) {
-                        int var20 = var19.field1157 / 32 - field463.field1157 / 32;
-                        int var21 = var19.field1158 / 32 - field463.field1158 / 32;
+                        int var20 = var19.x / 32 - field463.x / 32;
+                        int var21 = var19.z / 32 - field463.z / 32;
                         this.method75(var21, this.field333, -687, var20);
                     }
                 }
             }
             if (this.field416 != 0) {
-                int var22 = this.field416 * 4 + 2 - field463.field1157 / 32;
-                int var23 = this.field417 * 4 + 2 - field463.field1158 / 32;
+                int var22 = this.field416 * 4 + 2 - field463.x / 32;
+                int var23 = this.field417 * 4 + 2 - field463.z / 32;
                 this.method155(var23, true, this.field332, var22);
             }
             Draw2D.method337(3, 78, 16777215, (byte) -24, 3, 97);
@@ -8269,19 +8379,19 @@ public class client extends GameShell {
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(IIB)Z")
     public final boolean method110(int arg0, int arg1, byte arg2) {
         boolean var4 = false;
-        Component var5 = Component.method204(arg1);
-        for (int var6 = 0; var6 < var5.field740.length && var5.field740[var6] != -1; ++var6) {
-            Component var7 = Component.method204(var5.field740[var6]);
-            if (var7.field718 == 0) {
-                var4 |= this.method110(arg0, var7.field697, (byte) 5);
+        Component var5 = Component.get(arg1);
+        for (int var6 = 0; var6 < var5.children.length && var5.children[var6] != -1; ++var6) {
+            Component var7 = Component.get(var5.children[var6]);
+            if (var7.type == 0) {
+                var4 |= this.method110(arg0, var7.id, (byte) 5);
             }
-            if (var7.field718 == 6 && (var7.field768 != -1 || var7.field769 != -1)) {
+            if (var7.type == 6 && (var7.anim != -1 || var7.activeAnim != -1)) {
                 boolean var8 = this.method118(var7, -693);
                 int var9;
                 if (var8) {
-                    var9 = var7.field769;
+                    var9 = var7.activeAnim;
                 } else {
-                    var9 = var7.field768;
+                    var9 = var7.anim;
                 }
                 if (var9 != -1) {
                     SeqType var10 = SeqType.field775[var9];
@@ -8299,13 +8409,13 @@ public class client extends GameShell {
                     }
                 }
             }
-            if (var7.field718 == 6 && var7.field700 != 0) {
+            if (var7.type == 6 && var7.field700 != 0) {
                 int var11 = var7.field700 >> 16;
                 int var12 = var7.field700 << 16 >> 16;
                 int var13 = arg0 * var11;
                 int var14 = arg0 * var12;
-                var7.field734 = var7.field734 + var13 & 2047;
-                var7.field735 = var7.field735 + var14 & 2047;
+                var7.xan = var7.xan + var13 & 2047;
+                var7.yan = var7.yan + var14 & 2047;
                 var4 = true;
             }
         }
@@ -8349,7 +8459,8 @@ public class client extends GameShell {
                     }
                 }
                 this.field369[this.field151++] = arg1;
-                this.field477 = true;
+                this.redrawSidebar = true;
+                // IGNORELIST_ADD
                 this.field260.p1isaac((byte) 4, 217);
                 this.field260.p8(arg1, true);
             }
@@ -8383,7 +8494,7 @@ public class client extends GameShell {
             if (this.field349 != -1) {
                 this.field211 = 0;
                 this.field611 = 0;
-                this.method88(0, Component.method204(this.field349), 0, 0, 0, super.field959, 23658, super.field960);
+                this.method88(0, Component.get(this.field349), 0, 0, 0, super.field959, 23658, super.field960);
                 if (this.field598 != this.field211) {
                     this.field598 = this.field211;
                 }
@@ -8395,8 +8506,8 @@ public class client extends GameShell {
                 this.field211 = 0;
                 this.field611 = 0;
                 if (super.field959 > 4 && super.field960 > 4 && super.field959 < 516 && super.field960 < 338) {
-                    if (this.field465 != -1) {
-                        this.method88(4, Component.method204(this.field465), 0, 0, 4, super.field959, 23658, super.field960);
+                    if (this.viewportInterfaceId != -1) {
+                        this.method88(4, Component.get(this.viewportInterfaceId), 0, 0, 4, super.field959, 23658, super.field960);
                     } else {
                         this.method63((byte) 7);
                     }
@@ -8410,37 +8521,37 @@ public class client extends GameShell {
                 this.field211 = 0;
                 this.field611 = 0;
                 if (super.field959 > 553 && super.field960 > 205 && super.field959 < 743 && super.field960 < 466) {
-                    if (this.field385 != -1) {
-                        this.method88(205, Component.method204(this.field385), 1, 0, 553, super.field959, 23658, super.field960);
+                    if (this.sidebarInterfaceId != -1) {
+                        this.method88(205, Component.get(this.sidebarInterfaceId), 1, 0, 553, super.field959, 23658, super.field960);
                     } else if (this.field377[this.field581] != -1) {
-                        this.method88(205, Component.method204(this.field377[this.field581]), 1, 0, 553, super.field959, 23658, super.field960);
+                        this.method88(205, Component.get(this.field377[this.field581]), 1, 0, 553, super.field959, 23658, super.field960);
                     }
                 }
                 if (this.field576 != this.field211) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field576 = this.field211;
                 }
                 if (this.field611 != this.field340) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field340 = this.field611;
                 }
                 this.field211 = 0;
                 this.field611 = 0;
                 if (super.field959 > 17 && super.field960 > 357 && super.field959 < 496 && super.field960 < 453) {
-                    if (this.field284 != -1) {
-                        this.method88(357, Component.method204(this.field284), 2, 0, 17, super.field959, 23658, super.field960);
+                    if (this.chatInterfaceId != -1) {
+                        this.method88(357, Component.get(this.chatInterfaceId), 2, 0, 17, super.field959, 23658, super.field960);
                     } else if (this.field487 != -1) {
-                        this.method88(357, Component.method204(this.field487), 3, 0, 17, super.field959, 23658, super.field960);
+                        this.method88(357, Component.get(this.field487), 3, 0, 17, super.field959, 23658, super.field960);
                     } else if (super.field960 < 434 && super.field959 < 426 && this.field540 == 0) {
                         this.method136(466, super.field959 - 17, super.field960 - 357);
                     }
                 }
-                if ((this.field284 != -1 || this.field487 != -1) && this.field402 != this.field211) {
-                    this.field536 = true;
+                if ((this.chatInterfaceId != -1 || this.field487 != -1) && this.field402 != this.field211) {
+                    this.redrawChatback = true;
                     this.field402 = this.field211;
                 }
-                if ((this.field284 != -1 || this.field487 != -1) && this.field611 != this.field580) {
-                    this.field536 = true;
+                if ((this.chatInterfaceId != -1 || this.field487 != -1) && this.field611 != this.field580) {
+                    this.redrawChatback = true;
                     this.field580 = this.field611;
                 }
                 boolean var2 = false;
@@ -8519,30 +8630,32 @@ public class client extends GameShell {
             }
             World var6 = new World(this.field187, 14290, this.field421, 104, 104);
             int var7 = this.field134.length;
+            // NO_TIMEOUT
             this.field260.p1isaac((byte) 4, 40);
             if (!this.field459) {
                 for (int var8 = 0; var8 < var7; ++var8) {
-                    int var9 = (this.field152[var8] >> 8) * 64 - this.field336;
-                    int var10 = (this.field152[var8] & 255) * 64 - this.field337;
+                    int var9 = (this.field152[var8] >> 8) * 64 - this.sceneBaseTileX;
+                    int var10 = (this.field152[var8] & 255) * 64 - this.sceneBaseTileZ;
                     byte[] var11 = this.field134[var8];
                     if (var11 != null) {
-                        var6.method22(var10, false, (this.field186 - 6) * 8, var9, var11, (this.field185 - 6) * 8, this.field556);
+                        var6.method22(var10, false, (this.sceneCenterZoneZ - 6) * 8, var9, var11, (this.sceneCenterZoneX - 6) * 8, this.field556);
                     }
                 }
                 for (int var12 = 0; var12 < var7; ++var12) {
-                    int var13 = (this.field152[var12] >> 8) * 64 - this.field336;
-                    int var14 = (this.field152[var12] & 255) * 64 - this.field337;
+                    int var13 = (this.field152[var12] >> 8) * 64 - this.sceneBaseTileX;
+                    int var14 = (this.field152[var12] & 255) * 64 - this.sceneBaseTileZ;
                     byte[] var15 = this.field134[var12];
-                    if (var15 == null && this.field186 < 800) {
+                    if (var15 == null && this.sceneCenterZoneZ < 800) {
                         var6.method28(var13, var14, 64, -810, 64);
                     }
                 }
+                // NO_TIMEOUT
                 this.field260.p1isaac((byte) 4, 40);
                 for (int var16 = 0; var16 < var7; ++var16) {
                     byte[] var17 = this.field528[var16];
                     if (var17 != null) {
-                        int var18 = (this.field152[var16] >> 8) * 64 - this.field336;
-                        int var19 = (this.field152[var16] & 255) * 64 - this.field337;
+                        int var18 = (this.field152[var16] >> 8) * 64 - this.sceneBaseTileX;
+                        int var19 = (this.field152[var16] & 255) * 64 - this.sceneBaseTileZ;
                         var6.method27(var19, this.field556, var18, -571, this.field460, var17);
                     }
                 }
@@ -8559,6 +8672,7 @@ public class client extends GameShell {
                                 }
                             }
                         }
+                        // NO_TIMEOUT
                         this.field260.p1isaac((byte) 4, 40);
                         int var34 = 0;
                         while (true) {
@@ -8612,12 +8726,14 @@ public class client extends GameShell {
                     ++var20;
                 }
             }
+            // NO_TIMEOUT
             this.field260.p1isaac((byte) 4, 40);
             var6.method15(this.field556, this.field614, this.field460);
             if (this.field454 != null) {
                 this.field454.method240(false);
                 Draw3D.field1600 = this.field298;
             }
+            // NO_TIMEOUT
             this.field260.p1isaac((byte) 4, 40);
             int var44 = World.field113;
             if (var44 > this.field387) {
@@ -8656,10 +8772,10 @@ public class client extends GameShell {
         System.gc();
         Draw3D.method548((byte) 7, 20);
         this.field587.method593((byte) -125);
-        int var52 = (this.field185 - 6) / 8 - 1;
-        int var53 = (this.field185 + 6) / 8 + 1;
-        int var54 = (this.field186 - 6) / 8 - 1;
-        int var55 = (this.field186 + 6) / 8 + 1;
+        int var52 = (this.sceneCenterZoneX - 6) / 8 - 1;
+        int var53 = (this.sceneCenterZoneX + 6) / 8 + 1;
+        int var54 = (this.sceneCenterZoneZ - 6) / 8 - 1;
+        int var55 = (this.sceneCenterZoneZ + 6) / 8 + 1;
         int var56 = 94 / arg0;
         if (this.field363) {
             var52 = 49;
@@ -8719,21 +8835,21 @@ public class client extends GameShell {
         if (arg1 >= 0) {
             this.field471 = 276;
         }
-        if (arg0.field755 == null) {
+        if (arg0.scriptComparator == null) {
             return false;
         } else {
-            for (int var3 = 0; var3 < arg0.field755.length; ++var3) {
+            for (int var3 = 0; var3 < arg0.scriptComparator.length; ++var3) {
                 int var4 = this.method154(3, var3, arg0);
-                int var5 = arg0.field738[var3];
-                if (arg0.field755[var3] == 2) {
+                int var5 = arg0.scriptOperand[var3];
+                if (arg0.scriptComparator[var3] == 2) {
                     if (var4 >= var5) {
                         return false;
                     }
-                } else if (arg0.field755[var3] == 3) {
+                } else if (arg0.scriptComparator[var3] == 3) {
                     if (var4 <= var5) {
                         return false;
                     }
-                } else if (arg0.field755[var3] == 4) {
+                } else if (arg0.scriptComparator[var3] == 4) {
                     if (var4 == var5) {
                         return false;
                     }
@@ -8779,10 +8895,11 @@ public class client extends GameShell {
             for (int var4 = 0; var4 < this.field151; ++var4) {
                 if (this.field369[var4] == arg1) {
                     --this.field151;
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     for (int var5 = var4; var5 < this.field151; ++var5) {
                         this.field369[var5] = this.field369[var5 + 1];
                     }
+                    // IGNORELIST_DEL
                     this.field260.p1isaac((byte) 4, 160);
                     this.field260.p8(arg1, true);
                     break;
@@ -8950,7 +9067,8 @@ public class client extends GameShell {
                     this.field426[this.field155] = arg0;
                     this.field563[this.field155] = 0;
                     ++this.field155;
-                    this.field477 = true;
+                    this.redrawSidebar = true;
+                    // FRIENDLIST_ADD
                     this.field260.p1isaac((byte) 4, 120);
                     this.field260.p8(arg0, true);
                 }
@@ -8965,7 +9083,7 @@ public class client extends GameShell {
         } else {
             this.field300 = -82;
         }
-        int var4 = arg1.field724;
+        int var4 = arg1.clientCode;
         if ((var4 < 1 || var4 > 100) && (var4 < 701 || var4 > 800)) {
             if ((var4 < 101 || var4 > 200) && (var4 < 801 || var4 > 900)) {
                 if (var4 == 203) {
@@ -8973,39 +9091,39 @@ public class client extends GameShell {
                     if (this.field156 != 2) {
                         var7 = 0;
                     }
-                    arg1.field767 = var7 * 15 + 20;
-                    if (arg1.field767 <= arg1.field720) {
-                        arg1.field767 = arg1.field720 + 1;
+                    arg1.scroll = var7 * 15 + 20;
+                    if (arg1.scroll <= arg1.height) {
+                        arg1.scroll = arg1.height + 1;
                     }
                 } else if (var4 >= 401 && var4 <= 500) {
                     var4 -= 401;
                     if (var4 == 0 && this.field156 == 0) {
-                        arg1.field712 = "Loading ignore list";
-                        arg1.field771 = 0;
+                        arg1.text = "Loading ignore list";
+                        arg1.buttonType = 0;
                     } else if (var4 == 1 && this.field156 == 0) {
-                        arg1.field712 = "Please wait...";
-                        arg1.field771 = 0;
+                        arg1.text = "Please wait...";
+                        arg1.buttonType = 0;
                     } else {
                         int var8 = this.field151;
                         if (this.field156 == 0) {
                             var8 = 0;
                         }
                         if (var4 >= var8) {
-                            arg1.field712 = "";
-                            arg1.field771 = 0;
+                            arg1.text = "";
+                            arg1.buttonType = 0;
                         } else {
-                            arg1.field712 = JString.method348(JString.method345(this.field369[var4], 0), (byte) 7);
-                            arg1.field771 = 1;
+                            arg1.text = JString.method348(JString.method345(this.field369[var4], 0), (byte) 7);
+                            arg1.buttonType = 1;
                         }
                     }
                 } else if (var4 == 503) {
-                    arg1.field767 = this.field151 * 15 + 20;
-                    if (arg1.field767 <= arg1.field720) {
-                        arg1.field767 = arg1.field720 + 1;
+                    arg1.scroll = this.field151 * 15 + 20;
+                    if (arg1.scroll <= arg1.height) {
+                        arg1.scroll = arg1.height + 1;
                     }
                 } else if (var4 == 327) {
-                    arg1.field734 = 150;
-                    arg1.field735 = (int) (Math.sin((double) field621 / 40.0D) * 256.0D) & 2047;
+                    arg1.xan = 150;
+                    arg1.yan = (int) (Math.sin((double) field621 / 40.0D) * 256.0D) & 2047;
                     if (this.field573) {
                         for (int var9 = 0; var9 < 7; ++var9) {
                             int var16 = this.field622[var9];
@@ -9034,49 +9152,49 @@ public class client extends GameShell {
                         var13.method366(7);
                         var13.method367(SeqType.field775[field463.field1181].field777[0], (byte) 6);
                         var13.method376(64, 850, -30, -50, -30, true);
-                        arg1.field765 = 5;
-                        arg1.field766 = 0;
+                        arg1.modelType = 5;
+                        arg1.model = 0;
                         Component.method210(5, var13, 0, 6);
                     }
                 } else if (var4 == 324) {
                     if (this.field398 == null) {
-                        this.field398 = arg1.field694;
-                        this.field399 = arg1.field727;
+                        this.field398 = arg1.graphic;
+                        this.field399 = arg1.activeGraphic;
                     }
                     if (this.field440) {
-                        arg1.field694 = this.field399;
+                        arg1.graphic = this.field399;
                     } else {
-                        arg1.field694 = this.field398;
+                        arg1.graphic = this.field398;
                     }
                 } else if (var4 == 325) {
                     if (this.field398 == null) {
-                        this.field398 = arg1.field694;
-                        this.field399 = arg1.field727;
+                        this.field398 = arg1.graphic;
+                        this.field399 = arg1.activeGraphic;
                     }
                     if (this.field440) {
-                        arg1.field694 = this.field398;
+                        arg1.graphic = this.field398;
                     } else {
-                        arg1.field694 = this.field399;
+                        arg1.graphic = this.field399;
                     }
                 } else if (var4 == 600) {
-                    arg1.field712 = this.field135;
+                    arg1.text = this.field135;
                     if (field621 % 20 < 10) {
-                        arg1.field712 = arg1.field712 + "|";
+                        arg1.text = arg1.text + "|";
                     } else {
-                        arg1.field712 = arg1.field712 + " ";
+                        arg1.text = arg1.text + " ";
                     }
                 } else {
                     if (var4 == 620) {
                         if (this.field163 >= 1) {
                             if (this.field394) {
-                                arg1.field722 = 16711680;
-                                arg1.field712 = "Moderator option: Mute player for 48 hours: <ON>";
+                                arg1.colour = 16711680;
+                                arg1.text = "Moderator option: Mute player for 48 hours: <ON>";
                             } else {
-                                arg1.field722 = 16777215;
-                                arg1.field712 = "Moderator option: Mute player for 48 hours: <OFF>";
+                                arg1.colour = 16777215;
+                                arg1.text = "Moderator option: Mute player for 48 hours: <OFF>";
                             }
                         } else {
-                            arg1.field712 = "";
+                            arg1.text = "";
                         }
                     }
                     if (var4 == 660) {
@@ -9089,13 +9207,13 @@ public class client extends GameShell {
                         } else {
                             var18 = var17 + " days ago";
                         }
-                        arg1.field712 = "You last logged in @red@" + var18 + "@bla@ from: @red@" + signlink.dns;
+                        arg1.text = "You last logged in @red@" + var18 + "@bla@ from: @red@" + signlink.dns;
                     }
                     if (var4 == 661) {
                         if (this.field330 == 0) {
-                            arg1.field712 = "\\nYou have not yet set any recovery questions.\\nIt is @lre@strongly@yel@ recommended that you do so.\\n\\nIf you don't you will be @lre@unable to recover your\\n@lre@password@yel@ if you forget it, or it is stolen.";
+                            arg1.text = "\\nYou have not yet set any recovery questions.\\nIt is @lre@strongly@yel@ recommended that you do so.\\n\\nIf you don't you will be @lre@unable to recover your\\n@lre@password@yel@ if you forget it, or it is stolen.";
                         } else if (this.field330 <= this.field466) {
-                            arg1.field712 = "\\n\\nRecovery Questions Last Set:\\n@gre@" + this.method127(this.field330, (byte) 83);
+                            arg1.text = "\\n\\nRecovery Questions Last Set:\\n@gre@" + this.method127(this.field330, (byte) 83);
                         } else {
                             int var19 = this.field466 + 14 - this.field330;
                             String var20;
@@ -9106,7 +9224,7 @@ public class client extends GameShell {
                             } else {
                                 var20 = var19 + " days ago";
                             }
-                            arg1.field712 = var20 + " you requested@lre@ new recovery\\n@lre@questions.@yel@ The requested change will occur\\non: @lre@" + this.method127(this.field330, (byte) 83) + "\\n\\nIf you do not remember making this request\\ncancel it immediately, and change your password.";
+                            arg1.text = var20 + " you requested@lre@ new recovery\\n@lre@questions.@yel@ The requested change will occur\\non: @lre@" + this.method127(this.field330, (byte) 83) + "\\n\\nIf you do not remember making this request\\ncancel it immediately, and change your password.";
                         }
                     }
                     if (var4 == 662) {
@@ -9118,40 +9236,40 @@ public class client extends GameShell {
                         } else {
                             var21 = "@gre@" + this.field569 + " unread messages";
                         }
-                        arg1.field712 = "You have " + var21 + "\\nin your message centre.";
+                        arg1.text = "You have " + var21 + "\\nin your message centre.";
                     }
                     if (var4 == 663) {
                         if (this.field379 > 0 && this.field379 <= this.field466 + 10) {
-                            arg1.field712 = "Last password change:\\n@gre@" + this.method127(this.field379, (byte) 83);
+                            arg1.text = "Last password change:\\n@gre@" + this.method127(this.field379, (byte) 83);
                         } else {
-                            arg1.field712 = "Last password change:\\n@gre@Never changed";
+                            arg1.text = "Last password change:\\n@gre@Never changed";
                         }
                     }
                     if (var4 == 665) {
                         if (this.field288 > 2 && !field221) {
-                            arg1.field712 = "This is a non-members\\nworld. To enjoy your\\nmembers benefits we\\nrecommend you play on a\\nmembers world instead.";
+                            arg1.text = "This is a non-members\\nworld. To enjoy your\\nmembers benefits we\\nrecommend you play on a\\nmembers world instead.";
                         } else if (this.field288 > 2) {
-                            arg1.field712 = "\\n\\nYou have @gre@" + this.field288 + "@yel@ days of\\nmember credit remaining.";
+                            arg1.text = "\\n\\nYou have @gre@" + this.field288 + "@yel@ days of\\nmember credit remaining.";
                         } else if (this.field288 > 0) {
-                            arg1.field712 = "You have @gre@" + this.field288 + "@yel@ days of\\nmember credit remaining.\\n\\n@lre@Credit low! Renew now\\n@lre@to avoid losing members.";
+                            arg1.text = "You have @gre@" + this.field288 + "@yel@ days of\\nmember credit remaining.\\n\\n@lre@Credit low! Renew now\\n@lre@to avoid losing members.";
                         } else {
-                            arg1.field712 = "You are not a member.\\n\\nChoose to subscribe and\\nyou'll get loads of extra\\nbenefits and features.";
+                            arg1.text = "You are not a member.\\n\\nChoose to subscribe and\\nyou'll get loads of extra\\nbenefits and features.";
                         }
                     }
                     if (var4 == 667) {
                         if (this.field288 > 2 && !field221) {
-                            arg1.field712 = "To switch to a members-only world:\\n1) Logout and return to the world selection page.\\n2) Choose one of the members world with a gold star next to it's name.\\n\\nIf you prefer you can continue to use this world,\\nbut members only features will be unavailable here.";
+                            arg1.text = "To switch to a members-only world:\\n1) Logout and return to the world selection page.\\n2) Choose one of the members world with a gold star next to it's name.\\n\\nIf you prefer you can continue to use this world,\\nbut members only features will be unavailable here.";
                         } else if (this.field288 > 0) {
-                            arg1.field712 = "To extend or cancel a subscription:\\n1) Logout and return to the frontpage of this website.\\n2)Choose the relevant option from the 'membership' section.\\n\\nNote: If you are a credit card subscriber a top-up payment will\\nautomatically be taken when 3 days credit remain.\\n(unless you cancel your subscription, which can be done at any time.)";
+                            arg1.text = "To extend or cancel a subscription:\\n1) Logout and return to the frontpage of this website.\\n2)Choose the relevant option from the 'membership' section.\\n\\nNote: If you are a credit card subscriber a top-up payment will\\nautomatically be taken when 3 days credit remain.\\n(unless you cancel your subscription, which can be done at any time.)";
                         } else {
-                            arg1.field712 = "To start a subscripton:\\n1) Logout and return to the frontpage of this website.\\n2) Choose 'Start a new subscription'";
+                            arg1.text = "To start a subscripton:\\n1) Logout and return to the frontpage of this website.\\n2) Choose 'Start a new subscription'";
                         }
                     }
                     if (var4 == 668) {
                         if (this.field330 > this.field466) {
-                            arg1.field712 = "To cancel this request:\\n1) Logout and return to the frontpage of this website.\\n2) Choose 'Cancel recovery questions'.";
+                            arg1.text = "To cancel this request:\\n1) Logout and return to the frontpage of this website.\\n2) Choose 'Cancel recovery questions'.";
                         } else {
-                            arg1.field712 = "To change your recovery questions:\\n1) Logout and return to the frontpage of this website.\\n2) Choose 'Set new recovery questions'.";
+                            arg1.text = "To change your recovery questions:\\n1) Logout and return to the frontpage of this website.\\n2) Choose 'Set new recovery questions'.";
                         }
                     }
                 }
@@ -9166,34 +9284,34 @@ public class client extends GameShell {
                     var4 -= 101;
                 }
                 if (var4 >= var6) {
-                    arg1.field712 = "";
-                    arg1.field771 = 0;
+                    arg1.text = "";
+                    arg1.buttonType = 0;
                 } else {
                     if (this.field563[var4] == 0) {
-                        arg1.field712 = "@red@Offline";
+                        arg1.text = "@red@Offline";
                     } else if (this.field563[var4] < 200) {
                         if (this.field563[var4] == field219) {
-                            arg1.field712 = "@gre@World" + (this.field563[var4] - 9);
+                            arg1.text = "@gre@World" + (this.field563[var4] - 9);
                         } else {
-                            arg1.field712 = "@yel@World" + (this.field563[var4] - 9);
+                            arg1.text = "@yel@World" + (this.field563[var4] - 9);
                         }
                     } else if (this.field563[var4] == field219) {
-                        arg1.field712 = "@gre@Classic" + (this.field563[var4] - 219);
+                        arg1.text = "@gre@Classic" + (this.field563[var4] - 219);
                     } else {
-                        arg1.field712 = "@yel@Classic" + (this.field563[var4] - 219);
+                        arg1.text = "@yel@Classic" + (this.field563[var4] - 219);
                     }
-                    arg1.field771 = 1;
+                    arg1.buttonType = 1;
                 }
             }
         } else if (var4 == 1 && this.field156 == 0) {
-            arg1.field712 = "Loading friend list";
-            arg1.field771 = 0;
+            arg1.text = "Loading friend list";
+            arg1.buttonType = 0;
         } else if (var4 == 1 && this.field156 == 1) {
-            arg1.field712 = "Connecting to friendserver";
-            arg1.field771 = 0;
+            arg1.text = "Connecting to friendserver";
+            arg1.buttonType = 0;
         } else if (var4 == 2 && this.field156 != 2) {
-            arg1.field712 = "Please wait...";
-            arg1.field771 = 0;
+            arg1.text = "Please wait...";
+            arg1.buttonType = 0;
         } else {
             int var5 = this.field155;
             if (this.field156 != 2) {
@@ -9205,11 +9323,11 @@ public class client extends GameShell {
                 --var4;
             }
             if (var4 >= var5) {
-                arg1.field712 = "";
-                arg1.field771 = 0;
+                arg1.text = "";
+                arg1.buttonType = 0;
             } else {
-                arg1.field712 = this.field145[var4];
-                arg1.field771 = 1;
+                arg1.text = this.field145[var4];
+                arg1.buttonType = 1;
             }
         }
     }
@@ -9316,7 +9434,7 @@ public class client extends GameShell {
             }
             if (var3 == 8) {
                 this.field519 = var4;
-                this.field536 = true;
+                this.redrawChatback = true;
             }
             if (var3 == 9) {
                 this.field251 = var4;
@@ -9336,8 +9454,8 @@ public class client extends GameShell {
     @OriginalMember(owner = "client!client", name = "A", descriptor = "(I)V")
     public final void method130(int arg0) {
         this.field542 = 0;
-        int var2 = (field463.field1157 >> 7) + this.field336;
-        int var3 = (field463.field1158 >> 7) + this.field337;
+        int var2 = (field463.x >> 7) + this.sceneBaseTileX;
+        int var3 = (field463.z >> 7) + this.sceneBaseTileZ;
         if (arg0 < 0) {
             if (var2 >= 3053 && var2 <= 3156 && var3 >= 3056 && var3 <= 3136) {
                 this.field542 = 1;
@@ -9441,13 +9559,13 @@ public class client extends GameShell {
         if (this.field319 == 2) {
             this.field192[this.field318 / 100 + 4].method195(this.field317 - 8 - 4, this.field316 - 8 - 4, -488);
         }
-        if (this.field575 != -1) {
-            this.method110(this.field247, this.field575, (byte) 5);
-            this.method169(0, 0, Component.method204(this.field575), 0, 8);
+        if (this.viewportOverlayInterfaceId != -1) {
+            this.method110(this.field247, this.viewportOverlayInterfaceId, (byte) 5);
+            this.method169(0, 0, Component.get(this.viewportOverlayInterfaceId), 0, 8);
         }
-        if (this.field465 != -1) {
-            this.method110(this.field247, this.field465, (byte) 5);
-            this.method169(0, 0, Component.method204(this.field465), 0, 8);
+        if (this.viewportInterfaceId != -1) {
+            this.method110(this.field247, this.viewportInterfaceId, (byte) 5);
+            this.method169(0, 0, Component.get(this.viewportInterfaceId), 0, 8);
         }
         this.method130(-7);
         if (!this.field361) {
@@ -9495,6 +9613,7 @@ public class client extends GameShell {
             ++field191;
             if (field191 > 112) {
                 field191 = 0;
+                // ANTICHEAT_CYCLELOGIC3
                 this.field260.p1isaac((byte) 4, 197);
                 this.field260.p4(0);
                 return;
@@ -9601,11 +9720,11 @@ public class client extends GameShell {
         if (arg0 != 36) {
             this.field260.p1(6);
         }
-        Component var3 = Component.method204(arg1);
-        for (int var4 = 0; var4 < var3.field740.length && var3.field740[var4] != -1; ++var4) {
-            Component var5 = Component.method204(var3.field740[var4]);
-            if (var5.field718 == 1) {
-                this.method135((byte) 36, var5.field697);
+        Component var3 = Component.get(arg1);
+        for (int var4 = 0; var4 < var3.children.length && var3.children[var4] != -1; ++var4) {
+            Component var5 = Component.get(var3.children[var4]);
+            if (var5.type == 1) {
+                this.method135((byte) 36, var5.id);
             }
             var5.field717 = 0;
             var5.field709 = 0;
@@ -9790,6 +9909,7 @@ public class client extends GameShell {
         ++field378;
         if (field378 > 177) {
             field378 = 0;
+            // ANTICHEAT_CYCLELOGIC4
             this.field260.p1isaac((byte) 4, 173);
             this.field260.p3(2657152);
         }
@@ -9854,6 +9974,7 @@ public class client extends GameShell {
             ++field274;
             if (field274 > 1457) {
                 field274 = 0;
+                // ANTICHEAT_CYCLELOGIC1
                 this.field260.p1isaac((byte) 4, 244);
                 this.field260.p1(0);
                 int var4 = this.field260.pos;
@@ -9873,8 +9994,8 @@ public class client extends GameShell {
             }
             int var5 = this.field512 >> 7;
             int var6 = this.field514 >> 7;
-            int var7 = field463.field1157 >> 7;
-            int var8 = field463.field1158 >> 7;
+            int var7 = field463.x >> 7;
+            int var8 = field463.z >> 7;
             if ((this.field421[this.field387][var5][var6] & 4) != 0) {
                 var2 = this.field387;
             }
@@ -9942,7 +10063,7 @@ public class client extends GameShell {
                 }
             }
         }
-        if ((this.field421[this.field387][field463.field1157 >> 7][field463.field1158 >> 7] & 4) != 0) {
+        if ((this.field421[this.field387][field463.x >> 7][field463.z >> 7] & 4) != 0) {
             var2 = this.field387;
         }
         return var2;
@@ -9971,7 +10092,7 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "b", descriptor = "(IZ)V")
     public final void method143(int arg0, boolean arg1) {
-        if (field463.field1157 >> 7 == this.field416 && field463.field1158 >> 7 == this.field417) {
+        if (field463.x >> 7 == this.field416 && field463.z >> 7 == this.field417) {
             this.field416 = 0;
         }
         int var3 = this.field267;
@@ -9993,22 +10114,22 @@ public class client extends GameShell {
                 if ((field222 && this.field267 > 50 || this.field267 > 200) && !arg1 && var5.field1181 == var5.field1135) {
                     var5.field1685 = true;
                 }
-                int var7 = var5.field1157 >> 7;
-                int var8 = var5.field1158 >> 7;
+                int var7 = var5.x >> 7;
+                int var8 = var5.z >> 7;
                 if (var7 >= 0 && var7 < 104 && var8 >= 0 && var8 < 104) {
                     if (var5.field1668 != null && field621 >= var5.field1686 && field621 < var5.field1687) {
                         var5.field1685 = false;
-                        var5.field1672 = this.method133(var5.field1158, var5.field1157, (byte) 9, this.field387);
-                        this.field460.method286(var5.field1672, var5.field1691, 60, 7, var5, var5.field1690, var5.field1158, var5.field1693, var5.field1157, var5.field1159, var5.field1692, this.field387, var6);
+                        var5.field1672 = this.method133(var5.z, var5.x, (byte) 9, this.field387);
+                        this.field460.method286(var5.field1672, var5.field1691, 60, 7, var5, var5.field1690, var5.z, var5.field1693, var5.x, var5.field1159, var5.field1692, this.field387, var6);
                     } else {
-                        if ((var5.field1157 & 127) == 64 && (var5.field1158 & 127) == 64) {
+                        if ((var5.x & 127) == 64 && (var5.z & 127) == 64) {
                             if (this.field182[var7][var8] == this.field434) {
                                 continue;
                             }
                             this.field182[var7][var8] = this.field434;
                         }
-                        var5.field1672 = this.method133(var5.field1158, var5.field1157, (byte) 9, this.field387);
-                        this.field460.method285(var6, var5, var5.field1157, var5.field1672, var5.field1139, 0, this.field387, 60, var5.field1158, var5.field1159);
+                        var5.field1672 = this.method133(var5.z, var5.x, (byte) 9, this.field387);
+                        this.field460.method285(var6, var5, var5.x, var5.field1672, var5.field1139, 0, this.field387, 60, var5.z, var5.field1159);
                     }
                 }
             }
@@ -10033,16 +10154,17 @@ public class client extends GameShell {
             }
             if (this.field540 != 0 && var5 != 1016) {
                 this.field540 = 0;
-                this.field536 = true;
+                this.redrawChatback = true;
             }
             if (var5 == 200) {
                 PlayerEntity var7 = this.field266[var6];
                 if (var7 != null) {
-                    this.method55(false, false, var7.field1134[0], field463.field1134[0], 1, 1, 2, 0, var7.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var7.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var7.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPPLAYER1
                     this.field260.p1isaac((byte) 4, 245);
                     this.field260.p2_alt3(3, var6);
                 }
@@ -10050,10 +10172,12 @@ public class client extends GameShell {
             if (var5 == 227) {
                 ++field461;
                 if (field461 >= 62) {
+                    // ANTICHEAT_OPLOGIC2
                     this.field260.p1isaac((byte) 4, 165);
                     this.field260.p1(206);
                     field461 = 0;
                 }
+                // OPHELD4
                 this.field260.p1isaac((byte) 4, 228);
                 this.field260.p2_alt1(0, var3);
                 this.field260.p2_alt2(var6, 0);
@@ -10062,21 +10186,22 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 876) {
                 PlayerEntity var8 = this.field266[var6];
                 if (var8 != null) {
-                    this.method55(false, false, var8.field1134[0], field463.field1134[0], 1, 1, 2, 0, var8.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var8.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var8.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPPLAYER5
                     this.field260.p1isaac((byte) 4, 45);
                     this.field260.p2_alt2(var6, 0);
                 }
@@ -10084,11 +10209,12 @@ public class client extends GameShell {
             if (var5 == 921) {
                 NpcEntity var9 = this.field428[var6];
                 if (var9 != null) {
-                    this.method55(false, false, var9.field1134[0], field463.field1134[0], 1, 1, 2, 0, var9.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var9.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var9.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPNPC2
                     this.field260.p1isaac((byte) 4, 67);
                     this.field260.p2_alt2(var6, 0);
                 }
@@ -10096,10 +10222,12 @@ public class client extends GameShell {
             if (var5 == 961) {
                 field435 += var6;
                 if (field435 >= 115) {
+                    // ANTICHEAT_OPLOGIC5
                     this.field260.p1isaac((byte) 4, 126);
                     this.field260.p1(125);
                     field435 = 0;
                 }
+                // OPHELD1
                 this.field260.p1isaac((byte) 4, 203);
                 this.field260.p2_alt2(var4, 0);
                 this.field260.p2_alt1(0, var3);
@@ -10108,23 +10236,25 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 467 && this.method102(var4, 0, var3, var6)) {
+                // OPLOCU
                 this.field260.p1isaac((byte) 4, 152);
                 this.field260.p2_alt1(0, var6 >> 14 & 32767);
                 this.field260.p2_alt1(0, this.field444);
                 this.field260.p2_alt1(0, this.field445);
-                this.field260.p2_alt1(0, this.field337 + var4);
+                this.field260.p2_alt1(0, this.sceneBaseTileZ + var4);
                 this.field260.p2(this.field443);
-                this.field260.p2_alt3(3, this.field336 + var3);
+                this.field260.p2_alt3(3, this.sceneBaseTileX + var3);
             }
             if (var5 == 9) {
+                // INV_BUTTON1
                 this.field260.p1isaac((byte) 4, 3);
                 this.field260.p2_alt2(var6, 0);
                 this.field260.p2(var4);
@@ -10133,21 +10263,22 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 553) {
                 NpcEntity var10 = this.field428[var6];
                 if (var10 != null) {
-                    this.method55(false, false, var10.field1134[0], field463.field1134[0], 1, 1, 2, 0, var10.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var10.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var10.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPNPC4
                     this.field260.p1isaac((byte) 4, 42);
                     this.field260.p2_alt1(0, var6);
                 }
@@ -10155,11 +10286,12 @@ public class client extends GameShell {
             if (var5 == 677) {
                 PlayerEntity var11 = this.field266[var6];
                 if (var11 != null) {
-                    this.method55(false, false, var11.field1134[0], field463.field1134[0], 1, 1, 2, 0, var11.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var11.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var11.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPPLAYER4
                     this.field260.p1isaac((byte) 4, 116);
                     this.field260.p2_alt1(0, var6);
                 }
@@ -10184,20 +10316,22 @@ public class client extends GameShell {
                 }
             }
             if (var5 == 930) {
-                boolean var16 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                boolean var16 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                 if (!var16) {
-                    this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                 }
                 this.field316 = super.field966;
                 this.field317 = super.field967;
                 this.field319 = 2;
                 this.field318 = 0;
+                // OPOBJ4
                 this.field260.p1isaac((byte) 4, 54);
                 this.field260.p2_alt2(var6, 0);
-                this.field260.p2_alt1(0, this.field337 + var4);
-                this.field260.p2(this.field336 + var3);
+                this.field260.p2_alt1(0, this.sceneBaseTileZ + var4);
+                this.field260.p2(this.sceneBaseTileX + var3);
             }
             if (var5 == 399) {
+                // OPHELD2
                 this.field260.p1isaac((byte) 4, 24);
                 this.field260.p2_alt1(0, var4);
                 this.field260.p2_alt1(0, var6);
@@ -10206,21 +10340,22 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 347) {
                 NpcEntity var18 = this.field428[var6];
                 if (var18 != null) {
-                    this.method55(false, false, var18.field1134[0], field463.field1134[0], 1, 1, 2, 0, var18.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var18.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var18.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPNPCU
                     this.field260.p1isaac((byte) 4, 57);
                     this.field260.p2(var6);
                     this.field260.p2_alt1(0, this.field445);
@@ -10229,24 +10364,26 @@ public class client extends GameShell {
                 }
             }
             if (var5 == 890) {
+                // IF_BUTTON
                 this.field260.p1isaac((byte) 4, 79);
                 this.field260.p2(var4);
-                Component var19 = Component.method204(var4);
-                if (var19.field716 != null && var19.field716[0][0] == 5) {
-                    int var20 = var19.field716[0][1];
+                Component var19 = Component.get(var4);
+                if (var19.scripts != null && var19.scripts[0][0] == 5) {
+                    int var20 = var19.scripts[0][1];
                     this.field335[var20] = 1 - this.field335[var20];
                     this.method128(0, var20);
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                 }
             }
             if (var5 == 493) {
                 PlayerEntity var21 = this.field266[var6];
                 if (var21 != null) {
-                    this.method55(false, false, var21.field1134[0], field463.field1134[0], 1, 1, 2, 0, var21.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var21.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var21.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPPLAYER2
                     this.field260.p1isaac((byte) 4, 233);
                     this.field260.p2_alt2(var6, 0);
                 }
@@ -10259,6 +10396,7 @@ public class client extends GameShell {
                 }
             }
             if (var5 == 903) {
+                // OPHELDU
                 this.field260.p1isaac((byte) 4, 1);
                 this.field260.p2(var6);
                 this.field260.p2_alt1(0, this.field443);
@@ -10270,14 +10408,15 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 361) {
+                // OPHELDT
                 this.field260.p1isaac((byte) 4, 36);
                 this.field260.p2(this.field468);
                 this.field260.p2_alt2(var4, 0);
@@ -10287,46 +10426,50 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 118) {
                 NpcEntity var22 = this.field428[var6];
                 if (var22 != null) {
-                    this.method55(false, false, var22.field1134[0], field463.field1134[0], 1, 1, 2, 0, var22.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var22.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var22.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
                     field531 += var6;
                     if (field531 >= 143) {
+                        // ANTICHEAT_OPLOGIC3
                         this.field260.p1isaac((byte) 4, 157);
                         this.field260.p4(0);
                         field531 = 0;
                     }
+                    // OPNPC3
                     this.field260.p1isaac((byte) 4, 13);
                     this.field260.p2_alt3(3, var6);
                 }
             }
             if (var5 == 376 && this.method102(var4, 0, var3, var6)) {
+                // OPLOCT
                 this.field260.p1isaac((byte) 4, 210);
                 this.field260.p2(this.field468);
                 this.field260.p2_alt1(0, var6 >> 14 & 32767);
-                this.field260.p2_alt2(this.field336 + var3, 0);
-                this.field260.p2_alt1(0, this.field337 + var4);
+                this.field260.p2_alt2(this.sceneBaseTileX + var3, 0);
+                this.field260.p2_alt1(0, this.sceneBaseTileZ + var4);
             }
             if (var5 == 432) {
                 NpcEntity var23 = this.field428[var6];
                 if (var23 != null) {
-                    this.method55(false, false, var23.field1134[0], field463.field1134[0], 1, 1, 2, 0, var23.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var23.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var23.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPNPC5
                     this.field260.p1isaac((byte) 4, 8);
                     this.field260.p2_alt1(0, var6);
                 }
@@ -10337,11 +10480,12 @@ public class client extends GameShell {
             if (var5 == 918) {
                 PlayerEntity var24 = this.field266[var6];
                 if (var24 != null) {
-                    this.method55(false, false, var24.field1134[0], field463.field1134[0], 1, 1, 2, 0, var24.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var24.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var24.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPPLAYERT
                     this.field260.p1isaac((byte) 4, 31);
                     this.field260.p2(var6);
                     this.field260.p2_alt1(0, this.field468);
@@ -10350,34 +10494,36 @@ public class client extends GameShell {
             if (var5 == 67) {
                 NpcEntity var25 = this.field428[var6];
                 if (var25 != null) {
-                    this.method55(false, false, var25.field1134[0], field463.field1134[0], 1, 1, 2, 0, var25.field1133[0], 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var25.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var25.routeTileX[0], 0, 0, field463.routeTileX[0]);
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPNPCT
                     this.field260.p1isaac((byte) 4, 104);
                     this.field260.p2_alt2(this.field468, 0);
                     this.field260.p2_alt1(0, var6);
                 }
             }
             if (var5 == 68) {
-                boolean var26 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                boolean var26 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                 if (!var26) {
-                    this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                 }
                 this.field316 = super.field966;
                 this.field317 = super.field967;
                 this.field319 = 2;
                 this.field318 = 0;
+                // OPOBJ1
                 this.field260.p1isaac((byte) 4, 77);
-                this.field260.p2_alt2(this.field336 + var3, 0);
-                this.field260.p2(this.field337 + var4);
+                this.field260.p2_alt2(this.sceneBaseTileX + var3, 0);
+                this.field260.p2(this.sceneBaseTileZ + var4);
                 this.field260.p2_alt3(3, var6);
             }
             if (var5 == 684) {
-                boolean var28 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                boolean var28 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                 if (!var28) {
-                    this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                 }
                 this.field316 = super.field966;
                 this.field317 = super.field967;
@@ -10387,14 +10533,16 @@ public class client extends GameShell {
                     ++field348;
                 }
                 if (field348 >= 84) {
+                    // ANTICHEAT_OPLOGIC4
                     this.field260.p1isaac((byte) 4, 222);
                     this.field260.p3(11257922);
                     field348 = 0;
                 }
+                // OPOBJ3
                 this.field260.p1isaac((byte) 4, 71);
                 this.field260.p2_alt3(3, var6);
-                this.field260.p2_alt3(3, this.field336 + var3);
-                this.field260.p2_alt2(this.field337 + var4, 0);
+                this.field260.p2_alt3(3, this.sceneBaseTileX + var3);
+                this.field260.p2_alt2(this.sceneBaseTileZ + var4, 0);
             }
             if (var5 == 544 || var5 == 695) {
                 String var30 = this.field480[arg0];
@@ -10406,12 +10554,14 @@ public class client extends GameShell {
                     for (int var35 = 0; var35 < this.field267; ++var35) {
                         PlayerEntity var36 = this.field266[this.field268[var35]];
                         if (var36 != null && var36.field1673 != null && var36.field1673.equalsIgnoreCase(var33)) {
-                            this.method55(false, false, var36.field1134[0], field463.field1134[0], 1, 1, 2, 0, var36.field1133[0], 0, 0, field463.field1133[0]);
+                            this.method55(false, false, var36.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var36.routeTileX[0], 0, 0, field463.routeTileX[0]);
                             if (var5 == 544) {
+                                // OPPLAYER4
                                 this.field260.p1isaac((byte) 4, 116);
                                 this.field260.p2_alt1(0, this.field268[var35]);
                             }
                             if (var5 == 695) {
+                                // OPPLAYER1
                                 this.field260.p1isaac((byte) 4, 245);
                                 this.field260.p2_alt3(3, this.field268[var35]);
                             }
@@ -10425,6 +10575,7 @@ public class client extends GameShell {
                 }
             }
             if (var5 == 225) {
+                // INV_BUTTON2
                 this.field260.p1isaac((byte) 4, 177);
                 this.field260.p2_alt2(var3, 0);
                 this.field260.p2_alt1(0, var6);
@@ -10433,36 +10584,37 @@ public class client extends GameShell {
                 this.field626 = var4;
                 this.field627 = var3;
                 this.field628 = 2;
-                if (Component.method204(var4).field730 == this.field465) {
+                if (Component.get(var4).layer == this.viewportInterfaceId) {
                     this.field628 = 1;
                 }
-                if (Component.method204(var4).field730 == this.field284) {
+                if (Component.get(var4).layer == this.chatInterfaceId) {
                     this.field628 = 3;
                 }
             }
             if (var5 == 70) {
-                Component var37 = Component.method204(var4);
+                Component var37 = Component.get(var4);
                 this.field467 = 1;
                 this.field468 = var4;
-                this.field469 = var37.field704;
+                this.field469 = var37.targetMask;
                 this.field442 = 0;
-                this.field477 = true;
-                String var38 = var37.field763;
+                this.redrawSidebar = true;
+                String var38 = var37.targetVerb;
                 if (var38.indexOf(" ") != -1) {
                     var38 = var38.substring(0, var38.indexOf(" "));
                 }
-                String var39 = var37.field763;
+                String var39 = var37.targetVerb;
                 if (var39.indexOf(" ") != -1) {
                     var39 = var39.substring(var39.indexOf(" ") + 1);
                 }
-                this.field470 = var38 + " " + var37.field693 + " " + var39;
+                this.field470 = var38 + " " + var37.targetText + " " + var39;
                 if (this.field469 == 16) {
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                     this.field581 = 3;
-                    this.field246 = true;
+                    this.redrawSideicons = true;
                 }
             } else {
                 if (var5 == 891) {
+                    // OPHELD5
                     this.field260.p1isaac((byte) 4, 4);
                     this.field260.p2_alt1(0, var3);
                     this.field260.p2_alt3(3, var6);
@@ -10471,14 +10623,15 @@ public class client extends GameShell {
                     this.field626 = var4;
                     this.field627 = var3;
                     this.field628 = 2;
-                    if (Component.method204(var4).field730 == this.field465) {
+                    if (Component.get(var4).layer == this.viewportInterfaceId) {
                         this.field628 = 1;
                     }
-                    if (Component.method204(var4).field730 == this.field284) {
+                    if (Component.get(var4).layer == this.chatInterfaceId) {
                         this.field628 = 3;
                     }
                 }
                 if (var5 == 894) {
+                    // INV_BUTTON5
                     this.field260.p1isaac((byte) 4, 158);
                     this.field260.p2_alt3(3, var3);
                     this.field260.p2_alt3(3, var6);
@@ -10487,35 +10640,39 @@ public class client extends GameShell {
                     this.field626 = var4;
                     this.field627 = var3;
                     this.field628 = 2;
-                    if (Component.method204(var4).field730 == this.field465) {
+                    if (Component.get(var4).layer == this.viewportInterfaceId) {
                         this.field628 = 1;
                     }
-                    if (Component.method204(var4).field730 == this.field284) {
+                    if (Component.get(var4).layer == this.chatInterfaceId) {
                         this.field628 = 3;
                     }
                 }
                 if (var5 == 1280) {
                     this.method102(var4, 0, var3, var6);
+                    // OPLOC5
                     this.field260.p1isaac((byte) 4, 55);
                     this.field260.p2_alt1(0, var6 >> 14 & 32767);
-                    this.field260.p2_alt1(0, this.field337 + var4);
-                    this.field260.p2(this.field336 + var3);
+                    this.field260.p2_alt1(0, this.sceneBaseTileZ + var4);
+                    this.field260.p2(this.sceneBaseTileX + var3);
                 }
                 if (var5 == 35) {
                     this.method102(var4, 0, var3, var6);
+                    // OPLOC1
                     this.field260.p1isaac((byte) 4, 181);
-                    this.field260.p2_alt2(this.field336 + var3, 0);
-                    this.field260.p2_alt1(0, this.field337 + var4);
+                    this.field260.p2_alt2(this.sceneBaseTileX + var3, 0);
+                    this.field260.p2_alt1(0, this.sceneBaseTileZ + var4);
                     this.field260.p2_alt1(0, var6 >> 14 & 32767);
                 }
                 if (var5 == 888) {
                     this.method102(var4, 0, var3, var6);
+                    // OPLOC3
                     this.field260.p1isaac((byte) 4, 50);
-                    this.field260.p2_alt2(this.field337 + var4, 0);
+                    this.field260.p2_alt2(this.sceneBaseTileZ + var4, 0);
                     this.field260.p2_alt1(0, var6 >> 14 & 32767);
-                    this.field260.p2_alt3(3, this.field336 + var3);
+                    this.field260.p2_alt3(3, this.sceneBaseTileX + var3);
                 }
                 if (var5 == 324) {
+                    // OPHELD3
                     this.field260.p1isaac((byte) 4, 161);
                     this.field260.p2_alt3(3, var3);
                     this.field260.p2_alt3(3, var6);
@@ -10524,19 +10681,19 @@ public class client extends GameShell {
                     this.field626 = var4;
                     this.field627 = var3;
                     this.field628 = 2;
-                    if (Component.method204(var4).field730 == this.field465) {
+                    if (Component.get(var4).layer == this.viewportInterfaceId) {
                         this.field628 = 1;
                     }
-                    if (Component.method204(var4).field730 == this.field284) {
+                    if (Component.get(var4).layer == this.chatInterfaceId) {
                         this.field628 = 3;
                     }
                 }
                 if (var5 == 1094) {
                     ObjType var40 = ObjType.method221(var6);
-                    Component var41 = Component.method204(var4);
+                    Component var41 = Component.get(var4);
                     String var42;
-                    if (var41 != null && var41.field706[var3] >= 100000) {
-                        var42 = var41.field706[var3] + " x " + var40.field811;
+                    if (var41 != null && var41.invSlotObjCount[var3] >= 100000) {
+                        var42 = var41.invSlotObjCount[var3] + " x " + var40.field811;
                     } else if (var40.field810 != null) {
                         var42 = new String(var40.field810);
                     } else {
@@ -10545,12 +10702,13 @@ public class client extends GameShell {
                     this.method67("", (byte) -123, var42, 0);
                 }
                 if (var5 == 352) {
-                    Component var43 = Component.method204(var4);
+                    Component var43 = Component.get(var4);
                     boolean var44 = true;
-                    if (var43.field724 > 0) {
+                    if (var43.clientCode > 0) {
                         var44 = this.method80(631, var43);
                     }
                     if (var44) {
+                        // IF_BUTTON
                         this.field260.p1isaac((byte) 4, 79);
                         this.field260.p2(var4);
                     }
@@ -10566,40 +10724,44 @@ public class client extends GameShell {
                     }
                     this.method67("", (byte) -123, var47, 0);
                 }
-                if (var5 == 575 && !this.field535) {
+                if (var5 == 575 && !this.pressedContinueOption) {
+                    // RESUME_PAUSEBUTTON
                     this.field260.p1isaac((byte) 4, 226);
                     this.field260.p2(var4);
-                    this.field535 = true;
+                    this.pressedContinueOption = true;
                 }
                 if (var5 == 892) {
                     this.method102(var4, 0, var3, var6);
+                    // OPLOC4
                     this.field260.p1isaac((byte) 4, 136);
-                    this.field260.p2(this.field336 + var3);
-                    this.field260.p2_alt1(0, this.field337 + var4);
+                    this.field260.p2(this.sceneBaseTileX + var3);
+                    this.field260.p2_alt1(0, this.sceneBaseTileZ + var4);
                     this.field260.p2(var6 >> 14 & 32767);
                 }
                 if (var5 == 270) {
-                    boolean var48 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    boolean var48 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     if (!var48) {
-                        this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                        this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     }
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPOBJ5
                     this.field260.p1isaac((byte) 4, 230);
                     this.field260.p2_alt1(0, var6);
-                    this.field260.p2_alt2(this.field336 + var3, 0);
-                    this.field260.p2(this.field337 + var4);
+                    this.field260.p2_alt2(this.sceneBaseTileX + var3, 0);
+                    this.field260.p2(this.sceneBaseTileZ + var4);
                 }
                 if (var5 == 596) {
                     PlayerEntity var50 = this.field266[var6];
                     if (var50 != null) {
-                        this.method55(false, false, var50.field1134[0], field463.field1134[0], 1, 1, 2, 0, var50.field1133[0], 0, 0, field463.field1133[0]);
+                        this.method55(false, false, var50.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var50.routeTileX[0], 0, 0, field463.routeTileX[0]);
                         this.field316 = super.field966;
                         this.field317 = super.field967;
                         this.field319 = 2;
                         this.field318 = 0;
+                        // OPPLAYERU
                         this.field260.p1isaac((byte) 4, 143);
                         this.field260.p2_alt1(0, this.field445);
                         this.field260.p2_alt3(3, this.field443);
@@ -10608,19 +10770,20 @@ public class client extends GameShell {
                     }
                 }
                 if (var5 == 100) {
-                    boolean var51 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    boolean var51 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     if (!var51) {
-                        this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                        this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     }
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPOBJU
                     this.field260.p1isaac((byte) 4, 211);
                     this.field260.p2_alt3(3, this.field443);
                     this.field260.p2_alt2(this.field445, 0);
-                    this.field260.p2_alt3(3, this.field337 + var4);
-                    this.field260.p2_alt3(3, this.field336 + var3);
+                    this.field260.p2_alt3(3, this.sceneBaseTileZ + var4);
+                    this.field260.p2_alt3(3, this.sceneBaseTileX + var3);
                     this.field260.p2_alt1(0, this.field444);
                     this.field260.p2_alt1(0, var6);
                 }
@@ -10643,9 +10806,9 @@ public class client extends GameShell {
                     }
                 }
                 if (var5 == 26) {
-                    boolean var56 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    boolean var56 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     if (!var56) {
-                        this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                        this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     }
                     this.field316 = super.field966;
                     this.field317 = super.field967;
@@ -10653,16 +10816,19 @@ public class client extends GameShell {
                     this.field318 = 0;
                     ++field396;
                     if (field396 >= 120) {
+                        // ANTICHEAT_OPLOGIC1
                         this.field260.p1isaac((byte) 4, 95);
                         this.field260.p4(0);
                         field396 = 0;
                     }
+                    // OPOBJ2
                     this.field260.p1isaac((byte) 4, 100);
-                    this.field260.p2(this.field336 + var3);
-                    this.field260.p2_alt2(this.field337 + var4, 0);
+                    this.field260.p2(this.sceneBaseTileX + var3);
+                    this.field260.p2_alt2(this.sceneBaseTileZ + var4, 0);
                     this.field260.p2_alt3(3, var6);
                 }
                 if (var5 == 444) {
+                    // INV_BUTTON3
                     this.field260.p1isaac((byte) 4, 91);
                     this.field260.p2_alt1(0, var6);
                     this.field260.p2_alt3(3, var3);
@@ -10671,10 +10837,10 @@ public class client extends GameShell {
                     this.field626 = var4;
                     this.field627 = var3;
                     this.field628 = 2;
-                    if (Component.method204(var4).field730 == this.field465) {
+                    if (Component.get(var4).layer == this.viewportInterfaceId) {
                         this.field628 = 1;
                     }
-                    if (Component.method204(var4).field730 == this.field284) {
+                    if (Component.get(var4).layer == this.chatInterfaceId) {
                         this.field628 = 3;
                     }
                 }
@@ -10682,11 +10848,11 @@ public class client extends GameShell {
                     String var58 = this.field480[arg0];
                     int var59 = var58.indexOf("@whi@");
                     if (var59 != -1) {
-                        if (this.field465 == -1) {
+                        if (this.viewportInterfaceId == -1) {
                             this.method34(false);
                             this.field135 = var58.substring(var59 + 5).trim();
                             this.field394 = false;
-                            this.field527 = this.field465 = Component.field728;
+                            this.field527 = this.viewportInterfaceId = Component.reportAbuseInterfaceId;
                         } else {
                             this.method67("", (byte) -123, "Please close the interface you have open before using 'report abuse'", 0);
                         }
@@ -10694,12 +10860,14 @@ public class client extends GameShell {
                 }
                 if (var5 == 389) {
                     this.method102(var4, 0, var3, var6);
+                    // OPLOC2
                     this.field260.p1isaac((byte) 4, 241);
                     this.field260.p2(var6 >> 14 & 32767);
-                    this.field260.p2(this.field336 + var3);
-                    this.field260.p2_alt2(this.field337 + var4, 0);
+                    this.field260.p2(this.sceneBaseTileX + var3);
+                    this.field260.p2_alt2(this.sceneBaseTileZ + var4, 0);
                 }
                 if (var5 == 564) {
+                    // INV_BUTTON4
                     this.field260.p1isaac((byte) 4, 231);
                     this.field260.p2_alt3(3, var4);
                     this.field260.p2_alt1(0, var3);
@@ -10708,10 +10876,10 @@ public class client extends GameShell {
                     this.field626 = var4;
                     this.field627 = var3;
                     this.field628 = 2;
-                    if (Component.method204(var4).field730 == this.field465) {
+                    if (Component.get(var4).layer == this.viewportInterfaceId) {
                         this.field628 = 1;
                     }
-                    if (Component.method204(var4).field730 == this.field284) {
+                    if (Component.get(var4).layer == this.chatInterfaceId) {
                         this.field628 = 3;
                     }
                 }
@@ -10728,7 +10896,7 @@ public class client extends GameShell {
                             }
                         }
                         if (var64 != -1 && this.field563[var64] > 0) {
-                            this.field536 = true;
+                            this.redrawChatback = true;
                             this.field540 = 0;
                             this.field162 = true;
                             this.field322 = "";
@@ -10739,49 +10907,52 @@ public class client extends GameShell {
                     }
                 }
                 if (var5 == 518) {
+                    // IF_BUTTON
                     this.field260.p1isaac((byte) 4, 79);
                     this.field260.p2(var4);
-                    Component var66 = Component.method204(var4);
-                    if (var66.field716 != null && var66.field716[0][0] == 5) {
-                        int var67 = var66.field716[0][1];
-                        if (this.field335[var67] != var66.field738[0]) {
-                            this.field335[var67] = var66.field738[0];
+                    Component var66 = Component.get(var4);
+                    if (var66.scripts != null && var66.scripts[0][0] == 5) {
+                        int var67 = var66.scripts[0][1];
+                        if (this.field335[var67] != var66.scriptOperand[0]) {
+                            this.field335[var67] = var66.scriptOperand[0];
                             this.method128(0, var67);
-                            this.field477 = true;
+                            this.redrawSidebar = true;
                         }
                     }
                 }
                 if (var5 == 318) {
                     NpcEntity var68 = this.field428[var6];
                     if (var68 != null) {
-                        this.method55(false, false, var68.field1134[0], field463.field1134[0], 1, 1, 2, 0, var68.field1133[0], 0, 0, field463.field1133[0]);
+                        this.method55(false, false, var68.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var68.routeTileX[0], 0, 0, field463.routeTileX[0]);
                         this.field316 = super.field966;
                         this.field317 = super.field967;
                         this.field319 = 2;
                         this.field318 = 0;
+                        // OPNPC1
                         this.field260.p1isaac((byte) 4, 112);
                         this.field260.p2_alt1(0, var6);
                     }
                 }
                 if (var5 == 199) {
-                    boolean var69 = this.method55(false, false, var4, field463.field1134[0], 0, 0, 2, 0, var3, 0, 0, field463.field1133[0]);
+                    boolean var69 = this.method55(false, false, var4, field463.routeTileZ[0], 0, 0, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     if (!var69) {
-                        this.method55(false, false, var4, field463.field1134[0], 1, 1, 2, 0, var3, 0, 0, field463.field1133[0]);
+                        this.method55(false, false, var4, field463.routeTileZ[0], 1, 1, 2, 0, var3, 0, 0, field463.routeTileX[0]);
                     }
                     this.field316 = super.field966;
                     this.field317 = super.field967;
                     this.field319 = 2;
                     this.field318 = 0;
+                    // OPOBJT
                     this.field260.p1isaac((byte) 4, 83);
                     this.field260.p2_alt1(0, var6);
-                    this.field260.p2(this.field337 + var4);
+                    this.field260.p2(this.sceneBaseTileZ + var4);
                     this.field260.p2_alt1(0, this.field468);
-                    this.field260.p2_alt3(3, this.field336 + var3);
+                    this.field260.p2_alt3(3, this.sceneBaseTileX + var3);
                 }
                 if (var5 == 55) {
                     this.method64(field486, this.field487);
                     this.field487 = -1;
-                    this.field536 = true;
+                    this.redrawChatback = true;
                 }
                 if (var5 == 52) {
                     this.field442 = 1;
@@ -10790,7 +10961,7 @@ public class client extends GameShell {
                     this.field445 = var6;
                     this.field446 = String.valueOf(ObjType.method221(var6).field811);
                     this.field467 = 0;
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                 } else {
                     if (var5 == 1564) {
                         ObjType var71 = ObjType.method221(var6);
@@ -10805,18 +10976,19 @@ public class client extends GameShell {
                     if (var5 == 408) {
                         PlayerEntity var73 = this.field266[var6];
                         if (var73 != null) {
-                            this.method55(false, false, var73.field1134[0], field463.field1134[0], 1, 1, 2, 0, var73.field1133[0], 0, 0, field463.field1133[0]);
+                            this.method55(false, false, var73.routeTileZ[0], field463.routeTileZ[0], 1, 1, 2, 0, var73.routeTileX[0], 0, 0, field463.routeTileX[0]);
                             this.field316 = super.field966;
                             this.field317 = super.field967;
                             this.field319 = 2;
                             this.field318 = 0;
+                            // OPPLAYER3
                             this.field260.p1isaac((byte) 4, 194);
                             this.field260.p2_alt1(0, var6);
                         }
                     }
                     this.field442 = 0;
                     this.field467 = 0;
-                    this.field477 = true;
+                    this.redrawSidebar = true;
                 }
             }
         }
@@ -11224,7 +11396,7 @@ public class client extends GameShell {
             this.field352 = this.field195.method329();
         }
         if (this.field493 == 2) {
-            this.method162((this.field140 - this.field336 << 7) + this.field143, this.field142 * 2, (this.field141 - this.field337 << 7) + this.field144, -214);
+            this.method162((this.field140 - this.sceneBaseTileX << 7) + this.field143, this.field142 * 2, (this.field141 - this.sceneBaseTileZ << 7) + this.field144, -214);
             if (this.field228 > -1 && field621 % 20 < 10) {
                 this.field250[0].method195(this.field229 - 28, this.field228 - 12, -488);
             }
@@ -11291,9 +11463,9 @@ public class client extends GameShell {
     public final int method154(int arg0, int arg1, Component arg2) {
         if (arg0 != 3) {
             return this.field518;
-        } else if (arg2.field716 != null && arg1 < arg2.field716.length) {
+        } else if (arg2.scripts != null && arg1 < arg2.scripts.length) {
             try {
-                int[] var4 = arg2.field716[arg1];
+                int[] var4 = arg2.scripts[arg1];
                 int var5 = 0;
                 int var6 = 0;
                 byte var7 = 0;
@@ -11314,12 +11486,12 @@ public class client extends GameShell {
                         var9 = this.field139[var4[var6++]];
                     }
                     if (var8 == 4) {
-                        Component var11 = Component.method204(var4[var6++]);
+                        Component var11 = Component.get(var4[var6++]);
                         int var12 = var4[var6++];
                         if (var12 >= 0 && var12 < ObjType.field817 && (!ObjType.method221(var12).field859 || field221)) {
-                            for (int var13 = 0; var13 < var11.field751.length; ++var13) {
-                                if (var12 + 1 == var11.field751[var13]) {
-                                    var9 += var11.field706[var13];
+                            for (int var13 = 0; var13 < var11.invSlotObjId.length; ++var13) {
+                                if (var12 + 1 == var11.invSlotObjId[var13]) {
+                                    var9 += var11.invSlotObjCount[var13];
                                 }
                             }
                         }
@@ -11344,11 +11516,11 @@ public class client extends GameShell {
                         }
                     }
                     if (var8 == 10) {
-                        Component var15 = Component.method204(var4[var6++]);
+                        Component var15 = Component.get(var4[var6++]);
                         int var16 = var4[var6++] + 1;
                         if (var16 >= 0 && var16 < ObjType.field817 && (!ObjType.method221(var16).field859 || field221)) {
-                            for (int var17 = 0; var17 < var15.field751.length; ++var17) {
-                                if (var15.field751[var17] == var16) {
+                            for (int var17 = 0; var17 < var15.invSlotObjId.length; ++var17) {
+                                if (var15.invSlotObjId[var17] == var16) {
                                     var9 = 999999999;
                                     break;
                                 }
@@ -11385,10 +11557,10 @@ public class client extends GameShell {
                         var10 = 3;
                     }
                     if (var8 == 18) {
-                        var9 = (field463.field1157 >> 7) + this.field336;
+                        var9 = (field463.x >> 7) + this.sceneBaseTileX;
                     }
                     if (var8 == 19) {
-                        var9 = (field463.field1158 >> 7) + this.field337;
+                        var9 = (field463.z >> 7) + this.sceneBaseTileZ;
                     }
                     if (var8 == 20) {
                         var9 = var4[var6++];
@@ -11550,14 +11722,14 @@ public class client extends GameShell {
             }
             int var9 = arg0.gBit(402, 1);
             var5.field1370 = NpcType.method477(arg0.gBit(402, 13));
-            var5.field1148 = var5.field1370.field1445;
+            var5.size = var5.field1370.field1445;
             var5.field1147 = var5.field1370.field1454;
             var5.field1166 = var5.field1370.field1448;
             var5.field1167 = var5.field1370.field1446;
             var5.field1168 = var5.field1370.field1444;
             var5.field1169 = var5.field1370.field1436;
             var5.field1181 = var5.field1370.field1424;
-            var5.method354(field463.field1134[0] + var7, (byte) 5, var9 == 1, field463.field1133[0] + var8);
+            var5.method354(field463.routeTileZ[0] + var7, (byte) 5, var9 == 1, field463.routeTileX[0] + var8);
         }
         arg0.accessBytes(-29290);
     }
@@ -11568,6 +11740,7 @@ public class client extends GameShell {
             this.field619 = null;
         }
         if (arg2 == 203) {
+            // LOC_MERGE
             int var4 = arg0.g2();
             int var5 = arg0.g1();
             int var6 = var5 >> 2;
@@ -11628,6 +11801,7 @@ public class client extends GameShell {
             }
         }
         if (arg2 == 106) {
+            // OBJ_REVEAL
             int var30 = arg0.g1_alt1(0);
             int var31 = (var30 >> 4 & 7) + this.field285;
             int var32 = (var30 & 7) + this.field286;
@@ -11645,6 +11819,7 @@ public class client extends GameShell {
                 this.method46(var31, var32);
             }
         } else if (arg2 == 142) {
+            // LOC_ANIM
             int var37 = arg0.g2();
             int var38 = arg0.g1_alt1(0);
             int var39 = var38 >> 2;
@@ -11693,6 +11868,7 @@ public class client extends GameShell {
                 }
             }
         } else if (arg2 == 107) {
+            // OBJ_ADD
             int var54 = arg0.g2();
             int var55 = arg0.g1_alt2(-34545);
             int var56 = (var55 >> 4 & 7) + this.field285;
@@ -11709,6 +11885,7 @@ public class client extends GameShell {
                 this.method46(var56, var57);
             }
         } else if (arg2 == 121) {
+            // OBJ_COUNT
             int var60 = arg0.g1();
             int var61 = (var60 >> 4 & 7) + this.field285;
             int var62 = (var60 & 7) + this.field286;
@@ -11728,6 +11905,7 @@ public class client extends GameShell {
                 }
             }
         } else if (arg2 == 181) {
+            // MAP_PROJANIM
             int var68 = arg0.g1();
             int var69 = (var68 >> 4 & 7) + this.field285;
             int var70 = (var68 & 7) + this.field286;
@@ -11752,6 +11930,7 @@ public class client extends GameShell {
             }
         } else {
             if (arg2 == 41) {
+                // SOUND_AREA
                 int var86 = arg0.g1();
                 int var87 = (var86 >> 4 & 7) + this.field285;
                 int var88 = (var86 & 7) + this.field286;
@@ -11759,7 +11938,7 @@ public class client extends GameShell {
                 int var90 = arg0.g1();
                 int var91 = var90 >> 4 & 15;
                 int var92 = var90 & 7;
-                if (field463.field1133[0] >= var87 - var91 && field463.field1133[0] <= var87 + var91 && field463.field1134[0] >= var88 - var91 && field463.field1134[0] <= var88 + var91 && this.field597 && !field222 && this.field331 < 50) {
+                if (field463.routeTileX[0] >= var87 - var91 && field463.routeTileX[0] <= var87 + var91 && field463.routeTileZ[0] >= var88 - var91 && field463.routeTileZ[0] <= var88 + var91 && this.field597 && !field222 && this.field331 < 50) {
                     this.field386[this.field331] = var89;
                     this.field617[this.field331] = var92;
                     this.field555[this.field331] = Wave.field1472[var89];
@@ -11767,6 +11946,7 @@ public class client extends GameShell {
                 }
             }
             if (arg2 == 59) {
+                // MAP_ANIM
                 int var93 = arg0.g1();
                 int var94 = (var93 >> 4 & 7) + this.field285;
                 int var95 = (var93 & 7) + this.field286;
@@ -11780,6 +11960,7 @@ public class client extends GameShell {
                     this.field506.method3(var101);
                 }
             } else if (arg2 == 152) {
+                // LOC_ADD_CHANGE
                 int var102 = arg0.g1_alt2(-34545);
                 int var103 = var102 >> 2;
                 int var104 = var102 & 3;
@@ -11793,6 +11974,7 @@ public class client extends GameShell {
                 }
             } else if (arg2 != 208) {
                 if (arg2 == 88) {
+                    // LOC_DEL
                     int var116 = arg0.g1_alt3(this.field532);
                     int var117 = (var116 >> 4 & 7) + this.field285;
                     int var118 = (var116 & 7) + this.field286;
@@ -11805,6 +11987,7 @@ public class client extends GameShell {
                     }
                 }
             } else {
+                // OBJ_DEL
                 int var110 = arg0.g2_alt2((byte) 9);
                 int var111 = arg0.g1_alt1(0);
                 int var112 = (var111 >> 4 & 7) + this.field285;
@@ -11833,10 +12016,10 @@ public class client extends GameShell {
         this.field452.method240(false);
         Draw3D.field1600 = this.field297;
         this.field481.method492(0, 0, -488);
-        if (this.field385 != -1) {
-            this.method169(0, 0, Component.method204(this.field385), 0, 8);
+        if (this.sidebarInterfaceId != -1) {
+            this.method169(0, 0, Component.get(this.sidebarInterfaceId), 0, 8);
         } else if (this.field377[this.field581] != -1) {
-            this.method169(0, 0, Component.method204(this.field377[this.field581]), 0, 8);
+            this.method169(0, 0, Component.get(this.field377[this.field581]), 0, 8);
         }
         if (this.field361 && this.field600 == 1) {
             this.method153(false);
@@ -11869,7 +12052,7 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(LLRUWCBNN;ZI)V")
     public final void method161(PathingEntity arg0, boolean arg1, int arg2) {
-        this.method162(arg0.field1157, arg2, arg0.field1158, -214);
+        this.method162(arg0.x, arg2, arg0.z, -214);
         if (!arg1) {
             ;
         }
@@ -12106,51 +12289,51 @@ public class client extends GameShell {
 
     @OriginalMember(owner = "client!client", name = "a", descriptor = "(IILEWIXBTLV;II)V")
     public final void method169(int arg0, int arg1, Component arg2, int arg3, int arg4) {
-        if (arg2.field718 == 0 && arg2.field740 != null) {
-            if (!arg2.field701 || this.field598 == arg2.field697 || this.field576 == arg2.field697 || this.field402 == arg2.field697) {
+        if (arg2.type == 0 && arg2.children != null) {
+            if (!arg2.hide || this.field598 == arg2.id || this.field576 == arg2.id || this.field402 == arg2.id) {
                 int var6 = Draw2D.field1099;
                 int var7 = Draw2D.field1097;
                 int var8 = Draw2D.field1100;
                 int var9 = Draw2D.field1098;
-                Draw2D.method334(arg0, arg1, arg2.field720 + arg0, arg2.field723 + arg1, true);
-                int var10 = arg2.field740.length;
+                Draw2D.method334(arg0, arg1, arg2.height + arg0, arg2.width + arg1, true);
+                int var10 = arg2.children.length;
                 if (arg4 != 8) {
                     this.field166 = -1;
                 }
                 for (int var11 = 0; var11 < var10; ++var11) {
-                    int var12 = arg2.field714[var11] + arg1;
-                    int var13 = arg2.field758[var11] + arg0 - arg3;
-                    Component var14 = Component.method204(arg2.field740[var11]);
+                    int var12 = arg2.childX[var11] + arg1;
+                    int var13 = arg2.childY[var11] + arg0 - arg3;
+                    Component var14 = Component.get(arg2.children[var11]);
                     int var15 = var14.field710 + var12;
                     int var16 = var14.field741 + var13;
-                    if (var14.field724 > 0) {
+                    if (var14.clientCode > 0) {
                         this.method126((byte) 2, var14);
                     }
-                    if (var14.field718 == 0) {
-                        if (var14.field713 > var14.field767 - var14.field720) {
-                            var14.field713 = var14.field767 - var14.field720;
+                    if (var14.type == 0) {
+                        if (var14.field713 > var14.scroll - var14.height) {
+                            var14.field713 = var14.scroll - var14.height;
                         }
                         if (var14.field713 < 0) {
                             var14.field713 = 0;
                         }
                         this.method169(var16, var15, var14, var14.field713, 8);
-                        if (var14.field767 > var14.field720) {
-                            this.method76(true, var14.field713, var14.field723 + var15, var14.field720, var14.field767, var16);
+                        if (var14.scroll > var14.height) {
+                            this.method76(true, var14.field713, var14.width + var15, var14.height, var14.scroll, var16);
                         }
-                    } else if (var14.field718 != 1) {
-                        if (var14.field718 == 2) {
+                    } else if (var14.type != 1) {
+                        if (var14.type == 2) {
                             int var17 = 0;
-                            for (int var18 = 0; var18 < var14.field720; ++var18) {
-                                for (int var19 = 0; var19 < var14.field723; ++var19) {
-                                    int var20 = (var14.field745 + 32) * var19 + var15;
-                                    int var21 = (var14.field726 + 32) * var18 + var16;
+                            for (int var18 = 0; var18 < var14.height; ++var18) {
+                                for (int var19 = 0; var19 < var14.width; ++var19) {
+                                    int var20 = (var14.marginX + 32) * var19 + var15;
+                                    int var21 = (var14.marginY + 32) * var18 + var16;
                                     if (var17 < 20) {
-                                        var20 += var14.field703[var17];
-                                        var21 += var14.field695[var17];
+                                        var20 += var14.invSlotOffsetX[var17];
+                                        var21 += var14.invSlotOffsetY[var17];
                                     }
-                                    if (var14.field751[var17] <= 0) {
-                                        if (var14.field747 != null && var17 < 20) {
-                                            Pix24 var30 = var14.field747[var17];
+                                    if (var14.invSlotObjId[var17] <= 0) {
+                                        if (var14.invSlotGraphic != null && var17 < 20) {
+                                            Pix24 var30 = var14.invSlotGraphic[var17];
                                             if (var30 != null) {
                                                 var30.method195(var21, var20, -488);
                                             }
@@ -12158,15 +12341,15 @@ public class client extends GameShell {
                                     } else {
                                         int var22 = 0;
                                         int var23 = 0;
-                                        int var24 = var14.field751[var17] - 1;
+                                        int var24 = var14.invSlotObjId[var17] - 1;
                                         if (var20 > Draw2D.field1099 - 32 && var20 < Draw2D.field1100 && var21 > Draw2D.field1097 - 32 && var21 < Draw2D.field1098 || this.field409 != 0 && this.field408 == var17) {
                                             int var25 = 0;
-                                            if (this.field442 == 1 && this.field443 == var17 && this.field444 == var14.field697) {
+                                            if (this.field442 == 1 && this.field443 == var17 && this.field444 == var14.id) {
                                                 var25 = 16777215;
                                             }
-                                            Pix24 var26 = ObjType.method230((byte) -33, var25, var14.field706[var17], var24);
+                                            Pix24 var26 = ObjType.method230((byte) -33, var25, var14.invSlotObjCount[var17], var24);
                                             if (var26 != null) {
-                                                if (this.field409 != 0 && this.field408 == var17 && this.field407 == var14.field697) {
+                                                if (this.field409 != 0 && this.field408 == var17 && this.field407 == var14.id) {
                                                     var22 = super.field959 - this.field410;
                                                     var23 = super.field960 - this.field411;
                                                     if (var22 < 5 && var22 > -5) {
@@ -12191,24 +12374,24 @@ public class client extends GameShell {
                                                         arg2.field713 -= var27;
                                                         this.field411 += var27;
                                                     }
-                                                    if (var21 + var23 + 32 > Draw2D.field1098 && arg2.field713 < arg2.field767 - arg2.field720) {
+                                                    if (var21 + var23 + 32 > Draw2D.field1098 && arg2.field713 < arg2.scroll - arg2.height) {
                                                         int var28 = (var21 + var23 + 32 - Draw2D.field1098) * this.field247 / 3;
                                                         if (var28 > this.field247 * 10) {
                                                             var28 = this.field247 * 10;
                                                         }
-                                                        if (var28 > arg2.field767 - arg2.field720 - arg2.field713) {
-                                                            var28 = arg2.field767 - arg2.field720 - arg2.field713;
+                                                        if (var28 > arg2.scroll - arg2.height - arg2.field713) {
+                                                            var28 = arg2.scroll - arg2.height - arg2.field713;
                                                         }
                                                         arg2.field713 += var28;
                                                         this.field411 -= var28;
                                                     }
-                                                } else if (this.field628 != 0 && this.field627 == var17 && this.field626 == var14.field697) {
+                                                } else if (this.field628 != 0 && this.field627 == var17 && this.field626 == var14.id) {
                                                     var26.method197(0, var20, var21, 128);
                                                 } else {
                                                     var26.method195(var21, var20, -488);
                                                 }
-                                                if (var26.field690 == 33 || var14.field706[var17] != 1) {
-                                                    int var29 = var14.field706[var17];
+                                                if (var26.field690 == 33 || var14.invSlotObjCount[var17] != 1) {
+                                                    int var29 = var14.invSlotObjCount[var17];
                                                     this.field355.method248(2245, var20 + 1 + var22, 0, var21 + 10 + var23, method39(var29, -243));
                                                     this.field355.method248(2245, var20 + var22, 16776960, var21 + 9 + var23, method39(var29, -243));
                                                 }
@@ -12218,59 +12401,59 @@ public class client extends GameShell {
                                     ++var17;
                                 }
                             }
-                        } else if (var14.field718 == 3) {
+                        } else if (var14.type == 3) {
                             boolean var31 = false;
-                            if (this.field402 == var14.field697 || this.field576 == var14.field697 || this.field598 == var14.field697) {
+                            if (this.field402 == var14.id || this.field576 == var14.id || this.field598 == var14.id) {
                                 var31 = true;
                             }
                             int var32;
                             if (this.method118(var14, -693)) {
-                                var32 = var14.field742;
-                                if (var31 && var14.field708 != 0) {
-                                    var32 = var14.field708;
+                                var32 = var14.activeColour;
+                                if (var31 && var14.activeOverColour != 0) {
+                                    var32 = var14.activeOverColour;
                                 }
                             } else {
-                                var32 = var14.field722;
-                                if (var31 && var14.field743 != 0) {
-                                    var32 = var14.field743;
+                                var32 = var14.colour;
+                                if (var31 && var14.overColour != 0) {
+                                    var32 = var14.overColour;
                                 }
                             }
                             if (var14.field702 == 0) {
-                                if (var14.field721) {
-                                    Draw2D.method337(var14.field720, var16, var32, (byte) -24, var14.field723, var15);
+                                if (var14.fill) {
+                                    Draw2D.method337(var14.height, var16, var32, (byte) -24, var14.width, var15);
                                 } else {
-                                    Draw2D.method338(0, var16, var14.field720, var32, var15, var14.field723);
+                                    Draw2D.method338(0, var16, var14.height, var32, var15, var14.width);
                                 }
-                            } else if (var14.field721) {
-                                Draw2D.method336(false, var32, var16, var14.field723, var14.field720, 256 - (var14.field702 & 255), var15);
+                            } else if (var14.fill) {
+                                Draw2D.method336(false, var32, var16, var14.width, var14.height, 256 - (var14.field702 & 255), var15);
                             } else {
-                                Draw2D.method339(var15, var14.field723, var32, var14.field720, var16, 256 - (var14.field702 & 255), (byte) -113);
+                                Draw2D.method339(var15, var14.width, var32, var14.height, var16, 256 - (var14.field702 & 255), (byte) -113);
                             }
-                        } else if (var14.field718 == 4) {
-                            PixFont var33 = var14.field719;
-                            String var34 = var14.field712;
+                        } else if (var14.type == 4) {
+                            PixFont var33 = var14.font;
+                            String var34 = var14.text;
                             boolean var35 = false;
-                            if (this.field402 == var14.field697 || this.field576 == var14.field697 || this.field598 == var14.field697) {
+                            if (this.field402 == var14.id || this.field576 == var14.id || this.field598 == var14.id) {
                                 var35 = true;
                             }
                             int var36;
                             if (this.method118(var14, -693)) {
-                                var36 = var14.field742;
-                                if (var35 && var14.field708 != 0) {
-                                    var36 = var14.field708;
+                                var36 = var14.activeColour;
+                                if (var35 && var14.activeOverColour != 0) {
+                                    var36 = var14.activeOverColour;
                                 }
-                                if (var14.field731.length() > 0) {
-                                    var34 = var14.field731;
+                                if (var14.activeText.length() > 0) {
+                                    var34 = var14.activeText;
                                 }
                             } else {
-                                var36 = var14.field722;
-                                if (var35 && var14.field743 != 0) {
-                                    var36 = var14.field743;
+                                var36 = var14.colour;
+                                if (var35 && var14.overColour != 0) {
+                                    var36 = var14.overColour;
                                 }
                             }
-                            if (var14.field771 == 6 && this.field535) {
+                            if (var14.buttonType == 6 && this.pressedContinueOption) {
                                 var34 = "Please wait...";
-                                var36 = var14.field722;
+                                var36 = var14.colour;
                             }
                             if (Draw2D.field1095 == 479) {
                                 if (var36 == 16776960) {
@@ -12324,36 +12507,36 @@ public class client extends GameShell {
                                     var44 = var34;
                                     var34 = "";
                                 }
-                                if (var14.field754) {
-                                    var33.method245(var14.field729, this.field352, var36, var37, var14.field723 / 2 + var15, var44);
+                                if (var14.center) {
+                                    var33.method245(var14.shadowed, this.field352, var36, var37, var14.width / 2 + var15, var44);
                                 } else {
-                                    var33.method252(var36, var15, var37, var14.field729, var44, -39629);
+                                    var33.method252(var36, var15, var37, var14.shadowed, var44, -39629);
                                 }
                                 var37 += var33.field894;
                             }
-                        } else if (var14.field718 == 5) {
+                        } else if (var14.type == 5) {
                             Pix24 var45;
                             if (this.method118(var14, -693)) {
-                                var45 = var14.field727;
+                                var45 = var14.activeGraphic;
                             } else {
-                                var45 = var14.field694;
+                                var45 = var14.graphic;
                             }
                             if (var45 != null) {
                                 var45.method195(var16, var15, -488);
                             }
-                        } else if (var14.field718 == 6) {
+                        } else if (var14.type == 6) {
                             int var46 = Draw3D.field1594;
                             int var47 = Draw3D.field1595;
-                            Draw3D.field1594 = var14.field723 / 2 + var15;
-                            Draw3D.field1595 = var14.field720 / 2 + var16;
-                            int var48 = Draw3D.field1598[var14.field734] * var14.field733 >> 16;
-                            int var49 = Draw3D.field1599[var14.field734] * var14.field733 >> 16;
+                            Draw3D.field1594 = var14.width / 2 + var15;
+                            Draw3D.field1595 = var14.height / 2 + var16;
+                            int var48 = Draw3D.field1598[var14.xan] * var14.zoom >> 16;
+                            int var49 = Draw3D.field1599[var14.xan] * var14.zoom >> 16;
                             boolean var50 = this.method118(var14, -693);
                             int var51;
                             if (var50) {
-                                var51 = var14.field769;
+                                var51 = var14.activeAnim;
                             } else {
-                                var51 = var14.field768;
+                                var51 = var14.anim;
                             }
                             Model var52;
                             if (var51 == -1) {
@@ -12363,39 +12546,39 @@ public class client extends GameShell {
                                 var52 = var14.method212(var53.field777[var14.field717], var53.field778[var14.field717], 0, var50);
                             }
                             if (var52 != null) {
-                                var52.method380(0, var14.field735, 0, var14.field734, 0, var48, var49);
+                                var52.method380(0, var14.yan, 0, var14.xan, 0, var48, var49);
                             }
                             Draw3D.field1594 = var46;
                             Draw3D.field1595 = var47;
                         } else {
-                            if (var14.field718 == 7) {
-                                PixFont var54 = var14.field719;
+                            if (var14.type == 7) {
+                                PixFont var54 = var14.font;
                                 int var55 = 0;
-                                for (int var56 = 0; var56 < var14.field720; ++var56) {
-                                    for (int var57 = 0; var57 < var14.field723; ++var57) {
-                                        if (var14.field751[var55] > 0) {
-                                            ObjType var58 = ObjType.method221(var14.field751[var55] - 1);
+                                for (int var56 = 0; var56 < var14.height; ++var56) {
+                                    for (int var57 = 0; var57 < var14.width; ++var57) {
+                                        if (var14.invSlotObjId[var55] > 0) {
+                                            ObjType var58 = ObjType.method221(var14.invSlotObjId[var55] - 1);
                                             String var59 = String.valueOf(var58.field811);
-                                            if (var58.field853 || var14.field706[var55] != 1) {
-                                                var59 = var59 + " x" + method160(0, var14.field706[var55]);
+                                            if (var58.field853 || var14.invSlotObjCount[var55] != 1) {
+                                                var59 = var59 + " x" + method160(0, var14.invSlotObjCount[var55]);
                                             }
-                                            int var60 = (var14.field745 + 115) * var57 + var15;
-                                            int var61 = (var14.field726 + 12) * var56 + var16;
-                                            if (var14.field754) {
-                                                var54.method245(var14.field729, this.field352, var14.field722, var61, var14.field723 / 2 + var60, var59);
+                                            int var60 = (var14.marginX + 115) * var57 + var15;
+                                            int var61 = (var14.marginY + 12) * var56 + var16;
+                                            if (var14.center) {
+                                                var54.method245(var14.shadowed, this.field352, var14.colour, var61, var14.width / 2 + var60, var59);
                                             } else {
-                                                var54.method252(var14.field722, var60, var61, var14.field729, var59, -39629);
+                                                var54.method252(var14.colour, var60, var61, var14.shadowed, var59, -39629);
                                             }
                                         }
                                         ++var55;
                                     }
                                 }
                             }
-                            if (var14.field718 == 8 && (this.field580 == var14.field697 || this.field340 == var14.field697 || this.field425 == var14.field697) && this.field189 == 100) {
+                            if (var14.type == 8 && (this.field580 == var14.id || this.field340 == var14.id || this.field425 == var14.id) && this.field189 == 100) {
                                 int var62 = 0;
                                 int var63 = 0;
                                 PixFont var64 = this.field356;
-                                String var65 = var14.field712;
+                                String var65 = var14.text;
                                 while (var65.length() > 0) {
                                     int var72 = var65.indexOf("\\n");
                                     String var73;
@@ -12414,20 +12597,20 @@ public class client extends GameShell {
                                 }
                                 var62 += 6;
                                 var63 += 7;
-                                int var66 = var14.field723 + var15 - 5 - var62;
-                                int var67 = var14.field720 + var16 + 5;
+                                int var66 = var14.width + var15 - 5 - var62;
+                                int var67 = var14.height + var16 + 5;
                                 if (var66 < var15 + 5) {
                                     var66 = var15 + 5;
                                 }
-                                if (var62 + var66 > arg2.field723 + arg1) {
-                                    var66 = arg2.field723 + arg1 - var62;
+                                if (var62 + var66 > arg2.width + arg1) {
+                                    var66 = arg2.width + arg1 - var62;
                                 }
-                                if (var63 + var67 > arg2.field720 + arg0) {
-                                    var67 = arg2.field720 + arg0 - var63;
+                                if (var63 + var67 > arg2.height + arg0) {
+                                    var67 = arg2.height + arg0 - var63;
                                 }
                                 Draw2D.method337(var63, var67, 16777120, (byte) -24, var62, var66);
                                 Draw2D.method338(0, var67, var63, 0, var66, var62);
-                                String var68 = var14.field712;
+                                String var68 = var14.text;
                                 int var69 = var64.field894 + var67 + 2;
                                 while (var68.length() > 0) {
                                     int var70 = var68.indexOf("\\n");
@@ -12464,7 +12647,7 @@ public class client extends GameShell {
         if (this.field367 == 1) {
             int var2 = this.method171(5);
             if (var2 != 0 && System.currentTimeMillis() - this.field525 > 360000L) {
-                signlink.reporterror(this.field388 + " glcfb " + this.field226 + "," + var2 + "," + field222 + "," + this.field524[0] + "," + this.field587.method590() + "," + this.field387 + "," + this.field185 + "," + this.field186);
+                signlink.reporterror(this.field388 + " glcfb " + this.field226 + "," + var2 + "," + field222 + "," + this.field524[0] + "," + this.field587.method590() + "," + this.field387 + "," + this.sceneCenterZoneX + "," + this.sceneCenterZoneZ);
                 this.field525 = System.currentTimeMillis();
             }
         }
@@ -12491,8 +12674,8 @@ public class client extends GameShell {
         for (int var4 = 0; var4 < this.field134.length; ++var4) {
             byte[] var5 = this.field528[var4];
             if (var5 != null) {
-                int var6 = (this.field152[var4] >> 8) * 64 - this.field336;
-                int var7 = (this.field152[var4] & 255) * 64 - this.field337;
+                int var6 = (this.field152[var4] >> 8) * 64 - this.sceneBaseTileX;
+                int var7 = (this.field152[var4] & 255) * 64 - this.sceneBaseTileZ;
                 if (this.field459) {
                     var6 = 10;
                     var7 = 10;
@@ -12508,6 +12691,7 @@ public class client extends GameShell {
             this.field367 = 2;
             World.field125 = this.field387;
             this.method116(175);
+            // MAP_BUILD_COMPLETE
             this.field260.p1isaac((byte) 4, 6);
             return 0;
         }
@@ -12556,9 +12740,9 @@ public class client extends GameShell {
                         int var8 = (this.field529 + 256) * var6 >> 8;
                         int var9 = var2 * var8 + var3 * var7 >> 11;
                         int var10 = var3 * var8 - var2 * var7 >> 11;
-                        int var11 = field463.field1157 + var9 >> 7;
-                        int var12 = field463.field1158 - var10 >> 7;
-                        boolean var13 = this.method55(true, false, var12, field463.field1134[0], 0, 0, 1, 0, var11, 0, 0, field463.field1133[0]);
+                        int var11 = field463.x + var9 >> 7;
+                        int var12 = field463.z - var10 >> 7;
+                        boolean var13 = this.method55(true, false, var12, field463.routeTileZ[0], 0, 0, 1, 0, var11, 0, 0, field463.routeTileX[0]);
                         if (var13) {
                             this.field260.p1(var2);
                             this.field260.p1(var3);
@@ -12567,8 +12751,8 @@ public class client extends GameShell {
                             this.field260.p1(this.field212);
                             this.field260.p1(this.field529);
                             this.field260.p1(89);
-                            this.field260.p2(field463.field1157);
-                            this.field260.p2(field463.field1158);
+                            this.field260.p2(field463.x);
+                            this.field260.p2(field463.z);
                             this.field260.p1(this.field422);
                             this.field260.p1(63);
                             return;
@@ -12878,7 +13062,7 @@ public class client extends GameShell {
                 var2 = this.field148[4] + 128;
             }
             int var3 = this.field551 + this.field548 & 2047;
-            this.method117(this.method133(field463.field1158, field463.field1157, (byte) 9, this.field387) - 50, this.field558, var2, var2 * 3 + 600, var3, this.field559, (byte) -103);
+            this.method117(this.method133(field463.z, field463.x, (byte) 9, this.field387) - 50, this.field558, var2, var2 * 3 + 600, var3, this.field559, (byte) -103);
         }
         int var4;
         if (!this.field507) {

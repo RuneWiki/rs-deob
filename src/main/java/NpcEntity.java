@@ -12,13 +12,13 @@ public class NpcEntity extends PathingEntity {
 
     @OriginalMember(owner = "client!RGHBDSIJ", name = "b", descriptor = "(B)LLZYQDKJV;")
     private final Model method457(byte arg0) {
-        if (super.field1171 >= 0 && super.field1174 == 0) {
-            int var2 = SeqType.field775[super.field1171].field777[super.field1172];
+        if (super.primarySeqId >= 0 && super.field1174 == 0) {
+            int var2 = SeqType.field775[super.primarySeqId].field777[super.field1172];
             int var3 = -1;
             if (super.field1135 >= 0 && super.field1181 != super.field1135) {
                 var3 = SeqType.field775[super.field1135].field777[super.field1136];
             }
-            return this.field1370.method475(var2, var3, 0, SeqType.field775[super.field1171].field781);
+            return this.field1370.method475(var2, var3, 0, SeqType.field775[super.primarySeqId].field781);
         } else {
             int var4 = -1;
             if (arg0 != 122) {

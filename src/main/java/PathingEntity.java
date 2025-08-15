@@ -11,10 +11,10 @@ public abstract class PathingEntity extends Entity {
     public int field1129 = 100;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "s", descriptor = "[I")
-    public int[] field1133 = new int[10];
+    public int[] routeTileX = new int[10];
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "t", descriptor = "[I")
-    public int[] field1134 = new int[10];
+    public int[] routeTileZ = new int[10];
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "u", descriptor = "I")
     public int field1135 = -1;
@@ -35,7 +35,7 @@ public abstract class PathingEntity extends Entity {
     public int field1147 = 32;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "H", descriptor = "I")
-    public int field1148 = 1;
+    public int size = 1;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "P", descriptor = "I")
     public int field1156 = -1;
@@ -56,7 +56,7 @@ public abstract class PathingEntity extends Entity {
     public int field1169 = -1;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "eb", descriptor = "I")
-    public int field1171 = -1;
+    public int primarySeqId = -1;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "jb", descriptor = "I")
     public int field1176 = -1;
@@ -128,16 +128,16 @@ public abstract class PathingEntity extends Entity {
     public int field1155;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "Q", descriptor = "I")
-    public int field1157;
+    public int x;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "R", descriptor = "I")
-    public int field1158;
+    public int z;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "S", descriptor = "I")
     public int field1159;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "T", descriptor = "I")
-    public int field1160;
+    public int preanimRouteLength;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "V", descriptor = "I")
     public int field1162;
@@ -152,7 +152,7 @@ public abstract class PathingEntity extends Entity {
     public int field1165;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "db", descriptor = "I")
-    public int field1170;
+    public int seqDelayMove;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "fb", descriptor = "I")
     public int field1172;
@@ -167,15 +167,15 @@ public abstract class PathingEntity extends Entity {
     public int field1175;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "nb", descriptor = "I")
-    public int field1180;
+    public int routeLength;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "m", descriptor = "Ljava/lang/String;")
     public String field1127;
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "a", descriptor = "(I)V")
     public final void method350(int arg0) {
-        this.field1180 = 0;
-        this.field1160 = 0;
+        this.routeLength = 0;
+        this.preanimRouteLength = 0;
         if (arg0 >= 0) {
             ;
         }
@@ -194,8 +194,8 @@ public abstract class PathingEntity extends Entity {
         if (arg2 >= 0) {
             return;
         }
-        int var4 = this.field1133[0];
-        int var5 = this.field1134[0];
+        int var4 = this.routeTileX[0];
+        int var5 = this.routeTileZ[0];
         if (arg1 == 0) {
             var4--;
             var5++;
@@ -224,19 +224,19 @@ public abstract class PathingEntity extends Entity {
             var4++;
             var5--;
         }
-        if (this.field1171 != -1 && SeqType.field775[this.field1171].field788 == 1) {
-            this.field1171 = -1;
+        if (this.primarySeqId != -1 && SeqType.field775[this.primarySeqId].field788 == 1) {
+            this.primarySeqId = -1;
         }
-        if (this.field1180 < 9) {
-            this.field1180++;
+        if (this.routeLength < 9) {
+            this.routeLength++;
         }
-        for (int var6 = this.field1180; var6 > 0; var6--) {
-            this.field1133[var6] = this.field1133[var6 - 1];
-            this.field1134[var6] = this.field1134[var6 - 1];
+        for (int var6 = this.routeLength; var6 > 0; var6--) {
+            this.routeTileX[var6] = this.routeTileX[var6 - 1];
+            this.routeTileZ[var6] = this.routeTileZ[var6 - 1];
             this.field1138[var6] = this.field1138[var6 - 1];
         }
-        this.field1133[0] = var4;
-        this.field1134[0] = var5;
+        this.routeTileX[0] = var4;
+        this.routeTileZ[0] = var5;
         this.field1138[0] = arg0;
     }
 
@@ -257,39 +257,39 @@ public abstract class PathingEntity extends Entity {
 
     @OriginalMember(owner = "client!LRUWCBNN", name = "a", descriptor = "(IBZI)V")
     public final void method354(int arg0, byte arg1, boolean arg2, int arg3) {
-        if (this.field1171 != -1 && SeqType.field775[this.field1171].field788 == 1) {
-            this.field1171 = -1;
+        if (this.primarySeqId != -1 && SeqType.field775[this.primarySeqId].field788 == 1) {
+            this.primarySeqId = -1;
         }
         if (!arg2) {
-            int var5 = arg3 - this.field1133[0];
-            int var6 = arg0 - this.field1134[0];
+            int var5 = arg3 - this.routeTileX[0];
+            int var6 = arg0 - this.routeTileZ[0];
             if (var5 >= -8 && var5 <= 8 && var6 >= -8 && var6 <= 8) {
-                if (this.field1180 < 9) {
-                    this.field1180++;
+                if (this.routeLength < 9) {
+                    this.routeLength++;
                 }
-                for (int var7 = this.field1180; var7 > 0; var7--) {
-                    this.field1133[var7] = this.field1133[var7 - 1];
-                    this.field1134[var7] = this.field1134[var7 - 1];
+                for (int var7 = this.routeLength; var7 > 0; var7--) {
+                    this.routeTileX[var7] = this.routeTileX[var7 - 1];
+                    this.routeTileZ[var7] = this.routeTileZ[var7 - 1];
                     this.field1138[var7] = this.field1138[var7 - 1];
                 }
-                this.field1133[0] = arg3;
-                this.field1134[0] = arg0;
+                this.routeTileX[0] = arg3;
+                this.routeTileZ[0] = arg0;
                 this.field1138[0] = false;
                 return;
             }
         }
-        this.field1180 = 0;
-        this.field1160 = 0;
-        this.field1170 = 0;
-        this.field1133[0] = arg3;
-        this.field1134[0] = arg0;
+        this.routeLength = 0;
+        this.preanimRouteLength = 0;
+        this.seqDelayMove = 0;
+        this.routeTileX[0] = arg3;
+        this.routeTileZ[0] = arg0;
         if (arg1 == 5) {
             boolean var8 = false;
         } else {
             for (int var9 = 1; var9 > 0; var9++) {
             }
         }
-        this.field1157 = this.field1133[0] * 128 + this.field1148 * 64;
-        this.field1158 = this.field1134[0] * 128 + this.field1148 * 64;
+        this.x = this.routeTileX[0] * 128 + this.size * 64;
+        this.z = this.routeTileZ[0] * 128 + this.size * 64;
     }
 }
