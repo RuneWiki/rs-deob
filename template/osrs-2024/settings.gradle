@@ -1,4 +1,4 @@
-rootProject.name = 'oldscape'
+rootProject.name = 'osclient'
 
 dependencyResolutionManagement {
     repositories {

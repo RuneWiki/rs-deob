@@ -6,19 +6,34 @@ enable = true
 
 transformers = [
     "AnnotateObfuscatedNames",
-    "SortClassesLegacy",
+
     "ClassLiteral",
     "InvokeSpecial",
     "MultipleAssignment",
+
+    "SortClassesLegacy",
     "UniqueRenamer",
 
     "OpaquePredicate",
     "ExceptionObfuscation",
     "ExceptionTracing",
     "Monitor",
-
     "BitShift",
+    "FieldOrder",
+    "BitwiseOp",
+    "ConstantArg",
+    "CopyPropagation",
+    "UnusedLocal",
+    "UnusedArg",
+    "Counter",
+    "Reset",
+    "EmptyClass",
+    "MethodOrder",
     "Visibility",
+    "FinalClass",
+    "FinalMethod",
+    "FinalField",
+    "Override",
     "RedundantGoto",
     "FernflowerException",
 
@@ -37,9 +52,11 @@ transformers = [
     "NegativeLiteral",
     "Complement",
     "Not",
+    "CharLiteral",
     "IfElse",
     "Ternary",
     "BinaryExprOrder",
+    "AddSub",
     "Identity",
     "BitMask",
     "HexLiteral",

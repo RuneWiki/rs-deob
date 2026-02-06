@@ -46,9 +46,6 @@ async function main() {
     for (const file of gamepacks) {
         num++;
 
-        console.log(file, num);
-        continue;
-
         if (fs.existsSync(`${dir}/${num}`)) {
             continue;
         }

@@ -1,0 +1,69 @@
+[profile]
+input = "ref/gamepack.jar"
+
+[profile.deob]
+enable = true
+
+transformers = [
+    "AnnotateObfuscatedNames",
+
+    "StringDecryption",
+    "ClassLiteral",
+    "InvokeSpecial",
+    "MultipleAssignment",
+
+    "UniqueRenamer",
+
+    "OpaquePredicate",
+    "ExceptionObfuscation",
+    "ExceptionTracing",
+    "Monitor",
+    "BitShift",
+    "FieldOrder",
+    "BitwiseOp",
+    "DISABLED_ConstantArg",
+    "CopyPropagation",
+    "UnusedLocal",
+    "DISABLED_UnusedArg",
+    "Counter",
+    "Reset",
+    "EmptyClass",
+    "MethodOrder",
+    "DISABLED_Visibility",
+    "FinalClass",
+    "DISABLED_FinalMethod",
+    "DISABLED_FinalField",
+    "DISABLED_Override",
+    "RedundantGoto",
+    "FernflowerException",
+
+    "VariableSplitter"
+]
+
+[profile.remap]
+enable = true
+
+[profile.source]
+decompile = true
+cleanup = true
+
+transformers = [
+    "Unenclose",
+    "NegativeLiteral",
+    "Complement",
+    "Not",
+    "CharLiteral",
+    "IfElse",
+    "Ternary",
+    "BinaryExprOrder",
+    "AddSub",
+    "Identity",
+    "BitMask",
+    "HexLiteral",
+    "ValueOf",
+    "NewInstance",
+    "Increment",
+    "ForLoopCondition",
+    "RedundantCast",
+    "Enclose"
+]

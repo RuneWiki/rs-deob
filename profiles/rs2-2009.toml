@@ -6,14 +6,37 @@ enable = true
 
 transformers = [
     "AnnotateObfuscatedNames",
+
+    "ClassLiteral",
+    "InvokeSpecial",
+    "MultipleAssignment",
+
     "UniqueRenamer",
+
     "OpaquePredicate",
+    "ExceptionObfuscation",
     "ExceptionTracing",
     "Monitor",
-    "Goto",
-    "VariableSplitter",
-    "ExpressionSorter",
-    "Visibility"
+    "BitShift",
+    "FieldOrder",
+    "BitwiseOp",
+    "ConstantArg",
+    "CopyPropagation",
+    "UnusedLocal",
+    "UnusedArg",
+    "Counter",
+    "Reset",
+    "EmptyClass",
+    "MethodOrder",
+    "Visibility",
+    "FinalClass",
+    "FinalMethod",
+    "FinalField",
+    "Override",
+    "RedundantGoto",
+    "FernflowerException",
+
+    "VariableSplitter"
 ]
 
 [profile.remap]
@@ -23,18 +46,16 @@ enable = true
 decompile = true
 cleanup = true
 
-classpath = [
-    "lib/stub.jar"
-]
-
 transformers = [
     "Unenclose",
     "NegativeLiteral",
     "Complement",
     "Not",
+    "CharLiteral",
     "IfElse",
     "Ternary",
     "BinaryExprOrder",
+    "AddSub",
     "Identity",
     "BitMask",
     "HexLiteral",
@@ -42,6 +63,6 @@ transformers = [
     "NewInstance",
     "Increment",
     "ForLoopCondition",
-    # "RedundantCast",
+    "RedundantCast",
     "Enclose"
 ]

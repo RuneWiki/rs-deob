@@ -78,7 +78,10 @@ async function deob(branch, profile, secret, vector) {
 
     if (TEMPLATE) {
         // copy template gradle project to work folder
-        fs.cpSync('template/' + profile, 'work', { recursive: true });
+        fs.cpSync('template/base', 'work', { recursive: true });
+        if (fs.existsSync('template/' + profile)) {
+            fs.cpSync('template/' + profile, 'work', { recursive: true });
+        }
 
         if (fs.existsSync('work/src/')) {
             // don't want to process any template src files by accident!
