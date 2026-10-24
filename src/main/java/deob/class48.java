@@ -1,0 +1,117 @@
+package deob;
+
+@ObfuscatedName("vb")
+public final class class48 {
+
+	@ObfuscatedName("vb.d")
+	public static char[] field649 = new char[12];
+
+	@ObfuscatedName("vb.e")
+	public static char[] field650 = new char[] { '_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+	@ObfuscatedName("vb.a(Ljava/lang/String;)J")
+	public static long method251(String arg0) {
+		arg0 = arg0.trim();
+		long var1 = 0L;
+		for (int var3 = 0; var3 < arg0.length() && var3 < 12; var3++) {
+			char var4 = arg0.charAt(var3);
+			var1 *= 37L;
+			if (var4 >= 'A' && var4 <= 'Z') {
+				var1 += var4 + 1 - 65;
+			} else if (var4 >= 'a' && var4 <= 'z') {
+				var1 += var4 + 1 - 97;
+			} else if (var4 >= '0' && var4 <= '9') {
+				var1 += var4 + 27 - 48;
+			}
+		}
+
+		return var1;
+	}
+
+	@ObfuscatedName("vb.a(JI)Ljava/lang/String;")
+	public static String method252(long arg0) {
+		if (arg0 >= 0L && arg0 < 6582952005840035281L) {
+			int var2 = 0;
+			while (arg0 != 0L) {
+				long var3 = arg0;
+				arg0 /= 37L;
+				field649[11 - var2++] = field650[(int) (var3 - arg0 * 37L)];
+			}
+
+			return new String(field649, 12 - var2, var2);
+		}
+
+		return "invalid_name";
+	}
+
+	@ObfuscatedName("vb.a(ILjava/lang/String;)J")
+	public static long method253(String arg0) {
+		arg0 = arg0.toUpperCase();
+		long var1 = 0L;
+		for (int var3 = 0; var3 < arg0.length(); var3++) {
+			var1 = var1 * 61L + arg0.charAt(var3) - 32L;
+			var1 = var1 + (var1 >> 56) & 0xFFFFFFFFFFFFFFL;
+		}
+
+		return var1;
+	}
+
+	@ObfuscatedName("vb.a(BI)Ljava/lang/String;")
+	public static String method254(int arg0) {
+		return (arg0 >> 24 & 0xFF) + "." + (arg0 >> 16 & 0xFF) + "." + (arg0 >> 8 & 0xFF) + "." + (arg0 & 0xFF);
+	}
+
+	@ObfuscatedName("vb.a(ZLjava/lang/String;)Ljava/lang/String;")
+	public static String method255(String arg0) {
+		if (arg0.length() > 0) {
+			char[] var1 = arg0.toCharArray();
+			for (int var2 = 0; var2 < var1.length; var2++) {
+				if (var1[var2] == '_') {
+					var1[var2] = ' ';
+					if (var2 + 1 < var1.length && var1[var2 + 1] >= 'a' && var1[var2 + 1] <= 'z') {
+						var1[var2 + 1] = (char) (var1[var2 + 1] + 'A' - 97);
+					}
+				}
+			}
+
+			if (var1[0] >= 'a' && var1[0] <= 'z') {
+				var1[0] = (char) (var1[0] + 'A' - 97);
+			}
+
+			return new String(var1);
+		}
+
+		return arg0;
+	}
+
+	@ObfuscatedName("vb.b(ZLjava/lang/String;)Ljava/lang/String;")
+	public static String method256(String arg0) {
+		arg0 = arg0.toLowerCase();
+		char[] var1 = arg0.toCharArray();
+		int var2 = var1.length;
+		boolean var3 = true;
+		for (int var4 = 0; var4 < var2; var4++) {
+			char var5 = var1[var4];
+			if (var3 && var5 >= 'a' && var5 <= 'z') {
+				var1[var4] = (char) (var1[var4] - 32);
+				var3 = false;
+			}
+
+			if (var5 == '.' || var5 == '!') {
+				var3 = true;
+			}
+		}
+
+		return new String(var1);
+	}
+
+	@ObfuscatedName("vb.a(BLjava/lang/String;)Ljava/lang/String;")
+	public static String method257(String arg0) {
+		String var1 = "";
+		for (int var2 = 0; var2 < arg0.length(); var2++) {
+			var1 = var1 + "*";
+		}
+
+		return var1;
+	}
+}
