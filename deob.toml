@@ -1,0 +1,58 @@
+[profile]
+input = "ref/gamepack.jar"
+
+[profile.deob]
+enable = true
+
+transformers = [
+    "AnnotateObfuscatedNames",
+
+    "ErrorReport",
+    "GuardField",
+    "CallerCheck",
+
+    "StaticInitializer",
+
+    "Monitor",
+    "FernflowerException",
+
+    "UniqueRenamer",
+
+    "VariableSplitter",
+    "ExpressionSorter"
+]
+
+[profile.remap]
+enable = true
+
+[profile.source]
+decompile = true
+cleanup = true
+
+transformers = [
+    "Unenclose",
+    "Loop",
+    "StackVar",
+    "NegativeLiteral",
+    "Complement",
+    "Not",
+    "CharLiteral",
+    "IfElse",
+    "Ternary",
+    "BinaryExprOrder",
+    "AddSub",
+    "Identity",
+    "BitMask",
+    "HexLiteral",
+    "ValueOf",
+    "NewInstance",
+    "Increment",
+    "ForLoopCondition",
+    "RedundantCast",
+    "RedundantThis",
+    "SynchronizedLock",
+    "Enclose"
+]
+
+[profile.source.if_else]
+deindent = false
