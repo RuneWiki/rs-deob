@@ -1,0 +1,219 @@
+package deob;
+
+@ObfuscatedName("GJDLZXKK")
+public class GJDLZXKK {
+
+	@ObfuscatedName("GJDLZXKK.f")
+	public int field725 = -1;
+
+	@ObfuscatedName("GJDLZXKK.g")
+	public boolean field726 = false;
+
+	@ObfuscatedName("GJDLZXKK.h")
+	public boolean field727 = true;
+
+	@ObfuscatedName("GJDLZXKK.b")
+	public static int field721;
+
+	@ObfuscatedName("GJDLZXKK.e")
+	public int field724;
+
+	@ObfuscatedName("GJDLZXKK.i")
+	public int field728;
+
+	@ObfuscatedName("GJDLZXKK.j")
+	public int field729;
+
+	@ObfuscatedName("GJDLZXKK.k")
+	public int field730;
+
+	@ObfuscatedName("GJDLZXKK.l")
+	public int field731;
+
+	@ObfuscatedName("GJDLZXKK.m")
+	public int field732;
+
+	@ObfuscatedName("GJDLZXKK.n")
+	public int field733;
+
+	@ObfuscatedName("GJDLZXKK.d")
+	public String field723;
+
+	@ObfuscatedName("GJDLZXKK.c")
+	public static GJDLZXKK[] field722;
+
+	@ObfuscatedName("GJDLZXKK.a(ZLVSQMPWOM;)V")
+	public static void method311(VSQMPWOM arg0) {
+		BFQIDHPO var1 = new BFQIDHPO(arg0.method526("flo.dat", null));
+		field721 = var1.method56();
+		if (field722 == null) {
+			field722 = new GJDLZXKK[field721];
+		}
+
+		for (int var2 = 0; var2 < field721; var2++) {
+			if (field722[var2] == null) {
+				field722[var2] = new GJDLZXKK();
+			}
+
+			field722[var2].method312(var1);
+		}
+	}
+
+	@ObfuscatedName("GJDLZXKK.a(BLBFQIDHPO;)V")
+	public void method312(BFQIDHPO arg0) {
+		while (true) {
+			int var2 = arg0.method54();
+			if (var2 == 0) {
+				return;
+			}
+
+			if (var2 == 1) {
+				field724 = arg0.method58();
+				method313(field724);
+			} else if (var2 == 2) {
+				field725 = arg0.method54();
+			} else if (var2 == 3) {
+				field726 = true;
+			} else if (var2 == 5) {
+				field727 = false;
+			} else if (var2 == 6) {
+				field723 = arg0.method61();
+			} else if (var2 == 7) {
+				int var3 = field728;
+				int var4 = field729;
+				int var5 = field730;
+				int var6 = field731;
+				int var7 = arg0.method58();
+				method313(var7);
+				field728 = var3;
+				field729 = var4;
+				field730 = var5;
+				field731 = var6;
+				field732 = var6;
+			} else {
+				System.out.println("Error unrecognised config code: " + var2);
+			}
+		}
+	}
+
+	@ObfuscatedName("GJDLZXKK.a(ZI)V")
+	public void method313(int arg0) {
+		if (arg0 == 0xFF00FF) {
+			arg0 = 0;
+		}
+
+		double var2 = (arg0 >> 16 & 0xFF) / 256.0D;
+		double var4 = (arg0 >> 8 & 0xFF) / 256.0D;
+		double var6 = (arg0 & 0xFF) / 256.0D;
+		double var8 = var2;
+		if (var4 < var2) {
+			var8 = var4;
+		}
+
+		if (var6 < var8) {
+			var8 = var6;
+		}
+
+		double var10 = var2;
+		if (var4 > var2) {
+			var10 = var4;
+		}
+
+		if (var6 > var10) {
+			var10 = var6;
+		}
+
+		double var12 = 0.0D;
+		double var14 = 0.0D;
+		double var16 = (var8 + var10) / 2.0D;
+		if (var8 != var10) {
+			if (var16 < 0.5D) {
+				var14 = (var10 - var8) / (var8 + var10);
+			}
+
+			if (var16 >= 0.5D) {
+				var14 = (var10 - var8) / (2.0D - var10 - var8);
+			}
+
+			if (var2 == var10) {
+				var12 = (var4 - var6) / (var10 - var8);
+			} else if (var4 == var10) {
+				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
+			} else if (var6 == var10) {
+				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
+			}
+		}
+
+		var12 /= 6.0D;
+		field728 = (int) (var12 * 256.0D);
+		field729 = (int) (var14 * 256.0D);
+		field730 = (int) (var16 * 256.0D);
+
+		if (field729 < 0) {
+			field729 = 0;
+		} else if (field729 > 255) {
+			field729 = 255;
+		}
+
+		if (field730 < 0) {
+			field730 = 0;
+		} else if (field730 > 255) {
+			field730 = 255;
+		}
+
+		if (var16 > 0.5D) {
+			field732 = (int) ((1.0D - var16) * var14 * 512.0D);
+		} else {
+			field732 = (int) (var14 * var16 * 512.0D);
+		}
+
+		if (field732 < 1) {
+			field732 = 1;
+		}
+
+		field731 = (int) (field732 * var12);
+		int var18 = field728 + (int) (Math.random() * 16.0D) - 8;
+		if (var18 < 0) {
+			var18 = 0;
+		} else if (var18 > 255) {
+			var18 = 255;
+		}
+
+		int var19 = field729 + (int) (Math.random() * 48.0D) - 24;
+		if (var19 < 0) {
+			var19 = 0;
+		} else if (var19 > 255) {
+			var19 = 255;
+		}
+
+		int var20 = field730 + (int) (Math.random() * 48.0D) - 24;
+		if (var20 < 0) {
+			var20 = 0;
+		} else if (var20 > 255) {
+			var20 = 255;
+		}
+
+		field733 = method314(var18, var19, var20);
+	}
+
+	@ObfuscatedName("GJDLZXKK.a(III)I")
+	public final int method314(int arg0, int arg1, int arg2) {
+		if (arg2 > 179) {
+			arg1 /= 2;
+		}
+
+		if (arg2 > 192) {
+			arg1 /= 2;
+		}
+
+		if (arg2 > 217) {
+			arg1 /= 2;
+		}
+
+		if (arg2 > 243) {
+			arg1 /= 2;
+		}
+
+		return arg2 / 2 + (arg0 / 4 << 10) + (arg1 / 32 << 7);
+	}
+}
